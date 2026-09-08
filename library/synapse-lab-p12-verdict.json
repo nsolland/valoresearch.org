@@ -1,0 +1,17 @@
+{
+  "mock_mode": false,
+  "valid_run": true,
+  "mvp_decision_rule_pass": false,
+  "positive_families": 0,
+  "c3_beats_c5_on_t1_t2": false,
+  "bootstrap_c3_c5": {
+    "mean": -0.096875,
+    "low": -0.6125,
+    "high": 0.384375,
+    "n": 40
+  },
+  "bootstrap_ci_crosses_zero": true,
+  "ci_supports_c3": false,
+  "conclusion": "FALSIFIED",
+  "note": "C3 gir ikkje konsistent gevinst over C0/C1/C5 — tesen redusert til dose-respons."
+}

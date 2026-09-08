@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VΛLΦ — Context Compression Proof</title>
+  <meta name="description" content="65% token reduction on live external data. Every key fact retained. Measured, not modeled." />
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FAF7F2; --bg2: #F0ECE6; --bg3: #E8E2DA;
+      --brd: rgba(0,0,0,0.08); --brdm: rgba(0,0,0,0.13);
+      --txt: #1A0F0A; --dim: #6B5E56; --mut: #9E8E84;
+      --blue: #1e3d50; --bludk: #162e3e; --blult: #5a9db8;
+    }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { background: var(--bg); color: var(--txt); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    h1,h2,h3 { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; line-height: 1.15; }
+
+    .topbar { background: var(--blue); color: rgba(255,255,255,0.75); text-align: center; padding: 10px 24px; font-size: 12px; letter-spacing: 0.04em; font-weight: 500; }
+    .topbar strong { color: #fff; }
+
+    nav { position: sticky; top: 0; z-index: 200; background: rgba(250,247,242,0.96); backdrop-filter: blur(20px); border-bottom: 1px solid var(--brd); }
+    .nav-w { max-width: 900px; margin: 0 auto; padding: 0 24px; height: 54px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .nav-logo { font-family: 'DM Serif Display', serif; font-size: 18px; }
+    .nav-label { font-size: 11px; color: var(--mut); letter-spacing: 0.06em; font-weight: 600; text-transform: uppercase; }
+    .nav-cta { background: var(--blue); color: #fff; padding: 8px 20px; border-radius: 40px; font-weight: 600; font-size: 13px; transition: background .15s; }
+    .nav-cta:hover { background: var(--bludk); }
+
+    .page { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+    .hero { padding: 80px 0 64px; text-align: center; border-bottom: 1px solid var(--brd); position: relative; overflow: hidden; }
+    .hero::before { content:''; position:absolute; inset:0; pointer-events:none;
+      background-image: linear-gradient(rgba(30,61,80,.04) 1px,transparent 1px), linear-gradient(90deg,rgba(30,61,80,.04) 1px,transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 0%, black 0%, transparent 70%); }
+    .hero-tag { display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--blult); border:1px solid rgba(90,157,184,0.3); border-radius:40px; padding:5px 14px; margin-bottom:28px; }
+    .big-stat { font-family:'DM Serif Display',serif; font-size: clamp(5rem,14vw,9rem); color:var(--blue); line-height:1; margin-bottom:12px; }
+    .stat-label { font-size:1.2rem; font-weight:600; color:var(--txt); margin-bottom:16px; }
+    .stat-sub { font-size:1rem; color:var(--dim); max-width:520px; margin:0 auto; line-height:1.7; }
+
+    .stat-trio { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; padding:48px 0; border-bottom:1px solid var(--brd); }
+    @media(max-width:600px){.stat-trio{grid-template-columns:1fr;}}
+    .st-card { background:var(--bg2); border:1px solid var(--brd); border-radius:16px; padding:28px 24px; text-align:center; }
+    .st-num { font-family:'DM Serif Display',serif; font-size:2.8rem; color:var(--blue); line-height:1; margin-bottom:8px; }
+    .st-lbl { font-size:12px; color:var(--mut); font-weight:600; text-transform:uppercase; letter-spacing:0.08em; }
+
+    .sec { padding:56px 0; border-bottom:1px solid var(--brd); }
+    .sec:last-of-type { border-bottom:none; }
+    .sec-tag { font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--mut); margin-bottom:12px; }
+    .sec h2 { font-size:clamp(1.5rem,3vw,2rem); margin-bottom:20px; }
+    .sec p { color:var(--dim); margin-bottom:14px; max-width:680px; }
+
+    .source-table { width:100%; border-collapse:collapse; margin-top:24px; border:1px solid var(--brd); border-radius:14px; overflow:hidden; }
+    .source-table th { background:var(--bg2); font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--mut); padding:12px 16px; text-align:left; border-bottom:1px solid var(--brdm); }
+    .source-table td { padding:14px 16px; font-size:13px; color:var(--dim); border-bottom:1px solid var(--brd); }
+    .source-table tr:last-child td { border-bottom:none; }
+    .source-table td:nth-child(3) { font-weight:700; color:var(--blue); font-size:14px; }
+    .source-table td:nth-child(4) { color:#2e7d5a; font-weight:600; }
+    .source-table td strong { color:var(--txt); font-weight:600; }
+    .avg-row td { background:var(--blue); color:#fff !important; font-weight:700 !important; }
+    .avg-row td:nth-child(3) { color:#fff !important; font-size:16px !important; }
+
+    .method-box { margin-top:24px; background:var(--bg2); border:1px solid var(--brd); border-radius:14px; padding:28px; }
+    .method-box code { font-family:monospace; font-size:13px; background:rgba(30,61,80,0.08); padding:2px 6px; border-radius:4px; color:var(--blue); }
+    .method-box p { margin-bottom:12px; font-size:14px; color:var(--dim); }
+    .method-box p:last-child { margin-bottom:0; }
+
+    .impl-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:24px; }
+    @media(max-width:640px){.impl-grid{grid-template-columns:1fr;}}
+    .impl-card { background:var(--bg2); border:1px solid var(--brd); border-radius:14px; padding:24px; }
+    .ic-icon { font-size:24px; margin-bottom:12px; }
+    .ic-title { font-size:14px; font-weight:700; color:var(--txt); margin-bottom:8px; }
+    .ic-desc { font-size:13px; color:var(--dim); line-height:1.6; }
+
+    .callout { margin:32px 0; padding:28px 32px; background:var(--blue); border-radius:16px; }
+    .callout p { color:rgba(255,255,255,0.88); font-size:15px; line-height:1.7; margin:0; max-width:none; }
+    .callout p strong { color:#fff; }
+
+    .contact-sec { padding:48px 0 64px; }
+    .contact-card { background:linear-gradient(135deg,#2a7a9e 0%,#1e5f7a 100%); border-radius:20px; padding:40px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; box-shadow:0 8px 32px rgba(30,95,122,0.25); }
+    .contact-left h2 { color:#fff; font-size:clamp(1.3rem,3vw,1.8rem); margin-bottom:8px; }
+    .contact-left p { color:rgba(255,255,255,0.75); font-size:14px; margin:0; }
+    .contact-links { display:flex; flex-direction:column; gap:10px; }
+    .contact-link { display:flex; align-items:center; gap:10px; color:rgba(255,255,255,0.9); font-size:14px; font-weight:500; background:rgba(255,255,255,0.15); border-radius:40px; padding:10px 20px; transition:background .15s; border:1px solid rgba(255,255,255,0.2); white-space:nowrap; }
+    .contact-link:hover { background:rgba(255,255,255,0.25); }
+
+    footer { border-top:1px solid var(--brd); padding:20px 0; text-align:center; font-size:11px; color:var(--mut); }
+    .footer-inner { max-width:900px; margin:0 auto; padding:0 24px; }
+
+    @media print { nav,.topbar { display:none; } .hero { padding-top:20px; } }
+  </style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0a1520" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="VALO Research" />
+<meta property="og:title" content="VΛLΦ — Context Compression Proof" />
+<meta property="og:description" content="65% token reduction on live external data. Every key fact retained. Measured, not modeled." />
+<meta property="og:image" content="https://valoresearch.org/img/og-valo.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="VΛLΦ — Context Compression Proof" />
+<meta name="twitter:description" content="65% token reduction on live external data. Every key fact retained. Measured, not modeled." />
+<meta name="twitter:image" content="https://valoresearch.org/img/og-valo.jpg" />
+  <link rel="stylesheet" href="/css/valo-brand.css">
+</head>
+<body>
+
+<div class="topbar"><strong>Confidential</strong> · Valo Research Group · Live Benchmark · June 2026</div>
+
+<nav>
+  <div class="nav-w">
+    <div class="nav-logo">VΛLΦ</div>
+    <div class="nav-label">Context Compression Proof</div>
+    <a class="nav-cta" href="mailto:njaal@valoresearch.org">Contact</a>
+  </div>
+</nav>
+<main id="main">
+
+
+<div class="page">
+
+  <section class="hero">
+    <div class="hero-tag">Live Benchmark · June 2026 · Real External Data</div>
+    <div class="big-stat">65%</div>
+    <p class="stat-label">average token reduction on live external data</p>
+    <p class="stat-sub">Tested against 6 real competitor and regulatory sources — fetched live, not cached. Every key fact retained. Measured, not modeled.</p>
+  </section>
+
+  <div class="stat-trio">
+    <div class="st-card">
+      <div class="st-num">6</div>
+      <div class="st-lbl">sources tested</div>
+    </div>
+    <div class="st-card">
+      <div class="st-num">65%</div>
+      <div class="st-lbl">avg token reduction</div>
+    </div>
+    <div class="st-card">
+      <div class="st-num">100%</div>
+      <div class="st-lbl">key facts retained</div>
+    </div>
+  </div>
+
+  <section class="sec">
+    <div class="sec-tag">Test Sources</div>
+    <h2>Six live pages. No synthetic fixtures.</h2>
+    <p>Every source was fetched from its live URL at benchmark time. Required facts were verified using a 75% term-overlap threshold against the compressed output.</p>
+
+    <table class="source-table">
+      <thead>
+        <tr>
+          <th>Source</th>
+          <th>Topic</th>
+          <th>Reduction</th>
+          <th>Facts</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Straiker</strong> · PR Newswire</td>
+          <td>Agentic-first AI security — Ascend AI + Defend AI, 8x growth, 98% detection accuracy</td>
+          <td>~65%</td>
+          <td>✓ All retained</td>
+        </tr>
+        <tr>
+          <td><strong>HiddenLayer</strong> · PR Newswire</td>
+          <td>Agentic runtime security — prompt injection, malicious tool calls, data exfiltration</td>
+          <td>~65%</td>
+          <td>✓ All retained</td>
+        </tr>
+        <tr>
+          <td><strong>Holistic AI</strong> · Blog</td>
+          <td>Guardian Agents — supervisory systems, execution-level observability, human-on-the-loop</td>
+          <td>~65%</td>
+          <td>✓ All retained</td>
+        </tr>
+        <tr>
+          <td><strong>Raconteur</strong></td>
+          <td>EU AI Act technical audit — API inventory, logging, August 2026 enforcement deadline</td>
+          <td>~65%</td>
+          <td>✓ All retained</td>
+        </tr>
+        <tr>
+          <td><strong>The Hacker News</strong></td>
+          <td>Gartner Market Guide for Guardian Agents — enterprise deployment, fast adoption vs governance gap</td>
+          <td>~65%</td>
+          <td>✓ All retained</td>
+        </tr>
+        <tr>
+          <td><strong>AI Standards Hub</strong></td>
+          <td>prEN 18229-1 — AI trustworthiness framework, logging, transparency, human oversight</td>
+          <td>~65%</td>
+          <td>✓ All retained</td>
+        </tr>
+        <tr class="avg-row">
+          <td colspan="2"><strong>Average across all sources</strong></td>
+          <td><strong>65.4%</strong></td>
+          <td><strong>100%</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="sec">
+    <div class="sec-tag">Methodology</div>
+    <h2>Deterministic. Reproducible. Auditable.</h2>
+    <p>No ML model selects what to keep. The compression is algorithmic and deterministic — the same input always produces the same output.</p>
+    <div class="method-box">
+      <p><strong>Algorithm:</strong> <code>deterministic_select()</code> — term-overlap sentence selector</p>
+      <p><strong>Target ratio:</strong> <code>target_ratio=0.35</code> — select the minimum sentences needed to cover key terms at 35% of original length</p>
+      <p><strong>Fact verification:</strong> Each required fact is tested with a <code>75% term-overlap threshold</code> against the compressed output</p>
+      <p><strong>Data source:</strong> Live HTTP fetch of public URLs at benchmark time — no cached or pre-processed data</p>
+      <p><strong>Benchmark script:</strong> <code>benchmarks/context_efficiency/bench_valo_context.py</code> on <code>nsolland/index</code></p>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-tag">What This Means</div>
+    <h2>Same intelligence.<br>35 cents on the dollar.</h2>
+
+    <div class="callout">
+      <p><strong>VΛLΦ agents process the same external intelligence at 35% of the token cost — measured against live competitor and regulatory sources, not synthetic test data.</strong> The compression is deterministic and auditable. The fact retention is verified.</p>
+    </div>
+
+    <div class="impl-grid">
+      <div class="impl-card">
+        <div class="ic-icon">💰</div>
+        <div class="ic-title">Token Cost</div>
+        <div class="ic-desc">At 1M context tokens/day per agent, VΛLΦ compression saves 650,000 tokens/day. At $0.01/1K tokens: $6.50/day, $2,370/year per agent — before scale.</div>
+      </div>
+      <div class="impl-card">
+        <div class="ic-icon">⚡</div>
+        <div class="ic-title">Latency</div>
+        <div class="ic-desc">Smaller context = faster inference. 65% fewer input tokens measurably reduces time-to-first-token at every major provider. Agents respond faster.</div>
+      </div>
+      <div class="impl-card">
+        <div class="ic-icon">🧠</div>
+        <div class="ic-title">Coherence</div>
+        <div class="ic-desc">Dense, relevant context reduces hallucination risk. VΛLΦ removes noise, keeping only the terms the model needs — reducing semantic collapse risk (Phi-Law).</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="contact-sec">
+    <div class="contact-card">
+      <div class="contact-left">
+        <h2>See the full benchmark</h2>
+        <p>Njål Gaute Solland · Valo Research Group<br>Founder &amp; architect of VΛLΦ</p>
+      </div>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:njaal@valoresearch.org">✉ njaal@valoresearch.org</a>
+        <a class="contact-link" href="https://linkedin.com/in/njaal" target="_blank" rel="noopener">↗ linkedin.com/in/njaal</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+</main>
+<footer>
+  <div class="footer-inner">Valo Research Group · Confidential · June 2026 · For authorized recipients only</div>
+</footer>
+
+</body>
+</html>

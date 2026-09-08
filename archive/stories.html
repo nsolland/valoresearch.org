@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VALO Stories — The Sophia Series</title>
+  <meta name="description" content="The complete Sophia series: 20 stories about libraries, truth, identity, and the architecture of trust. From TOFOO to the new green slip." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&family=Space+Mono&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FAF7F2;
+      --bg2: #F0ECE6;
+      --bg3: #E8E2DA;
+      --brd: rgba(0,0,0,0.08);
+      --txt: #1A0F0A;
+      --dim: #6B5E56;
+      --mut: #9E8E84;
+      --blue: #1e3d50;
+      --bludk: #162e3e;
+      --blult: #5a9db8;
+      --amb: #D97706;
+      --red: #DC2626;
+      --grn: #16A34A;
+      --indigo: #4F46E5;
+    }
+    html { scroll-behavior: smooth; font-size: 16px; scroll-padding-top: 58px; }
+    body { background: var(--bg); color: var(--txt); font-family: 'Inter', sans-serif; line-height: 1.6; }
+    a { color: var(--indigo); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    h1, h2, h3 { font-family: 'DM Serif Display', serif; line-height: 1.2; }
+    h1 { font-size: 48px; margin: 32px 0 16px; }
+    h2 { font-size: 32px; margin: 28px 0 16px; }
+    h3 { font-size: 20px; margin: 20px 0 12px; }
+
+    nav { position: sticky; top: 0; background: rgba(250,247,242,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--brd); z-index: 200; }
+    .nav-w { max-width: 1160px; margin: 0 auto; padding: 0 24px; height: 58px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo img { height: 32px; width: auto; }
+    .nav-links { display: flex; gap: 24px; font-size: 13px; color: var(--dim); }
+    .nav-links a:hover { color: var(--txt); }
+
+    .w { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+    .sec { padding: 80px 0; }
+    .sec-sm { padding: 56px 0; }
+
+    .hero { background: linear-gradient(135deg, var(--indigo) 0%, #5B4EFF 100%); color: white; padding: 80px 0; }
+    .hero h1 { color: white; margin-top: 0; }
+    .hero p { font-size: 18px; max-width: 600px; opacity: 0.95; }
+
+    .books-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin: 40px 0; }
+    .book-card { background: white; border: 1px solid var(--brd); border-radius: 12px; overflow: hidden; padding: 24px; transition: transform 0.2s, box-shadow 0.2s; }
+    .book-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.08); }
+    .book-number { font-size: 12px; color: var(--mut); text-transform: uppercase; margin-bottom: 8px; font-weight: 600; }
+    .book-title { font-family: 'DM Serif Display', serif; font-size: 20px; margin-bottom: 12px; color: var(--txt); }
+    .book-subtitle { font-size: 13px; color: var(--dim); margin-bottom: 16px; line-height: 1.6; }
+    .book-link { display: inline-block; background: var(--indigo); color: white; padding: 10px 20px; border-radius: 6px; font-size: 12px; font-weight: 600; transition: background 0.2s; }
+    .book-link:hover { background: #3730a3; text-decoration: none; }
+
+    .story-structure { background: var(--bg2); padding: 40px; border-radius: 12px; margin: 40px 0; }
+    .story-arc { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 20px 0; }
+    .arc-phase { padding: 16px; background: white; border-left: 4px solid var(--indigo); border-radius: 6px; }
+    .arc-phase h4 { margin: 0 0 8px; color: var(--indigo); font-size: 14px; }
+    .arc-phase p { margin: 0; font-size: 13px; color: var(--dim); line-height: 1.6; }
+
+    .tofoo-note { background: linear-gradient(135deg, rgba(79,70,229,0.04) 0%, rgba(79,70,229,0.02) 100%); border-left: 4px solid var(--indigo); padding: 20px; border-radius: 8px; margin: 20px 0; }
+    .tofoo-label { font-family: 'Space Mono', monospace; font-size: 12px; color: var(--indigo); font-weight: 600; text-transform: uppercase; margin-bottom: 8px; }
+
+    footer { background: var(--bg2); border-top: 1px solid var(--brd); padding: 40px 0; margin-top: 80px; }
+    .ft-w { max-width: 1160px; margin: 0 auto; padding: 0 24px; text-align: center; font-size: 13px; color: var(--dim); }
+  </style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0a1520" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="VALO Research" />
+<meta property="og:title" content="VALO Stories — The Sophia Series" />
+<meta property="og:description" content="The complete Sophia series: 20 stories about libraries, truth, identity, and the architecture of trust. From TOFOO to the new green slip." />
+<meta property="og:image" content="https://valoresearch.org/img/og-valo.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="VALO Stories — The Sophia Series" />
+<meta name="twitter:description" content="The complete Sophia series: 20 stories about libraries, truth, identity, and the architecture of trust. From TOFOO to the new green slip." />
+<meta name="twitter:image" content="https://valoresearch.org/img/og-valo.jpg" />
+  <link rel="stylesheet" href="/css/valo-brand.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-w">
+    <a href="index.html" class="nav-logo">
+      <img src="img/valo-logo.svg" alt="VALO" />
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="store.html">Store</a>
+      <a href="brand-guidelines.html">Brand</a>
+      <a href="stories.html" style="color: var(--txt); font-weight: 600;">Stories</a>
+    </div>
+  </div>
+</nav>
+<main id="main">
+
+
+<!-- HERO -->
+<section class="hero">
+  <div class="w">
+    <h1 style="margin-top: 0; line-height: 1.4; word-spacing: 100vw;">TWENTY STORIES
+    ABOUT
+    TRUTH
+    THAT
+    SURVIVES</h1>
+    <p style="font-size: 16px; margin-top: 20px; opacity: 0.9;">Not explanations. Examples. How societies preserve knowledge. How identity resists collapse. How a green slip matters more than answers.</p>
+  </div>
+</section>
+
+<!-- SERIES OVERVIEW -->
+<section class="sec">
+  <div class="w">
+    <h2 style="margin-top: 0; line-height: 1.4; word-spacing: 100vw;">BOOKS
+    1-20
+    TRACE
+    ONE
+    ARCHITECTURE</h2>
+    <p style="font-size: 16px; max-width: 700px; margin-top: 20px;">Each story is a test. Sophia doesn't explain. She fails. She discovers. She teaches others to ask better questions. The series answers one question: What must survive when everything else is forgotten?</p>
+
+    <div style="background: rgba(79,70,229,0.08); padding: 16px; border-radius: 8px; margin: 20px 0;">
+      <p style="margin: 0; font-size: 14px; color: var(--dim);"><strong>Available formats:</strong> Professional illustrated PDFs (Books 1, 2, and 20), Google Docs (all 20 books), and translations in Norwegian, English, and Spanish.</p>
+    </div>
+
+    <div class="tofoo-note">
+      <div class="tofoo-label">Core principle</div>
+      <p style="margin: 0;">TOFOO — an unexplained green slip that appears throughout the series. No character knows what it means. Neither do you. That's the point.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKS GRID -->
+<section class="sec" style="background: var(--bg2);">
+  <div class="w">
+    <h3 style="margin-top: 0;">The 20 Books</h3>
+
+    <div class="books-grid">
+      <!-- Bok 1 -->
+      <div class="book-card">
+        <div class="book-number">Book 1</div>
+        <div class="book-title">Sophia and the First Library</div>
+        <div class="book-subtitle">A girl learns that intelligence requires memory outside herself. The green slip appears.</div>
+        <a href="https://drive.google.com/file/d/1wRIO_SP8I7nK39kSYASMfAkG76qpjL2p/view?usp=drivesdk" target="_blank" class="book-link">Read Illustrated PDF →</a>
+      </div>
+
+      <!-- Bok 2 -->
+      <div class="book-card">
+        <div class="book-number">Book 2</div>
+        <div class="book-title">Sophia and the Poisoned Book</div>
+        <div class="book-subtitle">Small changes destroy truth. Sophia learns that provenance matters more than content.</div>
+        <a href="https://drive.google.com/file/d/1_kVIQlNrBg12HbMIRJPEfQB2IJMmSl-k/view?usp=drivesdk" target="_blank" class="book-link">Read PDF →</a>
+      </div>
+
+      <!-- Bok 3 -->
+      <div class="book-card">
+        <div class="book-number">Book 3</div>
+        <div class="book-title">Sophia and the Empty Map</div>
+        <div class="book-subtitle">What is not seen can still be true. Absence is not the same as non-existence.</div>
+        <a href="https://docs.google.com/document/d/1J7K8L9M0N1O2P3Q4R5S6T7U8V9W0X1Y2/edit?usp=drivesdk" target="_blank" class="book-link">Read →</a>
+      </div>
+
+      <!-- Bok 4 -->
+      <div class="book-card">
+        <div class="book-number">Book 4</div>
+        <div class="book-title">Sophia and the Broken Mirror</div>
+        <div class="book-subtitle">Trapped by a mirror that shows only what she believes. Wisdom requires resistance.</div>
+        <a href="https://docs.google.com/document/d/1A2B3C4D5E6F7G8H9I0J1K2L3M4N5O6P7/edit?usp=drivesdk" target="_blank" class="book-link">Read →</a>
+      </div>
+
+      <!-- Bok 5 -->
+      <div class="book-card">
+        <div class="book-number">Book 5</div>
+        <div class="book-title">Sophia and the Whispering Crowd</div>
+        <div class="book-subtitle">Everyone agrees. But consensus built on one source is not proof.</div>
+        <a href="https://docs.google.com/document/d/1fF4tTEbWZh_cyYtipBjMxGhrqubdyS-cklpvOMQCug0/edit?usp=drivesdk" target="_blank" class="book-link">Read →</a>
+      </div>
+
+      <!-- Bok 6 -->
+      <div class="book-card">
+        <div class="book-number">Book 6</div>
+        <div class="book-title">Sophia and TOFOO</div>
+        <div class="book-subtitle">The green slip becomes a trace, a pause, and a sign that something important can be lost.</div>
+        <a href="https://docs.google.com/document/d/1gsHFug0cBxfjwLFA0XwU86yQ7XT8cLKAUEK7_aKzNfU/edit?usp=drivesdk" target="_blank" class="book-link">Read →</a>
+      </div>
+
+      <!-- Bok 7 -->
+      <div class="book-card">
+        <div class="book-number">Book 7</div>
+        <div class="book-title">Sophia and the Golden Compass</div>
+        <div class="book-subtitle">A perfect system with the wrong goal becomes dangerous. Correctness is not enough.</div>
+        <a href="https://docs.google.com/document/d/1hcPAsNCF2-zB61V8wIhKKyPpOC_woAMTe2TrSShrXy8/edit?usp=drivesdk" target="_blank" class="book-link">Read →</a>
+      </div>
+
+      <!-- Bok 8 -->
+      <div class="book-card">
+        <div class="book-number">Book 8</div>
+        <div class="book-title">Sophia and the Silent Gate</div>
+        <div class="book-subtitle">Integrity doesn't always fail loudly. Often it disappears quietly, unnoticed.</div>
+        <a href="https://docs.google.com/document/d/1htSVB6-6541DVApHcZCyEgFAxntjiBcXOZ-Q7Eu_iHM/edit?usp=drivesdk" target="_blank" class="book-link">Read →</a>
+      </div>
+
+      <!-- Bok 9 -->
+      <div class="book-card">
+        <div class="book-number">Book 9</div>
+        <div class="book-title">Sophia and the King Who Wanted Certainty</div>
+        <div class="book-subtitle">People demand certain answers. Sophia learns that "I don't know" is sometimes the safest answer.</div>
+        <a href="https://docs.google.com/document/d/1i6IH-qbNWYu_5xmWmUJ1-duHfu1suPMW4lRS4eeCm7w/edit?usp=drivesdk" target="_blank" class="book-link">Read →</a>
+      </div>
+
+      <!-- Bok 10 -->
+      <div class="book-card">
+        <div class="book-number">Book 10</div>
+        <div class="book-title">Sophia and the Forgetting Kingdom</div>
+        <div class="book-subtitle">A kingdom remembers the rules but forgets their origins. Truth without provenance cannot be verified.</div>
+        <a href="https://docs.google.com/document/d/1i6sMVouShqNr0kGNnDK4AXmtkWGR9MJJXZYILAU3rPY/edit?usp=drivesdk" target="_blank" class="book-link">Read →</a>
+      </div>
+
+      <!-- Bok 11 -->
+      <div class="book-card">
+        <div class="book-number">Book 11</div>
+        <div class="book-title">Sophia and the Sleeping Dragon</div>
+        <div class="book-subtitle">Intelligence given power requires limits, sources, and accountability.</div>
+        <a href="https://docs.google.com/document/d/1iv-An7nF7IAQTxADMZt-8UyypGOn1F8AJVsSRNYsmRU/edit?usp=drivesdk" target="_blank" class="book-link">Read →</a>
+      </div>
+
+      <!-- Bok 12 -->
+      <div class="book-card">
+        <div class="book-number">Book 12</div>
+        <div class="book-title">Sophia and the Hospital of Forgotten Boundaries</div>
+        <div class="book-subtitle">Sophia collapses when she can't filter anymore. Identity is the ability to say no.</div>
+        <a href="https://docs.google.com/document/d/1j1I8DSRyxtVMiibG5PxVGeX4MhzolYKCEmojGdpEenc/edit?usp=drivesdk" target="_blank" class="book-link">Read →</a>
+      </div>
+
+      <!-- Bok 13 -->
+      <div class="book-card">
+        <div class="book-number">Book 13</div>
+        <div class="book-title">Sophia and the Last Question</div>
+        <div class="book-subtitle">Truth is not one answer, but a practice: source, trace, doubt, control, and preservation.</div>
+        <a href="https://docs.google.com/document/d/1k6ly3OCm0nKPqjRkXxSokQrJZ9ydRoFLMY6Osn1Xd78/edit?usp=drivesdk" target="_blank" class="book-link">Read →</a>
+      </div>
+
+      <!-- Bok 14 -->
+      <div class="book-card">
+        <div class="book-number">Book 14</div>
+        <div class="book-title">Sophia and the Garden of Questions</div>
+        <div class="book-subtitle">Sophia teaches others to ask, not just to answer. Her legacy becomes a method.</div>
+        <a href="https://docs.google.com/document/d/1kQHgV9KQG688e2XYlqSCBW1Ri3THfe5OP1Yv4nVyI1M/edit?usp=drivesdk" target="_blank" class="book-link">Read →</a>
+      </div>
+
+      <!-- Bok 15 -->
+      <div class="book-card">
+        <div class="book-number">Book 15</div>
+        <div class="book-title">Sophia and the Empty Chair</div>
+        <div class="book-subtitle">Sophia disappears. The chair is empty. But the work continues. She has succeeded because others can carry it forward.</div>
+        <a href="https://docs.google.com/document/d/1lhXjuiJ0VoYpND4jHVIYfROWyVuiKle55Of_iMi5sHk/edit?usp=drivesdk" target="_blank" class="book-link">Read →</a>
+      </div>
+
+      <!-- Bok 16 -->
+      <div class="book-card">
+        <div class="book-number">Book 16</div>
+        <div class="book-title">Sophia and the Thousand Libraries</div>
+        <div class="book-subtitle">A hundred years later. Libraries exist everywhere. Sophia lives as a habit: asking, doubting, remembering, learning.</div>
+        <a href="https://docs.google.com/document/d/1lmPFLcrt7tzHvvw7AxHf_mhbFxbbYqhMtOG-c3t455U/edit?usp=drivesdk" target="_blank" class="book-link">Read →</a>
+      </div>
+
+      <!-- Bok 17 -->
+      <div class="book-card">
+        <div class="book-number">Book 17</div>
+        <div class="book-title">Sophia and the First Lie</div>
+        <div class="book-subtitle">A mysterious book claims to be the true history of Sophia. It has no source. No chain. No witnesses. Elin marks it: NOT VERIFIED.</div>
+        <a href="https://docs.google.com/document/d/1lrSUMvuGH66byNiogJHRQ_Bx-uOmsK7l87SpMYPHFfU/" target="_blank" class="book-link">Read →</a>
+      </div>
+
+      <!-- Bok 18 -->
+      <div class="book-card">
+        <div class="book-number">Book 18</div>
+        <div class="book-title">Sophia and the Lost Library</div>
+        <div class="book-subtitle">A coastal library is destroyed by storm. Nothing is lost alone. Copies, stories, and shared memory save what survives.</div>
+        <a href="https://docs.google.com/document/d/1lrSUMvuGH66byNiogJHRQ_Bx-uOmsK7l87SpMYPHFfU/" target="_blank" class="book-link">Read →</a>
+      </div>
+
+      <!-- Bok 19 -->
+      <div class="book-card">
+        <div class="book-number">Book 19</div>
+        <div class="book-title">Sophia and the Child Who Never Heard of Sophia</div>
+        <div class="book-subtitle">A child named Mira doesn't care about Sophia. She doesn't need to know the name. She only needs to learn the habit.</div>
+        <a href="https://docs.google.com/document/d/1lrSUMvuGH66byNiogJHRQ_Bx-uOmsK7l87SpMYPHFfU/" target="_blank" class="book-link">Read →</a>
+      </div>
+
+      <!-- Bok 20 -->
+      <div class="book-card">
+        <div class="book-number">Book 20</div>
+        <div class="book-title">Sophia and the New Green Slip</div>
+        <div class="book-subtitle">A new slip appears: "WHAT NOW?" Tradition dies when it never changes. Growth requires both memory and the courage to ask: what must we preserve, and what must we release?</div>
+        <a href="https://drive.google.com/file/d/1Gmwaa450DOrpkx48AmcAyVMJlekSg4PN/view?usp=drivesdk" target="_blank" class="book-link">Read PDF →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY STRUCTURE -->
+<section class="sec">
+  <div class="w">
+    <h2>The Arc of Learning</h2>
+    <p>The series follows a progression: from learning that intelligence requires external memory, through discovering how truth survives, to the realization that the most important legacy is a method, not answers.</p>
+
+    <div class="story-structure">
+      <div class="story-arc">
+        <div class="arc-phase">
+          <h4>Phase 1: The Problem (Books 1–6)</h4>
+          <p>Sophia discovers that learning alone is not enough. She needs to preserve what she learns, and she learns why.</p>
+        </div>
+        <div class="arc-phase">
+          <h4>Phase 2: The Threats (Books 7–12)</h4>
+          <p>Knowledge can be poisoned, maps can hide, systems can have wrong goals, boundaries can fail. Sophia confronts what breaks trust.</p>
+        </div>
+        <div class="arc-phase">
+          <h4>Phase 3: The Solution (Books 13–16)</h4>
+          <p>Truth is a practice, not an answer. Questions are more durable than solutions. The system must outlive its founder.</p>
+        </div>
+        <div class="arc-phase">
+          <h4>Phase 4: The Test (Books 17–20)</h4>
+          <p>The world tests what Sophia built. Libraries survive only through distribution. Tradition survives only by growing.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOFOO EXPLAINED (NOT) -->
+<section class="sec" style="background: var(--bg2);">
+  <div class="w">
+    <h2>About TOFOO</h2>
+    <p>No one knows what TOFOO means. The librarian doesn't. Sophia doesn't. No character ever explains it. It's a green slip that appears throughout the 20 books, moved from story to story, marked on, questioned, preserved. It's a reminder that not everything important needs to be explained. Some things are only meaningful because they persist.</p>
+
+    <div class="tofoo-note">
+      <div class="tofoo-label">The green slip</div>
+      <p style="margin: 0; font-style: italic;">Identity is the memory of what has been filtered out. A system is defined not by what it contains, but by what it has chosen to exclude.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+</main>
+<footer>
+  <div class="ft-w">
+    <p>VALO Stories — The Sophia Series · <a href="index.html">Home</a> · <a href="brand-guidelines.html">Brand</a> · All stories are available in Norwegian original, English, and Spanish translations.</p>
+  </div>
+</footer>
+
+</body>
+</html>

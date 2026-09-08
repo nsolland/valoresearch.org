@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VΛLΦ — Consequence Safety for Autonomous AI</title>
+  <meta name="description" content="Execution-boundary operating control system for autonomous AI agents. Deterministic admissibility at machine speed." />
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:   #FAF7F2;
+      --bg2:  #F0ECE6;
+      --bg3:  #E8E2DA;
+      --brd:  rgba(0,0,0,0.08);
+      --brdm: rgba(0,0,0,0.13);
+      --txt:  #1A0F0A;
+      --dim:  #6B5E56;
+      --mut:  #9E8E84;
+      --blue: #1e3d50;
+      --bludk:#162e3e;
+      --blult:#5a9db8;
+    }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { background: var(--bg); color: var(--txt); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    h1,h2,h3 { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; line-height: 1.15; letter-spacing: -0.01em; }
+
+    /* ── Top bar ── */
+    .topbar {
+      background: var(--blue); color: rgba(255,255,255,0.75);
+      text-align: center; padding: 10px 24px; font-size: 12px; letter-spacing: 0.04em;
+      font-weight: 500;
+    }
+    .topbar strong { color: #fff; }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(250,247,242,0.96); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--brd);
+    }
+    .nav-w {
+      max-width: 860px; margin: 0 auto; padding: 0 24px;
+      height: 54px; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .nav-logo { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--txt); }
+    .nav-label { font-size: 11px; color: var(--mut); letter-spacing: 0.06em; font-weight: 600; text-transform: uppercase; }
+    .nav-cta {
+      background: var(--blue); color: #fff; padding: 8px 20px;
+      border-radius: 40px; font-weight: 600; font-size: 13px;
+      transition: background .15s; white-space: nowrap;
+    }
+    .nav-cta:hover { background: var(--bludk); }
+
+    /* ── Page wrapper ── */
+    .page { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 72px 0 56px;
+      border-bottom: 1px solid var(--brd);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image: linear-gradient(rgba(30,61,80,.035) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(30,61,80,.035) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 100% 100% at 80% 0%, black 0%, transparent 70%);
+    }
+    .hero-tag {
+      display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--blult);
+      border: 1px solid rgba(90,157,184,0.3); border-radius: 40px;
+      padding: 5px 14px; margin-bottom: 24px;
+    }
+    .hero h1 { font-size: clamp(2.4rem, 5vw, 3.6rem); margin-bottom: 20px; }
+    .hero h1 em { font-style: italic; color: var(--blue); }
+    .hero-sub {
+      font-size: 1.1rem; color: var(--dim); max-width: 560px; line-height: 1.7;
+      margin-bottom: 36px;
+    }
+    .hero-meta { display: flex; gap: 24px; font-size: 12px; color: var(--mut); flex-wrap: wrap; }
+    .hero-meta span::before { content: ''; display: inline-block; width: 6px; height: 6px; background: var(--blult); border-radius: 50%; margin-right: 7px; vertical-align: middle; }
+
+    /* ── Flow diagram ── */
+    .flow {
+      display: flex; align-items: center; gap: 0;
+      margin: 48px 0; flex-wrap: wrap;
+    }
+    .flow-step {
+      background: var(--bg2); border: 1px solid var(--brd);
+      border-radius: 12px; padding: 14px 22px;
+      text-align: center; flex: 1; min-width: 100px;
+    }
+    .flow-step .fs-label { font-size: 10px; color: var(--mut); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+    .flow-step .fs-name { font-size: 15px; font-weight: 600; color: var(--txt); }
+    .flow-step.gate { background: var(--blue); border-color: var(--blue); }
+    .flow-step.gate .fs-label { color: rgba(255,255,255,0.6); }
+    .flow-step.gate .fs-name { color: #fff; }
+    .flow-arr { font-size: 20px; color: var(--mut); padding: 0 8px; flex-shrink: 0; }
+
+    /* ── Sections ── */
+    .sec { padding: 56px 0; border-bottom: 1px solid var(--brd); }
+    .sec:last-of-type { border-bottom: none; }
+    .sec-tag {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--mut); margin-bottom: 12px;
+    }
+    .sec h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); margin-bottom: 20px; }
+    .sec p { color: var(--dim); margin-bottom: 14px; max-width: 680px; }
+    .sec p:last-child { margin-bottom: 0; }
+
+    /* ── Pull quote ── */
+    .pullquote {
+      margin: 28px 0; padding: 24px 28px;
+      border-left: 3px solid var(--blue); background: var(--bg2);
+      border-radius: 0 12px 12px 0;
+    }
+    .pullquote p {
+      font-family: 'DM Serif Display', serif; font-size: 1.2rem; font-style: italic;
+      color: var(--txt); line-height: 1.5; margin: 0;
+    }
+
+    /* ── Product grid ── */
+    .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
+    @media (max-width: 600px) { .product-grid { grid-template-columns: 1fr; } }
+    .product-card {
+      background: var(--bg2); border: 1px solid var(--brd);
+      border-radius: 14px; padding: 22px 24px;
+    }
+    .pc-name { font-size: 13px; font-weight: 700; color: var(--txt); margin-bottom: 6px; }
+    .pc-desc { font-size: 13px; color: var(--dim); line-height: 1.55; }
+    .pc-tag {
+      display: inline-block; font-size: 10px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.08em; color: var(--blult); background: rgba(90,157,184,0.1);
+      border-radius: 6px; padding: 3px 8px; margin-top: 10px;
+    }
+
+    /* ── Buyer table ── */
+    .buyer-table { margin-top: 28px; border: 1px solid var(--brd); border-radius: 14px; overflow: hidden; }
+    .bt-row {
+      display: grid; grid-template-columns: 160px 1fr; gap: 0;
+      border-bottom: 1px solid var(--brd);
+      align-items: stretch;
+    }
+    .bt-row:last-child { border-bottom: none; }
+    .bt-who {
+      padding: 16px 20px; background: var(--bg2);
+      font-size: 13px; font-weight: 700; color: var(--txt);
+      border-right: 1px solid var(--brd); display: flex; align-items: center;
+    }
+    .bt-what { padding: 16px 20px; font-size: 13px; color: var(--dim); display: flex; align-items: center; }
+    @media (max-width: 600px) {
+      .bt-row { grid-template-columns: 1fr; }
+      .bt-who { border-right: none; border-bottom: 1px solid var(--brd); }
+    }
+
+    /* ── Proof list ── */
+    .proof-list { margin-top: 24px; display: flex; flex-direction: column; gap: 12px; }
+    .proof-item {
+      display: flex; gap: 14px; align-items: flex-start;
+      padding: 16px 20px; background: var(--bg2);
+      border: 1px solid var(--brd); border-radius: 12px;
+    }
+    .proof-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+    .proof-text { font-size: 13px; color: var(--dim); line-height: 1.55; }
+    .proof-text strong { color: var(--txt); font-weight: 600; }
+
+    /* ── The Ask ── */
+    .ask-list { margin-top: 24px; counter-reset: ask; display: flex; flex-direction: column; gap: 10px; }
+    .ask-item {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 16px 20px; background: var(--bg2);
+      border: 1px solid var(--brd); border-radius: 12px;
+    }
+    .ask-n {
+      flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+      background: var(--blue); color: #fff; display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 700; margin-top: 1px;
+    }
+    .ask-text { font-size: 13px; color: var(--dim); line-height: 1.55; }
+    .ask-text strong { color: var(--txt); }
+
+    /* ── Differentiator callout ── */
+    .diff-box {
+      margin-top: 28px; padding: 24px 28px;
+      background: var(--blue); border-radius: 16px;
+    }
+    .diff-box p { color: rgba(255,255,255,0.82); margin: 0; max-width: none; font-size: 14px; line-height: 1.65; }
+    .diff-box p strong { color: #fff; }
+
+    /* ── Contact ── */
+    .contact-sec {
+      padding: 48px 0 64px;
+    }
+    .contact-card {
+      background: linear-gradient(135deg, #2a7a9e 0%, #1e5f7a 100%); border-radius: 20px;
+      padding: 40px 40px;
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+      flex-wrap: wrap;
+      box-shadow: 0 8px 32px rgba(30,95,122,0.25);
+    }
+    .contact-left h2 { color: #fff; font-size: clamp(1.4rem, 3vw, 2rem); margin-bottom: 8px; }
+    .contact-left p { color: rgba(255,255,255,0.75); font-size: 14px; margin: 0; max-width: 360px; }
+    .contact-links { display: flex; flex-direction: column; gap: 10px; }
+    .contact-link {
+      display: flex; align-items: center; gap: 10px;
+      color: rgba(255,255,255,0.9); font-size: 14px; font-weight: 500;
+      background: rgba(255,255,255,0.15); border-radius: 40px;
+      padding: 10px 20px; transition: background .15s; white-space: nowrap;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .contact-link:hover { background: rgba(255,255,255,0.25); color: #fff; }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--brd); padding: 20px 0;
+      text-align: center; font-size: 11px; color: var(--mut);
+    }
+    .footer-inner { max-width: 860px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── Print ── */
+    @media print {
+      nav, .topbar { display: none; }
+      .hero { padding-top: 20px; }
+      .contact-card { background: none; border: 1px solid #ccc; color: var(--txt); }
+      .contact-left h2, .contact-left p, .contact-link { color: var(--txt); }
+      .flow-step.gate { background: #eee; }
+      .flow-step.gate .fs-name, .flow-step.gate .fs-label { color: var(--txt); }
+    }
+  </style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0a1520" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="VALO Research" />
+<meta property="og:title" content="VΛLΦ — Consequence Safety for Autonomous AI" />
+<meta property="og:description" content="Execution-boundary operating control system for autonomous AI agents. Deterministic admissibility at machine speed." />
+<meta property="og:image" content="https://valoresearch.org/img/og-valo.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="VΛLΦ — Consequence Safety for Autonomous AI" />
+<meta name="twitter:description" content="Execution-boundary operating control system for autonomous AI agents. Deterministic admissibility at machine speed." />
+<meta name="twitter:image" content="https://valoresearch.org/img/og-valo.jpg" />
+  <link rel="stylesheet" href="/css/valo-brand.css">
+</head>
+<body>
+
+<div class="topbar"><strong>Confidential</strong> · Valo Research Group · Pre-seed · 2026</div>
+
+<nav>
+  <div class="nav-w">
+    <div class="nav-logo">VΛLΦ</div>
+    <div class="nav-label">Investor One-Pager</div>
+    <a class="nav-cta" href="mailto:njaal@valoresearch.org">Contact</a>
+  </div>
+</nav>
+<main id="main">
+
+
+<div class="page">
+
+  <!-- ── Hero ── -->
+  <section class="hero">
+    <div class="hero-tag">Consequence Safety · Pre-Seed 2026</div>
+    <h1>Governance at the<br><em>execution boundary</em></h1>
+    <p class="hero-sub">
+      AI agents now execute real-world actions — in code, finance, infrastructure, and healthcare.
+      Content safety governs what the model <em>says</em>. VΛLΦ governs what the model <em>does</em>.
+    </p>
+    <div class="hero-meta">
+      <span>TLA⁺ verified</span>
+      <span>~43 ns gate decision</span>
+      <span>Rust implementation</span>
+      <span>EU AI Act Annex III</span>
+    </div>
+
+    <div class="flow">
+      <div class="flow-step">
+        <div class="fs-label">Step 1</div>
+        <div class="fs-name">Intent</div>
+      </div>
+      <div class="flow-arr">→</div>
+      <div class="flow-step gate">
+        <div class="fs-label">VΛLΦ Gate</div>
+        <div class="fs-name">Gating</div>
+      </div>
+      <div class="flow-arr">→</div>
+      <div class="flow-step">
+        <div class="fs-label">Step 3</div>
+        <div class="fs-name">Receipt</div>
+      </div>
+      <div class="flow-arr">→</div>
+      <div class="flow-step">
+        <div class="fs-label">Step 4</div>
+        <div class="fs-name">Action</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Problem ── -->
+  <section class="sec">
+    <div class="sec-tag">The Problem</div>
+    <h2>Actions have consequences.<br>Safety has a blind spot.</h2>
+    <p>
+      AI agents no longer just answer questions. They execute actions — in code, infrastructure,
+      finance, healthcare, and legal systems. The consequence of a hallucinated API call,
+      an unauthorized file deletion, or an unlogged financial transaction is no longer a bad answer.
+      It is a real-world event — with legal, operational, and reputational consequences.
+    </p>
+    <div class="pullquote">
+      <p>"You cannot govern the probability cloud. You can only govern its collapse into action."</p>
+    </div>
+    <p>
+      Content safety frameworks addressed what the model <strong>says</strong>.
+      No production-grade system governs what the model <strong>does</strong> — until now.
+    </p>
+  </section>
+
+  <!-- ── Product ── -->
+  <section class="sec">
+    <div class="sec-tag">The Product</div>
+    <h2>VAIG — the runtime<br>that enforces the gate</h2>
+    <p>
+      VAIG (Valo AI Governance) is the core runtime, implemented in Rust.
+      It enforces a mandatory gate at the moment of action, before any real-world consequence is produced.
+      The admissibility core is TLA⁺-verified — machine-checkable correctness proofs on the invariants
+      that matter. Actions that fail the admissibility test are halted — deterministically, in ~43 nanoseconds,
+      with full audit trail.
+    </p>
+
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="pc-name">L1 Guardian Gate</div>
+        <div class="pc-desc">Deterministic admissibility decision at the execution boundary. Every action inspected before consequence.</div>
+        <div class="pc-tag">Core Runtime</div>
+      </div>
+      <div class="product-card">
+        <div class="pc-name">WORM Audit Log</div>
+        <div class="pc-desc">Write-once-read-many record of every action and its authorization chain. Forensic-grade, tamper-evident.</div>
+        <div class="pc-tag">Compliance</div>
+      </div>
+      <div class="product-card">
+        <div class="pc-name">8-Instrument Ensemble</div>
+        <div class="pc-desc">Unified distrust engine: provenance, coherence, authorization, rate, recency, scope, identity, replay.</div>
+        <div class="pc-tag">Detection</div>
+      </div>
+      <div class="product-card">
+        <div class="pc-name">ACS Protocol</div>
+        <div class="pc-desc">Agent Control Standard for inspectability, traceability, and instrumentability of any agent.</div>
+        <div class="pc-tag">Open Standard</div>
+      </div>
+    </div>
+
+    <div class="diff-box">
+      <p>
+        <strong>The differentiator:</strong> Every framework we are aware of defines governance as policy documents
+        or model fine-tuning. VΛLΦ enforces governance at machine speed, at the execution boundary,
+        with a verifiable proof of decision. <strong>No one else has the running code.</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- ── Buyer Value ── -->
+  <section class="sec">
+    <div class="sec-tag">Buyer Value</div>
+    <h2>Every seat at the table<br>gets a hard answer</h2>
+    <p>Commercial thesis: slightly higher control cost. Drastically lower consequence cost.</p>
+
+    <div class="buyer-table">
+      <div class="bt-row">
+        <div class="bt-who">CISO</div>
+        <div class="bt-what">Hard perimeter around every agent action — auditable, enforceable, reportable</div>
+      </div>
+      <div class="bt-row">
+        <div class="bt-who">Chief Risk Officer</div>
+        <div class="bt-what">EU AI Act Annex III compliance by design — Dec 2027 deadline, covered</div>
+      </div>
+      <div class="bt-row">
+        <div class="bt-who">Chief AI Officer</div>
+        <div class="bt-what">Deploy autonomous agents without betting the company on model alignment alone</div>
+      </div>
+      <div class="bt-row">
+        <div class="bt-who">Platform / Infra</div>
+        <div class="bt-what">Drop-in governance layer — no model retraining, no prompt engineering</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Proof ── -->
+  <section class="sec">
+    <div class="sec-tag">Proof</div>
+    <h2>Not a whitepaper.<br>Running code.</h2>
+
+    <div class="proof-list">
+      <div class="proof-item">
+        <div class="proof-icon">✓</div>
+        <div class="proof-text"><strong>TLA⁺ formal verification</strong> of core invariants — machine-checkable correctness proofs, not engineering assertions</div>
+      </div>
+      <div class="proof-item">
+        <div class="proof-icon">✓</div>
+        <div class="proof-text"><strong>Independent convergence:</strong> EFA (Rupp, Columbia Southern) and VΛLΦ derived the same admissibility architecture from separate first principles</div>
+      </div>
+      <div class="proof-item">
+        <div class="proof-icon">✓</div>
+        <div class="proof-text"><strong>~43ns gate decision latency</strong> in production Rust implementation — no latency tax on agent throughput</div>
+      </div>
+      <div class="proof-item">
+        <div class="proof-icon">✓</div>
+        <div class="proof-text"><strong>Regulatory alignment:</strong> EU AI Act Annex III, PLD (Dec 2026), and emerging NIST/ISO agent governance frameworks all require exactly the properties VAIG provides</div>
+      </div>
+      <div class="proof-item">
+        <div class="proof-icon">✓</div>
+        <div class="proof-text"><strong>Category validation:</strong> MosaicDM ("Trust runs on structure") is selling the problem. We are shipping the infrastructure.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── The Ask ── -->
+  <section class="sec">
+    <div class="sec-tag">The Ask</div>
+    <h2>Pre-seed round<br>funding three milestones</h2>
+    <p>
+      We are looking for investors who understand that the next critical infrastructure category
+      is not AI models — it is the governance layer between AI intent and real-world consequence.
+    </p>
+
+    <div class="ask-list">
+      <div class="ask-item">
+        <div class="ask-n">1</div>
+        <div class="ask-text"><strong>Reference implementation release</strong> — Apache 2.0 open core, enabling ecosystem adoption and community trust</div>
+      </div>
+      <div class="ask-item">
+        <div class="ask-n">2</div>
+        <div class="ask-text"><strong>Enterprise Guardian Agent product</strong> — commercial offering with SLA, support, and enterprise integrations</div>
+      </div>
+      <div class="ask-item">
+        <div class="ask-n">3</div>
+        <div class="ask-text"><strong>ACS standardization</strong> — Agent Control Standard with IEEE/ISO working groups, positioning VΛLΦ as the protocol layer</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Contact ── -->
+  <div class="contact-sec">
+    <div class="contact-card">
+      <div class="contact-left">
+        <h2>Start the conversation</h2>
+        <p>Njål Gaute Solland · Valo Research Group<br>Founder &amp; architect of VΛLΦ</p>
+      </div>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:njaal@valoresearch.org">
+          ✉ njaal@valoresearch.org
+        </a>
+        <a class="contact-link" href="https://linkedin.com/in/njaal" target="_blank" rel="noopener">
+          ↗ linkedin.com/in/njaal
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+
+</main>
+<footer>
+  <div class="footer-inner">
+    Valo Research Group · Confidential · v1.0 · 2026 · For authorized recipients only
+  </div>
+</footer>
+
+</body>
+</html>

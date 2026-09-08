@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Associates — VALO Research Group</title>
+  <meta name="description" content="Research associates, advisors, and collaborators of VALO Research Group." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:#08090E; --bg2:#0E1117; --bg3:#141821;
+      --brd:rgba(255,255,255,.07); --brdm:rgba(255,255,255,.13);
+      --txt:#E2E8F0; --dim:#94A3B8; --mut:#475569;
+      --blue:#3B82F6; --bludk:#1D4ED8; --blult:#93C5FD;
+      --amb:#F59E0B; --red:#EF4444; --grn:#22C55E;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--txt); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    h1,h2,h3 { font-family: 'DM Serif Display', serif; font-weight: 400; line-height: 1.2; letter-spacing: -.01em; }
+
+    nav {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(8,9,14,.92); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--brd);
+    }
+    .nav-w { max-width: 1160px; margin: 0 auto; padding: 0 24px; height: 58px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { display: flex; align-items: center; gap: 9px; }
+    .nav-logo img { height: 30px; }
+    .nav-back { font-size: 13px; color: var(--dim); display: flex; align-items: center; gap: 6px; transition: color .15s; }
+    .nav-back:hover { color: var(--txt); }
+
+    .w { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+    .sec { padding: 72px 0; }
+    .sec-sm { padding: 48px 0; }
+
+    .sh { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
+    .h2 { font-size: clamp(22px, 2.8vw, 36px); color: #fff; margin-bottom: 14px; }
+    .hsub { font-size: 15px; color: var(--dim); max-width: 600px; line-height: 1.7; }
+    .hdr { margin-bottom: 40px; }
+
+    .person-card {
+      background: var(--bg2); border: 1px solid var(--brd); border-radius: 14px; padding: 28px;
+      transition: border-color .2s, transform .15s;
+    }
+    .person-card:hover { border-color: var(--brdm); transform: translateY(-1px); }
+    .person-name { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .person-title { font-size: 12px; color: var(--blue); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; margin-bottom: 12px; }
+    .person-bio { font-size: 13px; color: var(--dim); line-height: 1.7; margin-bottom: 14px; }
+    .person-tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; margin-bottom: 12px; }
+    .pt-research { background: rgba(59,130,246,.1); color: var(--blult); }
+    .pt-industry  { background: rgba(34,197,94,.08); color: #86EFAC; }
+    .pt-advisory  { background: rgba(245,158,11,.1); color: var(--amb); }
+
+    .g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    @media (max-width: 900px) { .g3 { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 580px) { .g3 { grid-template-columns: 1fr; } }
+
+    .org-row { display: flex; gap: 20px; align-items: flex-start; padding: 20px; background: var(--bg2); border: 1px solid var(--brd); border-radius: 12px; margin-bottom: 12px; transition: border-color .2s; }
+    .org-row:hover { border-color: var(--brdm); }
+    .org-name { font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 4px; }
+    .org-desc { font-size: 13px; color: var(--dim); line-height: 1.6; }
+    .org-role { font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 2px 8px; border-radius: 4px; background: rgba(255,255,255,.06); color: var(--dim); display: inline-block; margin-bottom: 8px; }
+
+    .join-card { background: linear-gradient(135deg, var(--bg2) 0%, rgba(59,130,246,.05) 100%); border: 1px solid rgba(59,130,246,.2); border-radius: 14px; padding: 32px; text-align: center; margin-top: 40px; }
+    .btn-p { display: inline-block; background: var(--blue); color: #fff; padding: 12px 28px; border-radius: 9px; font-size: 14px; font-weight: 600; transition: background .15s; margin-top: 16px; }
+    .btn-p:hover { background: var(--bludk); }
+
+    footer { background: var(--bg2); border-top: 1px solid var(--brd); padding: 28px 0; margin-top: 0; }
+    .ft-btm { max-width: 1160px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+    .ft-btm p { font-size: 12px; color: var(--mut); }
+  </style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0a1520" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="VALO Research" />
+<meta property="og:title" content="Associates — VALO Research Group" />
+<meta property="og:description" content="Research associates, advisors, and collaborators of VALO Research Group." />
+<meta property="og:image" content="https://valoresearch.org/img/og-valo.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Associates — VALO Research Group" />
+<meta name="twitter:description" content="Research associates, advisors, and collaborators of VALO Research Group." />
+<meta name="twitter:image" content="https://valoresearch.org/img/og-valo.jpg" />
+  <link rel="stylesheet" href="/css/valo-brand.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-w">
+    <a href="/" class="nav-logo">
+      <img src="img/logo-valo.png" alt="VALO Research Group" />
+    </a>
+    <a href="/" class="nav-back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+      Back to valoresearch.org
+    </a>
+  </div>
+</nav>
+<main id="main">
+
+
+<!-- Header -->
+<section class="sec" style="padding-bottom:40px;">
+  <div class="w">
+    <div class="sh">Associates</div>
+    <h1 style="font-size:clamp(30px,4vw,54px);color:#fff;margin-bottom:18px;max-width:700px;">The people and organisations that make VALO possible.</h1>
+    <p style="font-size:16px;color:var(--dim);max-width:600px;line-height:1.75;">Research associates, industry partners, advisors, and collaborators. VALO Research Group operates at the intersection of formal verification, AI safety, industrial deployment, and regulatory compliance — no single person or team has all the expertise required.</p>
+  </div>
+</section>
+
+<!-- Founder -->
+<section class="sec-sm" style="padding-top:0;">
+  <div class="w">
+    <div class="hdr">
+      <div class="sh">Founder</div>
+    </div>
+    <div style="background:linear-gradient(135deg,var(--bg2) 0%,rgba(59,130,246,.06) 100%);border:1px solid rgba(59,130,246,.2);border-radius:16px;padding:32px;display:grid;grid-template-columns:1fr 2fr;gap:32px;align-items:start;">
+      <div>
+        <img src="img/njaal.png" alt="Njål Gaute Solland" style="width:100%;border-radius:12px;border:1px solid var(--brd);" />
+      </div>
+      <div>
+        <div class="person-tag pt-research">Founder &amp; Principal Researcher</div>
+        <div class="person-name" style="font-size:22px;">Njål Gaute Solland</div>
+        <div class="person-title">Senior AI Architect · VALO Research Group</div>
+        <p class="person-bio">Author of <em>The Eukaryotic Transition in Artificial Intelligence</em>, <em>Φ — Den neste setningen</em>, and <em>Spes Phthisica Digitalis</em>. Inventor of the Law of Identity Maintenance (LIM) and builder of VAIG — the Validation AI Guard.</p>
+        <p class="person-bio">The founding incident: an AI system nearly killed a patient. Caught only because the doctor had reference books. VALO started there — not as a philosophical project but as an engineering response to a real failure mode.</p>
+        <p class="person-bio">Background in industrial AI deployment, formal verification, and EU regulatory compliance. Based in Stavanger, Norway. Working across energy, finance, healthcare, and defence sectors.</p>
+        <a href="mailto:njaal@valoresearch.org" style="font-size:13px;color:var(--blult);display:inline-flex;align-items:center;gap:5px;">njaal@valoresearch.org <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Research associates -->
+<section class="sec-sm" style="background:var(--bg2);padding-top:56px;padding-bottom:56px;">
+  <div class="w">
+    <div class="hdr">
+      <div class="sh">Research associates</div>
+      <h2 class="h2">Independent researchers working on related problems.</h2>
+    </div>
+
+    <div class="g3">
+
+      <div class="person-card">
+        <div class="person-tag pt-research">Research Associate</div>
+        <div class="person-name">Andrew Woodward</div>
+        <div class="person-title">AI Scientist · Project Black Box LLC</div>
+        <p class="person-bio">Author of TAV_ONE — geometric stability measurement system for AI outputs. Measures the L-scalar of the token probability field. Building TruthForge: a model where fabricated confidence is structurally not produced.</p>
+        <div style="font-size:11px;color:var(--mut);">Project Black Box LLC</div>
+      </div>
+
+      <div class="person-card">
+        <div class="person-tag pt-research">AI Governance · NLP</div>
+        <div class="person-name">Independent Advisor</div>
+        <div class="person-title">Authority Instrumentation™ Creator</div>
+        <p class="person-bio">Independent advisor in AI governance and NLP. Creator of Authority Instrumentation™ — a governance framework for instrumenting authority, accountability, delegation, and human intervention across AI ecosystems. PhD, Université Paris VII (LADL). Research focus: designing governance mechanisms that ensure consequential AI actions remain legitimate, governable, and accountable at the point of execution.</p>
+        <div style="font-size:11px;color:var(--mut);margin-top:12px;">Université Paris VII · LADL</div>
+      </div>
+
+      <div class="person-card">
+        <div class="person-tag pt-research">Formal Verification</div>
+        <div class="person-name">Open position</div>
+        <div class="person-title">TLA+ Specialist · Formal Methods</div>
+        <p class="person-bio">VALO is seeking a research associate with expertise in TLA+ formal verification and distributed systems. The VALO V5 TLA+ specification covers 2.85M states; the L1 Guardian covers 4.78M states.</p>
+        <a href="mailto:njaal@valoresearch.org?subject=Research associate — formal verification" style="font-size:12px;color:var(--blult);display:inline-flex;align-items:center;gap:5px;">Express interest <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+
+      <div class="person-card">
+        <div class="person-tag pt-research">AI Safety</div>
+        <div class="person-name">Open position</div>
+        <div class="person-title">AI Safety Researcher · Red-teaming &amp; Adversarial</div>
+        <p class="person-bio">VALO is seeking a research associate with expertise in adversarial AI, red-teaming, and safety evaluation. Focus areas: PLASMA regime adversarial inputs, memory poisoning detection, multi-agent attack surface characterization.</p>
+        <a href="mailto:njaal@valoresearch.org?subject=Research associate — AI safety" style="font-size:12px;color:var(--blult);display:inline-flex;align-items:center;gap:5px;">Express interest <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Industry associates -->
+<section class="sec-sm" style="padding-top:56px;padding-bottom:56px;">
+  <div class="w">
+    <div class="hdr">
+      <div class="sh">Industry associates</div>
+      <h2 class="h2">Organisations working with VALO in production contexts.</h2>
+    </div>
+
+    <div class="org-row">
+      <div style="flex:1;">
+        <div class="org-role">Pilot Partner</div>
+        <div class="org-name">Cegal</div>
+        <p class="org-desc">Norwegian energy technology company. Active VAIG pilot partner — first production deployment of the VAIG admissibility gate in an energy sector context. Q2/Q3 2026 pilot. Evaluating VAIG as a governance layer for AI-assisted operational decision support.</p>
+      </div>
+    </div>
+
+    <div class="org-row">
+      <div style="flex:1;">
+        <div class="org-role">Public Research</div>
+        <div class="org-name">NHN — Norsk Helsenett</div>
+        <p class="org-desc">Norwegian Health Network. Conversation ongoing regarding VAIG deployment in clinical AI contexts — specifically diagnostic support systems under EU AI Act Annex III high-risk classification. Contact: Ola Stenseth.</p>
+      </div>
+    </div>
+
+    <div class="org-row">
+      <div style="flex:1;">
+        <div class="org-role">Regulatory Context</div>
+        <div class="org-name">DNV (Det Norske Veritas)</div>
+        <p class="org-desc">Classification society. Ongoing dialogue regarding VAIG as a technical measure for class-approved AI governance documentation in maritime and offshore contexts. SHA-256 WORM audit log as the basis for auditable AI decisions.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Advisory -->
+<section class="sec-sm" style="background:var(--bg2);padding-top:56px;padding-bottom:56px;">
+  <div class="w">
+    <div class="hdr">
+      <div class="sh">Advisory</div>
+      <h2 class="h2">Seeking advisors in key domains.</h2>
+      <p class="hsub">VALO Research Group is actively recruiting advisors with deep expertise in EU AI regulatory compliance, insurance/reinsurance, and sovereign compute infrastructure.</p>
+    </div>
+
+    <div class="g3">
+      <div class="person-card">
+        <div class="person-tag pt-advisory">Advisory position</div>
+        <div class="person-name">EU Regulatory Specialist</div>
+        <div class="person-title">EU AI Act · PLD 2024/2853 · GDPR</div>
+        <p class="person-bio">VALO needs an advisor with deep knowledge of EU AI Act implementation, Product Liability Directive 2024/2853, and GDPR Article 22 (automated decision-making). Expertise in translating regulatory requirements into technical specifications.</p>
+        <a href="mailto:njaal@valoresearch.org?subject=Advisory — EU regulatory" style="font-size:12px;color:var(--blult);display:inline-flex;align-items:center;gap:5px;margin-top:8px;">Apply <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="person-card">
+        <div class="person-tag pt-advisory">Advisory position</div>
+        <div class="person-name">Insurance / Reinsurance</div>
+        <div class="person-title">AI Risk · D&amp;O · Actuarial</div>
+        <p class="person-bio">VALO needs an advisor from the insurance market — ideally with underwriting experience in D&O, technology liability, or cyber, and awareness of the AI governance gap in current policy wording. The reinsurance tail-risk pricing problem is central to VALO's market thesis.</p>
+        <a href="mailto:njaal@valoresearch.org?subject=Advisory — insurance" style="font-size:12px;color:var(--blult);display:inline-flex;align-items:center;gap:5px;margin-top:8px;">Apply <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="person-card">
+        <div class="person-tag pt-advisory">Advisory position</div>
+        <div class="person-name">Sovereign Compute Infrastructure</div>
+        <div class="person-title">Norwegian / Nordic data centres</div>
+        <p class="person-bio">VALO deploys on Norwegian sovereign compute — outside Big Tech infrastructure, Norwegian jurisdiction, GDPR-compliant by architecture. Seeking an advisor with operational knowledge of Nordic data centre infrastructure, preferably NetZero Compute or equivalent.</p>
+        <a href="mailto:njaal@valoresearch.org?subject=Advisory — sovereign compute" style="font-size:12px;color:var(--blult);display:inline-flex;align-items:center;gap:5px;margin-top:8px;">Apply <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+
+    <div class="join-card">
+      <h2 style="font-size:24px;color:#fff;margin-bottom:12px;">Become an associate</h2>
+      <p style="font-size:14px;color:var(--dim);max-width:520px;margin:0 auto;">Research associate, industry partner, or advisor — if you're working on problems that overlap with VALO's mission, we want to hear from you.</p>
+      <a href="mailto:njaal@valoresearch.org?subject=Associates inquiry" class="btn-p">Get in touch</a>
+    </div>
+
+    <!-- Tofoo.Φ marker -->
+    <div style="margin-top:24px;display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:10px 16px;background:rgba(34,197,94,.04);border:1px solid rgba(34,197,94,.15);border-radius:8px;">
+      <span style="width:8px;height:8px;border-radius:50%;background:var(--grn);box-shadow:0 0 6px var(--grn);flex-shrink:0;"></span>
+      <span style="font-size:11px;font-weight:600;color:#86EFAC;letter-spacing:.05em;">Tofoo. Φ</span>
+      <span style="font-size:11px;color:var(--mut);">VALO Research Group · valoresearch.org</span>
+    </div>
+  </div>
+</section>
+
+
+</main>
+<footer>
+  <div class="ft-btm">
+    <p>© 2026 VALO Research Group · Stavanger, Norway</p>
+    <p><a href="/" style="color:var(--blult);">valoresearch.org</a> · njaal@valoresearch.org</p>
+  </div>
+</footer>
+
+</body>
+</html>

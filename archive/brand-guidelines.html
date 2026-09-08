@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VALO Brand Guidelines</title>
+  <meta name="description" content="Official VALO brand identity, logo, colors, typography, and usage guidelines." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&family=Space+Mono&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FAF7F2;
+      --bg2: #F0ECE6;
+      --bg3: #E8E2DA;
+      --brd: rgba(0,0,0,0.08);
+      --txt: #1A0F0A;
+      --dim: #6B5E56;
+      --mut: #9E8E84;
+      --blue: #1e3d50;
+      --bludk: #162e3e;
+      --blult: #5a9db8;
+      --amb: #D97706;
+      --red: #DC2626;
+      --grn: #16A34A;
+      --indigo: #4F46E5;
+    }
+    html { scroll-behavior: smooth; font-size: 16px; scroll-padding-top: 58px; }
+    body { background: var(--bg); color: var(--txt); font-family: 'Inter', sans-serif; line-height: 1.6; }
+    a { color: var(--indigo); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    h1, h2, h3 { font-family: 'DM Serif Display', serif; line-height: 1.2; }
+    h1 { font-size: 48px; margin: 32px 0 16px; }
+    h2 { font-size: 32px; margin: 28px 0 16px; }
+    h3 { font-size: 20px; margin: 20px 0 12px; }
+
+    nav { position: sticky; top: 0; background: rgba(250,247,242,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--brd); z-index: 200; }
+    .nav-w { max-width: 1160px; margin: 0 auto; padding: 0 24px; height: 58px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo img { height: 32px; width: auto; }
+    .nav-links { display: flex; gap: 24px; font-size: 13px; color: var(--dim); }
+    .nav-links a:hover { color: var(--txt); }
+
+    .w { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+    .sec { padding: 80px 0; }
+    .sec-sm { padding: 56px 0; }
+
+    .color-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 20px 0; }
+    .color-swatch { border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .color-sample { height: 120px; display: flex; align-items: flex-end; justify-content: center; padding: 12px; color: white; font-weight: 600; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
+    .color-info { padding: 12px; background: var(--bg2); font-size: 12px; }
+    .color-info div { margin: 4px 0; font-family: 'Space Mono', monospace; }
+
+    .type-sample { margin: 20px 0; padding: 20px; background: var(--bg2); border-radius: 8px; }
+    .type-name { font-size: 12px; color: var(--mut); text-transform: uppercase; margin-bottom: 8px; }
+
+    .logo-section { margin: 40px 0; padding: 40px; background: var(--bg2); border-radius: 12px; text-align: center; }
+    .logo-box { display: inline-block; padding: 40px; background: white; border-radius: 8px; margin: 20px 0; }
+    .logo-box img { height: 80px; width: auto; }
+
+    .do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 20px 0; }
+    .do, .dont { padding: 20px; border-radius: 8px; }
+    .do { background: rgba(22,163,74,.08); border-left: 4px solid var(--grn); }
+    .dont { background: rgba(220,38,38,.08); border-left: 4px solid var(--red); }
+    .do h4, .dont h4 { margin-top: 0; }
+
+    footer { background: var(--bg2); border-top: 1px solid var(--brd); padding: 40px 0; margin-top: 80px; }
+    .ft-w { max-width: 1160px; margin: 0 auto; padding: 0 24px; text-align: center; font-size: 13px; color: var(--dim); }
+  </style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0a1520" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="VALO Research" />
+<meta property="og:title" content="VALO Brand Guidelines" />
+<meta property="og:description" content="Official VALO brand identity, logo, colors, typography, and usage guidelines." />
+<meta property="og:image" content="https://valoresearch.org/img/og-valo.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="VALO Brand Guidelines" />
+<meta name="twitter:description" content="Official VALO brand identity, logo, colors, typography, and usage guidelines." />
+<meta name="twitter:image" content="https://valoresearch.org/img/og-valo.jpg" />
+  <link rel="stylesheet" href="/css/valo-brand.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-w">
+    <a href="index.html" class="nav-logo">
+      <img src="img/valo-logo.svg" alt="VALO" />
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="stories.html">Stories</a>
+      <a href="store.html">Store</a>
+      <a href="#palette">Colors</a>
+      <a href="#typography">Typography</a>
+    </div>
+  </div>
+</nav>
+<main id="main">
+
+
+<!-- HERO -->
+<section class="sec" style="background: linear-gradient(135deg, var(--indigo) 0%, #5B4EFF 100%); color: white;">
+  <div class="w">
+    <h1 style="color: white; margin-top: 0; line-height: 1.4; word-spacing: 100vw;">CONTROL
+PROOF
+VALUE</h1>
+    <p style="font-size: 16px; max-width: 600px; opacity: 0.95; margin-top: 20px;">The three pillars. Cream and blue. Indigo and intention. How VALO sounds. How it looks. Why it exists.</p>
+  </div>
+</section>
+
+<!-- LOGO -->
+<section class="sec">
+  <div class="w">
+    <h2>Logo</h2>
+    <p>The VALO wordmark is the primary brand identifier. Clean, modern, geometric.</p>
+
+    <div class="logo-section">
+      <h3 style="margin-top: 0;">Primary Logo</h3>
+      <div class="logo-box" style="background: white;">
+        <img src="img/valo-logo.svg" alt="VALO" />
+      </div>
+      <div class="logo-box" style="background: #1a1a1a;">
+        <img src="img/valo-logo.svg" alt="VALO" style="filter: brightness(0) invert(1);" />
+      </div>
+      <div style="margin-top: 20px; font-size: 13px; color: var(--mut);">
+        SVG format · Scalable to any size · 32px minimum width for legibility
+      </div>
+    </div>
+
+    <div style="margin-top: 40px; padding: 20px; background: var(--bg2); border-radius: 8px;">
+      <h4 style="margin-top: 0;">Logo Variations</h4>
+      <div class="do-dont">
+        <div class="do">
+          <h4>✓ DO</h4>
+          <p>Use on light or dark backgrounds</p>
+          <p>Scale proportionally</p>
+          <p>Maintain clear space around logo</p>
+        </div>
+        <div class="dont">
+          <h4>✗ DON'T</h4>
+          <p>Rotate or distort the logo</p>
+          <p>Change colors or add effects</p>
+          <p>Use text logo and symbol together</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLOR PALETTE -->
+<section class="sec" id="palette">
+  <div class="w">
+    <h2>Color Palette</h2>
+    <p>The VALO palette combines indigo (primary brand), cream (background), and accent colors for governance/proof/value.</p>
+
+    <h3 style="margin-top: 40px;">Primary Colors</h3>
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="color-sample" style="background: var(--indigo);">VALO Indigo</div>
+        <div class="color-info">
+          <div>#4F46E5</div>
+          <div>RGB(79, 70, 229)</div>
+          <div>Primary brand</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-sample" style="background: var(--bg);">Cream</div>
+        <div class="color-info" style="background: var(--bg3);">
+          <div>#FAF7F2</div>
+          <div>RGB(250, 247, 242)</div>
+          <div>Background</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Accent Colors</h3>
+    <div class="color-grid">
+      <div class="color-swatch">
+        <div class="color-sample" style="background: var(--blue);">Control</div>
+        <div class="color-info">
+          <div>#1e3d50</div>
+          <div>Governance</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-sample" style="background: var(--grn);">Proof</div>
+        <div class="color-info">
+          <div>#16A34A</div>
+          <div>Success/Verified</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-sample" style="background: var(--amb);">Value</div>
+        <div class="color-info">
+          <div>#D97706</div>
+          <div>ROI/Business</div>
+        </div>
+      </div>
+      <div class="color-swatch">
+        <div class="color-sample" style="background: var(--red);">Risk</div>
+        <div class="color-info">
+          <div>#DC2626</div>
+          <div>Alert/Halt</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TYPOGRAPHY -->
+<section class="sec" id="typography">
+  <div class="w">
+    <h2>Typography</h2>
+    <p>Three typefaces work together to express VALO's identity: modern, serious, and precise.</p>
+
+    <h3>Display Typeface: DM Serif Display</h3>
+    <p style="color: var(--dim);">Headings, large text, brand moments. Elegant, readable at large sizes.</p>
+    <div class="type-sample">
+      <div class="type-name">Heading 1 — 48px, Bold</div>
+      <div style="font-family: 'DM Serif Display', serif; font-size: 48px; line-height: 1.1;">From AI to ROI</div>
+    </div>
+
+    <h3>Body Typeface: Inter</h3>
+    <p style="color: var(--dim);">Body copy, UI text, standard reading. Clean, modern, accessible.</p>
+    <div class="type-sample">
+      <div class="type-name">Body Text — 16px, Regular</div>
+      <div style="font-family: 'Inter', sans-serif; font-size: 16px;">The VALO wordmark is clean, modern, and geometric. Use it as the primary brand identifier across all touchpoints.</div>
+    </div>
+
+    <h3>Monospace Typeface: Space Mono / C64 Pro Mono</h3>
+    <p style="color: var(--dim);">Code, terminal UI, Commodore aesthetic moments. Deterministic, precise.</p>
+    <div class="type-sample">
+      <div class="type-name">Monospace — 14px, Regular</div>
+      <div style="font-family: 'Space Mono', monospace; font-size: 14px;">LOAD "AI",8,1<br/>LOAD "VALO",8,1<br/>RUN<br/><br/>READY.<br/>ROI FOUND.</div>
+    </div>
+  </div>
+</section>
+
+<!-- IMAGERY -->
+<section class="sec" style="background: var(--bg2);">
+  <div class="w">
+    <h2>Visual Style</h2>
+    <p>VALO uses two distinct visual languages depending on audience.</p>
+
+    <h3>For CEOs / Business Decision-Makers</h3>
+    <p>Outcome-focused. Commodore 64 aesthetic: black background, green phosphor text, deterministic simplicity. Messages: LOAD AI → LOAD VALO → RUN → ROI FOUND.</p>
+    <div style="margin: 20px 0; padding: 20px; background: #000; border-radius: 8px; font-family: 'Space Mono', monospace; color: #51FF00; text-shadow: 0 0 10px rgba(81,255,0,0.3); font-size: 13px; line-height: 1.8;">
+      LOAD "AI",8,1<br/>
+      LOAD "VALO",8,1<br/>
+      RUN<br/>
+      <br/>
+      READY.<br/>
+      ROI FOUND.
+    </div>
+
+    <h3>For Technical Teams / CISOs</h3>
+    <p>Detail-focused. Cream and blue palette: calm, professional, governance-ready. Messages: Control, Proof, Value. TLA+, WORM, admissibility.</p>
+    <div style="margin: 20px 0; padding: 20px; background: var(--bg); border: 1px solid var(--brd); border-radius: 8px; font-size: 13px;">
+      <div style="color: var(--indigo); font-weight: 600; margin-bottom: 12px;">CONTROL · PROOF · VALUE</div>
+      <p style="color: var(--dim); margin: 0;">Deterministic execution boundary. Cryptographic audit receipt. Scalable ROI.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TONE OF VOICE -->
+<section class="sec">
+  <div class="w">
+    <h2>Tone of Voice</h2>
+    <p>VALO speaks directly, without jargon. Outcome-first, not explanation-first.</p>
+
+    <div class="do-dont">
+      <div class="do">
+        <h4>✓ DO</h4>
+        <p><strong>Direct:</strong> "Load AI. Load VALO. Run. ROI Found."</p>
+        <p><strong>Outcome-focused:</strong> Start with the result, not the mechanism.</p>
+        <p><strong>Honest:</strong> "Either it works or it doesn't."</p>
+        <p><strong>Technical when needed:</strong> Explain clearly, not showily.</p>
+      </div>
+      <div class="dont">
+        <h4>✗ DON'T</h4>
+        <p><strong>Jargon-heavy:</strong> Avoid "admissibility enforcement judge" as opening line.</p>
+        <p><strong>Explanation-first:</strong> Don't explain how it works before showing the outcome.</p>
+        <p><strong>Salesy:</strong> Not "revolutionary AI governance solution"—just "ROI you can prove."</p>
+        <p><strong>Vague:</strong> Be specific. Show receipts, proof, evidence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPLICATIONS -->
+<section class="sec" style="background: var(--bg2);">
+  <div class="w">
+    <h2>Brand Applications</h2>
+    <p>VALO brand is used across digital, print, and merchandise.</p>
+
+    <h3>Digital</h3>
+    <ul style="color: var(--dim); line-height: 2;">
+      <li>Website: index.html (CEO-focused, outcome-first)</li>
+      <li>Store: store.html (merchandise and brand products)</li>
+      <li>Brand kit: This page (guidelines and specifications)</li>
+      <li>Social media: Commodore aesthetic or clean blue on cream</li>
+    </ul>
+
+    <h3>Merchandise</h3>
+    <ul style="color: var(--dim); line-height: 2;">
+      <li>T-shirts: Black with green Commodore terminal design</li>
+      <li>Coffee mug: Logo + terminal output</li>
+      <li>Stickers: Control / Proof / Value pillars, or Commodore aesthetic</li>
+      <li>Poster: "FROM AI TO ROI" in cream and indigo</li>
+    </ul>
+
+    <h3>Business Materials</h3>
+    <ul style="color: var(--dim); line-height: 2;">
+      <li>Logo on cream background for formal documents</li>
+      <li>Indigo accent color on all brand materials</li>
+      <li>DM Serif Display for all headings</li>
+      <li>Inter for all body copy</li>
+    </ul>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+</main>
+<footer>
+  <div class="ft-w">
+    <p>VALO Brand Guidelines · Updated 2026 · <a href="index.html">Back to home</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

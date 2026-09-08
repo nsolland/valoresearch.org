@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VΛLΦ — Pre-Seed</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body { font-family: 'Inter', sans-serif; background: #0a0805; color: #fff; }
+
+    .slides-container { display: flex; height: 100vh; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; }
+    .slide {
+      flex: 0 0 100vw;
+      height: 100vh;
+      scroll-snap-align: start;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px;
+      position: relative;
+      font-size: 16px;
+    }
+
+    /* Color palette */
+    .slide-cover { background: linear-gradient(135deg, #162e3e 0%, #1e3d50 100%); }
+    .slide-light { background: #faf7f2; color: #0a0805; }
+    .slide-dark { background: #1a1410; }
+
+    /* Typography */
+    h1 { font-family: 'DM Serif Display', serif; font-size: 5rem; line-height: 1; font-weight: 400; letter-spacing: -0.02em; }
+    h2 { font-family: 'DM Serif Display', serif; font-size: 3.5rem; line-height: 1.1; font-weight: 400; letter-spacing: -0.015em; margin-bottom: 40px; }
+    p { font-size: 1.2rem; line-height: 1.6; font-weight: 300; }
+    .subtitle { font-size: 2rem; font-weight: 300; opacity: 0.85; margin-top: 20px; }
+    .stat { font-family: 'DM Serif Display', serif; font-size: 3rem; line-height: 1; font-weight: 400; }
+
+    /* Grid utilities */
+    .container { max-width: 1200px; width: 100%; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; }
+
+    /* Cards */
+    .card { padding: 40px; border-radius: 20px; }
+    .card-light { background: rgba(30, 61, 80, 0.1); border: 1px solid rgba(30, 61, 80, 0.2); }
+    .card-dark { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); }
+    .card h3 { font-size: 1.3rem; font-weight: 600; margin-bottom: 12px; }
+    .card p { font-size: 1rem; opacity: 0.8; }
+
+    /* Highlights */
+    .highlight { color: #5a9db8; font-weight: 500; }
+    .accent { color: #5a9db8; }
+
+    /* Spacing */
+    .mt-80 { margin-top: 80px; }
+    .mt-60 { margin-top: 60px; }
+    .mt-40 { margin-top: 40px; }
+
+    /* Navigation */
+    .nav-counter { position: fixed; top: 40px; right: 40px; font-size: 1rem; opacity: 0.6; font-weight: 500; }
+    .nav-dots { position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 100; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255, 255, 255, 0.3); cursor: pointer; transition: all 0.3s; }
+    .dot.active { background: #5a9db8; transform: scale(1.3); }
+
+    /* Slide-specific */
+    .slide-light h2 { color: #0a0805; }
+    .slide-light p { color: #6b5e56; }
+    .slide-light .card-light { background: rgba(30, 61, 80, 0.08); }
+
+    /* Detailed layouts */
+    .comparison { margin-top: 60px; }
+    .comp-item { display: flex; gap: 30px; align-items: flex-start; margin-bottom: 40px; }
+    .comp-item:last-child { margin-bottom: 0; }
+    .comp-label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.6; margin-bottom: 8px; font-weight: 600; }
+    .comp-value { font-size: 1.3rem; font-weight: 500; }
+
+    .metric { text-align: center; }
+    .metric .stat { margin-bottom: 12px; }
+    .metric .label { font-size: 0.95rem; opacity: 0.6; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500; }
+
+    .list-item { display: flex; gap: 20px; margin-bottom: 24px; }
+    .list-item:last-child { margin-bottom: 0; }
+    .list-num { font-family: 'DM Serif Display', serif; font-size: 2rem; opacity: 0.4; min-width: 60px; }
+    .list-text { flex: 1; }
+    .list-text p { margin: 0; }
+
+    @media (max-width: 1024px) {
+      .slide { padding: 60px; }
+      h1 { font-size: 3.5rem; }
+      h2 { font-size: 2.5rem; }
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; gap: 30px; }
+    }
+  </style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0a1520" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="VALO Research" />
+<meta property="og:title" content="VΛLΦ — Pre-Seed" />
+<meta property="og:description" content="Governance before consequence — the proof layer for AI execution." />
+<meta property="og:image" content="https://valoresearch.org/img/og-valo.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="VΛLΦ — Pre-Seed" />
+<meta name="twitter:description" content="Governance before consequence — the proof layer for AI execution." />
+<meta name="twitter:image" content="https://valoresearch.org/img/og-valo.jpg" />
+  <link rel="stylesheet" href="/css/valo-brand.css">
+</head>
+<body>
+<main id="main">
+
+
+<div class="nav-counter"><span id="current">1</span> / 11</div>
+<div class="nav-dots" id="nav"></div>
+
+<div class="slides-container" id="slides">
+
+<!-- 1. COVER -->
+<section class="slide slide-cover">
+  <div class="container">
+    <h1>VΛLΦ</h1>
+    <p class="subtitle">Agentic AI Runtime Control</p>
+    <p class="subtitle" style="margin-top: 60px; font-size: 1.5rem;">Every agent action. Governed. Audited. Controlled.</p>
+  </div>
+</section>
+
+<!-- 2. NOT GRC -->
+<section class="slide slide-light">
+  <div class="container">
+    <h2>This Is Not GRC</h2>
+    <p style="margin-top: 50px; color: #0a0805;">The wrong category costs the wrong multiple.</p>
+    <div class="grid-2 mt-60">
+      <div>
+        <div class="comp-label">Old category</div>
+        <div class="comp-value" style="color: #0a0805;">Governance</div>
+        <p class="mt-40" style="font-size: 1rem;">Policy documents. Compliance teams. 4–8× multiple.</p>
+      </div>
+      <div>
+        <div class="comp-label" style="color: #1e3d50;">Right category</div>
+        <div class="comp-value" style="color: #1e3d50;">Runtime Control</div>
+        <p class="mt-40" style="font-size: 1rem;">Infrastructure. CISOs & CTOs. 10–20× multiple.</p>
+      </div>
+    </div>
+    <div class="card card-light mt-80">
+      <p style="color: #0a0805; font-size: 1.1rem;">Network governance became <span class="highlight">network security</span> ($200B+). AI governance becomes <span class="highlight">AI runtime control</span>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3. PROBLEM -->
+<section class="slide slide-dark">
+  <div class="container">
+    <h2>The Problem</h2>
+    <p class="mt-60">Agents execute real-world actions.<br>Nothing stops the bad ones.</p>
+    <div class="grid-2 mt-80">
+      <div class="card card-dark">
+        <h3>Hallucinated API call</h3>
+        <p>Deletes production data</p>
+      </div>
+      <div class="card card-dark">
+        <h3>Unlogged action</h3>
+        <p>Triggers regulatory investigation</p>
+      </div>
+    </div>
+    <div class="card card-dark mt-60" style="background: rgba(90, 157, 184, 0.1); border-color: rgba(90, 157, 184, 0.3);">
+      <p style="font-size: 1.2rem;"><span class="accent">These are execution boundary problems.</span> Not model quality problems.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 4. MARKET -->
+<section class="slide slide-light">
+  <div class="container">
+    <h2>The Market</h2>
+    <div class="card card-light mt-60">
+      <p style="font-size: 1.1rem; color: #0a0805; font-style: italic;">"Enterprises already deploy AI agents in production. Guardian deployments are mainly prototypes or pilots." — Gartner, 2026</p>
+    </div>
+    <p class="mt-80" style="color: #0a0805; font-size: 1.1rem;">Agents in production. Governance is not. <span class="highlight">VΛLΦ closes the gap.</span></p>
+    <div class="grid-3 mt-80">
+      <div class="metric">
+        <div class="stat" style="color: #1e3d50;">3</div>
+        <div class="label">August deadlines</div>
+        <p style="font-size: 0.95rem; margin-top: 8px; color: #0a0805;">6 weeks away</p>
+      </div>
+      <div class="metric">
+        <div class="stat" style="color: #1e3d50;">78%</div>
+        <div class="label">Unprepared</div>
+        <p style="font-size: 0.95rem; margin-top: 8px; color: #0a0805;">For enforcement</p>
+      </div>
+      <div class="metric">
+        <div class="stat" style="color: #1e3d50;">65%</div>
+        <div class="label">Had incidents</div>
+        <p style="font-size: 0.95rem; margin-top: 8px; color: #0a0805;">AI-agent related</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. SOLUTION -->
+<section class="slide slide-cover">
+  <div class="container">
+    <h2>The Solution</h2>
+    <p class="mt-60" style="font-size: 1.3rem; opacity: 0.9;">Intent → <span style="color: #5a9db8;">[VΛLΦ Gate]</span> → Receipt → Action</p>
+    <div class="grid-2 mt-80">
+      <div class="card card-dark">
+        <h3>L1 Guardian Gate</h3>
+        <p>43 nanoseconds. Deterministic. TLA⁺-verified.</p>
+      </div>
+      <div class="card card-dark">
+        <h3>WORM Audit Log</h3>
+        <p>SHA-256 hash chain. Tamper-evident. Forensic-grade.</p>
+      </div>
+      <div class="card card-dark">
+        <h3>8-Instrument Ensemble</h3>
+        <p>Provenance, coherence, authorization, rate, recency, scope, identity, replay</p>
+      </div>
+      <div class="card card-dark">
+        <h3>ACS Protocol</h3>
+        <p>Agent Control Standard. Apache 2.0. Open.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. COMPRESSION -->
+<section class="slide slide-dark">
+  <div class="container">
+    <h2>65% Context Compression</h2>
+    <p class="mt-60">6 live sources. Every fact retained. Measured, not modeled.</p>
+    <div class="grid-3 mt-80">
+      <div class="metric">
+        <div class="stat" style="color: #5a9db8;">65.4%</div>
+        <div class="label">Token reduction</div>
+      </div>
+      <div class="metric">
+        <div class="stat" style="color: #5a9db8;">100%</div>
+        <div class="label">Fact retention</div>
+      </div>
+      <div class="metric">
+        <div class="stat" style="color: #5a9db8;">$0.35</div>
+        <div class="label">Cost per dollar</div>
+      </div>
+    </div>
+    <div class="card card-dark mt-80">
+      <p style="font-size: 1.1rem;">At 1M tokens/day: save <span style="color: #5a9db8; font-weight: 500;">650,000 tokens/day</span> per agent</p>
+    </div>
+  </div>
+</section>
+
+<!-- 7. MOAT -->
+<section class="slide slide-light">
+  <div class="container">
+    <h2>The Moat</h2>
+    <p class="mt-60" style="color: #0a0805;">No competitor owns the execution boundary.</p>
+    <div class="comparison mt-80">
+      <div class="comp-item">
+        <div style="flex: 1;">
+          <div class="comp-label">Governance platforms</div>
+          <p style="color: #0a0805; font-size: 1.1rem;">Credo AI, Holistic AI: audit and report, but don't gate.</p>
+        </div>
+      </div>
+      <div class="comp-item">
+        <div style="flex: 1;">
+          <div class="comp-label">Security companies</div>
+          <p style="color: #0a0805; font-size: 1.1rem;">Straiker, HiddenLayer: detect breaches, not prevent action.</p>
+        </div>
+      </div>
+      <div class="comp-item" style="background: #1e3d50; color: white; padding: 30px; border-radius: 16px; margin-top: 40px;">
+        <div style="flex: 1;">
+          <div class="comp-label" style="color: #5a9db8;">VΛLΦ</div>
+          <p style="font-size: 1.1rem;">Deterministic L1 gate + WORM receipt + TLA⁺ proof + context compression</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. REGULATORY -->
+<section class="slide slide-cover">
+  <div class="container">
+    <h2>Three August Deadlines</h2>
+    <p class="mt-60">One solution.</p>
+    <div class="list-item mt-80">
+      <div class="list-num">🇪🇺</div>
+      <div class="list-text">
+        <p style="font-weight: 500; margin-bottom: 8px;">EU AI Act Enforcement</p>
+        <p style="opacity: 0.75;">Mandatory logging, transparency, oversight</p>
+      </div>
+    </div>
+    <div class="list-item">
+      <div class="list-num">🇳🇴</div>
+      <div class="list-text">
+        <p style="font-weight: 500; margin-bottom: 8px;">KI-loven (Norwegian AI Act)</p>
+        <p style="opacity: 0.75;">First national enforcement. Cognite channel ($2.1B).</p>
+      </div>
+    </div>
+    <div class="list-item">
+      <div class="list-num">📋</div>
+      <div class="list-text">
+        <p style="font-weight: 500; margin-bottom: 8px;">prEN 18229-1 Consultation Closes</p>
+        <p style="opacity: 0.75;">VAIG WORM = reference implementation</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. TRACTION -->
+<section class="slide slide-dark">
+  <div class="container">
+    <h2>Not a Whitepaper.<br>Running Code.</h2>
+    <div class="grid-3 mt-80">
+      <div class="card card-dark">
+        <div class="stat" style="color: #5a9db8; font-size: 1.8rem;">43 ns</div>
+        <p class="mt-20">Gate decision latency</p>
+      </div>
+      <div class="card card-dark">
+        <div class="stat" style="color: #5a9db8; font-size: 1.8rem;">2.85M</div>
+        <p class="mt-20">TLA⁺ verified states</p>
+      </div>
+      <div class="card card-dark">
+        <div class="stat" style="color: #5a9db8; font-size: 1.8rem;">65.4%</div>
+        <p class="mt-20">Compression measured</p>
+      </div>
+    </div>
+    <div class="card card-dark mt-80" style="background: rgba(90, 157, 184, 0.1); border-color: rgba(90, 157, 184, 0.3);">
+      <p style="margin-bottom: 16px;"><span style="color: #5a9db8; font-weight: 500;">Independent convergence:</span> EFA (Rupp, Columbia Southern) derived same architecture independently</p>
+      <p style="margin-bottom: 16px;"><span style="color: #5a9db8; font-weight: 500;">Gartner validates:</span> First Market Guide for Guardian Agents (2026)</p>
+      <p><span style="color: #5a9db8; font-weight: 500;">Regulatory access:</span> EU Commission + Norwegian government partnerships active</p>
+    </div>
+  </div>
+</section>
+
+<!-- 10. BUSINESS -->
+<section class="slide slide-light">
+  <div class="container">
+    <h2>Business Model</h2>
+    <p class="mt-60" style="color: #0a0805;">Open core + enterprise. Infrastructure pricing.</p>
+    <div class="grid-2 mt-80">
+      <div class="card card-light">
+        <h3 style="color: #1e3d50;">Apache 2.0</h3>
+        <p style="color: #6b5e56;">Reference implementation, ecosystem, trust</p>
+      </div>
+      <div class="card card-light">
+        <h3 style="color: #1e3d50;">Enterprise</h3>
+        <p style="color: #6b5e56;">Guardian Agent, SLA, compliance, support</p>
+      </div>
+      <div class="card card-light">
+        <h3 style="color: #1e3d50;">Runtime Licensing</h3>
+        <p style="color: #6b5e56;">Per agent-hour or action-volume</p>
+      </div>
+      <div class="card card-light">
+        <h3 style="color: #1e3d50;">Standards Revenue</h3>
+        <p style="color: #6b5e56;">ACS certification for frameworks</p>
+      </div>
+    </div>
+    <div class="card card-light mt-80" style="background: #1e3d50; color: white; border: none;">
+      <p>Go-to-market: <span style="color: #5a9db8; font-weight: 500;">Norway first</span> (KI-loven) → Europe (EU AI Act) → Global</p>
+    </div>
+  </div>
+</section>
+
+<!-- 11. ASK -->
+<section class="slide slide-cover">
+  <div class="container">
+    <h2>The Ask</h2>
+    <p class="mt-80" style="font-size: 1.2rem; opacity: 0.9;">Pre-seed round. Three milestones.</p>
+    <div class="list-item mt-80">
+      <div class="list-num">1</div>
+      <div class="list-text">
+        <p style="font-weight: 500; color: #5a9db8;">Reference Implementation</p>
+        <p style="opacity: 0.75;">Apache 2.0, ecosystem adoption</p>
+      </div>
+    </div>
+    <div class="list-item">
+      <div class="list-num">2</div>
+      <div class="list-text">
+        <p style="font-weight: 500; color: #5a9db8;">Enterprise Product</p>
+        <p style="opacity: 0.75;">Guardian Agent, SLA, integrations</p>
+      </div>
+    </div>
+    <div class="list-item">
+      <div class="list-num">3</div>
+      <div class="list-text">
+        <p style="font-weight: 500; color: #5a9db8;">ACS Standardization</p>
+        <p style="opacity: 0.75;">IEEE/ISO positioning, protocol layer</p>
+      </div>
+    </div>
+    <div class="card card-dark mt-80">
+      <p style="font-size: 1rem; opacity: 0.85;">Lakera → Check Point <span style="color: #5a9db8;">$300M</span> | HiddenLayer <span style="color: #5a9db8;">$50M Series A</span> | Straiker <span style="color: #5a9db8;">$21M seed</span></p>
+      <p style="margin-top: 16px; opacity: 0.7;">Only player with execution boundary + formal verification + running code.</p>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<script>
+const slides = document.getElementById('slides');
+const nav = document.getElementById('nav');
+const counter = document.getElementById('current');
+const slideCount = document.querySelectorAll('.slide').length;
+let current = 0;
+
+// Create nav dots
+for (let i = 0; i < slideCount; i++) {
+  const dot = document.createElement('div');
+  dot.className = `dot ${i === 0 ? 'active' : ''}`;
+  dot.onclick = () => goToSlide(i);
+  nav.appendChild(dot);
+}
+
+function goToSlide(n) {
+  current = n;
+  slides.scrollLeft = n * window.innerWidth;
+  updateNav();
+}
+
+function updateNav() {
+  document.querySelectorAll('.dot').forEach((dot, i) => {
+    dot.classList.toggle('active', i === current);
+  });
+  counter.textContent = current + 1;
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' && current < slideCount - 1) goToSlide(current + 1);
+  if (e.key === 'ArrowLeft' && current > 0) goToSlide(current - 1);
+});
+
+// Update on scroll
+slides.addEventListener('scroll', () => {
+  current = Math.round(slides.scrollLeft / window.innerWidth);
+  updateNav();
+});
+</script>
+
+
+</main>
+</body>
+</html>

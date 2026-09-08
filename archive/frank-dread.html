@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VALO — Frank Meeting</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; }
+    body { font-family: 'Inter', -apple-system, sans-serif; background: #FAF7F2; color: #1A0F0A; }
+
+    .slides { position: relative; width: 100%; height: 100vh; }
+    .slide {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+      padding: 80px 120px; opacity: 0; transition: opacity 0.8s ease;
+      overflow-y: auto;
+    }
+    .slide.active { opacity: 1; }
+
+    .slide h1 {
+      font-family: 'DM Serif Display', serif; font-size: 5rem; font-weight: 400;
+      margin: 0 0 24px 0; line-height: 1.1; letter-spacing: -1.5px; max-width: 1000px;
+    }
+    .slide h2 {
+      font-family: 'DM Serif Display', serif; font-size: 3.5rem; font-weight: 400;
+      margin: 0 0 32px 0; line-height: 1.15; letter-spacing: -0.8px; max-width: 1000px;
+    }
+    .slide p {
+      font-size: 1.25rem; line-height: 1.8; margin: 20px 0; max-width: 900px;
+      font-weight: 300; opacity: 0.95;
+    }
+    .slide p strong { font-weight: 700; }
+
+    /* Color schemes */
+    .slide-cream { background: #FAF7F2; }
+    .slide-blue { background: linear-gradient(135deg, #1e3d50 0%, #0f1f2a 100%); color: white; }
+    .slide-amber { background: linear-gradient(135deg, #D97706 0%, #92400e 100%); color: white; }
+    .slide-red { background: linear-gradient(135deg, #DC2626 0%, #7f1d1d 100%); color: white; }
+    .slide-green { background: linear-gradient(135deg, #16A34A 0%, #14532d 100%); color: white; }
+
+    /* Content box */
+    .box {
+      background: rgba(255,255,255,0.06);
+      padding: 40px 48px;
+      border-radius: 16px;
+      margin: 36px 0;
+      border: 1.5px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(12px);
+      max-width: 900px;
+    }
+    .slide-cream .box {
+      background: linear-gradient(135deg, rgba(30,61,80,0.04) 0%, rgba(30,61,80,0.02) 100%);
+      border-color: rgba(30,61,80,0.1);
+    }
+
+    /* Header */
+    .header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 40px 50px; pointer-events: none;
+    }
+    .logo { font-weight: 700; font-size: 1.4rem; letter-spacing: 2px; color: #1e3d50; pointer-events: auto; }
+    .slide-blue .logo, .slide-amber .logo, .slide-red .logo, .slide-green .logo { color: rgba(255,255,255,0.95); }
+
+    .counter { font-size: 1rem; font-weight: 500; opacity: 0.45; letter-spacing: 0.5px; }
+    .slide-blue .counter, .slide-amber .counter, .slide-red .counter, .slide-green .counter { opacity: 0.45; color: rgba(255,255,255,0.95); }
+
+    /* Navigation dots */
+    .nav-dots {
+      position: fixed; bottom: 50px; left: 50%; transform: translateX(-50%); z-index: 100;
+      display: flex; gap: 12px; align-items: center; pointer-events: auto;
+    }
+    .dot {
+      width: 12px; height: 12px; border-radius: 50%;
+      background: rgba(30,61,80,0.25); cursor: pointer; transition: all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+      border: none;
+    }
+    .dot:hover { background: rgba(30,61,80,0.45); }
+    .dot.active {
+      background: #1e3d50; width: 32px; border-radius: 6px;
+    }
+    .slide-blue .dot, .slide-amber .dot, .slide-red .dot, .slide-green .dot {
+      background: rgba(255,255,255,0.2);
+    }
+    .slide-blue .dot:hover, .slide-amber .dot:hover, .slide-red .dot:hover, .slide-green .dot:hover {
+      background: rgba(255,255,255,0.35);
+    }
+    .slide-blue .dot.active, .slide-amber .dot.active, .slide-red .dot.active, .slide-green .dot.active {
+      background: white;
+    }
+
+    /* Utility classes */
+    .text-center { text-align: center; }
+    .accent-blue { color: #1e3d50; }
+    .accent-red { color: #DC2626; }
+    .line-break { word-spacing: 100vw; line-height: 1.4; }
+
+    /* Keyboard/scroll hints */
+    .hint {
+      position: fixed; bottom: 50px; right: 50px; z-index: 50;
+      font-size: 0.85rem; opacity: 0.3; pointer-events: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .slide { padding: 60px 80px; }
+      .slide h1 { font-size: 3.5rem; }
+      .slide h2 { font-size: 2.5rem; }
+      .slide p { font-size: 1.1rem; }
+    }
+    @media (max-width: 768px) {
+      .slide { padding: 40px 40px; }
+      .slide h1 { font-size: 2.5rem; }
+      .slide h2 { font-size: 1.8rem; }
+      .slide p { font-size: 1rem; }
+      .box { padding: 24px 32px; }
+      .header { padding: 24px 30px; }
+      .logo { font-size: 1.2rem; }
+      .counter { font-size: 0.9rem; }
+    }
+    @media (max-width: 480px) {
+      .slide { padding: 30px 20px; }
+      .slide h1 { font-size: 1.8rem; margin-bottom: 16px; }
+      .slide h2 { font-size: 1.4rem; margin-bottom: 20px; }
+      .slide p { font-size: 0.95rem; margin: 12px 0; }
+      .box { padding: 16px 20px; margin: 20px 0; }
+      .header { padding: 16px 20px; }
+      .logo { font-size: 1rem; letter-spacing: 1px; }
+      .counter { font-size: 0.85rem; }
+      .nav-dots { bottom: 30px; }
+      .dot { width: 10px; height: 10px; }
+    }
+  </style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0a1520" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="VALO Research" />
+<meta property="og:title" content="VALO — Frank Meeting" />
+<meta property="og:description" content="Governance before consequence — the proof layer for AI execution." />
+<meta property="og:image" content="https://valoresearch.org/img/og-valo.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="VALO — Frank Meeting" />
+<meta name="twitter:description" content="Governance before consequence — the proof layer for AI execution." />
+<meta name="twitter:image" content="https://valoresearch.org/img/og-valo.jpg" />
+  <link rel="stylesheet" href="/css/valo-brand.css">
+</head>
+<body>
+<main id="main">
+
+
+<div class="header">
+  <div class="logo">VALO</div>
+  <div class="counter"><span id="n">1</span>/18</div>
+</div>
+
+<div class="nav-dots" id="dots"></div>
+
+<div class="slides" id="slides">
+
+<!-- SLIDE 1: Problem headline -->
+<section class="slide slide-cream active text-center">
+  <h1 class="line-break">LLMs ARE BRILLIANT
+  AND BROKEN</h1>
+  <p style="font-size: 1.4rem; margin-top: 40px;">They produce confident syntax errors with zero internal warning. They hallucinate facts. They fail with authority.</p>
+</section>
+
+<!-- SLIDE 2: Cost of LLM failure -->
+<section class="slide slide-red">
+  <h2>FROM AI</h2>
+  <p style="margin-top: 32px; font-size: 1.35rem;">You wanted automation. What you got:</p>
+  <div class="box">
+    <p><strong>Hallucination cost:</strong> $140M loss from confident trading errors.</p>
+    <p style="margin-top: 16px;"><strong>Compliance cost:</strong> $250M fine for unable to prove control.</p>
+    <p style="margin-top: 16px;"><strong>Safety cost:</strong> Patient nearly dies. Doctor catches it manually.</p>
+  </div>
+</section>
+
+<!-- SLIDE 3: Business impact -->
+<section class="slide slide-cream">
+  <h2>The Automation Paradox</h2>
+  <p style="margin-top: 32px;">AI promised to cut costs. Instead:</p>
+  <p><strong>You can't deploy it</strong> (liability, control, audit).</p>
+  <p><strong>You can't trust it</strong> (no visibility, no receipts).</p>
+  <p><strong>You can't scale it</strong> (regulators won't allow it).</p>
+  <p style="margin-top: 40px; font-size: 1.3rem;">AI is in your infrastructure. You're running the brake lights.</p>
+</section>
+
+<!-- SLIDE 4: The coherence problem -->
+<section class="slide slide-blue text-center">
+  <h2>LLM Coherence Collapse</h2>
+  <p style="margin-top: 40px; font-size: 1.3rem;">The math is sound. But output reliability drops exponentially over reasoning steps.</p>
+  <div class="box">
+    <p>GPT-4o: 86% coherent on step 1 → 14.7% coherent on step 20.</p>
+    <p style="margin-top: 16px;">Every step = loss of control. Every step = growing risk.</p>
+  </div>
+</section>
+
+<!-- SLIDE 5: Infrastructure problem -->
+<section class="slide slide-amber">
+  <h2>Local AI = Sovereignty Loss</h2>
+  <p style="margin-top: 32px;">AI running on your device. Your network. Your infrastructure.</p>
+  <div class="box">
+    <p><strong>Can you see what it decided?</strong> No visibility.</p>
+    <p style="margin-top: 16px;"><strong>Can you control what it does?</strong> No boundaries.</p>
+    <p style="margin-top: 16px;"><strong>Can you audit it?</strong> No receipts. No proof.</p>
+  </div>
+</section>
+
+<!-- SLIDE 6: VALO intro -->
+<section class="slide slide-green text-center">
+  <h1 style="font-size: 5.5rem; margin-top: 0;">TO ROI</h1>
+  <p style="margin-top: 50px; font-size: 1.35rem;">VALO brings back control. And unlocks the business case for AI.</p>
+</section>
+
+<!-- SLIDE 7: The execution boundary -->
+<section class="slide slide-blue text-center">
+  <h2>The Execution Boundary</h2>
+  <p style="margin-top: 40px; font-size: 1.35rem;">Stop broken actions before they commit.</p>
+  <div class="box">
+    <p>Intent → <strong>[VALO Gate]</strong> → Receipt → Action</p>
+    <p style="margin-top: 16px; opacity: 0.9;">43 nanoseconds. TLA⁺-verified. Zero business penalty.</p>
+  </div>
+</section>
+
+<!-- SLIDE 8: Speed = business case -->
+<section class="slide slide-cream">
+  <h2>43 Nanoseconds: Why It Matters</h2>
+  <p style="margin-top: 32px;">Every decision goes through VALO. Fast enough that you don't notice.</p>
+  <div class="box">
+    <p><strong>1 million transactions:</strong> 43 milliseconds total overhead. Not 1 second. Not 1 minute.</p>
+    <p style="margin-top: 16px;"><strong>Cost per decision:</strong> Negligible. Business case survives.</p>
+    <p style="margin-top: 16px;"><strong>Result:</strong> You can finally deploy AI at scale.</p>
+  </div>
+</section>
+
+<!-- SLIDE 9: Three layers of control -->
+<section class="slide slide-green">
+  <h2>Three Layers: Control, Visibility, Governance</h2>
+  <p style="margin-top: 32px;"><strong>Layer 1: Execution Boundary (VALO L1 Guardian)</strong></p>
+  <p style="margin-bottom: 28px; color: rgba(255,255,255,0.8);">Stop broken actions before consequence. Verified. Fast.</p>
+
+  <p style="margin-top: 24px;"><strong>Layer 2: Measurement (VAIG)</strong></p>
+  <p style="margin-bottom: 28px; color: rgba(255,255,255,0.8);">Real-time visibility. What is the AI really doing?</p>
+
+  <p style="margin-top: 24px;"><strong>Layer 3: Governance (GRC + WORM)</strong></p>
+  <p style="color: rgba(255,255,255,0.8);">You define policy. Immutable audit trail for regulators.</p>
+</section>
+
+<!-- SLIDE 10: Visibility unlocks trust -->
+<section class="slide slide-cream">
+  <h2>Visibility = Governable</h2>
+  <p style="margin-top: 32px;">VAIG measures coherence in real-time. You see when the model is drifting.</p>
+  <div class="box">
+    <p><strong>Semantic Entropy:</strong> Is the model consistent with itself?</p>
+    <p style="margin-top: 16px;"><strong>Calibration:</strong> Does it know when it doesn't know?</p>
+    <p style="margin-top: 16px;"><strong>Result:</strong> You can trust borderline decisions. Or escalate them.</p>
+  </div>
+</section>
+
+<!-- SLIDE 11: Governance layer (Frank's domain) -->
+<section class="slide slide-amber">
+  <h2>GRC: Where You Operate</h2>
+  <p style="margin-top: 32px; font-size: 1.35rem;">Frank, this is your layer.</p>
+  <div class="box">
+    <p><strong>You define:</strong> What's allowed? What escalates? What needs approval?</p>
+    <p style="margin-top: 20px;"><strong>You get proof:</strong> WORM audit trail. Hash-chained. Immutable.</p>
+    <p style="margin-top: 20px;"><strong>You own compliance:</strong> Regulators see receipts, not promises.</p>
+  </div>
+</section>
+
+<!-- SLIDE 12: Case study 1 - Healthcare -->
+<section class="slide slide-red">
+  <h2>Case 1: Healthcare (Before VALO)</h2>
+  <p style="margin-top: 32px;">Hospital AI diagnoses patient. Hallucinates a finding. No audit trail.</p>
+  <div class="box">
+    <p><strong>Result:</strong> Patient nearly dies. Only human doctor caught it.</p>
+    <p style="margin-top: 20px;"><strong>Why?</strong> No visibility. No boundary. No proof you could control it.</p>
+  </div>
+</section>
+
+<!-- SLIDE 13: Case study 2 - Finance -->
+<section class="slide slide-red">
+  <h2>Case 2: Finance (Before VALO)</h2>
+  <p style="margin-top: 32px;">Trading agent hallucinates a correlation. Builds $500M position autonomously.</p>
+  <div class="box">
+    <p><strong>Loss:</strong> $140M. <strong>Fine:</strong> $250M (unable to prove control).</p>
+    <p style="margin-top: 20px;"><strong>Why?</strong> No execution boundary. No receipts. No governance proof.</p>
+  </div>
+</section>
+
+<!-- SLIDE 14: Case study 3 - Supply chain -->
+<section class="slide slide-red">
+  <h2>Case 3: Supply Chain (Before VALO)</h2>
+  <p style="margin-top: 32px;">Multiagent network: demand → negotiator → executor → vendor network.</p>
+  <div class="box">
+    <p>Agent 1 hallucinates. Agent 2 signs billion-unit contract. Agent 3 executes with 47 vendors.</p>
+    <p style="margin-top: 20px;"><strong>Settlement:</strong> $2.3B. <strong>Lesson:</strong> You don't control your own systems.</p>
+  </div>
+</section>
+
+<!-- SLIDE 15: Business case unlocked -->
+<section class="slide slide-blue text-center">
+  <h1 style="font-size: 5.5rem; margin-top: 0;">VALO RESTORES ROI</h1>
+  <p style="margin-top: 60px; font-size: 1.35rem;">Control + Visibility + Proof = Safe Automation</p>
+</section>
+
+<!-- SLIDE 16: The ROI equation -->
+<section class="slide slide-cream">
+  <h2>Why VALO Works</h2>
+  <p style="margin-top: 32px;"><strong>You control execution:</strong> Stop broken actions before they happen. VALO Gate = deterministic.</p>
+  <p style="margin-top: 24px;"><strong>You have visibility:</strong> VAIG measures in real-time. You see coherence drift before failure.</p>
+  <p style="margin-top: 24px;"><strong>You own governance:</strong> GRC policy layer. WORM audit trail. Regulators see proof, not promises.</p>
+  <div class="box" style="margin-top: 36px;">
+    <p style="font-size: 1.3rem;"><strong>Cost:</strong> 43 nanoseconds per decision. <strong>Benefit:</strong> $100M+ automation becomes deployable.</p>
+  </div>
+</section>
+
+<!-- SLIDE 17: Regulatory window -->
+<section class="slide slide-amber">
+  <h2>August 2026: KI-loven Closes</h2>
+  <p style="margin-top: 32px;">EU and Norway standards arrive. They will require:</p>
+  <div class="box">
+    <p><strong>Provable control:</strong> Can you prove you stopped the bad action?</p>
+    <p style="margin-top: 16px;"><strong>Audit trail:</strong> Hash-chained receipts. WORM standard.</p>
+    <p style="margin-top: 16px;"><strong>Governance layer:</strong> Policy → decision → receipt.</p>
+    <p style="margin-top: 20px; font-style: italic;">VALO is the reference implementation. You need to own this.</p>
+  </div>
+</section>
+
+<!-- SLIDE 18: Closing -->
+<section class="slide slide-green text-center">
+  <h1>You Own The Governance Layer</h1>
+  <p style="margin-top: 60px; font-size: 1.35rem;">We built the execution boundary. You build how enterprises deploy it safely.</p>
+  <div class="box" style="margin-top: 50px;">
+    <p style="font-size: 1.25rem;"><strong>Together:</strong> AI moves from liability to ROI.</p>
+  </div>
+</section>
+
+</div>
+
+<script>
+const slides = document.getElementById('slides');
+const counter = document.getElementById('n');
+const dotsEl = document.getElementById('dots');
+let current = 0;
+const totalSlides = 18;
+
+// Create navigation dots
+for (let i = 0; i < totalSlides; i++) {
+  const dot = document.createElement('button');
+  dot.className = i === 0 ? 'dot active' : 'dot';
+  dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+  dot.onclick = () => goto(i);
+  dotsEl.appendChild(dot);
+}
+
+function goto(n) {
+  current = ((n % totalSlides) + totalSlides) % totalSlides;
+
+  // Update slides
+  document.querySelectorAll('.slide').forEach((slide, i) => {
+    slide.classList.toggle('active', i === current);
+  });
+
+  // Update counter
+  counter.innerText = current + 1;
+
+  // Update dots
+  document.querySelectorAll('.dot').forEach((d, i) => {
+    d.classList.toggle('active', i === current);
+  });
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') goto(current + 1);
+  if (e.key === 'ArrowLeft') goto(current - 1);
+});
+
+// Scroll wheel navigation
+slides.addEventListener('wheel', e => {
+  e.preventDefault();
+  goto(current + (e.deltaY > 0 ? 1 : -1));
+}, { passive: false });
+
+// Touch/swipe navigation for mobile
+let touchStartX = 0;
+let touchEndX = 0;
+
+slides.addEventListener('touchstart', e => {
+  touchStartX = e.changedTouches[0].screenX;
+}, false);
+
+slides.addEventListener('touchend', e => {
+  touchEndX = e.changedTouches[0].screenX;
+  handleSwipe();
+}, false);
+
+function handleSwipe() {
+  const diff = touchStartX - touchEndX;
+  const threshold = 50;
+
+  if (Math.abs(diff) > threshold) {
+    if (diff > 0) {
+      // Swiped left, go to next slide
+      goto(current + 1);
+    } else {
+      // Swiped right, go to previous slide
+      goto(current - 1);
+    }
+  }
+}
+</script>
+
+
+</main>
+</body>
+</html>

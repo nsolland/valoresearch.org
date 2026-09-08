@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VALO — You decide. AI executes.</title>
+  <meta name="description" content="Cryptographic proof that humans stay in control. AI executes. You decide. Authority infrastructure for regulated enterprises." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:   #08090E;
+      --bg2:  #0E1117;
+      --bg3:  #141821;
+      --brd:  rgba(255,255,255,0.07);
+      --brdm: rgba(255,255,255,0.13);
+      --txt:  #E2E8F0;
+      --dim:  #94A3B8;
+      --mut:  #475569;
+      --blue: #3B82F6;
+      --bludk:#1D4ED8;
+      --blult:#93C5FD;
+      --amb:  #F59E0B;
+      --red:  #EF4444;
+      --grn:  #22C55E;
+    }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { background: var(--bg); color: var(--txt); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    h1,h2,h3,h4 { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; line-height: 1.2; letter-spacing: -0.01em; }
+
+    /* ── Navigation Header ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(8,9,14,0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--brdm);
+    }
+    .nav-w {
+      max-width: 1160px; margin: 0 auto; padding: 0 24px;
+      height: 58px; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 9px; flex-shrink: 0; }
+    .nav-logo span { font-family: 'DM Serif Display', serif; font-size: 14px; color: #fff; font-weight: 400; letter-spacing: 0.15em; text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 32px; font-size: 14px; color: var(--txt); flex-wrap: wrap; font-weight: 500; }
+    .nav-links a { transition: color 0.15s; }
+    .nav-links a:hover { color: var(--blult); }
+    .nav-cta { background: var(--blue); color: #fff !important; padding: 8px 20px; border-radius: 8px; font-weight: 600; font-size: 14px; transition: background .15s; flex-shrink: 0; }
+    .nav-cta:hover { background: var(--bludk); }
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-cta { padding: 7px 16px; font-size: 13px; }
+    }
+
+    /* ── Layout ── */
+    .w { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+    .sec { padding: 80px 0; }
+    .sec-sm { padding: 56px 0; }
+    .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+    .g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+    @media (max-width: 900px) { .g2,.g3 { grid-template-columns: 1fr; } }
+
+    /* ── Hero Section ── */
+    .hero {
+      position: relative; min-height: 70vh; display: flex; align-items: center;
+      overflow: hidden; padding: 140px 0 80px; background: var(--bg); margin-top: 58px;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image: linear-gradient(rgba(59,130,246,.04) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(59,130,246,.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 80% 80% at 20% 40%, black 0%, transparent 70%);
+    }
+    .hero::after {
+      content: ''; position: absolute; width: 800px; height: 800px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(59,130,246,.05) 0%, transparent 70%);
+      top: 15%; left: -400px; pointer-events: none;
+    }
+    .hero-c { position: relative; z-index: 2; text-align: center; }
+    .hero h1 { font-size: 72px; margin-bottom: 24px; color: #fff; }
+    .hero-sub { font-size: 18px; color: var(--dim); margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .hero-cta { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn { padding: 12px 28px; border-radius: 8px; font-weight: 600; font-size: 16px; border: none; cursor: pointer; transition: all 0.15s; display: inline-block; text-align: center; }
+    .btn-primary { background: var(--blue); color: #fff; }
+    .btn-primary:hover { background: var(--bludk); }
+    .btn-secondary { background: transparent; border: 1px solid var(--brd); color: var(--txt); }
+    .btn-secondary:hover { background: rgba(255,255,255,0.05); border-color: var(--brdm); }
+    @media (max-width: 900px) {
+      .hero h1 { font-size: 48px; }
+      .hero-sub { font-size: 16px; }
+    }
+
+    /* ── Live Decision Ledger Section ── */
+    .ledger { background: var(--bg2); padding: 80px 0; }
+    .ledger-title { font-size: 36px; margin-bottom: 48px; color: #fff; text-align: center; }
+    .ledger-subtitle { font-size: 16px; color: var(--dim); text-align: center; margin-bottom: 56px; max-width: 700px; margin-left: auto; margin-right: auto; }
+    .ledger-box {
+      background: var(--bg3); border: 1px solid var(--brd); border-radius: 12px; padding: 24px;
+      font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--dim);
+      line-height: 1.8; overflow-x: auto;
+    }
+    .ledger-row { display: grid; grid-template-columns: 120px 1fr 100px 120px; gap: 16px; margin-bottom: 12px; align-items: center; }
+    .ledger-row:last-child { margin-bottom: 0; }
+    .ledger-status { color: var(--grn); font-weight: 600; }
+    .ledger-action { color: var(--txt); }
+    .ledger-hash { color: var(--blult); font-size: 11px; }
+    @media (max-width: 900px) {
+      .ledger-row { grid-template-columns: 1fr; gap: 8px; }
+      .ledger-title { font-size: 28px; }
+    }
+
+    /* ── Problem Section ── */
+    .problem { padding: 80px 0; }
+    .problem-title { font-size: 36px; margin-bottom: 48px; color: #fff; text-align: center; }
+    .problem-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+    .problem-card {
+      background: var(--bg2); border: 1px solid var(--brd); border-radius: 12px; padding: 32px;
+    }
+    .problem-card h3 { font-size: 18px; color: #fff; margin-bottom: 16px; }
+    .problem-card p { font-size: 14px; color: var(--dim); line-height: 1.7; }
+    @media (max-width: 900px) {
+      .problem-grid { grid-template-columns: 1fr; }
+      .problem-title { font-size: 28px; }
+    }
+
+    /* ── How It Works Section ── */
+    .how-it-works { background: var(--bg2); padding: 80px 0; }
+    .how-title { font-size: 36px; margin-bottom: 48px; color: #fff; text-align: center; }
+    .how-subtitle { font-size: 16px; color: var(--dim); text-align: center; margin-bottom: 56px; max-width: 700px; margin-left: auto; margin-right: auto; }
+    .flow { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; }
+    .flow-step {
+      text-align: center;
+    }
+    .flow-step-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 48px; height: 48px; border-radius: 50%; background: var(--blue);
+      color: #fff; font-weight: 700; font-size: 20px; margin-bottom: 16px;
+    }
+    .flow-step h3 { font-size: 18px; color: #fff; margin-bottom: 12px; }
+    .flow-step p { font-size: 14px; color: var(--dim); }
+    .flow-arrow { display: none; }
+    @media (max-width: 900px) {
+      .flow { grid-template-columns: 1fr; }
+      .how-title { font-size: 28px; }
+    }
+
+    /* ── Why Teams Choose Valo ── */
+    .why { padding: 80px 0; }
+    .why-title { font-size: 36px; margin-bottom: 48px; color: #fff; text-align: center; }
+    .why-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 32px; }
+    .why-stats { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+    .stat-card {
+      background: var(--bg2); border: 1px solid var(--brd); border-radius: 12px; padding: 28px; text-align: center;
+    }
+    .stat-num { font-size: 32px; font-weight: 700; color: var(--blue); margin-bottom: 8px; }
+    .stat-label { font-size: 13px; color: var(--dim); }
+    .testimonial {
+      background: var(--bg3); border: 1px solid var(--brd); border-radius: 12px; padding: 32px;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .testimonial-text { font-size: 16px; color: var(--txt); margin-bottom: 16px; line-height: 1.8; font-style: italic; }
+    .testimonial-author { font-size: 14px; color: var(--dim); }
+    .testimonial-author strong { color: var(--txt); }
+    @media (max-width: 900px) {
+      .why-grid { grid-template-columns: 1fr; }
+      .why-title { font-size: 28px; }
+    }
+
+    /* ── Sectors Section ── */
+    .sectors { background: var(--bg2); padding: 80px 0; }
+    .sectors-title { font-size: 36px; margin-bottom: 48px; color: #fff; text-align: center; }
+    .sectors-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
+    .sector-card {
+      background: var(--bg3); border: 1px solid var(--brd); border-radius: 12px; padding: 36px; text-align: center;
+    }
+    .sector-icon { font-size: 40px; margin-bottom: 16px; }
+    .sector-card h3 { font-size: 20px; color: #fff; margin-bottom: 12px; }
+    .sector-card p { font-size: 14px; color: var(--dim); }
+    @media (max-width: 900px) {
+      .sectors-grid { grid-template-columns: 1fr; }
+      .sectors-title { font-size: 28px; }
+    }
+
+    /* ── Contact Section ── */
+    .contact { padding: 80px 0; }
+    .contact-c { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .contact-info h2 { font-size: 32px; color: #fff; margin-bottom: 24px; }
+    .contact-info p { font-size: 15px; color: var(--dim); margin-bottom: 20px; line-height: 1.8; }
+    .contact-meta { font-size: 14px; color: var(--mut); margin-bottom: 8px; }
+    .contact-link { display: inline-flex; align-items: center; gap: 8px; color: var(--blue); font-weight: 600; margin-bottom: 12px; }
+    .contact-link:hover { text-decoration: underline; }
+    .contact-photo {
+      aspect-ratio: 1; border-radius: 12px; background: var(--bg3);
+      border: 1px solid var(--brd); overflow: hidden; display: flex; align-items: center; justify-content: center;
+      font-size: 60px;
+    }
+    @media (max-width: 900px) {
+      .contact-c { grid-template-columns: 1fr; }
+      .contact-info h2 { font-size: 28px; }
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--bg2); border-top: 1px solid var(--brd); padding: 48px 0;
+      font-size: 13px; color: var(--mut);
+    }
+    .footer-c { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
+    .footer-brand { display: flex; align-items: center; gap: 8px; }
+    .footer-brand span { font-family: 'DM Serif Display', serif; font-size: 16px; color: #fff; font-weight: 600; }
+    .footer-links { display: flex; gap: 20px; justify-content: flex-end; }
+    .footer-links a { color: var(--dim); transition: color 0.15s; }
+    .footer-links a:hover { color: var(--txt); }
+    @media (max-width: 900px) {
+      .footer-c { grid-template-columns: 1fr; gap: 16px; text-align: center; }
+      .footer-links { justify-content: center; }
+    }
+
+    /* ── General ── */
+    .text-center { text-align: center; }
+    @media (max-width: 680px) {
+      .sec { padding: 56px 0; }
+      body { font-size: 15px; }
+      h1 { font-size: 36px; }
+      h2 { font-size: 24px; }
+    }
+  </style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0a1520" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="VALO Research" />
+<meta property="og:title" content="VALO — You decide. AI executes." />
+<meta property="og:description" content="Cryptographic proof that humans stay in control. AI executes. You decide. Authority infrastructure for regulated enterprises." />
+<meta property="og:image" content="https://valoresearch.org/img/og-valo.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="VALO — You decide. AI executes." />
+<meta name="twitter:description" content="Cryptographic proof that humans stay in control. AI executes. You decide. Authority infrastructure for regulated enterprises." />
+<meta name="twitter:image" content="https://valoresearch.org/img/og-valo.jpg" />
+  <link rel="stylesheet" href="/css/valo-brand.css">
+</head>
+<body>
+  <!-- Navigation Header -->
+  <nav>
+    <div class="nav-w">
+      <div class="nav-logo">
+        <span>VALO</span>
+      </div>
+      <div class="nav-links">
+        <a href="#product">Product</a>
+        <a href="https://index-valorg.vercel.app/ledger/" target="_blank" rel="noopener">Ledger</a>
+        <a href="#how">How it works</a>
+        <a href="#sectors">Sectors</a>
+        <a href="#research">Research</a>
+      </div>
+      <a href="#contact" class="nav-cta">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="w">
+      <div class="hero-c">
+        <h1>You decide.<br>AI executes.</h1>
+        <p class="hero-sub">Cryptographic proof that humans stay in control. Every decision auditable. Every action traceable.</p>
+        <div class="hero-cta">
+          <button class="btn btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Request demo</button>
+          <button class="btn btn-secondary" onclick="document.getElementById('how').scrollIntoView({behavior:'smooth'})">See how it works</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Decision Ledger -->
+  <section class="ledger" id="product">
+    <div class="w">
+      <h2 class="ledger-title">Live Decision Ledger</h2>
+      <p class="ledger-subtitle">Every AI decision is timestamped, cryptographically signed, and immutable. Proof, not policy.</p>
+      <div class="ledger-box">
+        <div class="ledger-row">
+          <span>2026-06-25 14:32:18</span>
+          <span class="ledger-action">APPROVE_PAYOUT $12,500 to acct_0x4a8f...</span>
+          <span class="ledger-status">✓ PASS</span>
+          <span class="ledger-hash">sha256:3b8a...</span>
+        </div>
+        <div class="ledger-row">
+          <span>2026-06-25 14:28:45</span>
+          <span class="ledger-action">HOLD_TRADE exceeds daily limit (proposed $8.2M, limit $5M)</span>
+          <span class="ledger-status">✓ HALT</span>
+          <span class="ledger-hash">sha256:7c2d...</span>
+        </div>
+        <div class="ledger-row">
+          <span>2026-06-25 14:15:22</span>
+          <span class="ledger-action">ESCALATE to VP_CREDIT policy override required</span>
+          <span class="ledger-status">✓ STEP_UP</span>
+          <span class="ledger-hash">sha256:9f14...</span>
+        </div>
+        <div class="ledger-row">
+          <span>2026-06-25 14:02:19</span>
+          <span class="ledger-action">APPROVE_HIRE for Senior ML Engineer role</span>
+          <span class="ledger-status">✓ PASS</span>
+          <span class="ledger-hash">sha256:e6b5...</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- The Problem -->
+  <section class="problem">
+    <div class="w">
+      <h2 class="problem-title">Three Questions</h2>
+      <div class="problem-grid">
+        <div class="problem-card">
+          <h3>The Board asks:</h3>
+          <p>"Who authorized this? And can you prove it?"</p>
+          <p style="margin-top: 16px; font-size: 13px;">Boards need to know that critical decisions pass through human authority, not just AI capability.</p>
+        </div>
+        <div class="problem-card">
+          <h3>The Regulator asks:</h3>
+          <p>"Can you prove compliance? Do you have an audit trail?"</p>
+          <p style="margin-top: 16px; font-size: 13px;">Regulators require immutable evidence that policies were enforced before action, not inspected after.</p>
+        </div>
+        <div class="problem-card">
+          <h3>The Customer asks:</h3>
+          <p>"What actually happened? Why did the AI do that?"</p>
+          <p style="margin-top: 16px; font-size: 13px;">Customers demand transparency. A decision trace that answers every "why" with proof.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-it-works" id="how">
+    <div class="w">
+      <h2 class="how-title">Three Steps</h2>
+      <p class="how-subtitle">Authority flows through three stages. Zero architecture changes needed.</p>
+      <div class="flow">
+        <div class="flow-step">
+          <div class="flow-step-num">1</div>
+          <h3>Decide</h3>
+          <p>Define policy: who decides, what rules apply, what bounds matter.</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">2</div>
+          <h3>Execute</h3>
+          <p>AI runs. Before action, authority check validates human approval.</p>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-num">3</div>
+          <h3>Prove</h3>
+          <p>Cryptographic receipt logs every decision. Immutable audit trail.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Teams Choose Valo -->
+  <section class="why">
+    <div class="w">
+      <h2 class="why-title">Why Teams Choose Valo</h2>
+      <div class="why-grid">
+        <div class="why-stats">
+          <div class="stat-card">
+            <div class="stat-num">100%</div>
+            <div class="stat-label">Cryptographic signing</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">6 weeks</div>
+            <div class="stat-label">Implementation</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">Zero</div>
+            <div class="stat-label">Vendor lock-in</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">100%</div>
+            <div class="stat-label">Compliance aligned</div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <p class="testimonial-text">"We stopped arguing with auditors. We just hand them the ledger. Three signatures, proof of policy, decision trace. Audit complete in 20 minutes."</p>
+          <p class="testimonial-author"><strong>VP Risk & Compliance</strong>, Nordic Banking Group</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sectors -->
+  <section class="sectors" id="sectors">
+    <div class="w">
+      <h2 class="sectors-title">Where VALO Fits</h2>
+      <div class="sectors-grid">
+        <div class="sector-card">
+          <div class="sector-icon">🏦</div>
+          <h3>Finance</h3>
+          <p>Trading decisions, credit approvals, payout authorization. Authority control at machine speed.</p>
+        </div>
+        <div class="sector-card">
+          <div class="sector-icon">🏥</div>
+          <h3>Healthcare</h3>
+          <p>Clinical AI stays under physician authority. Evidence trail for audit, malpractice defense.</p>
+        </div>
+        <div class="sector-card">
+          <div class="sector-icon">⚡</div>
+          <h3>Government</h3>
+          <p>Grid operations, resource allocation, compliance proof. Transparency and control built in.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="w">
+      <div class="contact-c">
+        <div>
+          <h2>Let's talk</h2>
+          <p>VALO was built to solve a simple problem: boards, regulators, and customers need proof that humans stay in control.</p>
+          <p>If that matters to you, let's talk.</p>
+          <div style="margin-top: 32px;">
+            <div class="contact-meta">Founder & CEO</div>
+            <div style="font-size: 18px; color: #fff; font-weight: 600; margin-bottom: 8px;">Njål Gaute Solland</div>
+            <a href="mailto:njaal@valoresearch.org" class="contact-link">njaal@valoresearch.org</a>
+            <div style="margin-top: 16px;">
+              <a href="https://linkedin.com/in/njaal" class="contact-link">LinkedIn</a>
+            </div>
+            <div style="margin-top: 24px;">
+              <a href="https://calendly.com" class="btn btn-primary" target="_blank">Book a call</a>
+            </div>
+          </div>
+        </div>
+        <div class="contact-photo">👤</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="w">
+      <div class="footer-c">
+        <div class="footer-brand">
+          <span>VALO</span>
+        </div>
+        <div class="footer-links">
+          <a href="#product">Product</a>
+          <a href="#how">How it works</a>
+          <a href="#sectors">Sectors</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

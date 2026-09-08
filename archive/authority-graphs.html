@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LLM Visibility &amp; Authority Graphs for AI Execution | VALO Research</title>
+  <meta name="description" content="LLM visibility explained through authority graphs: how identity, delegation, execution control, proof and gain determine whether AI agents cite you and act on your behalf." />
+  <meta name="keywords" content="LLM visibility, LLM SEO, authority graphs, AI visibility, generative engine optimization, agent identity, AI citation" />
+  <link rel="canonical" href="https://valoresearch.org/authority-graphs.html" />
+  <meta property="og:title" content="LLM Visibility &amp; Authority Graphs for AI Execution" />
+  <meta property="og:description" content="A visual library for LLM visibility, agent identity, delegation and execution control." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://valoresearch.org/authority-graphs.html" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+    :root {
+      --bg:#FAF7F2; --bg2:#F0ECE6; --ink:#1A0F0A; --mut:#6B5E56;
+      --blue:#1e3d50; --amber:#D97706; --red:#DC2626; --green:#16A34A;
+      --line:rgba(30,61,80,.22); --card:#fffdf9; --brd:rgba(0,0,0,.09);
+    }
+    body { margin:0; font-family:Inter, sans-serif; background:var(--bg); color:var(--ink); line-height:1.55; }
+    a { color:var(--blue); text-decoration:none; font-weight:700; }
+    nav { position:sticky; top:0; z-index:10; background:rgba(250,247,242,.95); border-bottom:1px solid var(--brd); backdrop-filter:blur(14px); }
+    .nav { max-width:1220px; margin:0 auto; padding:16px 24px; display:flex; justify-content:space-between; gap:20px; align-items:center; flex-wrap:wrap; }
+    .brand { color:var(--ink); letter-spacing:.08em; font-weight:800; }
+    .links { display:flex; gap:18px; flex-wrap:wrap; font-size:14px; }
+    .w { max-width:1220px; margin:0 auto; padding:0 24px; }
+    .hero { padding:86px 0 58px; background:linear-gradient(135deg,#1e3d50,#152a39); color:white; }
+    h1,h2,h3 { font-family:'DM Serif Display', serif; font-weight:400; line-height:1.12; }
+    h1 { font-size:58px; max-width:920px; margin:0 0 20px; }
+    h2 { font-size:34px; margin:0 0 14px; }
+    h3 { font-size:24px; margin:0 0 8px; }
+    .lead { font-size:21px; max-width:840px; color:rgba(255,255,255,.9); }
+    .sec { padding:62px 0; }
+    .intro { max-width:860px; color:var(--mut); font-size:18px; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:24px; margin-top:30px; }
+    .panel { background:var(--card); border:1px solid var(--brd); border-radius:10px; padding:24px; min-height:330px; }
+    .caption { color:var(--mut); font-size:14px; margin-top:14px; }
+    .graph { margin-top:22px; display:flex; flex-direction:column; gap:12px; align-items:stretch; }
+    .row { display:flex; gap:12px; align-items:center; justify-content:center; flex-wrap:wrap; }
+    .node { border:1px solid var(--line); background:white; border-radius:8px; padding:12px 14px; min-width:120px; text-align:center; font-size:14px; font-weight:700; color:var(--blue); box-shadow:0 8px 20px rgba(30,61,80,.05); }
+    .node small { display:block; font-weight:500; color:var(--mut); margin-top:3px; line-height:1.25; }
+    .arrow { color:var(--blue); font-weight:800; opacity:.7; }
+    .stack .node { width:100%; }
+    .split { display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; }
+    .split .node { min-width:0; }
+    .verdict { border-color:rgba(217,119,6,.45); color:var(--amber); }
+    .stop { border-color:rgba(220,38,38,.45); color:var(--red); }
+    .gain { border-color:rgba(22,163,74,.45); color:var(--green); }
+    .matrix { display:grid; grid-template-columns:1fr; gap:10px; margin-top:22px; }
+    .layer { display:grid; grid-template-columns:150px 1fr; gap:10px; align-items:center; border:1px solid var(--brd); background:white; border-radius:8px; padding:12px; }
+    .layer b { color:var(--blue); }
+    .layer span { color:var(--mut); font-size:14px; }
+    .flywheel { position:relative; aspect-ratio:1/1; max-width:300px; margin:18px auto 0; border:2px solid rgba(30,61,80,.12); border-radius:50%; }
+    .fw { position:absolute; width:112px; min-height:54px; display:flex; align-items:center; justify-content:center; text-align:center; background:white; border:1px solid var(--line); border-radius:999px; color:var(--blue); font-size:13px; font-weight:800; padding:8px; }
+    .fw.a{top:-8px;left:94px}.fw.b{top:70px;right:-14px}.fw.c{bottom:42px;right:12px}.fw.d{bottom:42px;left:12px}.fw.e{top:70px;left:-14px}
+    .center { position:absolute; inset:108px; display:flex; align-items:center; justify-content:center; text-align:center; background:var(--blue); color:white; border-radius:50%; font-weight:800; font-size:13px; padding:12px; }
+    .callout { background:var(--bg2); border-left:4px solid var(--blue); padding:18px 20px; border-radius:8px; margin-top:26px; color:var(--mut); }
+    footer { padding:40px 0; background:var(--bg2); color:var(--mut); font-size:14px; }
+    @media(max-width:760px){ h1{font-size:40px}.lead{font-size:18px}.grid{grid-template-columns:1fr}.split{grid-template-columns:1fr}.layer{grid-template-columns:1fr}.arrow{transform:rotate(90deg)} }
+  </style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0a1520" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="VALO Research" />
+<meta property="og:title" content="Authority Graphs for AI Execution | VALO eXeC" />
+<meta property="og:description" content="A visual library of authority, delegation, execution control, proof and gain diagrams for AI agent systems." />
+<meta property="og:image" content="https://valoresearch.org/img/og-valo.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Authority Graphs for AI Execution | VALO eXeC" />
+<meta name="twitter:description" content="A visual library of authority, delegation, execution control, proof and gain diagrams for AI agent systems." />
+<meta name="twitter:image" content="https://valoresearch.org/img/og-valo.jpg" />
+
+  <link rel="stylesheet" href="/css/valo-brand.css">
+</head>
+<body>
+<nav><div class="nav"><a class="brand valo-brand" href="/"><img src="/img/valo-wordmark.png" alt="VALO" /><span>Research</span></a><div class="links"><a href="authority-seo.html">SEO Hub</a><a href="authority-infrastructure.html">Authority Infrastructure</a><a href="ai-execution-control.html">Execution Control</a><a href="delegated-authority-ai-agents.html">Delegated Authority</a></div></div></nav>
+<main id="main">
+
+<section class="hero"><div class="w"><h1>LLM Visibility &amp; Authority Graphs for AI Execution</h1><p class="lead">LLM visibility is not a metric &mdash; it is a graph. This visual library explains identity, authority, delegation, execution control, proof and gain in AI agent systems, and how each layer determines whether an LLM will cite you or let an agent act on your behalf.</p></div></section>
+<section class="sec"><div class="w"><p class="intro">These diagrams are built to make the category visible. One idea per graph. Short labels. Clear causality. The point is simple: AI agents should not act until the authority chain holds.</p>
+<div class="grid">
+  <article class="panel"><h3>1. Identity Is Not Authority</h3><div class="graph stack"><div class="node">Identity<small>Who are you?</small></div><div class="row"><span class="arrow">↓</span></div><div class="node">Authority<small>What may you do?</small></div><div class="row"><span class="arrow">↓</span></div><div class="node">Delegation<small>Who may act for you?</small></div><div class="row"><span class="arrow">↓</span></div><div class="node verdict">Execution<small>What may AI do now?</small></div><div class="row"><span class="arrow">↓</span></div><div class="node gain">Proof<small>What happened?</small></div></div><p class="caption">IAM stops too early. VALO continues from identity into authority, delegation, execution and proof.</p></article>
+  <article class="panel"><h3>2. The Execution Boundary</h3><div class="graph"><div class="row"><div class="node">Agent Intent</div><span class="arrow">→</span><div class="node verdict">VALO eXeC<small>Authority boundary</small></div></div><div class="split"><div class="node gain">Allow</div><div class="node verdict">Escalate</div><div class="node stop">Stop</div></div></div><p class="caption">The key object is the boundary between intention and consequence.</p></article>
+  <article class="panel"><h3>3. Authority Chain</h3><div class="graph stack"><div class="node">Person / Organization</div><div class="row"><span class="arrow">↓</span></div><div class="node">Role</div><div class="row"><span class="arrow">↓</span></div><div class="node">Delegated Authority</div><div class="row"><span class="arrow">↓</span></div><div class="node">AI Agent</div><div class="row"><span class="arrow">↓</span></div><div class="node verdict">VALO Verdict</div><div class="row"><span class="arrow">↓</span></div><div class="node gain">Receipt</div></div><p class="caption">AI should act inside a traceable authority chain, not as an ungrounded system.</p></article>
+  <article class="panel"><h3>4. Four Layers</h3><div class="matrix"><div class="layer"><b>Decide</b><span>Why, what, whom</span></div><div class="layer"><b>Control</b><span>Who, authority, policy, context</span></div><div class="layer"><b>Execute</b><span>How, tools, resources, cost</span></div><div class="layer"><b>Prove & Learn</b><span>Proof, outcome, gain, optimize</span></div></div><p class="caption">VALO turns AI agents into controlled, measurable work.</p></article>
+  <article class="panel"><h3>5. Competitor Layer Map</h3><div class="matrix"><div class="layer"><b>Governance</b><span>Credo, IBM, OneTrust</span></div><div class="layer"><b>Identity</b><span>Okta, Entra, IndyKite</span></div><div class="layer"><b>Authorization</b><span>Arcade, tool runtime</span></div><div class="layer"><b>Execution Control</b><span>TrigGuard, VALO</span></div><div class="layer"><b>Authority + Proof + Gain</b><span>VALO eXeC</span></div></div><p class="caption">VALO should climb above permit/deny and own authority plus proof plus gain.</p></article>
+  <article class="panel"><h3>6. Control, Proof, Gain</h3><div class="graph"><div class="row"><div class="node verdict">Control<small>Before action</small></div><span class="arrow">→</span><div class="node">Proof<small>After action</small></div><span class="arrow">→</span><div class="node gain">Gain<small>After proof</small></div></div></div><p class="caption">This is the buyer-level product narrative.</p></article>
+  <article class="panel"><h3>7. Authority Graph</h3><div class="graph"><div class="split"><div class="node">Intent</div><div class="node">Policy</div><div class="node">Context</div></div><div class="row"><span class="arrow">↓</span></div><div class="node verdict" style="margin:auto">Execution Verdict</div><div class="row"><span class="arrow">↓</span></div><div class="split"><div class="node">Receipt</div><div class="node">Outcome</div><div class="node gain">Gain</div></div></div><p class="caption">Authority is a graph of relationships that must hold at execution time.</p></article>
+  <article class="panel"><h3>8. Authority Collapse</h3><div class="graph stack"><div class="node">Valid Identity</div><div class="row"><span class="arrow">↓</span></div><div class="node">Weak Delegation</div><div class="row"><span class="arrow">↓</span></div><div class="node verdict">Unclear Authority</div><div class="row"><span class="arrow">↓</span></div><div class="node stop">Agent Acts Anyway</div><div class="row"><span class="arrow">↓</span></div><div class="node stop">Accountability Failure</div></div><p class="caption">Often the failure is not bad output. It is action without legitimate standing.</p></article>
+  <article class="panel"><h3>9. SEO Category Flywheel</h3><div class="flywheel"><div class="fw a">Define term</div><div class="fw b">Publish page</div><div class="fw c">Cross-link</div><div class="fw d">Post diagrams</div><div class="fw e">Get cited</div><div class="center">Own category</div></div><p class="caption">Do not chase the category. Define it until others cite you.</p></article>
+  <article class="panel"><h3>10. Frank Bridge</h3><div class="graph stack"><div class="node">Identity<small>Who are you?</small></div><div class="row"><span class="arrow">↓</span></div><div class="node">Authority<small>What may you do?</small></div><div class="row"><span class="arrow">↓</span></div><div class="node verdict">VALO eXeC<small>What may AI do for you?</small></div><div class="row"><span class="arrow">↓</span></div><div class="node">Proof<small>What happened?</small></div><div class="row"><span class="arrow">↓</span></div><div class="node gain">Gain<small>Was it worth it?</small></div></div><p class="caption">Simple, commercial, defensible.</p></article>
+  <article class="panel"><h3>11. Governance Is Too Late</h3><div class="graph stack"><div class="node">Policy Written</div><div class="row"><span class="arrow">↓</span></div><div class="node">Agent Acts</div><div class="row"><span class="arrow">↓</span></div><div class="node stop">Consequence</div><div class="row"><span class="arrow">↓</span></div><div class="node">Audit Dashboard</div></div><p class="caption">If control happens after consequence, it is not control. It is documentation.</p></article>
+  <article class="panel"><h3>12. VALO Category Stack</h3><div class="matrix"><div class="layer"><b>AI Governance</b><span>Rules and documentation</span></div><div class="layer"><b>AI Observability</b><span>What happened</span></div><div class="layer"><b>AI Authorization</b><span>Can the tool be called?</span></div><div class="layer"><b>AI Execution Control</b><span>Should the action proceed?</span></div><div class="layer"><b>Authority Infrastructure</b><span>Under whose authority?</span></div></div><p class="caption">VALO should own the top explanatory layer, not only the runtime permit/deny layer.</p></article>
+</div>
+<div class="callout">Reusable caption: The real question is not whether AI can call the tool. The real question is under whose authority it acts.</div>
+</div></section>
+
+</main>
+<footer><div class="w">VALO eXeC: You decide. AI executes. VALO proves. Your organization gains.</div></footer>
+</body>
+</html>

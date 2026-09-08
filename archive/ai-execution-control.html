@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Execution Control: Control Agents Before They Act | VALO</title>
+  <meta name="description" content="AI execution control is the boundary between an AI agent's intention and the real-world action it wants to perform. VALO eXeC controls action before consequence." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+  <style>*{box-sizing:border-box}:root{--bg:#FAF7F2;--bg2:#F0ECE6;--txt:#1A0F0A;--dim:#6B5E56;--blue:#1e3d50;--brd:rgba(0,0,0,.1)}body{margin:0;font-family:Inter,sans-serif;background:var(--bg);color:var(--txt);line-height:1.7}a{color:var(--blue);font-weight:700;text-decoration:none}.w{max-width:980px;margin:0 auto;padding:0 24px}nav{border-bottom:1px solid var(--brd);background:rgba(250,247,242,.95);position:sticky;top:0}.nav{max-width:1120px;margin:0 auto;padding:18px 24px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.brand{color:var(--txt);letter-spacing:.08em}.links{display:flex;gap:18px;flex-wrap:wrap;font-size:14px}.hero{padding:86px 0 60px;background:linear-gradient(135deg,#1e3d50,#183142);color:white}h1,h2,h3{font-family:'DM Serif Display',serif;font-weight:400;line-height:1.15}h1{font-size:54px;margin:0 0 20px}h2{font-size:34px;margin:54px 0 14px}h3{font-size:24px;margin:26px 0 8px}.lead{font-size:21px;max-width:820px;color:rgba(255,255,255,.9)}.sec{padding:54px 0}.box{background:white;border:1px solid var(--brd);border-radius:10px;padding:24px;margin:22px 0}.muted{color:var(--dim)}ul{padding-left:22px}.cta{display:inline-block;margin-top:18px;padding:12px 20px;border-radius:40px;background:var(--blue);color:white}footer{padding:36px 0;background:var(--bg2);color:var(--dim);font-size:14px}@media(max-width:760px){h1{font-size:38px}.lead{font-size:18px}}</style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0a1520" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="VALO Research" />
+<meta property="og:title" content="AI Execution Control: Control Agents Before They Act | VALO" />
+<meta property="og:description" content="AI execution control is the boundary between an AI agent" />
+<meta property="og:image" content="https://valoresearch.org/img/og-valo.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="AI Execution Control: Control Agents Before They Act | VALO" />
+<meta name="twitter:description" content="AI execution control is the boundary between an AI agent" />
+<meta name="twitter:image" content="https://valoresearch.org/img/og-valo.jpg" />
+
+  <link rel="stylesheet" href="/css/valo-brand.css">
+</head>
+<body>
+<nav><div class="nav"><a class="brand valo-brand" href="/"><img src="/img/valo-wordmark.png" alt="VALO" /><span>Research</span></a><div class="links"><a href="authority-seo.html">SEO Hub</a><a href="authority-infrastructure.html">Authority Infrastructure</a><a href="delegated-authority-ai-agents.html">Delegated Authority</a></div></div></nav>
+<section class="hero"><div class="w"><h1>AI Execution Control</h1><p class="lead">AI execution control is the boundary between an AI agent's intention and the real-world action it wants to perform.</p></div></section>
+<main class="sec"><div class="w">
+<p>Most AI governance tools operate before or after the critical moment. Policy tools define rules. Observability tools record behavior. Audit tools document evidence after the fact.</p>
+<p>AI execution control operates at the moment that matters: before the action is committed.</p>
+<h2>The execution boundary</h2>
+<div class="box"><p>Agent intent -> VALO eXeC -> allow, escalate or stop -> proof -> action or no action</p></div>
+<p>This is not generic monitoring. It is a control boundary. The agent may want to act, but VALO decides whether the action is allowed under the current authority, policy, context and risk state.</p>
+<h2>Why this matters</h2>
+<ul><li>AI agents can trigger business workflows.</li><li>AI agents can update systems of record.</li><li>AI agents can send messages to customers.</li><li>AI agents can call APIs that create financial, legal or safety consequences.</li></ul>
+<p>If the control happens only after execution, the organization is already exposed.</p>
+<h2>VALO eXeC decision language</h2>
+<div class="box"><h3>Allow</h3><p class="muted">The action is authorized and admissible in the current context.</p></div>
+<div class="box"><h3>Escalate</h3><p class="muted">The action may be valid, but authority, policy, uncertainty or risk requires human review.</p></div>
+<div class="box"><h3>Stop</h3><p class="muted">The action should not execute. The boundary holds before consequence is committed.</p></div>
+<h2>How it differs from competitors</h2>
+<p>Authorization tools ask whether an agent may call a tool.</p><p>Security tools ask whether the agent is under attack.</p><p>Governance tools ask whether rules exist and can be documented.</p><p>VALO asks whether this action should be allowed to proceed now, under this authority, in this context, with proof.</p>
+<h2>FAQ</h2>
+<h3>Is AI execution control the same as runtime governance?</h3><p>No. Runtime governance is a broad term. Execution control is the specific boundary that allows, escalates or stops an action before it is committed.</p>
+<h3>Does execution control replace IAM?</h3><p>No. IAM remains necessary. VALO extends the chain from identity to delegated authority to action control.</p>
+<h3>Does execution control slow agents down?</h3><p>It should not. The control layer must be fast enough to sit in the execution path without destroying the business case.</p>
+<a class="cta" href="delegated-authority-ai-agents.html">Next: Delegated Authority</a>
+</div></main>
+<footer><div class="w">VALO eXeC controls AI before it acts.</div></footer>
+</body>
+</html>

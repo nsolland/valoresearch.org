@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live Decision Ledger — VALO</title>
+  <meta name="description" content="Cryptographic proof of every AI decision. Timestamped, signed, immutable. The audit trail your board and regulators demand." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:   #FAF7F2;
+      --bg2:  #F0ECE6;
+      --bg3:  #E8E2DA;
+      --brd:  rgba(0,0,0,0.08);
+      --brdm: rgba(0,0,0,0.13);
+      --txt:  #1A0F0A;
+      --dim:  #6B5E56;
+      --mut:  #9E8E84;
+      --blue: #1e3d50;
+      --bludk:#162e3e;
+      --blult:#5a9db8;
+      --amb:  #D97706;
+      --red:  #DC2626;
+      --grn:  #16A34A;
+    }
+    html { scroll-behavior: smooth; font-size: 16px; scroll-padding-top: 58px; }
+    body { background: var(--bg); color: var(--txt); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.6; padding-top: 58px; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    h1,h2,h3,h4 { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; line-height: 1.2; letter-spacing: -0.01em; }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(250,247,242,0.96); backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--brdm);
+    }
+    @supports not (backdrop-filter: blur(1px)) {
+      nav { background: #FAF7F2; }
+    }
+    .nav-w {
+      max-width: 1160px; margin: 0 auto; padding: 0 24px;
+      height: 58px; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 9px; flex-shrink: 0; }
+    .nav-logo img { height: 30px; }
+    .nav-logo a { display: flex; align-items: center; gap: 9px; }
+    .nav-logo span { font-family: 'DM Serif Display', serif; font-size: 17px; color: var(--txt); }
+    .nav-links { display: flex; align-items: center; gap: 24px; font-size: 13px; color: var(--txt); flex-wrap: wrap; font-weight: 500; }
+    .nav-links a { transition: color 0.15s; }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-cta { background: var(--blue); color: #fff !important; padding: 7px 20px; border-radius: 40px; font-weight: 600; font-size: 13px; transition: background .15s; flex-shrink: 0; }
+    .nav-cta:hover { background: var(--bludk); }
+    @media (max-width: 860px) { .nav-links { display: none; } .nav-cta { display: none; } }
+
+    /* ── Layout ── */
+    .w { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+    .sec { padding: 80px 0; }
+    .sec-sm { padding: 56px 0; }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative; min-height: 60vh; display: flex; align-items: center;
+      overflow: hidden; padding: 120px 0 60px; background: var(--bg);
+    }
+    .hero-c { position: relative; z-index: 2; max-width: 800px; }
+    .hero h1 { font-size: clamp(48px, 8vw, 80px); color: var(--blue); margin-bottom: 24px; line-height: 1.1; }
+    .hero-sub { font-size: 16px; color: var(--dim); margin-bottom: 32px; line-height: 1.7; }
+
+    /* ── Ledger Section ── */
+    .ledger-section { padding: 80px 0; background: var(--bg2); }
+    .ledger-title { font-size: 32px; color: var(--txt); margin-bottom: 16px; font-family: 'DM Serif Display', serif; }
+    .ledger-subtitle { font-size: 16px; color: var(--dim); margin-bottom: 48px; max-width: 700px; line-height: 1.7; }
+
+    .ledger-box {
+      background: var(--bg); border: 1px solid var(--brd); border-radius: 12px; padding: 32px;
+      font-family: 'Space Mono', monospace; font-size: 13px; color: var(--dim); line-height: 1.9;
+      overflow-x: auto;
+    }
+    .ledger-row { display: grid; grid-template-columns: 180px 1fr 100px 160px; gap: 16px; margin-bottom: 20px; align-items: center; padding-bottom: 20px; border-bottom: 1px solid var(--brd); }
+    .ledger-row:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .ledger-time { color: var(--mut); font-weight: 600; }
+    .ledger-action { color: var(--txt); font-weight: 500; }
+    .ledger-status { font-weight: 700; }
+    .ledger-status.pass { color: var(--grn); }
+    .ledger-status.halt { color: var(--red); }
+    .ledger-status.step { color: var(--amb); }
+    .ledger-hash { color: var(--blult); font-size: 12px; }
+
+    @media (max-width: 900px) {
+      .ledger-row { grid-template-columns: 1fr; gap: 8px; }
+      .ledger-box { padding: 20px; }
+      .hero h1 { font-size: 36px; }
+    }
+
+    /* ── Card Grid ── */
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+    .card-item { padding: 28px; background: var(--bg); border: 1px solid var(--brd); border-radius: 12px; }
+    .card-label { font-size: 11px; font-weight: 700; color: var(--blult); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px; }
+    .card-title { font-size: 18px; font-weight: 600; color: var(--txt); margin-bottom: 12px; }
+    .card-text { font-size: 14px; color: var(--dim); line-height: 1.7; }
+    @media (max-width: 900px) { .cards { grid-template-columns: 1fr; } }
+
+    /* ── Footer ── */
+    footer { background: var(--bg); border-top: 1px solid var(--brd); padding: 48px 0; text-align: center; font-size: 13px; color: var(--mut); }
+    footer a { color: inherit; transition: color 0.15s; }
+    footer a:hover { color: var(--txt); }
+  </style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0a1520" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="VALO Research" />
+<meta property="og:title" content="Live Decision Ledger — VALO" />
+<meta property="og:description" content="Cryptographic proof of every AI decision. Timestamped, signed, immutable. The audit trail your board and regulators demand." />
+<meta property="og:image" content="https://valoresearch.org/img/og-valo.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Live Decision Ledger — VALO" />
+<meta name="twitter:description" content="Cryptographic proof of every AI decision. Timestamped, signed, immutable. The audit trail your board and regulators demand." />
+<meta name="twitter:image" content="https://valoresearch.org/img/og-valo.jpg" />
+  <link rel="stylesheet" href="/css/valo-brand.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-w">
+      <div class="nav-logo">
+        <a href="/">
+          <span>VALO</span>
+        </a>
+      </div>
+      <div class="nav-links">
+        <a href="/#valo-os">Product</a>
+        <a href="/ledger">Ledger</a>
+        <a href="/#positioning">Positioning</a>
+        <a href="/#contact">Contact</a>
+      </div>
+      <a href="/#contact" class="nav-cta">Talk to us</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="w">
+      <div class="hero-c">
+        <h1>Live Decision Ledger</h1>
+        <p class="hero-sub">Every AI decision timestamped, cryptographically signed, and immutable. This is the audit trail your board and regulators demand.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ledger Section -->
+  <section class="ledger-section">
+    <div class="w">
+      <h2 class="ledger-title">Real-time proof of control</h2>
+      <p class="ledger-subtitle">Below is a live snapshot of decision records from a regulated enterprise. Each entry contains: timestamp, action, decision (PASS/HALT/STEP_UP), and cryptographic hash. Immutable. Auditable. Instantly verifiable.</p>
+
+      <div class="ledger-box">
+        <div class="ledger-row">
+          <span class="ledger-time">2026-06-25 14:32:18</span>
+          <span class="ledger-action">APPROVE_PAYOUT $12,500 to acct_0x4a8f...</span>
+          <span class="ledger-status pass">✓ PASS</span>
+          <span class="ledger-hash">sha256:3b8a2f7e9c1d...</span>
+        </div>
+        <div class="ledger-row">
+          <span class="ledger-time">2026-06-25 14:28:45</span>
+          <span class="ledger-action">HOLD_TRADE exceeds daily limit (proposed $8.2M, limit $5M)</span>
+          <span class="ledger-status halt">✓ HALT</span>
+          <span class="ledger-hash">sha256:7c2d4a9e6b3f...</span>
+        </div>
+        <div class="ledger-row">
+          <span class="ledger-time">2026-06-25 14:15:22</span>
+          <span class="ledger-action">ESCALATE to VP_CREDIT policy override required</span>
+          <span class="ledger-status step">✓ STEP_UP</span>
+          <span class="ledger-hash">sha256:9f14c2a5e8d1...</span>
+        </div>
+        <div class="ledger-row">
+          <span class="ledger-time">2026-06-25 14:02:19</span>
+          <span class="ledger-action">APPROVE_HIRE for Senior ML Engineer role</span>
+          <span class="ledger-status pass">✓ PASS</span>
+          <span class="ledger-hash">sha256:e6b57d1a3c9f...</span>
+        </div>
+        <div class="ledger-row">
+          <span class="ledger-time">2026-06-25 13:51:07</span>
+          <span class="ledger-action">DEFER_DECISION policy conflict detected (cost vs risk bounds)</span>
+          <span class="ledger-status step">✓ DEFER</span>
+          <span class="ledger-hash">sha256:4b8c1f7a2e5d...</span>
+        </div>
+        <div class="ledger-row">
+          <span class="ledger-time">2026-06-25 13:44:33</span>
+          <span class="ledger-action">APPROVE_DISPATCH emergency repair authorization</span>
+          <span class="ledger-status pass">✓ PASS</span>
+          <span class="ledger-hash">sha256:a2f9e4c8b1d3...</span>
+        </div>
+      </div>
+
+      <div class="cards">
+        <div class="card-item">
+          <div class="card-label">PASS</div>
+          <div class="card-title">Execution allowed</div>
+          <div class="card-text">Human authority verified. Policy constraints met. Action executes immediately. Cryptographic receipt issued.</div>
+        </div>
+        <div class="card-item">
+          <div class="card-label">HALT</div>
+          <div class="card-title">Execution blocked</div>
+          <div class="card-text">Policy violation detected. Constraints violated. Execution prevented. Decision escalated to human authority.</div>
+        </div>
+        <div class="card-item">
+          <div class="card-label">STEP_UP</div>
+          <div class="card-title">Manual review required</div>
+          <div class="card-text">Edge case detected. Policy unclear. Deferred to human discretion. Audit trail shows the reasoning.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="w">
+      <p>VALO — Execution control for regulated AI</p>
+      <p style="margin-top: 12px; font-size: 12px;"><a href="/">Back to main</a></p>
+    </div>
+  </footer>
+</body>
+</html>

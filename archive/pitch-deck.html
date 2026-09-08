@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>VΛLΦ — Pitch Deck 2026</title>
+<meta name="robots" content="noindex"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#1e3d50;--bludk:#162e3e;--blult:#5a9db8;--bg:#FAF7F2;--bg2:#F0ECE6;--brd:rgba(0,0,0,0.08);--txt:#1A0F0A;--dim:#6B5E56;--mut:#9E8E84}
+html{font-size:16px;scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:'DM Serif Display',Georgia,serif;font-weight:400;line-height:1.12}
+a{color:inherit;text-decoration:none}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(30,61,80,0.95);backdrop-filter:blur(16px)}
+.nav-w{max-width:1100px;margin:0 auto;padding:0 32px;height:52px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'DM Serif Display',serif;font-size:18px;color:#fff}
+.nav-slides{display:flex;gap:4px}
+.nav-slides a{font-size:11px;color:rgba(255,255,255,0.5);padding:6px 10px;border-radius:6px;font-weight:500;transition:color .15s}
+.nav-slides a:hover{color:#fff}
+.nav-cta{background:var(--blult);color:#fff;padding:7px 18px;border-radius:40px;font-size:12px;font-weight:600}
+@media(max-width:700px){.nav-slides{display:none}}
+
+.slide{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:100px 0 80px;border-bottom:1px solid rgba(0,0,0,0.06)}
+.slide-inner{max-width:1100px;margin:0 auto;padding:0 48px;width:100%}
+@media(max-width:700px){.slide-inner{padding:0 24px}}
+.slide-num{font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:20px;opacity:0.45}
+
+.dk{background:var(--blue)}
+.dk .slide-num,.dk p,.dk li{color:rgba(255,255,255,0.72)}
+.dk h1,.dk h2,.dk h3,.dk strong{color:#fff}
+.dk .brd{border-color:rgba(255,255,255,0.12)}
+
+.cover-eyebrow{font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--blult);margin-bottom:24px}
+.cover h1{font-size:clamp(3rem,7vw,5.5rem);color:#fff;margin-bottom:24px}
+.cover-sub{font-size:1.2rem;color:rgba(255,255,255,0.65);max-width:540px;line-height:1.7;margin-bottom:40px}
+.cover-meta{display:flex;gap:32px;font-size:12px;color:rgba(255,255,255,0.4);flex-wrap:wrap}
+.cover-meta span{letter-spacing:0.06em;font-weight:500}
+
+.big-stat{font-family:'DM Serif Display',serif;font-size:clamp(4rem,10vw,7rem);line-height:1;margin-bottom:12px}
+.stat-sub{font-size:1rem;opacity:0.6;margin-bottom:0}
+
+.cmp-table{width:100%;border-collapse:collapse;margin-top:32px;font-size:14px}
+.cmp-table th{padding:12px 16px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;border-bottom:2px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.5)}
+.cmp-table td{padding:14px 16px;border-bottom:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.75)}
+.cmp-table .hi{background:rgba(90,157,184,0.15);font-weight:600;color:#fff}
+.cmp-table .hi td{color:#fff}
+
+.data-table{width:100%;border-collapse:collapse;margin-top:24px;font-size:13px;border:1px solid var(--brd);border-radius:12px;overflow:hidden}
+.data-table th{padding:11px 16px;text-align:left;background:var(--bg2);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--mut);border-bottom:1px solid var(--brd)}
+.data-table td{padding:13px 16px;border-bottom:1px solid var(--brd);color:var(--dim)}
+.data-table tr:last-child td{border-bottom:none}
+.data-table .avg-row td{background:var(--blue);color:#fff;font-weight:700}
+.data-table .check{color:#2e7d5a;font-weight:700}
+.data-table .cross{color:#c0392b}
+.data-table .valo-row td{background:rgba(30,61,80,0.06);color:var(--txt);font-weight:700}
+
+.proof-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+@media(max-width:640px){.proof-grid{grid-template-columns:1fr}}
+.proof-card{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:22px}
+.pc-num{font-family:'DM Serif Display',serif;font-size:2.4rem;color:var(--blult);line-height:1;margin-bottom:8px}
+.pc-lbl{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.45);margin-bottom:8px}
+.pc-desc{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.55}
+
+.comp-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+@media(max-width:640px){.comp-row{grid-template-columns:1fr}}
+.comp-card{border:1px solid var(--brd);border-radius:14px;padding:22px 24px;background:var(--bg2)}
+.cc-company{font-size:13px;font-weight:700;color:var(--txt);margin-bottom:4px}
+.cc-deal{font-family:'DM Serif Display',serif;font-size:1.8rem;color:var(--blue);line-height:1;margin-bottom:6px}
+.cc-detail{font-size:12px;color:var(--mut)}
+.cc-gap{margin-top:12px;font-size:12px;font-weight:600;color:#c0392b;background:rgba(192,57,43,0.08);border-radius:6px;padding:4px 10px;display:inline-block}
+
+.reg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+@media(max-width:640px){.reg-grid{grid-template-columns:1fr}}
+.reg-card{border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:22px;background:rgba(255,255,255,0.05)}
+.rc-date{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--blult);margin-bottom:8px}
+.rc-title{font-size:15px;font-weight:700;color:#fff;margin-bottom:8px}
+.rc-desc{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.55}
+
+.ask-items{display:flex;flex-direction:column;gap:12px;margin-top:28px}
+.ask-item{display:flex;gap:16px;align-items:flex-start;background:var(--bg2);border:1px solid var(--brd);border-radius:12px;padding:18px 20px}
+.ask-n{flex-shrink:0;width:30px;height:30px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700}
+.ask-text{font-size:14px;color:var(--dim);line-height:1.55}
+.ask-text strong{color:var(--txt)}
+
+.contact-card{background:linear-gradient(135deg,#2a7a9e 0%,#1e5f7a 100%);border-radius:20px;padding:48px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;box-shadow:0 8px 40px rgba(30,95,122,0.3)}
+.cl h2{color:#fff;font-size:clamp(1.4rem,3vw,2rem);margin-bottom:8px}
+.cl p{color:rgba(255,255,255,0.7);font-size:14px;margin:0}
+.contact-links{display:flex;flex-direction:column;gap:10px}
+.clink{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,0.9);font-size:14px;font-weight:500;background:rgba(255,255,255,0.15);border-radius:40px;padding:10px 22px;border:1px solid rgba(255,255,255,0.2);white-space:nowrap;transition:background .15s}
+.clink:hover{background:rgba(255,255,255,0.25)}
+
+footer{text-align:center;padding:24px;font-size:11px;color:var(--mut);border-top:1px solid var(--brd)}
+
+@media print{
+nav{display:none}
+.slide{page-break-after:always;min-height:100vh}
+}
+</style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0a1520" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="VALO Research" />
+<meta property="og:title" content="VΛLΦ — Pitch Deck 2026" />
+<meta property="og:description" content="Governance before consequence — the proof layer for AI execution." />
+<meta property="og:image" content="https://valoresearch.org/img/og-valo.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="VΛLΦ — Pitch Deck 2026" />
+<meta name="twitter:description" content="Governance before consequence — the proof layer for AI execution." />
+<meta name="twitter:image" content="https://valoresearch.org/img/og-valo.jpg" />
+  <link rel="stylesheet" href="/css/valo-brand.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-w">
+    <div class="nav-logo">VΛLΦ</div>
+    <div class="nav-slides">
+      <a href="#s2">Category</a><a href="#s3">Problem</a><a href="#s4">Market</a>
+      <a href="#s5">Solution</a><a href="#s6">Proof</a><a href="#s7">Moat</a>
+      <a href="#s8">Regulation</a><a href="#s11">Ask</a>
+    </div>
+    <a class="nav-cta" href="mailto:njaal@valoresearch.org">Contact</a>
+  </div>
+</nav>
+<main id="main">
+
+
+<section class="slide dk cover" id="s1">
+  <div class="slide-inner">
+    <div class="cover-eyebrow">Pre-Seed · 2026 · Valo Research Group</div>
+    <h1>VΛLΦ</h1>
+    <p class="cover-sub">The execution boundary between AI intent and real-world consequence. Every agent action — governed, audited, controlled.</p>
+    <div class="cover-meta">
+      <span>TLA⁺ Verified</span>
+      <span>~43ns Gate Decision</span>
+      <span>Rust Runtime</span>
+      <span>EU AI Act Ready</span>
+      <span>65% Context Reduction</span>
+    </div>
+  </div>
+</section>
+
+<section class="slide dk" id="s2">
+  <div class="slide-inner">
+    <div class="slide-num">02 · Category</div>
+    <h2>This is not GRC.<br>This is infrastructure.</h2>
+    <table class="cmp-table">
+      <tr><th>Dimension</th><th>GRC (wrong frame)</th><th>Agentic AI Runtime Control</th></tr>
+      <tr><td>Market</td><td>$50B, mature, crowded</td><td>Emerging — no dominant player</td></tr>
+      <tr><td>Buyers</td><td>Compliance, legal</td><td>CISO, CTO, Platform Eng</td></tr>
+      <tr><td>Exit comps</td><td>4–8× ARR</td><td>$300M (Lakera, 2025)</td></tr>
+      <tr><td>What it is</td><td>Policy documents</td><td>Runtime infrastructure</td></tr>
+      <tr class="hi"><td>VΛLΦ</td><td colspan="2">→ Infrastructure layer. Not compliance software. Different market. Different multiple.</td></tr>
+    </table>
+  </div>
+</section>
+
+<section class="slide" id="s3">
+  <div class="slide-inner">
+    <div class="slide-num">03 · Problem</div>
+    <h2>AI agents execute<br>real-world actions.<br>Nothing stops the bad ones.</h2>
+    <p style="font-size:1.1rem;color:var(--dim);max-width:600px;margin:24px 0;line-height:1.8">Content safety governs what the model <em>says</em>. No production system governs what the model <em>does</em>. A hallucinated API call, an unauthorized deletion, an unlogged transaction — these are not model quality problems. These are <strong>execution boundary problems</strong>.</p>
+    <div style="padding:24px 28px;border-left:4px solid var(--blue);background:var(--bg2);border-radius:0 14px 14px 0;max-width:600px">
+      <p style="font-family:'DM Serif Display',serif;font-size:1.25rem;font-style:italic;color:var(--txt);margin:0;line-height:1.5">&ldquo;You cannot govern the probability cloud. You can only govern its collapse into action.&rdquo;</p>
+    </div>
+  </div>
+</section>
+
+<section class="slide dk" id="s4">
+  <div class="slide-inner">
+    <div class="slide-num">04 · Market</div>
+    <h2>Fast adoption.<br>No governance.</h2>
+    <p style="font-size:1rem;color:rgba(255,255,255,0.65);max-width:640px;margin:20px 0 32px;line-height:1.75">Gartner issued the first-ever Market Guide for Guardian Agents in 2026: <em>"Fast enterprise adoption is outpacing traditional governance controls."</em> Agents are in production. Governance is not. VΛLΦ closes the gap.</p>
+    <div class="proof-grid">
+      <div class="proof-card">
+        <div class="pc-num">$300M</div>
+        <div class="pc-lbl">Lakera → Check Point</div>
+        <div class="pc-desc">Nov 2025 acquisition. Category exit floor established.</div>
+      </div>
+      <div class="proof-card">
+        <div class="pc-num">$50M</div>
+        <div class="pc-lbl">HiddenLayer Series A</div>
+        <div class="pc-desc">Microsoft, IBM, Capital One. Runtime AI security.</div>
+      </div>
+      <div class="proof-card">
+        <div class="pc-num">$21M</div>
+        <div class="pc-lbl">Straiker Seed</div>
+        <div class="pc-desc">Lightspeed + Bain. Agentic runtime security, Mar 2025.</div>
+      </div>
+    </div>
+    <p style="margin-top:24px;font-size:13px;color:rgba(255,255,255,0.45)">None of them own the execution boundary. VΛLΦ does.</p>
+  </div>
+</section>
+
+<section class="slide" id="s5">
+  <div class="slide-inner">
+    <div class="slide-num">05 · Solution</div>
+    <h2>VAIG — the execution<br>boundary runtime</h2>
+    <p style="color:var(--dim);max-width:600px;margin:20px 0 32px;font-size:1rem;line-height:1.7">Every agent action is inspected, authorized, and recorded before execution. Actions that fail the admissibility test are halted — deterministically, in ~43 nanoseconds, with full audit trail.</p>
+    <div style="display:flex;align-items:center;gap:0;flex-wrap:wrap;margin-bottom:32px">
+      <div style="background:var(--bg2);border:1px solid var(--brd);border-radius:12px;padding:14px 22px;text-align:center;flex:1;min-width:80px">
+        <div style="font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">Step 1</div>
+        <div style="font-size:15px;font-weight:600">Intent</div>
+      </div>
+      <div style="font-size:20px;color:var(--mut);padding:0 8px">→</div>
+      <div style="background:var(--blue);border-radius:12px;padding:14px 22px;text-align:center;flex:1;min-width:80px">
+        <div style="font-size:10px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">VΛLΦ</div>
+        <div style="font-size:15px;font-weight:600;color:#fff">Gate</div>
+      </div>
+      <div style="font-size:20px;color:var(--mut);padding:0 8px">→</div>
+      <div style="background:var(--bg2);border:1px solid var(--brd);border-radius:12px;padding:14px 22px;text-align:center;flex:1;min-width:80px">
+        <div style="font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">Step 3</div>
+        <div style="font-size:15px;font-weight:600">Receipt</div>
+      </div>
+      <div style="font-size:20px;color:var(--mut);padding:0 8px">→</div>
+      <div style="background:var(--bg2);border:1px solid var(--brd);border-radius:12px;padding:14px 22px;text-align:center;flex:1;min-width:80px">
+        <div style="font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px">Step 4</div>
+        <div style="font-size:15px;font-weight:600">Action</div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+      <div style="background:var(--bg2);border:1px solid var(--brd);border-radius:12px;padding:18px 20px"><strong style="display:block;margin-bottom:6px">L1 Guardian Gate</strong><span style="font-size:13px;color:var(--dim)">Deterministic admissibility at the execution boundary</span></div>
+      <div style="background:var(--bg2);border:1px solid var(--brd);border-radius:12px;padding:18px 20px"><strong style="display:block;margin-bottom:6px">WORM Audit Log</strong><span style="font-size:13px;color:var(--dim)">Tamper-evident, forensic-grade, write-once</span></div>
+      <div style="background:var(--bg2);border:1px solid var(--brd);border-radius:12px;padding:18px 20px"><strong style="display:block;margin-bottom:6px">8-Instrument Ensemble</strong><span style="font-size:13px;color:var(--dim)">Provenance, coherence, auth, rate, scope, identity, replay</span></div>
+      <div style="background:var(--bg2);border:1px solid var(--brd);border-radius:12px;padding:18px 20px"><strong style="display:block;margin-bottom:6px">ACS Protocol</strong><span style="font-size:13px;color:var(--dim)">Agent Control Standard — inspectable by any framework</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide dk" id="s6">
+  <div class="slide-inner">
+    <div class="slide-num">06 · Context Proof</div>
+    <h2>65% fewer tokens.<br>Same intelligence.</h2>
+    <p style="color:rgba(255,255,255,0.65);margin:16px 0 28px;max-width:580px;line-height:1.7">Tested against 6 live competitor and regulatory sources. No synthetic data. Every key fact retained at 75% term-overlap threshold.</p>
+    <div class="proof-grid">
+      <div class="proof-card">
+        <div class="pc-num">65%</div>
+        <div class="pc-lbl">avg token reduction</div>
+        <div class="pc-desc">Across 6 live external pages — Straiker, HiddenLayer, Holistic AI, EU AI Act, Gartner, prEN 18229-1</div>
+      </div>
+      <div class="proof-card">
+        <div class="pc-num">100%</div>
+        <div class="pc-lbl">key facts retained</div>
+        <div class="pc-desc">Verified by 75% term-overlap threshold per required fact, per source</div>
+      </div>
+      <div class="proof-card">
+        <div class="pc-num">35¢</div>
+        <div class="pc-lbl">on the dollar</div>
+        <div class="pc-desc">VΛLΦ agents process the same external intelligence at 35% of the token cost</div>
+      </div>
+    </div>
+    <p style="margin-top:20px;font-size:12px;color:rgba(255,255,255,0.35)">Algorithm: deterministic_select() · target_ratio=0.35 · No ML, no probabilistic selection · Reproducible, auditable</p>
+  </div>
+</section>
+
+<section class="slide" id="s7">
+  <div class="slide-inner">
+    <div class="slide-num">07 · Competitive Moat</div>
+    <h2>No one owns<br>the execution boundary.</h2>
+    <table class="data-table" style="margin-top:28px">
+      <tr><th>Player</th><th>Layer</th><th>Exec boundary</th><th>WORM receipt</th><th>Formal proof</th></tr>
+      <tr><td>Credo AI</td><td>Policy / risk</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td></tr>
+      <tr><td>Holistic AI</td><td>Policy + observe</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td></tr>
+      <tr><td>Straiker</td><td>Threat / infra</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td></tr>
+      <tr><td>HiddenLayer</td><td>ML model security</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td></tr>
+      <tr><td>NVIDIA NeMo</td><td>Probabilistic guardrails</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td></tr>
+      <tr class="valo-row"><td><strong>VΛLΦ</strong></td><td><strong>Runtime control</strong></td><td class="check">✓</td><td class="check">✓</td><td class="check">✓ TLA⁺</td></tr>
+    </table>
+  </div>
+</section>
+
+<section class="slide dk" id="s8">
+  <div class="slide-inner">
+    <div class="slide-num">08 · Regulatory Tailwind</div>
+    <h2>Three August 2026<br>deadlines. One solution.</h2>
+    <div class="reg-grid">
+      <div class="reg-card">
+        <div class="rc-date">Aug 2026</div>
+        <div class="rc-title">EU AI Act Enforcement</div>
+        <div class="rc-desc">API inventory, continuous monitoring, input/output logging, transparency at every decision point. VAIG WORM = the logging requirement solved.</div>
+      </div>
+      <div class="reg-card">
+        <div class="rc-date">Aug 2026</div>
+        <div class="rc-title">KI-loven (Norway)</div>
+        <div class="rc-desc">Norwegian national AI Act. First enforcement. VAIG is the natural compliance infrastructure for Norway-first go-to-market. Cognite ($2.1B) is the flagship channel.</div>
+      </div>
+      <div class="reg-card">
+        <div class="rc-date">Aug 2026</div>
+        <div class="rc-title">prEN 18229-1</div>
+        <div class="rc-desc">European AI trustworthiness logging standard. Consultation closes August 2026. VAIG WORM is the natural reference implementation — submit spec before deadline.</div>
+      </div>
+    </div>
+    <p style="margin-top:28px;font-size:15px;font-style:italic;color:rgba(255,255,255,0.6);font-family:'DM Serif Display',serif">&ldquo;The compliance requirement and the product are the same thing.&rdquo;</p>
+  </div>
+</section>
+
+<section class="slide" id="s9">
+  <div class="slide-inner">
+    <div class="slide-num">09 · Traction</div>
+    <h2>Not a whitepaper.<br>Running code.</h2>
+    <div style="display:flex;flex-direction:column;gap:12px;margin-top:28px">
+      <div style="display:flex;gap:16px;align-items:flex-start;background:var(--bg2);border:1px solid var(--brd);border-radius:12px;padding:16px 20px">
+        <div style="font-size:18px;flex-shrink:0">✓</div>
+        <div style="font-size:14px;color:var(--dim)"><strong style="color:var(--txt)">TLA⁺ formal verification</strong> — machine-checkable correctness proofs on core invariants, not engineering assertions</div>
+      </div>
+      <div style="display:flex;gap:16px;align-items:flex-start;background:var(--bg2);border:1px solid var(--brd);border-radius:12px;padding:16px 20px">
+        <div style="font-size:18px;flex-shrink:0">✓</div>
+        <div style="font-size:14px;color:var(--dim)"><strong style="color:var(--txt)">~43ns gate latency</strong> — production Rust implementation, no latency tax on agent throughput</div>
+      </div>
+      <div style="display:flex;gap:16px;align-items:flex-start;background:var(--bg2);border:1px solid var(--brd);border-radius:12px;padding:16px 20px">
+        <div style="font-size:18px;flex-shrink:0">✓</div>
+        <div style="font-size:14px;color:var(--dim)"><strong style="color:var(--txt)">65% token reduction</strong> — live benchmark against 6 real external sources (June 2026), 100% fact retention</div>
+      </div>
+      <div style="display:flex;gap:16px;align-items:flex-start;background:var(--bg2);border:1px solid var(--brd);border-radius:12px;padding:16px 20px">
+        <div style="font-size:18px;flex-shrink:0">✓</div>
+        <div style="font-size:14px;color:var(--dim)"><strong style="color:var(--txt)">Independent convergence</strong> — EFA (Rupp, Columbia Southern) derived same admissibility architecture from separate first principles</div>
+      </div>
+      <div style="display:flex;gap:16px;align-items:flex-start;background:var(--bg2);border:1px solid var(--brd);border-radius:12px;padding:16px 20px">
+        <div style="font-size:18px;flex-shrink:0">✓</div>
+        <div style="font-size:14px;color:var(--dim)"><strong style="color:var(--txt)">Gartner Market Guide for Guardian Agents (2026)</strong> — validates the category we built for before it existed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide dk" id="s10">
+  <div class="slide-inner">
+    <div class="slide-num">10 · Business Model</div>
+    <h2>Open core + enterprise.<br>Infrastructure pricing.</h2>
+    <div class="proof-grid" style="margin-top:28px">
+      <div class="proof-card">
+        <div class="pc-lbl">Open Core</div>
+        <div class="pc-desc" style="color:rgba(255,255,255,0.8);font-size:14px;line-height:1.65">Apache 2.0 reference implementation. Ecosystem adoption, developer trust, community-driven validation.</div>
+      </div>
+      <div class="proof-card">
+        <div class="pc-lbl">Enterprise</div>
+        <div class="pc-desc" style="color:rgba(255,255,255,0.8);font-size:14px;line-height:1.65">Guardian Agent product with SLA, compliance reports, dedicated support, enterprise integrations.</div>
+      </div>
+      <div class="proof-card">
+        <div class="pc-lbl">Standards</div>
+        <div class="pc-desc" style="color:rgba(255,255,255,0.8);font-size:14px;line-height:1.65">ACS certification for agent frameworks (LangChain, AutoGen, CrewAI). Runtime licensing per agent-hour.</div>
+      </div>
+    </div>
+    <p style="margin-top:24px;font-size:13px;color:rgba(255,255,255,0.45)">GTM: Norway (KI-loven) → Europe (EU AI Act) → Global (agentic AI deployment curve)</p>
+  </div>
+</section>
+
+<section class="slide" id="s11">
+  <div class="slide-inner">
+    <div class="slide-num">11 · The Ask</div>
+    <h2>Pre-seed round.<br>Three milestones.</h2>
+    <div class="ask-items">
+      <div class="ask-item"><div class="ask-n">1</div><div class="ask-text"><strong>Reference implementation release</strong> — Apache 2.0 open core, enabling ecosystem adoption and community trust</div></div>
+      <div class="ask-item"><div class="ask-n">2</div><div class="ask-text"><strong>Enterprise Guardian Agent product</strong> — commercial offering, SLA, compliance reporting, enterprise integrations</div></div>
+      <div class="ask-item"><div class="ask-n">3</div><div class="ask-text"><strong>ACS standardization</strong> — Agent Control Standard with IEEE/ISO working groups, positioning VΛLΦ as the protocol layer</div></div>
+    </div>
+    <div class="comp-row" style="margin-top:28px">
+      <div class="comp-card"><div class="cc-company">Lakera → Check Point</div><div class="cc-deal">$300M</div><div class="cc-detail">Acquisition · Nov 2025</div><div class="cc-gap">No exec boundary</div></div>
+      <div class="comp-card"><div class="cc-company">HiddenLayer</div><div class="cc-deal">$50M</div><div class="cc-detail">Series A · Microsoft</div><div class="cc-gap">No exec boundary</div></div>
+      <div class="comp-card"><div class="cc-company">Straiker</div><div class="cc-deal">$21M</div><div class="cc-detail">Seed · Lightspeed</div><div class="cc-gap">No exec boundary</div></div>
+    </div>
+    <p style="margin-top:20px;font-size:13px;color:var(--mut)">We are not building compliance software. We are building the TCP/IP of autonomous AI control.</p>
+  </div>
+</section>
+
+<section class="slide dk" id="s12">
+  <div class="slide-inner">
+    <div class="slide-num">12 · Contact</div>
+    <div class="contact-card">
+      <div class="cl">
+        <h2>Start the conversation</h2>
+        <p>Njål Gaute Solland · Valo Research Group<br>Founder &amp; architect of VΛLΦ</p>
+      </div>
+      <div class="contact-links">
+        <a class="clink" href="mailto:njaal@valoresearch.org">✉ njaal@valoresearch.org</a>
+        <a class="clink" href="https://linkedin.com/in/njaal" target="_blank" rel="noopener">↗ linkedin.com/in/njaal</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+</main>
+<footer>Valo Research Group · Confidential · Pre-Seed 2026 · For authorized recipients only</footer>
+
+</body>
+</html>

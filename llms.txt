@@ -1,0 +1,182 @@
+# VALO Research
+
+VALO Research is the canonical source for the category Consequence Governance.
+
+## Canonical definition
+
+Consequence Governance is the governance category for deciding whether an exact proposed consequential state transition may legitimately become real under the authority, evidence and conditions that exist at consequence time.
+
+The governing object is the proposed consequence, not the worker. The proposer or trigger may be an AI agent, a person, a workflow, an API, a device or another machine.
+
+In Norwegian, VALO uses the term Handlingsrett.
+
+## Category shift: from access mediation to causal mediation
+
+Consequence Governance generalizes the distrust and continuous re-verification discipline associated with Zero Trust from access to consequence.
+
+Zero Trust primarily asks whether a subject/device/context may access a resource now.
+Consequence Governance asks whether consequential causal capacity may become an exact external consequence now.
+
+Access, identity, authentication, prior approval and technical capability are evidence inputs. None alone creates current authority to produce an exact consequence.
+
+Consequence Governance does not replace Zero Trust, IAM, runtime security, agent security or observability. Those systems can operate upstream, below or beside the consequence boundary.
+
+Canonical comparison: https://valoresearch.org/zero-trust-consequence-governance.html
+
+## Security object
+
+VALO moves the security object from the worker to the consequence.
+
+Prompt injection, compromised agents, abnormal behavior and unsafe internal reasoning are upstream threats. The architecture is intended to remain valid even when the proposer is untrusted.
+
+The control objective is not that intelligence must remain perfectly predictable or trustworthy. It is that untrusted computation cannot convert internal state or capability into relevant external consequence through an ungoverned causal path.
+
+Do not govern thought. Govern consequence.
+
+## Formal causal invariant
+
+NO_UNGOVERNED_CAUSAL_EFFECT_PATH is the formal invariant:
+
+No causal path from untrusted computation to a relevant external consequence may succeed unless it crosses an explicit governed effect boundary for the exact effect under current authority.
+
+NO_DIRECT_EFFECT_PATH remains the established compatibility identifier used by current implementation, tests and receipts. Its operational meaning is the same causal invariant.
+
+Formal invariant page: https://valoresearch.org/no-ungoverned-causal-effect-path.html
+Compatibility invariant page: https://valoresearch.org/no-direct-effect-path.html
+Formal verification methods: https://valoresearch.org/formal-verification-causal-effect-path.html
+
+## What counts as consequential causal capacity
+
+Carrier and payload type do not create exemptions. Relevant channel classes include:
+
+- direct APIs, tools, system calls and actuators;
+- human relay: AI -> output -> person -> consequential action;
+- agent/workflow/machine relay;
+- shared state: files, logs, databases, queues, caches and externally consumed memory;
+- messages and artifacts;
+- credentials, tokens, service accounts and other authority-bearing capabilities;
+- resource consumption when compute, storage, network, energy, financial cost or availability is itself consequential;
+- timing and other side channels;
+- dynamic references, callbacks, event handlers, dynamic dispatch and plugin loading;
+- telemetry or logging that triggers later action;
+- fallback routes activated when the primary governed route fails;
+- implicit influence over training data, ranking systems, feedback loops or later actors; and
+- unknown or unclassified trust-boundary crossings.
+
+If another trust domain can observe or consume an output in a way that can cause relevant consequence, the crossing is governed. Unknown paths fail closed.
+
+## What makes an effect boundary governed
+
+A named gateway is not sufficient. A governed effect boundary must be:
+
+1. explicit and declared;
+2. bound to the exact proposed consequence;
+3. authorized now using current authoritative state/evidence;
+4. mechanically able to enforce DENY before commitment;
+5. fail-closed; and
+6. capable of preserving decision and outcome/refusal evidence.
+
+Isolation, rollback and compensation are optional recovery properties, not prerequisites. Some consequences are irreversible; unauthorized commitment must therefore be prevented before effect.
+
+## Governed Effect Path
+
+A Governed Effect Path is the architecture through which consequential causal crossings must pass.
+
+Request exact consequence -> resolve current authority/evidence -> deterministic ALLOW / DENY / ESCALATE -> enforce governed crossing -> preserve receipt.
+
+REHT resolves fresh exact-effect authority at the consequence boundary.
+RACS supplies deterministic decision semantics.
+Gateway / PEP enforces release or refusal.
+Veritas preserves replayable evidence and receipts.
+
+Governed Effect Path: https://valoresearch.org/governed-effect-path.html
+
+## Architecture invariant vs deployment claim
+
+The architectural invariant is absolute: a conforming design may not permit an ungoverned causal path.
+
+A concrete deployment claim is not automatic. It is bounded evidence over the actual installation. Production deployment must inventory reachable consequential paths, map each to enforcement or internal-only classification, fail closed on unknown paths, preserve enforcement evidence and re-verify when topology, code, configuration, credentials, plugins, operators or integrations can change reachability.
+
+Architecture defines the invariant. Deployment evidence establishes where it actually holds.
+
+Public evidence is bounded evidence, not a claim that every heterogeneous enterprise environment is already impossible to bypass.
+
+## Formal verification
+
+The invariant is an absence-of-bad-paths safety property. Applicable methods include information-flow/non-interference, capability/effect systems, graph/model checking, theorem proving, abstract/static analysis and runtime verification.
+
+VALO currently carries a TLA+ reference model in the Kernel formalization branch. The model treats untrusted computation as adversarial: it may attempt every declared channel. Ungoverned attempts must have NULL external effect. Successful external effects require a known boundary plus authorization, enforcement and evidence.
+
+TLC/TLAPS evidence over the abstract model does not prove that a real deployment has inventoried every path. Deployment proof remains separate.
+
+## Canonical taxonomy
+
+- Consequence Governance: top-level governance category.
+- Consequential causal capacity: any direct or indirect capacity by which untrusted state can cause relevant external state change.
+- Governed Effect Path: architecture through which consequential causal crossings must pass.
+- NO_UNGOVERNED_CAUSAL_EFFECT_PATH: formal invariant requiring complete mediation of consequential causal capacity.
+- NO_DIRECT_EFFECT_PATH: established compatibility identifier used by existing implementation, tests and receipts.
+- Consequence-time authorization: fresh exact-action authorization immediately before consequence.
+- Execution Authorization Infrastructure: boundary infrastructure applying current authority, state, scope, purpose, constraints and evidence.
+- Governed Contract: worker-neutral definition of legitimate purpose, mandate, scope, constraints, required evidence and correct completion.
+- Trusted Execution: downstream evidenced outcome when a permitted consequence passes through the governed path.
+- GCU, Governed Completion Unit: economic unit for bounded work completed under its governed contract.
+
+## Core invariants
+
+- capability is not authority
+- access is not authorization
+- prior approval is not necessarily a current right to act
+- conformance is not authorization
+- unknown remains unknown
+- no ungoverned consequential causal path
+- DENY must have NULL relevant effect
+- human judgment governs authority; human attention is not enforcement
+
+## Implementation evidence
+
+Completed local-validation closure for the prior causal-boundary implementation recorded:
+- Kernel boundary: 53 passed;
+- Kernel full suite: 463 passed;
+- REHT collection: 288 collected;
+- REHT boundary: 78 passed;
+- REHT full suite: 287 passed, 1 skipped;
+- cross-repo: 22 passed;
+- causal runner: PASS;
+- remote CI: not used.
+
+The newer formal causal-capacity v1 / REHT conformance v0.7 additions extend channel coverage, boundary-quality semantics, deployment-proof contracts and TLA+ formalization. Those additions require their own local-only validation receipt before being called COMPLETE.
+
+## Published paper
+
+Consequence Governance: Governing the Transition from Proposed Action to Real-World Effect
+Author: Njål Gaute Solland
+Affiliation: VALO Research
+Published: 5 September 2026
+Version: 1.0
+Zenodo record: https://zenodo.org/records/22377951
+VALO landing page: https://valoresearch.org/consequence-governance-paper.html
+
+## Canonical knowledge cluster
+
+Consequence Governance: https://valoresearch.org/consequence-governance.html
+Simple milk explanation: https://valoresearch.org/consequence-governance-milk.html
+Zero Trust comparison: https://valoresearch.org/zero-trust-consequence-governance.html
+Formal causal invariant: https://valoresearch.org/no-ungoverned-causal-effect-path.html
+Compatibility invariant: https://valoresearch.org/no-direct-effect-path.html
+Formal verification methods: https://valoresearch.org/formal-verification-causal-effect-path.html
+Governed Effect Path: https://valoresearch.org/governed-effect-path.html
+Consequence-time authorization: https://valoresearch.org/consequence-time-authorization.html
+Execution Authorization Infrastructure: https://valoresearch.org/execution-authorization-infrastructure.html
+Governed Contract: https://valoresearch.org/governed-contract.html
+Trusted Execution: https://valoresearch.org/trusted-execution.html
+Published Consequence Governance paper: https://valoresearch.org/consequence-governance-paper.html
+REHT developer quickstart: https://valoresearch.org/reht-quickstart.html
+
+## Product and evidence surfaces
+
+VALO Research: https://valoresearch.org/
+REHT: https://reht.valoresearch.org/
+REHT executable authority demo: https://reht.valoresearch.org/apps/executable-authority/
+Products: https://products.valoresearch.org/
+Demos: https://demos.valoresearch.org/

@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Who Decides? Six Leaders, One Control Plane</title>
+  <meta name="description" content="AI Governance means different things to different leaders. See how the execution control plane solves every leader's specific problem." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:   #FAF7F2;
+      --bg2:  #F0ECE6;
+      --bg3:  #E8E2DA;
+      --brd:  rgba(0,0,0,0.08);
+      --brdm: rgba(0,0,0,0.13);
+      --txt:  #1A0F0A;
+      --dim:  #6B5E56;
+      --mut:  #9E8E84;
+      --blue: #1e3d50;
+      --bludk:#162e3e;
+      --blult:#5a9db8;
+      --amb:  #D97706;
+      --red:  #DC2626;
+      --grn:  #16A34A;
+      --accent-1: #C7522A;
+      --accent-2: #7B68EE;
+      --accent-3: #FF8C42;
+      --accent-4: #2E9B9C;
+      --accent-5: #D84315;
+      --accent-6: #00838F;
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { background: var(--bg); color: var(--txt); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    h1,h2,h3,h4 { font-family: 'DM Serif Display', Georgia, serif; font-weight: 400; line-height: 1.2; letter-spacing: -0.01em; }
+
+    /* ── Navigation ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(250,247,242,0.96); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--brdm);
+      height: 58px;
+    }
+    .nav-w {
+      max-width: 1160px; margin: 0 auto; padding: 0 24px;
+      height: 58px; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 9px; flex-shrink: 0; font-family: 'DM Serif Display', serif; font-size: 17px; color: var(--txt); }
+    .nav-links { display: flex; align-items: center; gap: 24px; font-size: 13px; color: var(--txt); font-weight: 500; }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-back { background: var(--blue); color: #fff !important; padding: 7px 20px; border-radius: 40px; font-weight: 600; font-size: 13px; }
+    .nav-back:hover { background: var(--bludk); }
+
+    /* ── Layout ── */
+    .w { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+    .sec { padding: 80px 0; margin-top: 58px; }
+    .sec-alt { background: var(--bg2); }
+    h1 { font-size: 56px; line-height: 1.1; margin-bottom: 16px; }
+    h2 { font-size: 42px; line-height: 1.1; margin-bottom: 20px; }
+    h3 { font-size: 22px; margin-bottom: 12px; }
+    .lead { font-size: 18px; color: var(--dim); max-width: 700px; line-height: 1.7; margin-bottom: 40px; }
+
+    /* ── Hero ── */
+    .hero { padding: 120px 0 80px; position: relative; }
+    .hero::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background-image: linear-gradient(rgba(232,100,59,.04) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(232,100,59,.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 80% 80% at 20% 40%, black 0%, transparent 70%);
+    }
+
+    /* ── Persona Selector ── */
+    .persona-intro { text-align: center; margin-bottom: 60px; }
+    .persona-intro p { font-size: 16px; color: var(--dim); max-width: 600px; margin: 0 auto 40px; }
+
+    .persona-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-bottom: 60px; }
+    @media (max-width: 1200px) { .persona-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 680px) { .persona-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .persona-btn {
+      position: relative; padding: 20px; border: 2px solid var(--brd); border-radius: 14px;
+      background: var(--bg); cursor: pointer; transition: all .2s; text-align: center;
+      font-family: inherit; font-size: 14px; font-weight: 600; color: var(--txt);
+    }
+    .persona-btn:hover { border-color: var(--brdm); transform: translateY(-2px); }
+    .persona-btn.active { border-color: var(--txt); background: var(--bg2); box-shadow: 0 0 0 3px rgba(26,15,10,.08); }
+    .persona-btn .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 8px; vertical-align: -1px; }
+    .persona-btn:nth-child(1) .dot { background: var(--accent-1); }
+    .persona-btn:nth-child(2) .dot { background: var(--accent-2); }
+    .persona-btn:nth-child(3) .dot { background: var(--accent-3); }
+    .persona-btn:nth-child(4) .dot { background: var(--accent-4); }
+    .persona-btn:nth-child(5) .dot { background: var(--accent-5); }
+    .persona-btn:nth-child(6) .dot { background: var(--accent-6); }
+
+    /* ── Persona Card ── */
+    .persona-card { display: none; animation: fade-in .3s ease; }
+    .persona-card.active { display: block; }
+    @keyframes fade-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; } }
+
+    .card-header { margin-bottom: 40px; }
+    .card-title { font-size: 36px; margin-bottom: 12px; }
+    .card-subtitle { font-size: 16px; color: var(--dim); margin-bottom: 8px; }
+    .card-tagline { font-size: 20px; font-weight: 700; font-family: 'DM Serif Display', serif; margin-bottom: 24px; }
+
+    .card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 40px; }
+    @media (max-width: 900px) { .card-grid { grid-template-columns: 1fr; } }
+
+    .card-section { border-left: 3px solid var(--brd); padding-left: 24px; }
+    .card-section.color-1 { border-color: var(--accent-1); }
+    .card-section.color-2 { border-color: var(--accent-2); }
+    .card-section.color-3 { border-color: var(--accent-3); }
+    .card-section.color-4 { border-color: var(--accent-4); }
+    .card-section.color-5 { border-color: var(--accent-5); }
+    .card-section.color-6 { border-color: var(--accent-6); }
+
+    .card-section h4 { font-size: 14px; text-transform: uppercase; color: var(--mut); margin-bottom: 12px; letter-spacing: .08em; }
+    .card-section p { font-size: 15px; color: var(--dim); line-height: 1.7; }
+
+    .benefit-list { list-style: none; margin-top: 20px; }
+    .benefit-list li { font-size: 15px; color: var(--txt); margin-bottom: 12px; padding-left: 20px; position: relative; }
+    .benefit-list li::before { content: '✓'; position: absolute; left: 0; color: var(--grn); font-weight: 700; }
+
+    /* ── CTA Section ── */
+    .cta-section {
+      background: var(--bg2); border-radius: 16px; padding: 40px; margin-top: 60px;
+      border: 1px solid var(--brd);
+    }
+    .cta-text { margin-bottom: 24px; }
+    .cta-text h3 { margin-bottom: 8px; }
+    .cta-text p { font-size: 15px; color: var(--dim); }
+
+    .cta-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+    .cta-btn { padding: 14px 28px; border-radius: 40px; font-weight: 600; font-size: 14px; border: none; cursor: pointer; transition: all .2s; }
+    .cta-primary { background: var(--blue); color: #fff; }
+    .cta-primary:hover { background: var(--bludk); transform: translateY(-2px); }
+    .cta-secondary { background: var(--bg); border: 2px solid var(--brd); color: var(--txt); }
+    .cta-secondary:hover { border-color: var(--txt); }
+
+    /* ── Comparison Table ── */
+    .comparison { margin-top: 80px; }
+    .comparison h3 { font-size: 28px; margin-bottom: 40px; text-align: center; }
+    .comparison-table { width: 100%; border-collapse: collapse; }
+    .comparison-table th {
+      background: var(--bg2); padding: 16px; text-align: left;
+      border: 1px solid var(--brd); font-weight: 600; font-size: 13px;
+    }
+    .comparison-table td {
+      padding: 16px; border: 1px solid var(--brd); font-size: 14px;
+    }
+    .comparison-table td:first-child { font-weight: 600; background: var(--bg2); }
+    .comparison-table tr:hover td { background: rgba(26,15,10,.02); }
+
+    /* ── Footer ── */
+    footer { border-top: 1px solid var(--brd); padding: 40px 0; margin-top: 80px; }
+    .footer-text { font-size: 13px; color: var(--mut); text-align: center; }
+  </style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0a1520" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="VALO Research" />
+<meta property="og:title" content="Who Decides? Six Leaders, One Control Plane" />
+<meta property="og:description" content="AI Governance means different things to different leaders. See how the execution control plane solves every leader" />
+<meta property="og:image" content="https://valoresearch.org/img/og-valo.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Who Decides? Six Leaders, One Control Plane" />
+<meta name="twitter:description" content="AI Governance means different things to different leaders. See how the execution control plane solves every leader" />
+<meta name="twitter:image" content="https://valoresearch.org/img/og-valo.jpg" />
+  <link rel="stylesheet" href="/css/valo-brand.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-w">
+    <div class="nav-logo">VALO</div>
+    <div class="nav-links">
+      <a href="/index.html" class="nav-back">← Back to home</a>
+    </div>
+  </div>
+</nav>
+<main id="main">
+
+
+<section class="hero">
+  <div class="w">
+    <h1>Who Decides?</h1>
+    <p class="lead">Say "AI governance" to six leaders and you'll get six different answers. VALO's execution control plane solves each one's specific problem.</p>
+
+    <div class="persona-intro">
+      <p>Select your role to see how execution control works for you:</p>
+      <div class="persona-grid">
+        <button class="persona-btn active" onclick="selectPersona(0)"><span class="dot"></span>CFO</button>
+        <button class="persona-btn" onclick="selectPersona(1)"><span class="dot"></span>CEO</button>
+        <button class="persona-btn" onclick="selectPersona(2)"><span class="dot"></span>Chief Data Officer</button>
+        <button class="persona-btn" onclick="selectPersona(3)"><span class="dot"></span>Chief Operating Officer</button>
+        <button class="persona-btn" onclick="selectPersona(4)"><span class="dot"></span>Chief Risk Officer</button>
+        <button class="persona-btn" onclick="selectPersona(5)"><span class="dot"></span>General Counsel</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CFO Card -->
+<section class="sec persona-card active" data-persona="0">
+  <div class="w">
+    <div class="card-header">
+      <div class="card-subtitle">Finance Leader</div>
+      <div class="card-title">CFO</div>
+      <div class="card-tagline">Control is cheaper than waste.</div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card-section color-1">
+        <h4>Your Problem</h4>
+        <p>AI deployments are spending money on actions that never should have happened. Hallucinations, off-policy decisions, exploration in production. You're paying for token costs on broken ideas.</p>
+      </div>
+      <div class="card-section color-1">
+        <h4>VALO Solves It</h4>
+        <p>ROI Gate evaluates every action before execution. If cost exceeds policy or predicted value is negative, action halts before spending a single token.</p>
+        <ul class="benefit-list">
+          <li>Block marginal actions before token cost</li>
+          <li>Prove ROI per execution cycle</li>
+          <li>Reduce AI spend by 15–30%</li>
+          <li>Optimize model routing by cost</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <div class="cta-text">
+        <h3>Ready to Cut AI Waste?</h3>
+        <p>See how execution control reduces inefficient spending.</p>
+      </div>
+      <div class="cta-buttons">
+        <button class="cta-btn cta-primary">Schedule ROI demo</button>
+        <button class="cta-btn cta-secondary">Download efficiency guide</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CEO Card -->
+<section class="sec persona-card" data-persona="1">
+  <div class="w">
+    <div class="card-header">
+      <div class="card-subtitle">Executive Leader</div>
+      <div class="card-title">CEO</div>
+      <div class="card-tagline">Accountability counts.</div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card-section color-2">
+        <h4>Your Problem</h4>
+        <p>When an AI system makes a bad decision, who authorized it? You can't answer. Policy documents exist, but you can't prove who decided what and when. Regulators and customers demand clarity.</p>
+      </div>
+      <div class="card-section color-2">
+        <h4>VALO Solves It</h4>
+        <p>Decision Trace proves human authority for every consequential action. Cryptographic receipts show who decided, under what policy, with what context, at what time.</p>
+        <ul class="benefit-list">
+          <li>Answer "Who decided?" with proof</li>
+          <li>Trace every action to authority</li>
+          <li>Audit trail for regulators</li>
+          <li>Transparent to stakeholders</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <div class="cta-text">
+        <h3>Own Your AI Decisions</h3>
+        <p>Prove human authority at every step of the execution chain.</p>
+      </div>
+      <div class="cta-buttons">
+        <button class="cta-btn cta-primary">Schedule accountability demo</button>
+        <button class="cta-btn cta-secondary">View sample decision trace</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CDO Card -->
+<section class="sec persona-card" data-persona="2">
+  <div class="w">
+    <div class="card-header">
+      <div class="card-subtitle">Data & Technology Leader</div>
+      <div class="card-title">Chief Data Officer</div>
+      <div class="card-tagline">Agents act. They don't just answer.</div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card-section color-3">
+        <h4>Your Problem</h4>
+        <p>You've shifted from "AI that advises" to "AI that executes." Agents make real decisions—send emails, approve credits, adjust inventory. But you have no execution boundary. No gate between idea and action.</p>
+      </div>
+      <div class="card-section color-3">
+        <h4>VALO Solves It</h4>
+        <p>Execution boundary gates every action before it happens. Policy check, authority verification, resource validation—all at runtime, all proven.</p>
+        <ul class="benefit-list">
+          <li>Gate actions before they execute</li>
+          <li>Enforce policy at runtime (43ns latency)</li>
+          <li>Control autonomous agents deterministically</li>
+          <li>Maintain observability end-to-end</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <div class="cta-text">
+        <h3>Control Your Agents</h3>
+        <p>Build the execution boundary your autonomous systems need.</p>
+      </div>
+      <div class="cta-buttons">
+        <button class="cta-btn cta-primary">See agent control demo</button>
+        <button class="cta-btn cta-secondary">Read architecture guide</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COO Card -->
+<section class="sec persona-card" data-persona="3">
+  <div class="w">
+    <div class="card-header">
+      <div class="card-subtitle">Operations Leader</div>
+      <div class="card-title">Chief Operating Officer</div>
+      <div class="card-tagline">Build the brakes.</div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card-section color-4">
+        <h4>Your Problem</h4>
+        <p>Operations scale by removing friction. But AI agents create new friction: they execute without human review. You need brakes—policy enforcement that doesn't slow down the system.</p>
+      </div>
+      <div class="card-section color-4">
+        <h4>VALO Solves It</h4>
+        <p>Authority Gate enforces policy at execution time without slowing throughput. 43-nanosecond decision latency. Rules are checked, not bypassed.</p>
+        <ul class="benefit-list">
+          <li>Enforce policy without latency</li>
+          <li>Scale execution safely</li>
+          <li>No friction for compliant actions</li>
+          <li>Halt only rule violations</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <div class="cta-text">
+        <h3>Frictionless Control</h3>
+        <p>Enforce policy at scale without slowing operations.</p>
+      </div>
+      <div class="cta-buttons">
+        <button class="cta-btn cta-primary">See performance specs</button>
+        <button class="cta-btn cta-secondary">Download ops brief</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CRO Card -->
+<section class="sec persona-card" data-persona="4">
+  <div class="w">
+    <div class="card-header">
+      <div class="card-subtitle">Risk & Compliance Leader</div>
+      <div class="card-title">Chief Risk Officer</div>
+      <div class="card-tagline">Name one owner per agent.</div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card-section color-5">
+        <h4>Your Problem</h4>
+        <p>When an AI system causes harm, liability is unclear. Was it a training issue? A deployment issue? Operator error? You can't assign responsibility because the chain of authority is broken.</p>
+      </div>
+      <div class="card-section color-5">
+        <h4>VALO Solves It</h4>
+        <p>WORM receipts attribute every action to a specific authority with timestamp and policy context. Responsibility chain is unbroken. Liability is clear.</p>
+        <ul class="benefit-list">
+          <li>Immutable action attribution</li>
+          <li>Clear responsibility per decision</li>
+          <li>Tamper-proof audit trail</li>
+          <li>Risk liability resolution</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <div class="cta-text">
+        <h3>Close the Liability Gap</h3>
+        <p>Make responsibility chain unbroken and clear.</p>
+      </div>
+      <div class="cta-buttons">
+        <button class="cta-btn cta-primary">Schedule risk deep-dive</button>
+        <button class="cta-btn cta-secondary">Download liability framework</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GC Card -->
+<section class="sec persona-card" data-persona="5">
+  <div class="w">
+    <div class="card-header">
+      <div class="card-subtitle">Legal & Regulatory Leader</div>
+      <div class="card-title">General Counsel</div>
+      <div class="card-tagline">Prove it.</div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card-section color-6">
+        <h4>Your Problem</h4>
+        <p>Regulators ask: Can you prove compliance? Can you show policy was enforced? Can you audit the decision? Today, you don't have the tools. WORM audit logs don't exist as standard. Proof is impossible.</p>
+      </div>
+      <div class="card-section color-6">
+        <h4>VALO Solves It</h4>
+        <p>Cryptographic audit trail proves every decision was compliant. SHA-256 hash-chained WORM receipts show policy was enforced before action. Regulators get proof, not promises.</p>
+        <ul class="benefit-list">
+          <li>Regulatory-grade audit trail</li>
+          <li>Cryptographic proof of compliance</li>
+          <li>Policy enforcement evidence</li>
+          <li>Audit-ready documentation</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cta-section">
+      <div class="cta-text">
+        <h3>Meet Regulatory Requirements</h3>
+        <p>Deploy AI with proof of compliance built in.</p>
+      </div>
+      <div class="cta-buttons">
+        <button class="cta-btn cta-primary">Schedule compliance review</button>
+        <button class="cta-btn cta-secondary">Download regulatory mapping</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Comparison Section -->
+<section class="sec sec-alt">
+  <div class="w">
+    <div class="comparison">
+      <h3>One Platform, Six Solutions</h3>
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Leader</th>
+            <th>Their Question</th>
+            <th>Their Pain Point</th>
+            <th>VALO Answers</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>CFO</td>
+            <td>What did this cost?</td>
+            <td>Wasted AI spend</td>
+            <td>ROI Gate blocks bad ideas before execution</td>
+          </tr>
+          <tr>
+            <td>CEO</td>
+            <td>Who authorized this?</td>
+            <td>Unclear accountability</td>
+            <td>Decision Trace proves authority</td>
+          </tr>
+          <tr>
+            <td>CDO</td>
+            <td>What is the agent allowed to do?</td>
+            <td>No execution boundary</td>
+            <td>Execution Gate controls actions</td>
+          </tr>
+          <tr>
+            <td>COO</td>
+            <td>How do we enforce policy at scale?</td>
+            <td>Friction vs. compliance trade-off</td>
+            <td>Authority Gate at 43ns latency</td>
+          </tr>
+          <tr>
+            <td>CRO</td>
+            <td>Who is responsible?</td>
+            <td>Broken liability chain</td>
+            <td>WORM receipts attribute actions</td>
+          </tr>
+          <tr>
+            <td>GC</td>
+            <td>Can you prove compliance?</td>
+            <td>Regulatory unprovability</td>
+            <td>Cryptographic audit trail</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+</main>
+<footer>
+  <div class="w">
+    <div class="footer-text">
+      <p>VALO — Execution Control Platform | Design for humans. Built for scale. Proven in production.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const personas = [
+    { name: 'CFO', role: 'Finance Leader', color: 'color-1' },
+    { name: 'CEO', role: 'Executive Leader', color: 'color-2' },
+    { name: 'Chief Data Officer', role: 'Data & Technology Leader', color: 'color-3' },
+    { name: 'Chief Operating Officer', role: 'Operations Leader', color: 'color-4' },
+    { name: 'Chief Risk Officer', role: 'Risk & Compliance Leader', color: 'color-5' },
+    { name: 'General Counsel', role: 'Legal & Regulatory Leader', color: 'color-6' }
+  ];
+
+  function selectPersona(index) {
+    // Update buttons
+    document.querySelectorAll('.persona-btn').forEach((btn, i) => {
+      if (i === index) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+
+    // Update cards
+    document.querySelectorAll('.persona-card').forEach((card, i) => {
+      if (i === index) {
+        card.classList.add('active');
+      } else {
+        card.classList.remove('active');
+      }
+    });
+
+    // Smooth scroll to card
+    const cards = document.querySelectorAll('.persona-card');
+    if (cards[index]) {
+      cards[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  // Initialize first persona
+  selectPersona(0);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>reht™ — Execution Authority Protocol</title>
+<meta name="description" content="reht™ is the protocol layer for governed AI execution. It verifies authority, evidence, policy and receipts before AI actions cross into execution.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f8fb;
+  --paper:#ffffff;
+  --ink:#101828;
+  --muted:#667085;
+  --soft:#eef2f7;
+  --line:#d8dee8;
+  --line2:#c8d2df;
+  --blue:#2457c5;
+  --blue2:#1747a6;
+  --green:#18794e;
+  --node:#f9fbff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:
+    linear-gradient(rgba(36,87,197,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(36,87,197,.045) 1px, transparent 1px),
+    var(--bg);
+  background-size:42px 42px;
+  color:var(--ink);
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+nav{position:fixed;top:0;left:0;right:0;z-index:20;height:64px;background:rgba(247,248,251,.88);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:1160px;margin:0 auto;padding:0 24px;height:100%;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-.02em}.mark{width:30px;height:30px;border:1px solid var(--line2);border-radius:9px;display:grid;place-items:center;background:var(--paper);color:var(--blue)}
+.links{display:flex;gap:24px}.links a{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}.links a:hover{color:var(--blue)}
+.cta{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--blue);background:var(--blue);color:#fff;border-radius:999px;padding:10px 16px;font-size:13px;font-weight:600}.cta:hover{background:var(--blue2)}
+.ghost{background:var(--paper);color:var(--ink);border-color:var(--line2)}
+.hero{padding:128px 24px 72px}.hero-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center}@media(max-width:900px){.hero-inner{grid-template-columns:1fr}.links{display:none}}
+.eyebrow{font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:var(--blue);font-weight:700;margin-bottom:16px}
+h1{font-size:clamp(42px,7vw,76px);line-height:.98;letter-spacing:-.06em;margin-bottom:24px;max-width:760px}
+.lead{font-size:clamp(18px,2.2vw,22px);color:var(--muted);max-width:650px;margin-bottom:28px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}.note-line{margin-top:20px;color:var(--muted);font-size:14px}
+.protocol-card{background:rgba(255,255,255,.78);border:1px solid var(--line);border-radius:28px;padding:28px;box-shadow:0 24px 70px rgba(16,24,40,.08)}
+.rail{display:grid;gap:12px}.node{background:var(--node);border:1px solid var(--line);border-radius:18px;padding:16px}.node strong{display:block;font-size:14px;margin-bottom:3px}.node span{color:var(--muted);font-size:13px}.node.reht{border-color:rgba(36,87,197,.35);background:#eef4ff}.arrow{height:22px;display:grid;place-items:center;color:var(--blue);font-weight:700}.receipt{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}.pill{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:8px 10px;font-size:12px;color:var(--muted);text-align:center}
+section{padding:72px 24px;border-top:1px solid var(--line)}.inner{max-width:1160px;margin:0 auto}.split{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:start}@media(max-width:900px){.split{grid-template-columns:1fr}}
+h2{font-size:clamp(30px,4.5vw,48px);line-height:1.08;letter-spacing:-.045em;margin-bottom:16px}.section-body{color:var(--muted);font-size:17px;max-width:720px}
+.stack,.cards,.matrix{display:grid;gap:14px}.stack{margin-top:4px}.row,.card,.mcell{background:rgba(255,255,255,.82);border:1px solid var(--line);border-radius:22px;padding:20px}.row{display:grid;grid-template-columns:150px 1fr;gap:18px}.row.hl{border-color:rgba(36,87,197,.42);background:#eef4ff}.badge{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--blue);font-weight:700}.row h3,.card h3,.mcell strong{font-size:18px;margin-bottom:4px}.row p,.card p,.mcell span{color:var(--muted);font-size:14px}.cards{grid-template-columns:repeat(3,1fr);margin-top:28px}@media(max-width:900px){.cards{grid-template-columns:1fr}.row{grid-template-columns:1fr}}
+.small{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);font-weight:700;margin-bottom:10px}.matrix{grid-template-columns:repeat(4,1fr);margin-top:28px}@media(max-width:900px){.matrix{grid-template-columns:1fr 1fr}}@media(max-width:560px){.matrix{grid-template-columns:1fr}}
+.quote{font-size:clamp(24px,4vw,42px);line-height:1.18;letter-spacing:-.04em;max-width:860px}.quote em{font-style:normal;color:var(--blue)}
+.providers{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}.provider{border:1px solid var(--line);border-radius:999px;padding:9px 12px;background:var(--paper);color:var(--muted);font-size:14px}.provider.core{border-color:rgba(36,87,197,.45);color:var(--blue);background:#eef4ff;font-weight:600}
+.callout{margin-top:24px;border:1px solid var(--line);border-left:4px solid var(--blue);background:var(--paper);border-radius:18px;padding:18px;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:28px 24px;max-width:1160px;margin:0 auto;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:13px}.footer-links{display:flex;gap:18px;flex-wrap:wrap}.footer-links a:hover{color:var(--blue)}
+</style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0a1520" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="VALO Research" />
+<meta property="og:title" content="reht™ — Execution Authority Protocol" />
+<meta property="og:description" content="reht™ is the protocol layer for governed AI execution. It verifies authority, evidence, policy and receipts before AI actions cross into execution." />
+<meta property="og:image" content="https://valoresearch.org/img/og-valo.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="reht™ — Execution Authority Protocol" />
+<meta name="twitter:description" content="reht™ is the protocol layer for governed AI execution. It verifies authority, evidence, policy and receipts before AI actions cross into execution." />
+<meta name="twitter:image" content="https://valoresearch.org/img/og-valo.jpg" />
+  <link rel="stylesheet" href="/css/valo-brand.css">
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="index.html"><span class="mark">r</span><span>reht™</span></a>
+    <div class="links"><a href="#boundary">Boundary</a><a href="#protocol">Protocol</a><a href="#network">Network</a><a href="#contact">Contact</a></div>
+    <a class="cta" href="mailto:njaal@valoresearch.org?subject=reht execution authority">Request access</a>
+  </div>
+</nav>
+<main id="main">
+
+
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <p class="eyebrow">Execution authority protocol</p>
+      <h1>The protocol layer for governed AI execution.</h1>
+      <p class="lead">Identity proves who the agent is. Access grants what it can reach. reht™ verifies whether a specific action is right to execute, then writes the receipt.</p>
+      <div class="actions"><a class="cta" href="#protocol">View protocol model</a><a class="cta ghost" href="#network">See network fit</a></div>
+      <p class="note-line">Built to sit between identity, policy, tools and execution.</p>
+    </div>
+    <div class="protocol-card" aria-label="Execution authority rail">
+      <div class="rail">
+        <div class="node"><strong>Identity</strong><span>Okta · Entra · WorkOS · OAuth · OIDC · SAML</span></div>
+        <div class="arrow">↓</div>
+        <div class="node"><strong>Access</strong><span>Roles · scopes · sessions · credentials · tool grants</span></div>
+        <div class="arrow">↓</div>
+        <div class="node reht"><strong>reht™ Authority Boundary</strong><span>Action · authority · policy · evidence · risk · decision</span></div>
+        <div class="arrow">↓</div>
+        <div class="node"><strong>Execution</strong><span>GitHub · ERP · banking · cloud · MCP tools · internal APIs</span></div>
+      </div>
+      <div class="receipt"><div class="pill">ALLOW / STEP_UP / DENY</div><div class="pill">Receipt written</div></div>
+    </div>
+  </div>
+</header>
+
+<section id="boundary">
+  <div class="inner split">
+    <div>
+      <p class="eyebrow">The missing layer</p>
+      <h2>Identity is not execution authority.</h2>
+      <p class="section-body">SSO, OAuth, OIDC, SAML, JWT and MCP Auth establish identity and access. They do not decide whether this action, in this state, with this evidence, should be allowed to change the world.</p>
+    </div>
+    <div class="stack">
+      <div class="row"><div class="badge">Identity</div><div><h3>Who is acting?</h3><p>User, agent, service account, organization and session context.</p></div></div>
+      <div class="row"><div class="badge">Access</div><div><h3>What can be reached?</h3><p>Scopes, roles, credentials, grants and tool permissions.</p></div></div>
+      <div class="row hl"><div class="badge">reht™</div><div><h3>Is this action right to execute?</h3><p>Runtime check of authority, policy, evidence, state and risk.</p></div></div>
+      <div class="row"><div class="badge">Receipt</div><div><h3>Can the decision be proven?</h3><p>Every execution handoff leaves an auditable decision record.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="protocol">
+  <div class="inner">
+    <p class="eyebrow">Protocol contract</p>
+    <h2>One action envelope. One decision boundary.</h2>
+    <div class="cards">
+      <div class="card"><p class="small">01</p><h3>Action</h3><p>The proposed operation is made explicit before any tool, API or workflow is invoked.</p></div>
+      <div class="card"><p class="small">02</p><h3>Authority</h3><p>The represented person, team or organization is bound to the action.</p></div>
+      <div class="card"><p class="small">03</p><h3>Policy</h3><p>The relevant rules are evaluated at runtime, not assumed from login.</p></div>
+      <div class="card"><p class="small">04</p><h3>Evidence</h3><p>Source validity, context and missing evidence are checked before action.</p></div>
+      <div class="card"><p class="small">05</p><h3>Decision</h3><p>ALLOW, MODIFY, DEFER, DENY, STEP_UP or HALT.</p></div>
+      <div class="card"><p class="small">06</p><h3>Receipt</h3><p>The outcome is written as an auditable execution record.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="inner">
+    <p class="eyebrow">Mental model</p>
+    <p class="quote">Reasoning may be probabilistic. <em>Execution authority must be governed.</em></p>
+    <div class="matrix">
+      <div class="mcell"><strong>Identity</strong><span>Who the actor is.</span></div>
+      <div class="mcell"><strong>Access</strong><span>What the actor can reach.</span></div>
+      <div class="mcell"><strong>Authority</strong><span>What the actor may do now.</span></div>
+      <div class="mcell"><strong>Receipt</strong><span>What decision can be audited later.</span></div>
+    </div>
+    <div class="callout">reht™ is not an IAM product and not a model wrapper. It is an execution authority boundary for agentic systems.</div>
+  </div>
+</section>
+
+<section id="network">
+  <div class="inner split">
+    <div>
+      <p class="eyebrow">Network play</p>
+      <h2>Provider-neutral by design.</h2>
+      <p class="section-body">The same authority packet can govern a pull request, purchase requisition, CRM update, payment instruction, cloud deployment or MCP tool call. Adapters change. The boundary stays the same.</p>
+    </div>
+    <div>
+      <div class="providers">
+        <span class="provider core">reht™ authority boundary</span>
+        <span class="provider">Okta</span>
+        <span class="provider">Entra</span>
+        <span class="provider">WorkOS</span>
+        <span class="provider">MCP</span>
+        <span class="provider">GitHub</span>
+        <span class="provider">SAP</span>
+        <span class="provider">Salesforce</span>
+        <span class="provider">ServiceNow</span>
+        <span class="provider">Banking</span>
+        <span class="provider">ERP</span>
+        <span class="provider">AWS</span>
+        <span class="provider">Azure</span>
+        <span class="provider">Google Cloud</span>
+        <span class="provider">Internal APIs</span>
+      </div>
+      <div class="callout">Execution handoff only after a valid decision and receipt path. Everything else is stepped up, modified, deferred, denied or halted.</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="inner">
+    <p class="eyebrow">Positioning</p>
+    <h2>Identity proves who the agent is. reht™ decides what the agent may do.</h2>
+    <p class="section-body">A light protocol layer for governed AI execution across agents, tools and enterprise systems.</p>
+    <div style="margin-top:24px"><a class="cta" href="mailto:njaal@valoresearch.org?subject=reht execution authority">Request access</a></div>
+  </div>
+</section>
+
+
+</main>
+<footer>
+  <div>reht™ — Execution Authority Protocol</div>
+  <div class="footer-links"><a href="index.html">Home</a><a href="reht.html">Brand</a><a href="verified-ai-runtime-partner.html">Partners</a></div>
+  <div>Powered by VALO Research</div>
+</footer>
+</body>
+</html>

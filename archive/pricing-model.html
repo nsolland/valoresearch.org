@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing — reht</title>
+<meta name="description" content="reht pricing: risk-based tiers from free Pilot to Sovereign. Price follows deployment criticality, not features.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black:  #090806;
+    --dark:   #0f0d0a;
+    --panel:  #141210;
+    --gold:   #c9a96e;
+    --goldk:  #a8883a;
+    --goldl:  rgba(201,169,110,.12);
+    --cream:  #f0ebe2;
+    --dim:    #9a8f80;
+    --muted:  #6b6055;
+    --border: rgba(201,169,110,.13);
+    --borderw:rgba(201,169,110,.25);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body { background: var(--black); color: var(--cream); font-family: 'Inter', sans-serif; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; font-weight: 300; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    height: 62px;
+    background: rgba(9,8,6,.9); backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center;
+  }
+  .nav-inner {
+    max-width: 1100px; margin: 0 auto; padding: 0 2rem;
+    width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+  }
+  .nav-brand { display: flex; align-items: center; gap: .55rem; }
+  .nav-wordmark { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 400; color: var(--cream); letter-spacing: .04em; }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a { color: var(--muted); font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; transition: color .15s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+  .nav-cta {
+    border: 1px solid var(--gold); color: var(--gold);
+    padding: .4rem 1.1rem; border-radius: 2px;
+    font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 500;
+    transition: background .15s, color .15s;
+  }
+  .nav-cta:hover { background: var(--gold); color: var(--black); }
+  @media (max-width: 720px) { .nav-links { display: none; } }
+
+  .inner { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+
+  /* Page header */
+  .page-header {
+    padding: 10rem 2rem 5rem;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .page-glow {
+    position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(201,169,110,.06) 0%, transparent 65%);
+  }
+  .eyebrow {
+    font-size: .68rem; letter-spacing: .22em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1.5rem;
+  }
+  .page-header h1 {
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    line-height: 1.05; letter-spacing: -.02em;
+    color: var(--cream); margin-bottom: 1.25rem;
+  }
+  .page-header p {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: clamp(1.1rem, 2.2vw, 1.35rem); color: var(--dim);
+    max-width: 560px; margin: 0 auto;
+  }
+
+  hr { border: none; border-top: 1px solid var(--border); }
+
+  /* Tiers */
+  .tiers { padding: 5rem 2rem; }
+  .tiers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .tier-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2rem 1.75rem;
+    display: flex; flex-direction: column; gap: 1.25rem;
+    position: relative;
+    transition: border-color .2s;
+  }
+  .tier-card:hover { border-color: var(--borderw); }
+  .tier-card.featured {
+    border-color: var(--borderw);
+    background: linear-gradient(160deg, rgba(201,169,110,.06) 0%, var(--panel) 60%);
+  }
+  .tier-badge {
+    position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
+    background: var(--gold); color: var(--black);
+    font-size: .6rem; letter-spacing: .15em; text-transform: uppercase; font-weight: 600;
+    padding: .25rem .9rem; border-radius: 0 0 4px 4px;
+  }
+  .tier-name {
+    font-size: .7rem; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--gold);
+  }
+  .tier-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.6rem; font-weight: 300; line-height: 1;
+    color: var(--cream);
+  }
+  .tier-price sub {
+    font-size: 1rem; font-family: 'Inter', sans-serif;
+    color: var(--dim); vertical-align: baseline; font-weight: 300;
+  }
+  .tier-period { font-size: .72rem; color: var(--muted); margin-top: .25rem; }
+  .tier-purpose {
+    font-style: italic; color: var(--dim);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem; line-height: 1.5;
+    padding-top: .5rem;
+    border-top: 1px solid var(--border);
+  }
+  .tier-features { list-style: none; display: flex; flex-direction: column; gap: .6rem; flex: 1; }
+  .tier-features li {
+    font-size: .82rem; color: var(--dim);
+    padding-left: 1.1rem; position: relative;
+  }
+  .tier-features li::before {
+    content: '·'; position: absolute; left: 0; color: var(--gold);
+  }
+  .tier-cta {
+    display: block; text-align: center;
+    border: 1px solid var(--border); color: var(--muted);
+    padding: .65rem 1rem; border-radius: 2px;
+    font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 500;
+    transition: border-color .15s, color .15s, background .15s;
+    margin-top: auto;
+  }
+  .tier-cta:hover { border-color: var(--gold); color: var(--gold); }
+  .tier-card.featured .tier-cta {
+    border-color: var(--gold); color: var(--gold);
+  }
+  .tier-card.featured .tier-cta:hover { background: var(--gold); color: var(--black); }
+
+  /* Terms */
+  .terms { padding: 4rem 2rem 6rem; }
+  .terms h2 {
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    color: var(--cream); margin-bottom: 2rem;
+  }
+  .terms-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  .term-item { display: flex; flex-direction: column; gap: .4rem; }
+  .term-label { font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+  .term-value { font-size: .88rem; color: var(--dim); }
+
+  /* Principle */
+  .principle {
+    padding: 5rem 2rem;
+    text-align: center;
+  }
+  .principle-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.5rem, 3.5vw, 2.6rem);
+    font-style: italic; color: var(--dim);
+    max-width: 700px; margin: 0 auto; line-height: 1.5;
+  }
+  .principle-text em { color: var(--cream); font-style: normal; }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1.25rem;
+    max-width: 100%;
+  }
+  .footer-brand { display: flex; align-items: center; gap: .5rem; }
+  .footer-wordmark { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--cream); letter-spacing: .04em; }
+  .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+  .footer-links a { color: var(--muted); font-size: .78rem; transition: color .15s; }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-powered { font-size: .65rem; letter-spacing: .08em; text-transform: uppercase; color: rgba(107,96,85,.55); }
+  .footer-powered span { color: rgba(201,169,110,.5); }
+  @media (max-width: 600px) { footer { flex-direction: column; align-items: flex-start; } }
+</style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0a1520" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="VALO Research" />
+<meta property="og:title" content="Pricing — reht" />
+<meta property="og:description" content="reht pricing: risk-based tiers from free Pilot to Sovereign. Price follows deployment criticality, not features." />
+<meta property="og:image" content="https://valoresearch.org/img/og-valo.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Pricing — reht" />
+<meta name="twitter:description" content="reht pricing: risk-based tiers from free Pilot to Sovereign. Price follows deployment criticality, not features." />
+<meta name="twitter:image" content="https://valoresearch.org/img/og-valo.jpg" />
+  <link rel="stylesheet" href="/css/valo-brand.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <circle cx="10" cy="10" r="9" stroke="#c9a96e" stroke-width="1.2" fill="none"/>
+        <line x1="10" y1="1" x2="10" y2="19" stroke="#c9a96e" stroke-width="1.2"/>
+      </svg>
+      <span class="nav-wordmark">reht</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Protocol</a>
+      <a href="product-tiers.html">Products</a>
+      <a href="pricing-model.html" class="active">Pricing</a>
+      <a href="go-to-market.html">Strategy</a>
+      <a href="competitive-positioning.html">Positioning</a>
+    </div>
+    <a href="verified-ai-runtime.html" class="nav-cta">Start pilot</a>
+  </div>
+</nav>
+<main id="main">
+
+
+<div class="page-header">
+  <div class="page-glow"></div>
+  <p class="eyebrow">Pricing</p>
+  <h1>Price follows risk,<br>not features.</h1>
+  <p>The more consequential the AI deployment, the more execution control is worth.</p>
+</div>
+
+<hr>
+
+<section class="tiers">
+  <div class="inner">
+    <p class="eyebrow">Tiers</p>
+    <h2 style="font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--cream);">Four tiers. One gate.</h2>
+    <div class="tiers-grid">
+
+      <!-- Pilot -->
+      <div class="tier-card">
+        <p class="tier-name">Tier 1 — Pilot</p>
+        <div>
+          <div class="tier-price">Free</div>
+          <p class="tier-period">30-day trial · no commitment</p>
+        </div>
+        <ul class="tier-features">
+          <li>1 workflow</li>
+          <li>VAIG execution gate (ALLOW / DENY)</li>
+          <li>Basic audit log</li>
+          <li>1 integration (MCP or API)</li>
+        </ul>
+        <p class="tier-purpose">Prove the gate works in your environment.</p>
+        <a href="verified-ai-runtime.html" class="tier-cta">Start free pilot</a>
+      </div>
+
+      <!-- Professional -->
+      <div class="tier-card featured">
+        <span class="tier-badge">Most popular</span>
+        <p class="tier-name">Tier 2 — Professional</p>
+        <div>
+          <div class="tier-price">NOK 49 000<sub>/mo</sub></div>
+          <p class="tier-period">EUR 4 200 · billed monthly</p>
+        </div>
+        <ul class="tier-features">
+          <li>Up to 5 workflows</li>
+          <li>Full AARM engine (ALLOW / MODIFY / DEFER / DENY / STEP_UP / HALT)</li>
+          <li>WORM audit trail (SHA-256 hash-chained)</li>
+          <li>Authority mapping for up to 3 roles</li>
+          <li>2 integrations</li>
+          <li>Monthly governance report</li>
+        </ul>
+        <p class="tier-purpose">Production deployment for bounded AI workflows.</p>
+        <a href="verified-ai-runtime.html" class="tier-cta">Get started</a>
+      </div>
+
+      <!-- Enterprise -->
+      <div class="tier-card">
+        <p class="tier-name">Tier 3 — Enterprise</p>
+        <div>
+          <div class="tier-price">NOK 149 000<sub>/mo</sub></div>
+          <p class="tier-period">EUR 12 800 · billed monthly</p>
+        </div>
+        <ul class="tier-features">
+          <li>Unlimited workflows</li>
+          <li>Custom policy engine</li>
+          <li>Delegation graph (multi-tier authority)</li>
+          <li>Full VACS conformance package</li>
+          <li>2-person authorization for overrides</li>
+          <li>Governance dashboards</li>
+          <li>SLA: 99.9% uptime, &lt;500ms gate latency</li>
+          <li>Dedicated integration support</li>
+        </ul>
+        <p class="tier-purpose">Enterprise-wide AI execution control.</p>
+        <a href="verified-ai-runtime-partner.html" class="tier-cta">Contact sales</a>
+      </div>
+
+      <!-- Sovereign -->
+      <div class="tier-card">
+        <p class="tier-name">Tier 4 — Sovereign</p>
+        <div>
+          <div class="tier-price">Custom</div>
+          <p class="tier-period">Scoped per deployment</p>
+        </div>
+        <ul class="tier-features">
+          <li>Private cloud / on-premises / air-gapped</li>
+          <li>HSM-backed key management</li>
+          <li>TLA⁺ formal verification report (4.78M states)</li>
+          <li>EU AI Act Annex III compliance package</li>
+          <li>prEN 18229-1 WORM audit standard compliance</li>
+          <li>2-person YubiKey FIPS authorization</li>
+          <li>UiS academic validation documentation</li>
+          <li>Custom SLA</li>
+        </ul>
+        <p class="tier-purpose">Critical infrastructure, regulated finance, government.</p>
+        <a href="verified-ai-runtime-partner.html" class="tier-cta">Request proposal</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr>
+
+<section class="terms">
+  <div class="inner">
+    <h2>Commitment terms</h2>
+    <div class="terms-grid">
+      <div class="term-item">
+        <span class="term-label">Annual discount</span>
+        <span class="term-value">15% off on annual prepayment (Professional and Enterprise)</span>
+      </div>
+      <div class="term-item">
+        <span class="term-label">Pilot conversion</span>
+        <span class="term-value">First month free when converting Pilot → Professional</span>
+      </div>
+      <div class="term-item">
+        <span class="term-label">VAT</span>
+        <span class="term-value">All prices exclude VAT</span>
+      </div>
+      <div class="term-item">
+        <span class="term-label">NOK pricing</span>
+        <span class="term-value">Norwegian and Nordic market</span>
+      </div>
+      <div class="term-item">
+        <span class="term-label">EUR pricing</span>
+        <span class="term-value">EU and international market</span>
+      </div>
+      <div class="term-item">
+        <span class="term-label">Sovereign scope</span>
+        <span class="term-value">Quoted per deployment based on infrastructure and compliance requirements</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="principle">
+  <div class="inner">
+    <p class="principle-text">
+      "Customers do not buy governance. They buy the ability to <em>safely deploy AI into production.</em>"
+    </p>
+  </div>
+</section>
+
+
+</main>
+<footer>
+  <div class="footer-brand">
+    <svg width="22" height="22" viewBox="0 0 36 36" fill="none">
+      <circle cx="18" cy="18" r="13" stroke="#c9a96e" stroke-width="1"/>
+      <line x1="18" y1="3" x2="18" y2="33" stroke="#c9a96e" stroke-width="1"/>
+      <circle cx="18" cy="6" r="1" fill="#c9a96e"/>
+      <circle cx="18" cy="30" r="1" fill="#c9a96e"/>
+    </svg>
+    <span class="footer-wordmark">reht</span>
+    <span style="margin-left:.75rem;color:var(--muted);">Right Before Action</span>
+  </div>
+  <div class="footer-links">
+    <a href="index.html">Protocol</a>
+    <a href="product-tiers.html">Products</a>
+    <a href="go-to-market.html">Strategy</a>
+    <a href="competitive-positioning.html">Positioning</a>
+  </div>
+  <div>
+    <p class="footer-powered">Powered by <span>VALO Research</span></p>
+    <p style="margin-top:.3rem;font-size:.7rem;color:var(--muted);">© 2026 reht / VALO Research</p>
+  </div>
+</footer>
+
+</body>
+</html>

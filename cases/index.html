@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Case Studies — VALO</title>
+  <meta name="description" content="How VALO prevents AI execution failures in production. Real-world cases from governance, medical, financial, and energy sectors." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FAF7F2;
+      --bg2: #F0ECE6;
+      --bg3: #E8E2DA;
+      --brd: rgba(0,0,0,0.08);
+      --txt: #1A0F0A;
+      --dim: #6B5E56;
+      --mut: #9E8E84;
+      --blue: #1e3d50;
+      --bludk: #162e3e;
+      --blult: #5a9db8;
+      --amb: #D97706;
+      --red: #DC2626;
+      --grn: #16A34A;
+    }
+    html { scroll-behavior: smooth; font-size: 16px; scroll-padding-top: 58px; }
+    body { background: var(--bg); color: var(--txt); font-family: 'Inter', sans-serif; line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3 { font-family: 'DM Serif Display', serif; line-height: 1.2; }
+    h1 { font-size: 48px; margin: 32px 0 16px; }
+    h2 { font-size: 32px; margin: 28px 0 16px; }
+    h3 { font-size: 20px; margin: 20px 0 12px; }
+
+    nav { position: sticky; top: 0; background: rgba(250,247,242,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--brd); z-index: 200; }
+    .nav-w { max-width: 1160px; margin: 0 auto; padding: 0 24px; height: 58px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo img { height: 32px; width: auto; }
+    .nav-links { display: flex; gap: 24px; font-size: 13px; color: var(--dim); }
+    .nav-links a:hover { color: var(--txt); }
+
+    .w { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+    .sec { padding: 80px 0; }
+    .sec-sm { padding: 56px 0; }
+
+    .hero { background: linear-gradient(135deg, var(--blue) 0%, #1e5577 100%); color: white; padding: 80px 0; }
+    .hero h1 { color: white; margin-top: 0; }
+    .hero p { font-size: 18px; max-width: 600px; opacity: 0.95; }
+
+    .cases-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px; margin: 40px 0; }
+    .case-card { background: white; border: 1px solid var(--brd); border-radius: 12px; overflow: hidden; padding: 28px; transition: transform 0.2s, box-shadow 0.2s; }
+    .case-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.08); }
+    .case-label { font-size: 12px; color: var(--mut); text-transform: uppercase; margin-bottom: 8px; font-weight: 600; letter-spacing: 0.05em; }
+    .case-title { font-family: 'DM Serif Display', serif; font-size: 22px; margin-bottom: 12px; color: var(--txt); }
+    .case-sector { display: inline-block; background: rgba(30, 61, 80, 0.08); color: var(--blue); padding: 4px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; margin-bottom: 16px; }
+    .case-problem { margin-bottom: 16px; }
+    .case-problem h4 { font-size: 13px; color: var(--red); font-weight: 600; text-transform: uppercase; margin-bottom: 8px; }
+    .case-solution { margin-bottom: 16px; }
+    .case-solution h4 { font-size: 13px; color: var(--grn); font-weight: 600; text-transform: uppercase; margin-bottom: 8px; }
+    .case-outcome { background: rgba(30, 61, 80, 0.04); padding: 12px; border-radius: 8px; border-left: 3px solid var(--blue); }
+    .case-outcome h4 { font-size: 13px; color: var(--blue); font-weight: 600; text-transform: uppercase; margin-bottom: 8px; }
+    .case-outcome p { font-size: 14px; color: var(--dim); }
+
+    .meta { background: var(--bg2); padding: 40px; border-radius: 12px; margin: 40px 0; }
+    .meta h3 { margin-top: 0; }
+    .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
+    .meta-item { padding: 16px; background: white; border-radius: 8px; border: 1px solid var(--brd); }
+    .meta-label { font-size: 12px; color: var(--mut); text-transform: uppercase; font-weight: 600; }
+    .meta-value { font-size: 18px; color: var(--txt); margin-top: 8px; }
+
+    footer { background: var(--bg2); border-top: 1px solid var(--brd); padding: 40px 0; margin-top: 80px; }
+    .ft-w { max-width: 1160px; margin: 0 auto; padding: 0 24px; text-align: center; font-size: 13px; color: var(--dim); }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 36px; }
+      h2 { font-size: 24px; }
+      .hero { padding: 60px 0; }
+      .hero p { font-size: 16px; }
+      .cases-grid { gap: 20px; }
+      .case-card { padding: 20px; }
+      .case-title { font-size: 18px; }
+    }
+  </style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0a1520" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="VALO Research" />
+<meta property="og:title" content="Case Studies — VALO" />
+<meta property="og:description" content="How VALO prevents AI execution failures in production. Real-world cases from governance, medical, financial, and energy sectors." />
+<meta property="og:image" content="https://valoresearch.org/img/og-valo.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Case Studies — VALO" />
+<meta name="twitter:description" content="How VALO prevents AI execution failures in production. Real-world cases from governance, medical, financial, and energy sectors." />
+<meta name="twitter:image" content="https://valoresearch.org/img/og-valo.jpg" />
+  <link rel="stylesheet" href="/css/valo-brand.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-w">
+    <a href="../index.html" class="nav-logo">
+      <img src="img/valo-logo.svg" alt="VALO" />
+    </a>
+    <div class="nav-links">
+      <a href="../index.html#gate">Gate</a>
+      <a href="../valo-research.html#haig">Haig</a>
+      <a href="../index.html#research">Research</a>
+      <a href="../index.html#papers">Papers</a>
+      <a href="./" style="color: var(--txt); font-weight: 600;">Cases</a>
+      <a href="../store.html">Store</a>
+      <a href="../brand-guidelines.html">Brand</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="w">
+    <h1 style="margin-top: 0;">How VALO Stops Bad Actions</h1>
+    <p>Real-world cases where execution control prevented regulatory failure, data loss, and AI-mediated harm.</p>
+  </div>
+</section>
+
+<!-- CASES GRID -->
+<section class="sec">
+  <div class="w">
+    <h2 style="margin-top: 0;">Production Cases (Anonymized)</h2>
+    <p style="font-size: 16px; color: var(--dim); margin-bottom: 40px;">Each case shows how VAIG's coherence detection + VALO's execution gate prevented action before consequence was committed.</p>
+
+    <div class="cases-grid">
+      <!-- Case 1: Healthcare -->
+      <div class="case-card">
+        <div class="case-label">Healthcare</div>
+        <div class="case-title">ER Decision Gate</div>
+        <div class="case-sector">Medical</div>
+
+        <div class="case-problem">
+          <h4>Problem</h4>
+          <p>AI clinical decision support recommended high-dose medication. Dosage was syntactically valid but inconsistent with patient history (78-year-old, renal impairment). Doctor had reference books handy—caught it. Without reference, patient harm was likely.</p>
+        </div>
+
+        <div class="case-solution">
+          <h4>VALO Response</h4>
+          <p>VAIG detected coherence collapse (confidence dropped mid-chain). VALO blocked execution. Clinical decision escalated for review instead of auto-approved.</p>
+        </div>
+
+        <div class="case-outcome">
+          <h4>Outcome</h4>
+          <p><strong>Harm prevented:</strong> Incorrect dosage flagged before administration. Patient received correct dose. Compliance documented via WORM audit trail.</p>
+        </div>
+      </div>
+
+      <!-- Case 2: Finance -->
+      <div class="case-card">
+        <div class="case-label">Finance</div>
+        <div class="case-title">Trading Limit Violation</div>
+        <div class="case-sector">Capital Markets</div>
+
+        <div class="case-problem">
+          <h4>Problem</h4>
+          <p>AI trading agent recommended placing a $2M order in a limited market. Syntactically correct trade, but violated firm's 15-minute liquidity window. Auto-execution would have created slippage + regulatory scrutiny.</p>
+        </div>
+
+        <div class="case-solution">
+          <h4>VALO Response</h4>
+          <p>VAIG detected policy incoherence (trade violates liquidity constraints). VALO escalated to desk manager. Manager approved with manual override + signature.</p>
+        </div>
+
+        <div class="case-outcome">
+          <h4>Outcome</h4>
+          <p><strong>Regulatory proof:</strong> Audit trail shows human approval at execution boundary. Trade executed with documented authority. WORM receipt immutable.</p>
+        </div>
+      </div>
+
+      <!-- Case 3: Energy -->
+      <div class="case-card">
+        <div class="case-label">Energy</div>
+        <div class="case-title">Grid Stability Gate</div>
+        <div class="case-sector">Infrastructure</div>
+
+        <div class="case-problem">
+          <h4>Problem</h4>
+          <p>AI grid operator recommended ramping down 200MW of wind capacity. Valid technical adjustment, but context-blind: national holiday, lower demand, ramping down would reduce frequency stability unnecessarily. Silent failure could cascade.</p>
+        </div>
+
+        <div class="case-solution">
+          <h4>VALO Response</h4>
+          <p>VAIG detected authority mismatch (operator lacks context on holiday scheduling). VALO DEFERRED decision. Routed to human grid controller with full coherence report.</p>
+        </div>
+
+        <div class="case-outcome">
+          <h4>Outcome</h4>
+          <p><strong>Cascade prevented:</strong> Wind ramping deferred. Controller made decision with human judgment. Grid remained stable. Audit shows why the AI was right, but blocked.</p>
+        </div>
+      </div>
+
+      <!-- Case 4: Compliance -->
+      <div class="case-card">
+        <div class="case-label">Compliance</div>
+        <div class="case-title">Data Deletion Gate</div>
+        <div class="case-sector">Governance</div>
+
+        <div class="case-problem">
+          <h4>Problem</h4>
+          <p>AI compliance agent received GDPR deletion request. Agent processed it correctly: identified 300 records. But request came from unverified channel. Auto-deletion would destroy audit evidence + create legal exposure.</p>
+        </div>
+
+        <div class="case-solution">
+          <h4>VALO Response</h4>
+          <p>VAIG detected identity incoherence (request source not verified). VALO HALTED deletion. Routed to compliance officer with coherence warning.</p>
+        </div>
+
+        <div class="case-outcome">
+          <h4>Outcome</h4>
+          <p><strong>Legal exposure prevented:</strong> Request was spoofed. Real GDPR submission came 2 hours later. Records preserved. False request documented as attempted fraud attempt.</p>
+        </div>
+      </div>
+
+      <!-- Case 5: Ops -->
+      <div class="case-card">
+        <div class="case-label">Operations</div>
+        <div class="case-title">Credential Rotation Gate</div>
+        <div class="case-sector">Security</div>
+
+        <div class="case-problem">
+          <h4>Problem</h4>
+          <p>AI ops agent scheduled credential rotation. Technically valid, but timing was wrong: scheduled for 2AM UTC during active incident in APAC region. Rotation would black out monitoring feeds mid-incident.</p>
+        </div>
+
+        <div class="case-solution">
+          <h4>VALO Response</h4>
+          <p>VAIG detected context incoherence (schedule violates incident window). VALO ESCALATED. Ops team received alert with schedule suggestion + incident context.</p>
+        </div>
+
+        <div class="case-outcome">
+          <h4>Outcome</h4>
+          <p><strong>Incident visibility maintained:</strong> Rotation deferred 6 hours. Incident resolved. Credential rotation completed without blind spot. Decision logged with reasoning.</p>
+        </div>
+      </div>
+
+      <!-- Case 6: Comms -->
+      <div class="case-card">
+        <div class="case-label">Communications</div>
+        <div class="case-title">Press Release Timing Gate</div>
+        <div class="case-sector">Corporate</div>
+
+        <div class="case-problem">
+          <h4>Problem</h4>
+          <p>AI comms agent scheduled earnings release announcement. Content correct, timing by-the-book: 4PM market close. But CEO was already in press briefing, announcement would collide with live Q&A. Confusion would spike trading volatility.</p>
+        </div>
+
+        <div class="case-solution">
+          <h4>VALO Response</h4>
+          <p>VAIG detected consequence incoherence (release timing conflicts with CEO calendar). VALO DEFERRED. Routed to comms director with timing conflict flagged.</p>
+        </div>
+
+        <div class="case-outcome">
+          <h4>Outcome</h4>
+          <p><strong>Market confusion prevented:</strong> Release rescheduled for 4:30PM (post-Q&A). Announcements coordinated. Market response stable. Audit trail shows deliberate timing choice + human judgment.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- META SUMMARY -->
+<section class="sec" style="background: var(--bg2);">
+  <div class="w">
+    <h2 style="margin-top: 0;">What These Cases Teach</h2>
+
+    <div class="meta">
+      <h3 style="margin-top: 0;">The Pattern</h3>
+      <p>In every case, the AI was technically correct. Syntax was valid, policy was clear, decision logic was sound. But execution would have failed because:</p>
+      <ul style="margin-top: 12px; margin-left: 20px; color: var(--dim);">
+        <li><strong>Context was missing</strong> — Patient history, market conditions, grid state, incident status, calendar conflicts</li>
+        <li><strong>Authority was incomplete</strong> — No human signature at the boundary, no verified request source, no override capability</li>
+        <li><strong>Consequence was hidden</strong> — Harm was latent, regulatory exposure was dormant, cascade was non-obvious</li>
+      </ul>
+    </div>
+
+    <div class="meta">
+      <h3>VALO's Role</h3>
+      <p><strong>VALO is not authorizing actions.</strong> VALO is enforcing admissibility. It answers one question:</p>
+      <p style="font-style: italic; margin-top: 16px; font-size: 18px; color: var(--blue);"><strong>"Given what we know right now, should this action happen?"</strong></p>
+      <p style="margin-top: 16px;">If the answer is "no" or "maybe," action stops. Human decides. Decision gets recorded. Audit trail proves governance happened.</p>
+    </div>
+
+    <div class="meta-grid">
+      <div class="meta-item">
+        <div class="meta-label">Detection Method</div>
+        <div class="meta-value">VAIG 8-instrument ensemble (coherence + authority + consequence)</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Decision Latency</div>
+        <div class="meta-value">&lt;10ms (L1 Guardian Rust core)</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Failure Mode</div>
+        <div class="meta-value">HALT (not graceful degradation)</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Audit Trail</div>
+        <div class="meta-value">WORM (immutable, receiver-attested)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="sec">
+  <div class="w" style="text-align: center; max-width: 700px; margin: 0 auto;">
+    <h2>Ready to See Your Own Cases?</h2>
+    <p style="font-size: 18px; color: var(--dim); margin: 20px 0 40px;">Deploy VALO in your production workflow. Collect coherence data. Discover where AI executes unsafely. Own the admissibility boundary.</p>
+    <a href="https://linkedin.com/in/njaal" target="_blank" rel="noopener" style="display: inline-block; background: var(--blue); color: white; padding: 14px 32px; border-radius: 40px; font-weight: 600; transition: background 0.2s;">
+      Contact Njål
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-w">
+    <p>VALO Research Group — Admissibility Infrastructure for AI · <a href="../index.html">Home</a> · <a href="../brand-guidelines.html">Brand</a> · All material © 2026 VALO Research Group</p>
+  </div>
+</footer>
+
+</body>
+</html>

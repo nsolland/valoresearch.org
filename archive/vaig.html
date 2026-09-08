@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VAIG — AI Integrity Gateway for Agent Identity &amp; AI Citation Optimization | VALO Research</title>
+  <meta name="description" content="VAIG is an AI Integrity Gateway for agent identity, delegated authority and AI citation optimization. Speider + Dirigent, 5 AARM decisions, L0–L4 DistrustLevel. MCP server, OpenAI proxy. Apache 2.0." />
+  <meta name="keywords" content="agent identity, AI citation optimization, AI integrity gateway, LLM visibility, delegated authority, MCP server, AARM, DistrustLevel" />
+  <link rel="canonical" href="https://valoresearch.org/vaig.html" />
+  <meta property="og:title" content="VAIG — AI Integrity Gateway for Agent Identity &amp; AI Citation" />
+  <meta property="og:description" content="Agent identity, delegated authority and AI citation optimization at the execution boundary." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://valoresearch.org/vaig.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0f172a;
+      color: #f1f5f9;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      padding: 18px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #1e293b;
+      flex-shrink: 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #4ade80;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .logo-text { font-size: 1rem; font-weight: 600; color: #f1f5f9; }
+    .logo-sub { font-size: 0.75rem; color: #94a3b8; margin-left: 4px; }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    nav a {
+      font-size: 0.8rem;
+      color: #94a3b8;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    nav a:hover { color: #f1f5f9; }
+    nav .pill {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      padding: 6px 14px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: #94a3b8;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+    nav .pill:hover { background: #334155; color: #f1f5f9; }
+    nav .pill code { font-family: 'Fira Mono', monospace; color: #4ade80; }
+
+    .embed-wrapper {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+    }
+
+    iframe {
+      flex: 1;
+      width: 100%;
+      border: none;
+      min-height: calc(100vh - 57px);
+    }
+
+    footer {
+      padding: 12px 32px;
+      border-top: 1px solid #1e293b;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    footer span { font-size: 0.72rem; color: #475569; }
+    footer a { color: #64748b; text-decoration: none; font-size: 0.72rem; }
+    footer a:hover { color: #94a3b8; }
+
+    @media (max-width: 640px) {
+      header { padding: 14px 16px; }
+      nav .pill { display: none; }
+      footer { padding: 10px 16px; }
+    }
+  </style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0a1520" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="VALO Research" />
+<meta property="og:title" content="VAIG — AI Integrity Gateway" />
+<meta property="og:description" content="AI Integrity Gateway — Speider + Dirigent, 5 AARM decisions, L0–L4 DistrustLevel. MCP server, OpenAI proxy. Apache 2.0." />
+<meta property="og:image" content="https://valoresearch.org/img/og-valo.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="VAIG — AI Integrity Gateway" />
+<meta name="twitter:description" content="AI Integrity Gateway — Speider + Dirigent, 5 AARM decisions, L0–L4 DistrustLevel. MCP server, OpenAI proxy. Apache 2.0." />
+<meta name="twitter:image" content="https://valoresearch.org/img/og-valo.jpg" />
+  <link rel="stylesheet" href="/css/valo-brand.css">
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <div class="logo-dot"></div>
+      <span class="logo-text">VAIG</span>
+      <span class="logo-sub">AI Integrity Gateway</span>
+    </div>
+    <nav>
+      <span class="pill">
+        <code>pip install vaig</code>
+      </span>
+      <a href="vaig-agents.html">AI Agents →</a>
+      <a href="https://github.com/nsolland/VAIG" target="_blank">GitHub →</a>
+    </nav>
+<main id="main">
+
+  </header>
+
+  <div class="embed-wrapper">
+    <iframe
+      src="https://nsolland-vaig.hf.space"
+      title="VAIG — AI Integrity Gateway"
+      allow="autoplay"
+    ></iframe>
+  </div>
+
+  <!-- Phase 2: Enterprise App -->
+  <div style="background:#0f172a;border-top:1px solid #1e293b;padding:32px;display:flex;flex-direction:column;align-items:center;gap:20px;">
+    <div style="max-width:720px;width:100%;text-align:center;">
+      <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#4ade80;margin-bottom:8px;">Phase 2 — Enterprise App</div>
+      <h2 style="font-size:1.4rem;font-weight:600;color:#f1f5f9;margin-bottom:8px;">VALO Polyglot</h2>
+      <p style="font-size:0.85rem;color:#94a3b8;line-height:1.6;margin-bottom:20px;">
+        Alle LLM-kall — Claude, GPT-4, Gemini, Kimi — gjennom VAIG v5.5 gateway. Hvert svar validert og WORM-logget. Erstatter shadow AI på ansattes telefoner med ett IT-godkjent grensesnitt.
+      </p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+        <a href="index.html#polyglot-app" style="padding:10px 20px;background:#4ade80;color:#0f172a;font-size:0.85rem;font-weight:600;border-radius:8px;text-decoration:none;">Se grensesnitt →</a>
+        <a href="index.html#contact" style="padding:10px 20px;background:transparent;border:1px solid #334155;color:#94a3b8;font-size:0.85rem;font-weight:500;border-radius:8px;text-decoration:none;">Book demo</a>
+      </div>
+    </div>
+    <div style="max-width:720px;width:100%;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;">
+      <div style="background:#1e293b;border-radius:8px;padding:16px;">
+        <div style="font-size:0.7rem;color:#4ade80;font-weight:600;margin-bottom:4px;">MODELLER</div>
+        <div style="font-size:0.8rem;color:#cbd5e1;">Claude · GPT-4 · Gemini · Kimi (2M ctx)</div>
+      </div>
+      <div style="background:#1e293b;border-radius:8px;padding:16px;">
+        <div style="font-size:0.7rem;color:#4ade80;font-weight:600;margin-bottom:4px;">GOVERNANCE</div>
+        <div style="font-size:0.8rem;color:#cbd5e1;">VAIG v5.5 per inference · L0–L4</div>
+      </div>
+      <div style="background:#1e293b;border-radius:8px;padding:16px;">
+        <div style="font-size:0.7rem;color:#4ade80;font-weight:600;margin-bottom:4px;">AUDIT</div>
+        <div style="font-size:0.8rem;color:#cbd5e1;">SHA-256 WORM-hash · Alle kall</div>
+      </div>
+    </div>
+  </div>
+
+  
+</main>
+<footer>
+    <span>VAIG · Apache 2.0 · VALO Research Group AS</span>
+    <a href="https://github.com/nsolland/VAIG" target="_blank">github.com/nsolland/VAIG</a>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VALO — Roadmap</title>
+  <meta name="description" content="VALO roadmap — multi-agent governance, Polyglot enterprise app, on-chain audit receipts. Q4 2026." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0f172a;
+      color: #f1f5f9;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      padding: 18px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #1e293b;
+    }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #4ade80; animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .logo-text { font-size: 1rem; font-weight: 600; }
+    .logo-sub { font-size: 0.75rem; color: #94a3b8; margin-left: 4px; }
+    nav { display: flex; align-items: center; gap: 24px; }
+    nav a { font-size: 0.8rem; color: #94a3b8; text-decoration: none; transition: color 0.15s; }
+    nav a:hover { color: #f1f5f9; }
+
+    main { flex: 1; max-width: 800px; margin: 0 auto; padding: 64px 32px; width: 100%; }
+
+    .hero { margin-bottom: 72px; }
+    .tag {
+      display: inline-block; background: #1e293b; border: 1px solid #334155;
+      color: #94a3b8; font-size: 0.72rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      padding: 4px 12px; border-radius: 20px; margin-bottom: 20px;
+    }
+    h1 { font-size: 2.2rem; font-weight: 700; line-height: 1.2; margin-bottom: 16px; }
+    .hero-sub { font-size: 1rem; color: #94a3b8; line-height: 1.7; max-width: 560px; }
+
+    .problem-box {
+      background: #1e293b; border-left: 3px solid #f87171;
+      border-radius: 0 12px 12px 0; padding: 20px 24px;
+      margin-bottom: 72px;
+    }
+    .problem-box h3 { font-size: 0.85rem; font-weight: 600; color: #f87171; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.06em; }
+    .problem-box p { font-size: 0.88rem; color: #cbd5e1; line-height: 1.7; }
+
+    .track { margin-bottom: 56px; }
+    .track-header {
+      display: flex; align-items: center; gap: 16px;
+      margin-bottom: 20px; padding-bottom: 16px;
+      border-bottom: 1px solid #1e293b;
+    }
+    .track-number {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.9rem; flex-shrink: 0;
+    }
+    .track-number.t1 { background: #3b0764; color: #c084fc; }
+    .track-number.t2 { background: #0c4a6e; color: #38bdf8; }
+    .track-number.t3 { background: #064e3b; color: #34d399; }
+
+    .track-title { flex: 1; }
+    .track-title h2 { font-size: 1.1rem; font-weight: 600; margin-bottom: 3px; }
+    .track-title p { font-size: 0.78rem; color: #64748b; }
+    .track-badge {
+      font-size: 0.7rem; font-weight: 600; padding: 3px 10px;
+      border-radius: 20px; text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .badge-q4 { background: #422006; color: #fb923c; border: 1px solid #7c2d12; }
+    .badge-2027 { background: #0f172a; color: #475569; border: 1px solid #1e293b; }
+    .badge-live { background: #052e16; color: #4ade80; border: 1px solid #14532d; }
+
+    .items { display: flex; flex-direction: column; gap: 12px; }
+    .item {
+      display: flex; gap: 14px; align-items: flex-start;
+      background: #1e293b; border-radius: 10px; padding: 16px 18px;
+    }
+    .item-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      margin-top: 6px; flex-shrink: 0;
+    }
+    .dot-live { background: #4ade80; }
+    .dot-q4 { background: #fb923c; }
+    .dot-2027 { background: #475569; }
+    .item-text h4 { font-size: 0.88rem; font-weight: 600; margin-bottom: 4px; }
+    .item-text p { font-size: 0.8rem; color: #94a3b8; line-height: 1.6; }
+
+    .now-section { margin-bottom: 72px; }
+    .now-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 600px) {
+      .now-grid { grid-template-columns: 1fr; }
+      header { padding: 14px 16px; }
+      main { padding: 40px 20px; }
+      h1 { font-size: 1.7rem; }
+    }
+    .now-card {
+      background: #1e293b; border: 1px solid #334155;
+      border-radius: 10px; padding: 16px 18px;
+    }
+    .now-card h4 { font-size: 0.85rem; font-weight: 600; margin-bottom: 4px; }
+    .now-card p { font-size: 0.78rem; color: #94a3b8; line-height: 1.5; }
+
+    .cta-bar {
+      background: #1e293b; border: 1px solid #334155;
+      border-radius: 14px; padding: 32px;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; gap: 16px;
+    }
+    .cta-bar h3 { font-size: 1.1rem; font-weight: 600; }
+    .cta-bar p { font-size: 0.85rem; color: #94a3b8; max-width: 420px; line-height: 1.6; }
+    .cta-bar a {
+      background: #4ade80; color: #0f172a; font-weight: 700;
+      padding: 12px 28px; border-radius: 8px; text-decoration: none;
+      font-size: 0.88rem; transition: background 0.15s;
+    }
+    .cta-bar a:hover { background: #22c55e; }
+
+    footer {
+      padding: 12px 32px; border-top: 1px solid #1e293b;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    footer span { font-size: 0.72rem; color: #475569; }
+    footer a { color: #64748b; text-decoration: none; font-size: 0.72rem; }
+    footer a:hover { color: #94a3b8; }
+  </style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0a1520" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="VALO Research" />
+<meta property="og:title" content="VALO — Roadmap" />
+<meta property="og:description" content="VALO roadmap — multi-agent governance, Polyglot enterprise app, on-chain audit receipts. Q4 2026." />
+<meta property="og:image" content="https://valoresearch.org/img/og-valo.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="VALO — Roadmap" />
+<meta name="twitter:description" content="VALO roadmap — multi-agent governance, Polyglot enterprise app, on-chain audit receipts. Q4 2026." />
+<meta name="twitter:image" content="https://valoresearch.org/img/og-valo.jpg" />
+  <link rel="stylesheet" href="/css/valo-brand.css">
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <div class="logo-dot"></div>
+      <span class="logo-text">VALO</span>
+      <span class="logo-sub">Roadmap</span>
+    </div>
+    <nav>
+      <a href="index.html">← Tilbake</a>
+      <a href="vaig.html">VAIG demo</a>
+      <a href="vaig-agents.html">AI Agents</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <div class="hero">
+      <div class="tag">Roadmap — oppdatert 1. juni 2026</div>
+      <h1>Vi vet hva problemet er.<br>Vi jobber med det.</h1>
+      <p class="hero-sub">
+        AI-agenter som kaller andre agenter. Ingen som validerer kjeden.
+        Ingen som eier audit-sporet på tvers av hops. Ingen som ser når
+        et svar fra agent 1 forgifter konteksten til agent 3.
+        Det er problemet. Her er hva vi gjør med det.
+      </p>
+    </div>
+
+    <div class="problem-box">
+      <h3>Problemet ingen snakker høyt om</h3>
+      <p>
+        I 2026 er ikke AI én modell som svarer på spørsmål. Det er agenter
+        som starter andre agenter, som kaller verktøy, som skriver til databaser,
+        som delegerer til sub-agenter — og ingen av dem har en felles
+        tillitsmodell. Hvert hopp er et nytt angrepsflate. Hvert hopp er
+        et sted revisjonsloggen kan brytes. DELEGATE-52 viste 25% korrupsjon
+        i enkle sekvenser. Multi-agent er verre. Mye verre.
+      </p>
+    </div>
+
+    <div class="now-section">
+      <div class="tag badge-live" style="background:#052e16;color:#4ade80;border:1px solid #14532d;margin-bottom:20px;">Live nå — VAIG v0.2</div>
+      <div class="now-grid">
+        <div class="now-card">
+          <h4>Speider + Dirigent + Ensemble</h4>
+          <p>8 instrumenter, L0–L4 DistrustLevel, domenekalikrerte terskler</p>
+        </div>
+        <div class="now-card">
+          <h4>WORM audit log</h4>
+          <p>SHA-256 hash-kjede, append-only, EU AI Act Article 12 compliant</p>
+        </div>
+        <div class="now-card">
+          <h4>Thread hash</h4>
+          <p>Rullerende hash over hele samtalesekvensen — beviser avvik uten å se inn i agenten</p>
+        </div>
+        <div class="now-card">
+          <h4>Context cliff detection</h4>
+          <p>Sporer konteksthelse over iterasjoner, flagger degradering før output ødelegges</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Track 1: Multi-Agent -->
+    <div class="track">
+      <div class="track-header">
+        <div class="track-number t1">1</div>
+        <div class="track-title">
+          <h2>Multi-Agent Governance</h2>
+          <p>Agent-til-agent tillit, kjede-validering, fleet-koordinering</p>
+        </div>
+        <span class="track-badge badge-q4">Q4 2026</span>
+      </div>
+      <div class="items">
+        <div class="item">
+          <div class="item-dot dot-q4"></div>
+          <div class="item-text">
+            <h4>Agent-til-agent tillitsmodell</h4>
+            <p>Når Agent A delegerer til Agent B: VAIG validerer at Agent B ikke overtar kontekst den ikke har rett til. Kryptografisk signatur per hop. Brudd er detekterbart.</p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-dot dot-q4"></div>
+          <div class="item-text">
+            <h4>Kjede-audit trail</h4>
+            <p>WORM-logg per agent-hop. Hvert steg i kjeden er identifiserbart, hashlinket, uforanderlig. Tilsynet kan rekonstruere hele kjøringen.</p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-dot dot-q4"></div>
+          <div class="item-text">
+            <h4>Kontekst-isolasjon mellom agenter</h4>
+            <p>Forgiftet output fra agent 1 valideres av VAIG før det sendes til agent 2. Hvert hopp er et sjekkpunkt, ikke en åpen kanal.</p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-dot dot-q4"></div>
+          <div class="item-text">
+            <h4>Fleet herd detection (CAKM)</h4>
+            <p>Flere agenter som konvergerer på samme anomale svar-mønster — usynlig for enkel-agent-monitoring, synlig for CAKM. Redis-backed, fleet-nivå.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Track 2: Polyglot -->
+    <div class="track">
+      <div class="track-header">
+        <div class="track-number t2">2</div>
+        <div class="track-title">
+          <h2>VALO Polyglot</h2>
+          <p>Svaret på shadow AI — én IT-godkjent app for alle modeller</p>
+        </div>
+        <span class="track-badge badge-q4">Q4 2026</span>
+      </div>
+      <div class="items">
+        <div class="item">
+          <div class="item-dot dot-q4"></div>
+          <div class="item-text">
+            <h4>Claude, GPT-4, Gemini, Kimi — gjennom én gateway</h4>
+            <p>Ansatte slutter å bruke private kontoer på egne telefoner. IT gir tilgang gjennom VALO. Alle kall gjennom VAIG v5.5. GDPR-compliant fra dag én.</p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-dot dot-q4"></div>
+          <div class="item-text">
+            <h4>Smart routing</h4>
+            <p>Kode → Claude. Lang kontekst → Kimi (2M token). Norsk → korrekt domenedeteksjon. VAIG velger beste modell per oppgave automatisk.</p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-dot dot-q4"></div>
+          <div class="item-text">
+            <h4>WORM-logget per inferens</h4>
+            <p>Hvert spørsmål og svar er hashlinket og sporbart. Compliance-rapport på forespørsel. Ingen manuell dokumentasjon.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Track 3: On-chain -->
+    <div class="track">
+      <div class="track-header">
+        <div class="track-number t3">3</div>
+        <div class="track-title">
+          <h2>On-Chain Audit Receipts</h2>
+          <p>Kryptografisk bevis på AI-atferd — uavhengig av VALO</p>
+        </div>
+        <span class="track-badge badge-2027">2027</span>
+      </div>
+      <div class="items">
+        <div class="item">
+          <div class="item-dot dot-2027"></div>
+          <div class="item-text">
+            <h4>WORM-hash ankret on-chain</h4>
+            <p>SHA-256-kjeden fra WORM-loggen ankres til en public blockchain. Beviset eksisterer uavhengig av VALO som selskap. Kunden eier beviset.</p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-dot dot-2027"></div>
+          <div class="item-text">
+            <h4>BFT Council</h4>
+            <p>Byzantine Fault Tolerant konsensus for høyrisiko-beslutninger. Ingen enkelt node kan manipulere utfallet. Matematisk bevisbar integritet.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-bar">
+      <h3>Jobber du med multi-agent i produksjon?</h3>
+      <p>Vi snakker gjerne med team som ser dette problemet fra innsiden. Ingen salgspitch — vi vil forstå use casen.</p>
+      <a href="index.html#contact">Ta kontakt →</a>
+    </div>
+
+  </main>
+
+  <footer>
+    <span>VALO Research Group AS · Apache 2.0 på vaig-kjernen</span>
+    <a href="https://github.com/nsolland/VAIG" target="_blank">github.com/nsolland/VAIG</a>
+  </footer>
+
+</body>
+</html>

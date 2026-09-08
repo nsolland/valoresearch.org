@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VAIG vs Anthropic Agent Identity — Positioning Note</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #08090e;
+      --surface: #0f1117;
+      --border: #1e2130;
+      --blue: #1e3d50;
+      --bludk: #162e3e;
+      --blult: #5a9db8;
+      --text: #e8e6e0;
+      --muted: #8a8880;
+      --green: #22c55e;
+      --red: #ef4444;
+      --amber: #f59e0b;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    .hero {
+      padding: 80px 24px 60px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -120px; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 400px;
+      background: radial-gradient(ellipse, rgba(90,157,184,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blult);
+      border: 1px solid var(--blue);
+      border-radius: 40px;
+      padding: 4px 14px;
+      margin-bottom: 24px;
+    }
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.15;
+      max-width: 700px;
+      margin: 0 auto 20px;
+    }
+    .meta {
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    section {
+      padding: 56px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    section:last-child { border-bottom: none; }
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.7rem;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+    h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--blult);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    p { color: #c8c6c0; margin-bottom: 16px; }
+    p:last-child { margin-bottom: 0; }
+    em { color: var(--text); font-style: italic; }
+    strong { color: var(--text); font-weight: 600; }
+    .layer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 24px;
+    }
+    .layer-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+    }
+    .layer-card.vaig { border-color: var(--blult); }
+    .layer-card h3 { margin-bottom: 8px; }
+    .layer-card p { font-size: 15px; }
+    .layer-card .answer {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      color: var(--text);
+      margin-top: 12px;
+      font-style: italic;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 24px;
+      font-size: 14px;
+    }
+    th {
+      background: var(--surface);
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      color: #c8c6c0;
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    td:first-child { color: var(--text); font-weight: 500; }
+    .check { color: var(--green); font-weight: 700; }
+    .cross { color: var(--red); }
+    .insight-box {
+      background: var(--surface);
+      border-left: 3px solid var(--blult);
+      border-radius: 0 10px 10px 0;
+      padding: 24px 28px;
+      margin-top: 24px;
+    }
+    .insight-box p { font-size: 15px; }
+    .quote-block {
+      text-align: center;
+      padding: 48px 24px;
+    }
+    .quote-block blockquote {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      line-height: 1.4;
+      color: var(--text);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .stack {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-top: 24px;
+    }
+    .stack-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 20px;
+      font-size: 14px;
+    }
+    .stack-row.highlight {
+      border-color: var(--blult);
+      background: rgba(90,157,184,0.06);
+    }
+    .stack-label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      width: 100px;
+      flex-shrink: 0;
+    }
+    .stack-name { color: var(--text); font-weight: 500; }
+    .stack-owner { color: var(--muted); font-size: 13px; margin-left: auto; }
+    .stack-row.highlight .stack-name { color: var(--blult); }
+    .impl-list {
+      list-style: none;
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .impl-list li {
+      display: flex;
+      gap: 12px;
+      color: #c8c6c0;
+      font-size: 15px;
+    }
+    .impl-list li::before {
+      content: '→';
+      color: var(--blult);
+      flex-shrink: 0;
+    }
+    @media (max-width: 680px) {
+      .layer-grid { grid-template-columns: 1fr; }
+      table { font-size: 13px; }
+      th, td { padding: 10px 12px; }
+    }
+  </style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0a1520" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="VALO Research" />
+<meta property="og:title" content="VAIG vs Anthropic Agent Identity — Positioning Note" />
+<meta property="og:description" content="Governance before consequence — the proof layer for AI execution." />
+<meta property="og:image" content="https://valoresearch.org/img/og-valo.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="VAIG vs Anthropic Agent Identity — Positioning Note" />
+<meta name="twitter:description" content="Governance before consequence — the proof layer for AI execution." />
+<meta name="twitter:image" content="https://valoresearch.org/img/og-valo.jpg" />
+  <link rel="stylesheet" href="/css/valo-brand.css">
+</head>
+<body>
+<main id="main">
+
+
+  <div class="hero">
+    <div class="tag">Positioning Note — 2026-06-27</div>
+    <h1>Anthropic defines the agent.<br>VAIG decides what it may do.</h1>
+    <p class="meta">In response to: Anthropic — Agent Identity in Claude (June 2026)</p>
+  </div>
+
+  <div class="container">
+
+    <section>
+      <h2>What Anthropic published</h2>
+      <p>An agent identity and access model for Claude. Agents receive workspace-level identities rather than impersonating individual users, with scoped per-channel credentials, restricted outbound traffic, and audit logs of actions taken.</p>
+      <p>Future roadmap item: just-in-time credential grants.</p>
+    </section>
+
+    <section>
+      <h2>Two different questions</h2>
+      <div class="layer-grid">
+        <div class="layer-card">
+          <h3>Anthropic — Identity</h3>
+          <p>Layer 1–2 work: authentication, credential management, access scoping.</p>
+          <p class="answer">"Who is this agent, and what systems may it touch?"</p>
+        </div>
+        <div class="layer-card vaig">
+          <h3>VAIG — Execution Control</h3>
+          <p>Layer 3 work: pre-execution admissibility gating, authority delegation, WORM proof.</p>
+          <p class="answer">"What may it actually do right now — and can you prove it happened?"</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Where they diverge</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Question</th>
+            <th>Anthropic (Identity)</th>
+            <th>VAIG (Execution Control)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Who is the agent?</td>
+            <td><span class="check">✓</span> Workspace identity</td>
+            <td><span class="cross">—</span></td>
+          </tr>
+          <tr>
+            <td>What systems may it access?</td>
+            <td><span class="check">✓</span> Channel-scoped credentials</td>
+            <td><span class="cross">—</span></td>
+          </tr>
+          <tr>
+            <td>Is this action authorized now?</td>
+            <td><span class="cross">✗</span> Not addressed</td>
+            <td><span class="check">✓</span> AARM 6-primitive gate</td>
+          </tr>
+          <tr>
+            <td>Under whose authority was it delegated?</td>
+            <td><span class="cross">✗</span> Not addressed</td>
+            <td><span class="check">✓</span> RRP + authority chain</td>
+          </tr>
+          <tr>
+            <td>Can you prove it happened?</td>
+            <td>Audit log (append-only)</td>
+            <td><span class="check">✓</span> SHA-256 WORM receipt (hash-chained)</td>
+          </tr>
+          <tr>
+            <td>Escalation mid-task?</td>
+            <td><span class="cross">✗</span> Future roadmap (JIT grants)</td>
+            <td><span class="check">✓</span> STEP_UP primitive — live today</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="insight-box">
+        <p><strong>Key insight:</strong> Anthropic's JIT credential grants are listed as a <em>future</em> feature. VAIG's STEP_UP primitive — live escalation to stronger authority on demand — already implements this. The execution control layer is the recognized next problem. VAIG is 18 months ahead.</p>
+      </div>
+    </section>
+
+    <section class="quote-block">
+      <blockquote>"Anthropic tells the agent who it is.<br>VAIG decides what it may do — and proves it happened."</blockquote>
+    </section>
+
+    <section>
+      <h2>Competitive stack — updated</h2>
+      <div class="stack">
+        <div class="stack-row">
+          <span class="stack-label">Layer 4</span>
+          <span class="stack-name">Agents</span>
+          <span class="stack-owner">OpenAI, Anthropic, CrewAI</span>
+        </div>
+        <div class="stack-row highlight">
+          <span class="stack-label">Layer 3</span>
+          <span class="stack-name">Execution Control</span>
+          <span class="stack-owner">VAIG — deterministic gate + WORM proof</span>
+        </div>
+        <div class="stack-row">
+          <span class="stack-label">Layer 2</span>
+          <span class="stack-name">Governance</span>
+          <span class="stack-owner">Credo AI, IBM, Palantir</span>
+        </div>
+        <div class="stack-row">
+          <span class="stack-label">Layer 1</span>
+          <span class="stack-name">Identity</span>
+          <span class="stack-owner">Okta, Anthropic (agent identity), Entra</span>
+        </div>
+      </div>
+      <div class="insight-box" style="margin-top:20px;">
+        <p>Anthropic now spans L1 (agent identity) and L4 (model). They are building toward the middle but have not crossed into L3. VAIG's deterministic pre-execution gating + formal verification + WORM receipt remains architecturally distinct.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Strategic implications</h2>
+      <ul class="impl-list">
+        <li>Anthropic's identity model is infrastructure VAIG builds <em>on top of</em>, not competition</li>
+        <li>Combined stack: Anthropic identity + VAIG execution control = complete governed agent architecture</li>
+        <li><strong>Pitch to enterprise:</strong> "Your agent already knows who it is. Now you need to control what it does."</li>
+        <li><strong>Pitch to Anthropic ecosystem partners:</strong> VAIG is the execution control complement to Claude's identity layer</li>
+        <li>Layer 3 execution control remains uncontested — 18-month window holds</li>
+      </ul>
+    </section>
+
+  </div>
+
+
+</main>
+</body>
+</html>

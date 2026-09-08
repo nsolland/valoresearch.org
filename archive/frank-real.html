@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VALO — Frank & Svein</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body { font-family: 'Inter', sans-serif; background: #0a0805; color: #fff; overflow: hidden; }
+
+    .slides-container { display: flex; height: 100vh; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; }
+    .slide {
+      flex: 0 0 100vw;
+      height: 100vh;
+      scroll-snap-align: start;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 100px;
+      position: relative;
+    }
+
+    /* Simple color scheme */
+    .slide-dark { background: #0a0805; }
+    .slide-blue { background: linear-gradient(135deg, #162e3e 0%, #1e3d50 100%); }
+    .slide-light { background: #faf7f2; color: #0a0805; }
+
+    /* Typography - simple and direct */
+    h1 { font-size: 4rem; font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; }
+    h2 { font-size: 2.5rem; font-weight: 700; line-height: 1.3; margin-bottom: 30px; }
+    p { font-size: 1.3rem; line-height: 1.7; font-weight: 300; }
+    .big { font-size: 2rem; font-weight: 500; }
+    .huge { font-size: 3.5rem; font-weight: 700; }
+
+    .container { max-width: 1000px; width: 100%; }
+    .text-center { text-align: center; }
+    .text-left { text-align: left; }
+
+    /* Simple spacing */
+    .mt-40 { margin-top: 40px; }
+    .mt-60 { margin-top: 60px; }
+    .mt-80 { margin-top: 80px; }
+
+    /* Highlight color */
+    .blue { color: #5a9db8; }
+    .bold { font-weight: 600; }
+
+    /* Navigation */
+    .counter { position: fixed; top: 40px; right: 40px; font-size: 1rem; opacity: 0.5; }
+    .dots { position: fixed; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 100; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); cursor: pointer; transition: all 0.2s; }
+    .dot.active { background: #5a9db8; width: 24px; border-radius: 4px; }
+
+    .slide-light h2 { color: #0a0805; }
+    .slide-light p { color: #6b5e56; }
+    .slide-light .blue { color: #1e3d50; }
+
+    /* Simple list */
+    .list { margin-top: 60px; }
+    .list-item { margin-bottom: 40px; display: flex; gap: 30px; align-items: flex-start; }
+    .list-item:last-child { margin-bottom: 0; }
+    .list-num { font-size: 2.5rem; font-weight: 700; color: #5a9db8; min-width: 80px; }
+    .list-text p { margin: 0; }
+    .list-text p:first-child { font-weight: 500; margin-bottom: 8px; }
+    .list-text p:not(:first-child) { opacity: 0.8; font-size: 1.2rem; }
+
+    /* Two column simple */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-top: 60px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 60px; }
+
+    .stat-box { text-align: center; }
+    .stat-box .huge { margin-bottom: 16px; }
+    .stat-box p { opacity: 0.8; }
+
+    /* Quote / emphasis box */
+    .box { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 40px; border-radius: 16px; margin-top: 60px; }
+    .slide-light .box { background: rgba(30, 61, 80, 0.1); border-color: rgba(30, 61, 80, 0.2); }
+
+    .timeline { margin-top: 60px; }
+    .timeline-item { margin-bottom: 50px; display: flex; gap: 30px; }
+    .timeline-year { font-size: 1.5rem; font-weight: 700; color: #5a9db8; min-width: 100px; }
+    .timeline-text p { margin: 0; }
+    .timeline-text p:first-child { font-weight: 600; margin-bottom: 8px; }
+
+    @media (max-width: 1024px) {
+      .slide { padding: 60px; }
+      h1 { font-size: 2.5rem; }
+      h2 { font-size: 1.8rem; }
+      p { font-size: 1.1rem; }
+      .grid-2, .grid-3 { grid-template-columns: 1fr; gap: 30px; }
+    }
+  </style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0a1520" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="VALO Research" />
+<meta property="og:title" content="VALO — Frank & Svein" />
+<meta property="og:description" content="Governance before consequence — the proof layer for AI execution." />
+<meta property="og:image" content="https://valoresearch.org/img/og-valo.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="VALO — Frank & Svein" />
+<meta name="twitter:description" content="Governance before consequence — the proof layer for AI execution." />
+<meta name="twitter:image" content="https://valoresearch.org/img/og-valo.jpg" />
+  <link rel="stylesheet" href="/css/valo-brand.css">
+</head>
+<body>
+<main id="main">
+
+
+<div class="counter"><span id="current">1</span> / 11</div>
+<div class="dots" id="nav"></div>
+
+<div class="slides-container" id="slides">
+
+<!-- 1. HOOK: INTEREST -->
+<section class="slide slide-blue text-center">
+  <div class="container">
+    <h1>AI agents are executing<br>real-world actions.</h1>
+    <p class="mt-80" style="font-size: 1.8rem; opacity: 0.9;">Nothing is stopping the bad ones.</p>
+  </div>
+</section>
+
+<!-- 2. PROBLEM: WHAT HAPPENS -->
+<section class="slide slide-dark">
+  <div class="container text-left">
+    <h2>What can go wrong</h2>
+    <div class="list mt-80">
+      <div class="list-item">
+        <div class="list-num">1</div>
+        <div class="list-text">
+          <p>A hallucinated API call</p>
+          <p>Deletes production data. Millions lost.</p>
+        </div>
+      </div>
+      <div class="list-item">
+        <div class="list-num">2</div>
+        <div class="list-text">
+          <p>An unauthorized transaction</p>
+          <p>Clears a financial account. Customer sues.</p>
+        </div>
+      </div>
+      <div class="list-item">
+        <div class="list-num">3</div>
+        <div class="list-text">
+          <p>An unlogged action</p>
+          <p>Regulators investigate. Fines. Prison time.</p>
+        </div>
+      </div>
+    </div>
+    <div class="box mt-80">
+      <p><span class="blue bold">No system stops this today.</span> Content filters exist. Action boundaries don't.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3. MARKET VALIDATION: DOES THE MARKET SEE IT? -->
+<section class="slide slide-light">
+  <div class="container text-left">
+    <h2>Does the market see the problem?</h2>
+    <p class="mt-60" style="color: #6b5e56;">Yes. Hard evidence:</p>
+    <div class="list mt-60">
+      <div class="list-item">
+        <div class="list-num">65%</div>
+        <div class="list-text">
+          <p>of enterprises have had AI-agent incidents</p>
+          <p style="font-size: 1rem;">Data loss, security breach, unauthorized action</p>
+        </div>
+      </div>
+      <div class="list-item">
+        <div class="list-num">78%</div>
+        <div class="list-text">
+          <p>are unprepared for August 2026 enforcement</p>
+          <p style="font-size: 1rem;">EU AI Act, KI-loven, prEN 18229-1 all mandate action logging and control</p>
+        </div>
+      </div>
+      <div class="list-item">
+        <div class="list-num">$419M</div>
+        <div class="list-text">
+          <p>AI governance market today</p>
+          <p style="font-size: 1rem;">Growing to $5.88B by 2035 (CAGR 34%)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. MARKET MOVEMENT: IS THE MARKET MOVING? -->
+<section class="slide slide-dark">
+  <div class="container text-left">
+    <h2>Is the market moving?</h2>
+    <p class="mt-60">Yes. Three funded companies emerged in the last 18 months:</p>
+    <div class="timeline mt-80">
+      <div class="timeline-item">
+        <div class="timeline-year">Mar 2025</div>
+        <div class="timeline-text">
+          <p>Straiker</p>
+          <p>$21M seed (Lightspeed + Bain). Runtime security for AI agents.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2025</div>
+        <div class="timeline-text">
+          <p>Holistic AI launches Guardian Agents</p>
+          <p>Real-time intervention. UK-based, Series A.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">Nov 2025</div>
+        <div class="timeline-text">
+          <p>Lakera acquired by Check Point</p>
+          <p><span class="blue bold">$300M</span> for AI security company. Market validates the space.</p>
+        </div>
+      </div>
+    </div>
+    <div class="box mt-80">
+      <p>This space did not exist 18 months ago. It's real and it's moving fast.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5. LAKERA EXIT -->
+<section class="slide slide-blue text-center">
+  <div class="container">
+    <h1>Lakera → Check Point</h1>
+    <p class="mt-60 huge blue">$300M</p>
+    <p class="mt-40">November 2025</p>
+    <div class="box mt-80">
+      <p style="font-size: 1.5rem;"><span class="bold">This is not theoretical.</span> The exit floor is set.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 6. ACKNOWLEDGE: WE GET IT -->
+<section class="slide slide-light">
+  <div class="container text-left">
+    <h2>We see the problem</h2>
+    <p class="mt-60" style="color: #6b5e56;">The market needs something that doesn't exist yet.</p>
+    <div class="list mt-80">
+      <div class="list-item">
+        <div class="list-num">✓</div>
+        <div class="list-text">
+          <p>Governance platforms exist (Credo AI, OneTrust)</p>
+          <p style="font-size: 1rem;">But they audit. They don't prevent.</p>
+        </div>
+      </div>
+      <div class="list-item">
+        <div class="list-num">✓</div>
+        <div class="list-text">
+          <p>Security platforms exist (Straiker, HiddenLayer)</p>
+          <p style="font-size: 1rem;">But they detect threats. They don't control actions.</p>
+        </div>
+      </div>
+      <div class="list-item">
+        <div class="list-num">✗</div>
+        <div class="list-text">
+          <p>Nobody has an execution boundary</p>
+          <p style="font-size: 1rem;">Stop unauthorized actions before they happen. Prove it was stopped.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. SOLUTION: VALO -->
+<section class="slide slide-dark">
+  <div class="container text-left">
+    <h2>How VALO fits</h2>
+    <p class="mt-60">We built the execution boundary layer that doesn't exist yet.</p>
+    <div class="grid-2 mt-80">
+      <div>
+        <p class="bold blue">Before action:</p>
+        <p class="mt-20" style="font-size: 1.2rem;">Agent says "delete production data"<br><span class="blue">VALO checks: authorized?</span></p>
+      </div>
+      <div>
+        <p class="bold blue">If authorized:</p>
+        <p class="mt-20" style="font-size: 1.2rem;">Action happens. Logged. Immutable receipt. Done.</p>
+      </div>
+    </div>
+    <div class="box mt-80">
+      <p><span class="bold blue">If not authorized:</span> Action stops. Regulator asks "prove you controlled this." You show the WORM log.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 8. SCALE: SMALL TO LARGE -->
+<section class="slide slide-light">
+  <div class="container text-left">
+    <h2>How it scales</h2>
+    <p class="mt-60" style="color: #6b5e56;">From one company to all of Europe:</p>
+    <div class="list mt-60">
+      <div class="list-item">
+        <div class="list-num">1</div>
+        <div class="list-text">
+          <p style="color: #0a0805;">Cognite (Norway, $2.1B)</p>
+          <p style="font-size: 1.1rem;">They need KI-loven compliance by August. VALO is the infrastructure.</p>
+        </div>
+      </div>
+      <div class="list-item">
+        <div class="list-num">2</div>
+        <div class="list-text">
+          <p style="color: #0a0805;">Other Norwegian companies</p>
+          <p style="font-size: 1.1rem;">Financial services, healthcare, energy. Same deadline. Same need.</p>
+        </div>
+      </div>
+      <div class="list-item">
+        <div class="list-num">3</div>
+        <div class="list-text">
+          <p style="color: #0a0805;">Europe (Dec 2027 EU AI Act enforcement)</p>
+          <p style="font-size: 1.1rem;">Larger market. Same problem. 18 months to deploy.</p>
+        </div>
+      </div>
+      <div class="list-item">
+        <div class="list-num">4</div>
+        <div class="list-text">
+          <p style="color: #0a0805;">Global (wherever AI agents execute)</p>
+          <p style="font-size: 1.1rem;">Category standard. ACS (Agent Control Standard). Like TCP/IP for agents.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. WORST CASE -->
+<section class="slide slide-dark">
+  <div class="container text-left">
+    <h2>Worst case</h2>
+    <p class="mt-60">We're wrong about the market.</p>
+    <div class="box mt-60">
+      <p><span class="bold blue">Reality check:</span></p>
+      <p class="mt-20">• 65% of enterprises already had incidents. That's not speculation.</p>
+      <p class="mt-20">• Three funded competitors emerged in 18 months. That's not random.</p>
+      <p class="mt-20">• Lakera sold for $300M. That's not luck.</p>
+      <p class="mt-20">• August 2026 enforcement is law, not opinion.</p>
+    </div>
+    <p class="mt-60" style="opacity: 0.8;">Even if we're partially wrong about scale, the core problem is real and it's now.</p>
+  </div>
+</section>
+
+<!-- 10. BEST CASE -->
+<section class="slide slide-blue text-center">
+  <div class="container">
+    <h2>Best case</h2>
+    <p class="mt-80" style="font-size: 1.5rem; opacity: 0.9;">August 2026 regulatory window creates <span class="bold">mandatory demand</span> in three jurisdictions simultaneously.</p>
+    <div class="grid-3 mt-80">
+      <div class="stat-box">
+        <div class="huge">🇪🇺</div>
+        <p class="mt-40">EU AI Act</p>
+        <p class="mt-10" style="opacity: 0.8;">Dec 2027</p>
+      </div>
+      <div class="stat-box">
+        <div class="huge">🇳🇴</div>
+        <p class="mt-40">KI-loven</p>
+        <p class="mt-10" style="opacity: 0.8;">Aug 2026</p>
+      </div>
+      <div class="stat-box">
+        <div class="huge">📋</div>
+        <p class="mt-40">prEN 18229-1</p>
+        <p class="mt-10" style="opacity: 0.8;">Aug 2026</p>
+      </div>
+    </div>
+    <div class="box mt-80">
+      <p style="font-size: 1.3rem;"><span class="bold">18 months becomes 6 weeks.</span> VALO becomes the reference implementation for logging, control, and proof.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 11. WHAT WE NEED -->
+<section class="slide slide-dark">
+  <div class="container text-left">
+    <h2>What we need help with</h2>
+    <p class="mt-80" style="font-size: 1.3rem;">Three things:</p>
+    <div class="list mt-80">
+      <div class="list-item">
+        <div class="list-num">1</div>
+        <div class="list-text">
+          <p style="color: #5a9db8; font-weight: 600;">Regulatory access</p>
+          <p style="font-size: 1.1rem;">You have credibility with government and enterprises. We need that channel open.</p>
+        </div>
+      </div>
+      <div class="list-item">
+        <div class="list-num">2</div>
+        <div class="list-text">
+          <p style="color: #5a9db8; font-weight: 600;">Market credibility</p>
+          <p style="font-size: 1.1rem;">Your reputation in GRC and compliance. Your name next to ours changes how people listen.</p>
+        </div>
+      </div>
+      <div class="list-item">
+        <div class="list-num">3</div>
+        <div class="list-text">
+          <p style="color: #5a9db8; font-weight: 600;">Capital</p>
+          <p style="font-size: 1.1rem;">Pre-seed to get from here to first customer proof. Then the market validates itself.</p>
+        </div>
+      </div>
+    </div>
+    <div class="box mt-80">
+      <p style="font-size: 1.1rem;">You set the terms. We listen. This is a conversation, not a pitch.</p>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<script>
+const slides = document.getElementById('slides');
+const nav = document.getElementById('nav');
+const counter = document.getElementById('current');
+const slideCount = document.querySelectorAll('.slide').length;
+let current = 0;
+
+for (let i = 0; i < slideCount; i++) {
+  const dot = document.createElement('div');
+  dot.className = `dot ${i === 0 ? 'active' : ''}`;
+  dot.onclick = () => goToSlide(i);
+  nav.appendChild(dot);
+}
+
+function goToSlide(n) {
+  current = n;
+  slides.scrollLeft = n * window.innerWidth;
+  updateNav();
+}
+
+function updateNav() {
+  document.querySelectorAll('.dot').forEach((dot, i) => {
+    dot.classList.toggle('active', i === current);
+  });
+  counter.textContent = current + 1;
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowRight' && current < slideCount - 1) goToSlide(current + 1);
+  if (e.key === 'ArrowLeft' && current > 0) goToSlide(current - 1);
+});
+
+slides.addEventListener('scroll', () => {
+  current = Math.round(slides.scrollLeft / window.innerWidth);
+  updateNav();
+});
+</script>
+
+
+</main>
+</body>
+</html>

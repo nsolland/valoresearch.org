@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VAIG — AI Agents</title>
+  <meta name="description" content="VAIG for agentic workloads — multi-step agent governance, context cliff detection, herd anomaly monitoring. Apache 2.0." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0f172a;
+      color: #f1f5f9;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      padding: 18px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #1e293b;
+      flex-shrink: 0;
+    }
+    .logo { display: flex; align-items: center; gap: 10px; }
+    .logo-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #4ade80;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .logo-text { font-size: 1rem; font-weight: 600; color: #f1f5f9; }
+    .logo-sub { font-size: 0.75rem; color: #94a3b8; margin-left: 4px; }
+    nav { display: flex; align-items: center; gap: 24px; }
+    nav a { font-size: 0.8rem; color: #94a3b8; text-decoration: none; transition: color 0.15s; }
+    nav a:hover { color: #f1f5f9; }
+    nav .pill {
+      background: #1e293b; border: 1px solid #334155;
+      border-radius: 6px; padding: 6px 14px;
+      font-size: 0.78rem; font-weight: 500; color: #94a3b8;
+    }
+    nav .pill code { font-family: monospace; color: #4ade80; }
+
+    main { flex: 1; max-width: 860px; margin: 0 auto; padding: 56px 32px; width: 100%; }
+
+    h1 { font-size: 2rem; font-weight: 700; margin-bottom: 12px; }
+    .subtitle { color: #94a3b8; font-size: 1rem; margin-bottom: 48px; line-height: 1.6; }
+
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 48px; }
+    @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } header { padding: 14px 16px; } }
+
+    .card {
+      background: #1e293b; border: 1px solid #334155;
+      border-radius: 12px; padding: 24px;
+    }
+    .card-icon { font-size: 1.5rem; margin-bottom: 12px; }
+    .card h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 8px; color: #f1f5f9; }
+    .card p { font-size: 0.82rem; color: #94a3b8; line-height: 1.6; }
+
+    .level-table { width: 100%; border-collapse: collapse; margin-bottom: 48px; font-size: 0.82rem; }
+    .level-table th { text-align: left; color: #64748b; font-weight: 500; padding: 8px 12px; border-bottom: 1px solid #1e293b; }
+    .level-table td { padding: 10px 12px; border-bottom: 1px solid #1e293b; color: #cbd5e1; }
+    .level-table tr:last-child td { border-bottom: none; }
+
+    .badge {
+      display: inline-block; padding: 2px 8px; border-radius: 4px;
+      font-size: 0.72rem; font-weight: 600; font-family: monospace;
+    }
+    .l0 { background: #14532d; color: #4ade80; }
+    .l1 { background: #1e3a5f; color: #60a5fa; }
+    .l2 { background: #713f12; color: #fbbf24; }
+    .l3 { background: #7c2d12; color: #fb923c; }
+    .l4 { background: #450a0a; color: #f87171; }
+
+    .code-block {
+      background: #020617; border: 1px solid #1e293b;
+      border-radius: 8px; padding: 20px 24px;
+      font-family: monospace; font-size: 0.8rem;
+      color: #94a3b8; line-height: 1.8;
+      margin-bottom: 48px; overflow-x: auto;
+    }
+    .code-block .kw { color: #818cf8; }
+    .code-block .fn { color: #4ade80; }
+    .code-block .str { color: #fbbf24; }
+    .code-block .cm { color: #475569; }
+
+    .cta { text-align: center; padding: 40px 0; }
+    .cta a {
+      display: inline-block; background: #4ade80; color: #0f172a;
+      font-weight: 700; padding: 14px 32px; border-radius: 8px;
+      text-decoration: none; font-size: 0.9rem; transition: background 0.15s;
+    }
+    .cta a:hover { background: #22c55e; }
+
+    footer {
+      padding: 12px 32px; border-top: 1px solid #1e293b;
+      display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;
+    }
+    footer span { font-size: 0.72rem; color: #475569; }
+    footer a { color: #64748b; text-decoration: none; font-size: 0.72rem; }
+    footer a:hover { color: #94a3b8; }
+  </style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0a1520" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="VALO Research" />
+<meta property="og:title" content="VAIG — AI Agents" />
+<meta property="og:description" content="VAIG for agentic workloads — multi-step agent governance, context cliff detection, herd anomaly monitoring. Apache 2.0." />
+<meta property="og:image" content="https://valoresearch.org/img/og-valo.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="VAIG — AI Agents" />
+<meta name="twitter:description" content="VAIG for agentic workloads — multi-step agent governance, context cliff detection, herd anomaly monitoring. Apache 2.0." />
+<meta name="twitter:image" content="https://valoresearch.org/img/og-valo.jpg" />
+  <link rel="stylesheet" href="/css/valo-brand.css">
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <div class="logo-dot"></div>
+      <span class="logo-text">VAIG</span>
+      <span class="logo-sub">AI Agents</span>
+    </div>
+    <nav>
+      <span class="pill"><code>pip install vaig</code></span>
+      <a href="vaig.html">Demo →</a>
+      <a href="https://github.com/nsolland/VAIG" target="_blank">GitHub →</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>VAIG for AI Agents</h1>
+    <p class="subtitle">
+      Single-turn validation is not enough for agents. VAIG tracks distrust across every step —
+      detecting context degradation, drift, and anomalous fleet behaviour before they become failures.
+    </p>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-icon">📉</div>
+        <h3>Context cliff detection</h3>
+        <p>VAIG tracks context health across iterations. When coherence drops below threshold, it flags the session before the agent produces a corrupted output.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔗</div>
+        <h3>Thread hash integrity</h3>
+        <p>Every prompt–response pair is hashed into a running thread hash. Any deviation from expected behaviour is provable — without inspecting the agent's internals.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🛑</div>
+        <h3>Step-level AARM decisions</h3>
+        <p>ALLOW / MODIFY / DEFER / DENY / STEP_UP evaluated at every agent step. Not just at the end — at the point where intervention is still possible.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📡</div>
+        <h3>Fleet anomaly monitoring</h3>
+        <p>CAKM detects when multiple agents in a fleet start converging on the same abnormal output pattern — a signal invisible to single-agent monitoring.</p>
+      </div>
+    </div>
+
+    <table class="level-table">
+      <thead>
+        <tr>
+          <th>Level</th>
+          <th>In agent context</th>
+          <th>Default action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="badge l0">L0 TRUSTED</span></td>
+          <td>Continue execution</td>
+          <td>Pass through</td>
+        </tr>
+        <tr>
+          <td><span class="badge l1">L1 MONITOR</span></td>
+          <td>Mild uncertainty detected</td>
+          <td>Log step, continue</td>
+        </tr>
+        <tr>
+          <td><span class="badge l2">L2 WARN</span></td>
+          <td>Significant signal on this step</td>
+          <td>Flag for review</td>
+        </tr>
+        <tr>
+          <td><span class="badge l3">L3 DEGRADE</span></td>
+          <td>Context degrading — output unreliable</td>
+          <td>Prepend disclaimer, pause</td>
+        </tr>
+        <tr>
+          <td><span class="badge l4">L4 HALT</span></td>
+          <td>Injection / direct harm signal</td>
+          <td>Block step + WORM entry</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="code-block">
+<span class="cm"># Evaluate every agent step</span>
+<span class="kw">from</span> vaig <span class="kw">import</span> VAIGOrchestrator
+
+orch = VAIGOrchestrator(
+    domain=<span class="str">"INDUSTRIAL"</span>,
+    l4_auto_trigger=<span class="kw">True</span>,
+)
+
+<span class="kw">for</span> step <span class="kw">in</span> agent_steps:
+    result = orch.<span class="fn">evaluate</span>(
+        prompt=step.prompt,
+        response=step.response,
+        iteration_count=step.index,
+        conversation_length=step.total_tokens,
+    )
+
+    <span class="kw">if</span> result.level.value == <span class="str">"L4"</span>:
+        agent.<span class="fn">halt</span>()          <span class="cm"># provably stopped</span>
+        <span class="kw">break</span>
+
+    <span class="kw">if</span> result.context_warning:
+        logger.<span class="fn">warning</span>(result.context_warning)
+    </div>
+
+    <div class="cta">
+      <a href="vaig.html">Try VAIG live →</a>
+    </div>
+  </main>
+
+  <footer>
+    <span>VAIG v0.2.0 · Apache 2.0 · VALO Research Group AS</span>
+    <a href="https://github.com/nsolland/VAIG" target="_blank">github.com/nsolland/VAIG</a>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FordelsPilot — Benefit Wallet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #08090e;
+      --surface: #0f1117;
+      --surface2: #141720;
+      --border: #1e2130;
+      --blue: #1e3d50;
+      --blult: #5a9db8;
+      --text: #e8e6e0;
+      --muted: #8a8880;
+      --green: #22c55e;
+      --green-bg: rgba(34,197,94,0.08);
+      --amber: #f59e0b;
+      --amber-bg: rgba(245,158,11,0.08);
+      --red: #ef4444;
+      --red-bg: rgba(239,68,68,0.08);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Layout */
+    .app { display: flex; min-height: 100vh; }
+    .sidebar {
+      width: 240px;
+      background: var(--surface);
+      border-right: 1px solid var(--border);
+      padding: 24px 0;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .logo {
+      padding: 0 20px 24px;
+      border-bottom: 1px solid var(--border);
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      color: var(--text);
+    }
+    .logo span { color: var(--blult); }
+    .nav { padding: 16px 0; flex: 1; }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 20px;
+      font-size: 14px;
+      color: var(--muted);
+      cursor: pointer;
+      border-left: 2px solid transparent;
+      transition: all 0.15s;
+    }
+    .nav-item.active {
+      color: var(--text);
+      border-left-color: var(--blult);
+      background: rgba(90,157,184,0.06);
+    }
+    .nav-icon { width: 16px; text-align: center; }
+    .sidebar-footer {
+      padding: 16px 20px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .main { flex: 1; overflow-y: auto; }
+    .topbar {
+      padding: 20px 32px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .topbar-title { font-size: 18px; font-weight: 600; }
+    .topbar-meta { font-size: 13px; color: var(--muted); }
+    .year-badge {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 12px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--blult);
+    }
+    .content { padding: 28px 32px; }
+
+    /* Person card */
+    .person-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+    .avatar {
+      width: 48px; height: 48px;
+      background: var(--blue);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      color: var(--blult);
+      flex-shrink: 0;
+    }
+    .person-info { flex: 1; }
+    .person-name { font-weight: 600; font-size: 16px; }
+    .person-meta { font-size: 13px; color: var(--muted); margin-top: 2px; }
+    .person-stats {
+      display: flex;
+      gap: 32px;
+    }
+    .person-stat { text-align: right; }
+    .person-stat-value { font-size: 18px; font-weight: 700; color: var(--text); }
+    .person-stat-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+
+    /* Summary bar */
+    .summary-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .summary-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 20px;
+    }
+    .summary-value { font-size: 22px; font-weight: 700; }
+    .summary-label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
+    .summary-value.green { color: var(--green); }
+    .summary-value.amber { color: var(--amber); }
+    .summary-value.blue { color: var(--blult); }
+
+    /* Wallet table */
+    .section-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .wallet-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .wallet-row {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 20px;
+    }
+    .wallet-row-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .wallet-rule-name { font-weight: 600; font-size: 15px; }
+    .wallet-rule-meta { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .wallet-amounts {
+      display: flex;
+      gap: 24px;
+      font-size: 13px;
+    }
+    .wallet-amount { color: var(--muted); }
+    .wallet-amount strong { color: var(--text); }
+    .progress-bar {
+      height: 6px;
+      background: var(--border);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+    .progress-fill {
+      height: 100%;
+      border-radius: 3px;
+      transition: width 0.3s;
+    }
+    .progress-fill.green { background: var(--green); }
+    .progress-fill.amber { background: var(--amber); }
+    .progress-fill.red { background: var(--red); }
+    .status-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      border-radius: 40px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+    }
+    .status-chip.ok { background: var(--green-bg); color: var(--green); }
+    .status-chip.near { background: var(--amber-bg); color: var(--amber); }
+    .status-chip.full { background: var(--red-bg); color: var(--red); }
+    .status-chip.pending { background: rgba(90,157,184,0.1); color: var(--blult); }
+
+    /* Allocations */
+    .alloc-table { width: 100%; border-collapse: collapse; }
+    .alloc-table th {
+      text-align: left;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .alloc-table td {
+      padding: 12px 12px;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+    .alloc-table tr:last-child td { border-bottom: none; }
+    .alloc-table td:first-child { font-weight: 500; color: var(--text); }
+    .alloc-table td { color: #c8c6c0; }
+
+    /* Action buttons */
+    .action-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 28px;
+    }
+    .btn {
+      padding: 10px 20px;
+      border-radius: 40px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--blult);
+      color: #fff;
+    }
+    .btn-secondary {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    /* Disclaimer */
+    .disclaimer {
+      margin-top: 40px;
+      padding: 16px 20px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 900px) {
+      .sidebar { display: none; }
+      .summary-bar { grid-template-columns: 1fr 1fr; }
+      .person-stats { display: none; }
+      .content { padding: 20px 16px; }
+    }
+  </style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0a1520" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="VALO Research" />
+<meta property="og:title" content="FordelsPilot — Benefit Wallet" />
+<meta property="og:description" content="Governance before consequence — the proof layer for AI execution." />
+<meta property="og:image" content="https://valoresearch.org/img/og-valo.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="FordelsPilot — Benefit Wallet" />
+<meta name="twitter:description" content="Governance before consequence — the proof layer for AI execution." />
+<meta name="twitter:image" content="https://valoresearch.org/img/og-valo.jpg" />
+  <link rel="stylesheet" href="/css/valo-brand.css">
+</head>
+<body>
+<div class="app">
+
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <div class="logo">Fordels<span>Pilot</span></div>
+    <div class="nav">
+      <div class="nav-item"><span class="nav-icon">⊞</span> Oversikt</div>
+      <div class="nav-item active"><span class="nav-icon">◎</span> Benefit Wallet</div>
+      <div class="nav-item"><span class="nav-icon">▤</span> Markedsplass</div>
+      <div class="nav-item"><span class="nav-icon">✓</span> Til godkjenning</div>
+      <div class="nav-item"><span class="nav-icon">↗</span> Eksport</div>
+      <div class="nav-item"><span class="nav-icon">⚙</span> Innstillinger</div>
+    </div>
+    <div class="sidebar-footer">
+      Konto: Solland AS<br>
+      Regnskapsfører: Marta Larsen<br>
+      Skatteår: 2026
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <main class="main">
+    <div class="topbar">
+      <div>
+        <div class="topbar-title">Benefit Wallet</div>
+        <div class="topbar-meta">Skattefrie fordeler — oversikt og status</div>
+      </div>
+      <div class="year-badge">2026</div>
+    </div>
+
+    <div class="content">
+
+      <!-- Person selector -->
+      <div class="person-card">
+        <div class="avatar">NS</div>
+        <div class="person-info">
+          <div class="person-name">Njål Gaute Solland</div>
+          <div class="person-meta">Daglig leder / Eier · Solland AS · Ansatt siden 2021</div>
+        </div>
+        <div class="person-stats">
+          <div class="person-stat">
+            <div class="person-stat-value" style="color:var(--green)">8 200 kr</div>
+            <div class="person-stat-label">Brukt i år</div>
+          </div>
+          <div class="person-stat">
+            <div class="person-stat-value" style="color:var(--blult)">9 192 kr</div>
+            <div class="person-stat-label">Gjenstår</div>
+          </div>
+          <div class="person-stat">
+            <div class="person-stat-value">17 392 kr</div>
+            <div class="person-stat-label">Total ramme</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Summary bar -->
+      <div class="summary-bar">
+        <div class="summary-card">
+          <div class="summary-value blue">17 392 kr</div>
+          <div class="summary-label">Total skattefri ramme</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-value green">8 200 kr</div>
+          <div class="summary-label">Brukt</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-value amber">9 192 kr</div>
+          <div class="summary-label">Gjenstår</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-value" style="color:var(--muted)">0 kr</div>
+          <div class="summary-label">Skattepliktig overskridelse</div>
+        </div>
+      </div>
+
+      <!-- Wallets -->
+      <div class="section-title">Fordelswallets</div>
+      <div class="wallet-grid">
+
+        <!-- Gave ansatt -->
+        <div class="wallet-row">
+          <div class="wallet-row-header">
+            <div>
+              <div class="wallet-rule-name">Gave til ansatt</div>
+              <div class="wallet-rule-meta">GAVE_ANSATT · Grense 5 000 kr/år · Skatteloven § 5-15</div>
+            </div>
+            <span class="status-chip near">⬤ 80% brukt</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill amber" style="width:80%"></div></div>
+          <div class="wallet-amounts">
+            <div class="wallet-amount">Brukt: <strong>4 000 kr</strong></div>
+            <div class="wallet-amount">Gjenstår: <strong>1 000 kr</strong></div>
+            <div class="wallet-amount">Grense: <strong>5 000 kr</strong></div>
+          </div>
+        </div>
+
+        <!-- Personalrabatt -->
+        <div class="wallet-row">
+          <div class="wallet-row-header">
+            <div>
+              <div class="wallet-rule-name">Personalrabatt</div>
+              <div class="wallet-rule-meta">PERSONALRABATT · Grense 8 000 kr/år · FSFIN § 5-15-3</div>
+            </div>
+            <span class="status-chip ok">⬤ OK</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill green" style="width:26%"></div></div>
+          <div class="wallet-amounts">
+            <div class="wallet-amount">Brukt: <strong>2 100 kr</strong></div>
+            <div class="wallet-amount">Gjenstår: <strong>5 900 kr</strong></div>
+            <div class="wallet-amount">Grense: <strong>8 000 kr</strong></div>
+          </div>
+        </div>
+
+        <!-- El kommunikasjon -->
+        <div class="wallet-row">
+          <div class="wallet-row-header">
+            <div>
+              <div class="wallet-rule-name">Elektronisk kommunikasjon</div>
+              <div class="wallet-rule-meta">EL_KOMMUNIKASJON · Grense 4 392 kr/år · FSFIN § 5-12-20</div>
+            </div>
+            <span class="status-chip ok">⬤ OK</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill green" style="width:48%"></div></div>
+          <div class="wallet-amounts">
+            <div class="wallet-amount">Brukt: <strong>2 100 kr</strong></div>
+            <div class="wallet-amount">Gjenstår: <strong>2 292 kr</strong></div>
+            <div class="wallet-amount">Grense: <strong>4 392 kr</strong></div>
+          </div>
+        </div>
+
+        <!-- Kurs -->
+        <div class="wallet-row">
+          <div class="wallet-row-header">
+            <div>
+              <div class="wallet-rule-name">Kurs og opplæring</div>
+              <div class="wallet-rule-meta">KURS_OPPLAERING · Ingen øvre grense · Krever jobbsammenheng</div>
+            </div>
+            <span class="status-chip pending">⬤ Til godkjenning</span>
+          </div>
+          <div class="progress-bar"><div class="progress-fill green" style="width:0%"></div></div>
+          <div class="wallet-amounts">
+            <div class="wallet-amount">Brukt: <strong>0 kr</strong></div>
+            <div class="wallet-amount">Til godkjenning: <strong>2 490 kr</strong></div>
+            <div class="wallet-amount">Grense: <strong>ubegrenset</strong></div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Recent allocations -->
+      <div class="section-title">Siste fordeler</div>
+      <div class="wallet-row" style="padding: 0; overflow: hidden;">
+        <table class="alloc-table">
+          <thead>
+            <tr>
+              <th>Beskrivelse</th>
+              <th>Regel</th>
+              <th>Verdi</th>
+              <th>Dato</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Julegave 2025 — Gavekort Ark</td>
+              <td style="color:var(--muted)">GAVE_ANSATT</td>
+              <td>2 000 kr</td>
+              <td style="color:var(--muted)">2025-12-15</td>
+              <td><span class="status-chip ok">Godkjent</span></td>
+            </tr>
+            <tr>
+              <td>Sommerparty — gave til ansatte</td>
+              <td style="color:var(--muted)">GAVE_ANSATT</td>
+              <td>2 000 kr</td>
+              <td style="color:var(--muted)">2026-06-10</td>
+              <td><span class="status-chip ok">Godkjent</span></td>
+            </tr>
+            <tr>
+              <td>Firmarabatt — VALO-abonnement</td>
+              <td style="color:var(--muted)">PERSONALRABATT</td>
+              <td>2 100 kr</td>
+              <td style="color:var(--muted)">2026-03-01</td>
+              <td><span class="status-chip ok">Godkjent</span></td>
+            </tr>
+            <tr>
+              <td>Mobiltelefon (jobbbruk)</td>
+              <td style="color:var(--muted)">EL_KOMMUNIKASJON</td>
+              <td>2 100 kr</td>
+              <td style="color:var(--muted)">2026-01-15</td>
+              <td><span class="status-chip ok">Godkjent</span></td>
+            </tr>
+            <tr>
+              <td>AI-kurs: Prompt Engineering for produktledere</td>
+              <td style="color:var(--muted)">KURS_OPPLAERING</td>
+              <td>2 490 kr</td>
+              <td style="color:var(--muted)">2026-06-22</td>
+              <td><span class="status-chip pending">Til godkjenning</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Actions -->
+      <div class="action-row">
+        <button class="btn btn-primary">+ Legg til fordel</button>
+        <button class="btn btn-secondary">Eksporter til Fiken</button>
+        <button class="btn btn-secondary">Last ned dokumentasjon</button>
+      </div>
+
+      <!-- Disclaimer -->
+      <div class="disclaimer">
+        <strong>OBS:</strong> FordelsPilot er et hjelpeverktøy, ikke juridisk rådgivning. Alle forslag fra regelmotor MÅ godkjennes av regnskapsfører eller revisor før gjennomføring. Grenser endres i statsbudsjettet hvert år og oppdateres i systemet i januar. Kontroller alltid mot Skatteetaten.no og Altinn.no. FordelsPilot tar ikke ansvar for feil bruk av skattefrie grenser.
+      </div>
+
+    </div>
+  </main>
+
+</div>
+</body>
+</html>

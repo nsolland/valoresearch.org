@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VAIG Competitive Analysis V1 — VΛΦΦ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #1e3d50;
+    --bludk: #162e3e;
+    --blult: #5a9db8;
+    --blultr: #e8f4f9;
+    --text: #1a1a2e;
+    --muted: #6b7280;
+    --border: #d1dde5;
+    --bg: #f8fafc;
+    --white: #ffffff;
+    --red: #dc2626;
+    --amber: #d97706;
+    --green: #16a34a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.6;
+    font-size: 15px;
+  }
+
+  /* Confidential watermark */
+  body::before {
+    content: 'CONFIDENTIAL';
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-30deg);
+    font-size: 9rem;
+    font-weight: 700;
+    color: rgba(30, 61, 80, 0.04);
+    pointer-events: none;
+    z-index: 0;
+    white-space: nowrap;
+    letter-spacing: 0.2em;
+  }
+
+  nav {
+    background: var(--blue);
+    padding: 1rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    color: var(--white);
+    font-size: 1.4rem;
+    letter-spacing: -0.02em;
+    text-decoration: none;
+  }
+
+  .nav-tag {
+    background: rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.85);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.9rem;
+    border-radius: 40px;
+  }
+
+  /* Hero */
+  .hero {
+    background: linear-gradient(135deg, var(--blue) 0%, var(--bludk) 60%, #0d1e28 100%);
+    color: var(--white);
+    padding: 5rem 2.5rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0; right: 0;
+    height: 60px;
+    background: var(--bg);
+    clip-path: ellipse(55% 100% at 50% 100%);
+  }
+
+  .hero-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--blult);
+    margin-bottom: 1.2rem;
+  }
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 400;
+    line-height: 1.15;
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--blult);
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.7);
+    max-width: 560px;
+    margin: 0 auto 2rem;
+  }
+
+  .hero-meta {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .hero-meta span::before {
+    content: '\2022 ';
+    color: var(--blult);
+  }
+
+  /* Container */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* Section */
+  section {
+    padding: 4rem 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  section + section {
+    border-top: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blult);
+    margin-bottom: 0.6rem;
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 400;
+    color: var(--blue);
+    margin-bottom: 0.4rem;
+    letter-spacing: -0.01em;
+  }
+
+  .section-desc {
+    color: var(--muted);
+    margin-bottom: 2rem;
+    max-width: 600px;
+  }
+
+  /* Executive summary */
+  .exec-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+  }
+
+  .exec-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--blult);
+    border-radius: 12px;
+    padding: 1.4rem 1.5rem;
+  }
+
+  .exec-num {
+    font-size: 1.6rem;
+    font-family: 'DM Serif Display', serif;
+    color: var(--blult);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .exec-card p {
+    font-size: 0.92rem;
+    color: var(--text);
+    line-height: 1.55;
+  }
+
+  /* Map tables */
+  .map-section {
+    margin-bottom: 2.5rem;
+  }
+
+  .map-region {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .map-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    margin-bottom: 1.5rem;
+  }
+
+  .map-table th {
+    background: var(--blue);
+    color: rgba(255,255,255,0.85);
+    padding: 0.7rem 1rem;
+    text-align: left;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .map-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  .map-table tr:last-child td { border-bottom: none; }
+
+  .map-table tr:hover td { background: var(--blultr); }
+
+  .map-table td:first-child { font-weight: 600; color: var(--blue); }
+
+  .star { color: #f59e0b; margin-right: 2px; }
+
+  /* Top 10 cards */
+  .top10-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .player-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.8rem 2rem;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .player-card::before {
+    content: attr(data-rank);
+    position: absolute;
+    top: 1.2rem;
+    right: 1.6rem;
+    font-family: 'DM Serif Display', serif;
+    font-size: 3rem;
+    color: rgba(30,61,80,0.07);
+    line-height: 1;
+  }
+
+  .player-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  .player-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: var(--blue);
+    font-weight: 400;
+    margin-right: auto;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border-radius: 40px;
+  }
+
+  .badge-high { background: #fee2e2; color: var(--red); }
+  .badge-med  { background: #fef3c7; color: var(--amber); }
+  .badge-low  { background: #dcfce7; color: var(--green); }
+  .badge-none { background: var(--blultr); color: var(--blult); }
+
+  .badge-opp {
+    background: var(--blue);
+    color: var(--white);
+  }
+
+  .player-country {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 0.3rem;
+  }
+
+  .player-funding {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--blue);
+    background: var(--blultr);
+    padding: 0.2rem 0.7rem;
+    border-radius: 40px;
+    white-space: nowrap;
+  }
+
+  .player-what {
+    font-size: 0.92rem;
+    color: var(--text);
+    margin-bottom: 1.2rem;
+    line-height: 1.6;
+  }
+
+  .player-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  @media (max-width: 640px) {
+    .player-grid { grid-template-columns: 1fr; }
+  }
+
+  .player-col-head {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .player-col ul {
+    list-style: none;
+    font-size: 0.85rem;
+    color: var(--text);
+  }
+
+  .player-col ul li {
+    padding: 0.2rem 0;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .player-col ul li::before {
+    content: '\2192';
+    position: absolute;
+    left: 0;
+    color: var(--blult);
+    font-size: 0.75rem;
+  }
+
+  .vaig-vs {
+    background: linear-gradient(135deg, var(--blultr) 0%, rgba(232,244,249,0.4) 100%);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    font-size: 0.88rem;
+    line-height: 1.6;
+  }
+
+  .vaig-vs strong {
+    color: var(--blue);
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+
+  /* Conclusions */
+  .conclusions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+  }
+
+  @media (max-width: 700px) {
+    .conclusions-grid { grid-template-columns: 1fr; }
+  }
+
+  .conclusion-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+  }
+
+  .conclusion-card h3 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--blue);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.8rem;
+  }
+
+  .conclusion-card ul {
+    list-style: none;
+    font-size: 0.88rem;
+    color: var(--text);
+  }
+
+  .conclusion-card ul li {
+    padding: 0.3rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .conclusion-card ul li:last-child { border-bottom: none; }
+
+  .conclusion-card ul li::before {
+    position: absolute;
+    left: 0;
+    font-size: 0.75rem;
+  }
+
+  .card-diff ul li::before { content: '\2713'; color: var(--green); }
+  .card-exposed ul li::before { content: '\26A0'; color: var(--amber); }
+  .card-moves ul li::before { content: attr(data-n); color: var(--blult); font-weight: 700; }
+
+  .moves-grid {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .move-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.9rem 1.2rem;
+    font-size: 0.88rem;
+  }
+
+  .move-n {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: var(--blult);
+    line-height: 1;
+    min-width: 1.5rem;
+  }
+
+  .move-text strong {
+    display: block;
+    color: var(--blue);
+    font-size: 0.88rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .move-text span { color: var(--muted); font-size: 0.82rem; }
+
+  /* Footer */
+  footer {
+    background: var(--blue);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 2.5rem;
+    font-size: 0.8rem;
+  }
+
+  footer strong { color: rgba(255,255,255,0.85); }
+
+  /* Print */
+  @media print {
+    nav { position: relative; }
+    .hero::after { display: none; }
+    .player-card { break-inside: avoid; }
+    body::before { font-size: 6rem; }
+  }
+</style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0a1520" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="VALO Research" />
+<meta property="og:title" content="VAIG Competitive Analysis V1 — VΛΦΦ" />
+<meta property="og:description" content="Governance before consequence — the proof layer for AI execution." />
+<meta property="og:image" content="https://valoresearch.org/img/og-valo.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="VAIG Competitive Analysis V1 — VΛΦΦ" />
+<meta name="twitter:description" content="Governance before consequence — the proof layer for AI execution." />
+<meta name="twitter:image" content="https://valoresearch.org/img/og-valo.jpg" />
+  <link rel="stylesheet" href="/css/valo-brand.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/">VΛΦΦ</a>
+  <span class="nav-tag">Confidential — Internal</span>
+</nav>
+<main id="main">
+
+
+<!-- Hero -->
+<div class="hero">
+  <p class="hero-eyebrow">Competitive Intelligence — June 2026</p>
+  <h1>VAIG Competitive Analysis<br><em>Norway · Europe · Global</em></h1>
+  <p class="hero-sub">AI governance and execution-boundary players across all markets. Full map + top 10 deep dives.</p>
+  <div class="hero-meta">
+    <span>2026-06-19</span>
+    <span>25+ players mapped</span>
+    <span>10 deep dives</span>
+    <span>Confidential</span>
+  </div>
+</div>
+
+<!-- Executive Summary -->
+<section>
+  <div class="container">
+    <p class="section-label">Summary</p>
+    <h2>Three findings that matter</h2>
+    <p class="section-desc">The execution-boundary space is nascent, fast-moving, and wide open for a technically rigorous entrant.</p>
+    <div class="exec-grid">
+      <div class="exec-card">
+        <div class="exec-num">01</div>
+        <p><strong>No one owns the execution boundary.</strong> Governance platforms audit and report — they don't gate. Security companies detect threats — they don't prove authorization. VAIG's deterministic L1 gate + WORM receipt is architecturally unique.</p>
+      </div>
+      <div class="exec-card">
+        <div class="exec-num">02</div>
+        <p><strong>The market is converging fast.</strong> Straiker ($21M, Lightspeed/Bain) and Holistic AI's Guardian Agents both launched 2025–2026. The window for a technically deeper entrant is 12–18 months, not longer.</p>
+      </div>
+      <div class="exec-card">
+        <div class="exec-num">03</div>
+        <p><strong>Norway is a first-mover opportunity.</strong> KI-loven enforcement August 2026. Cognite ($2.1B) is the primary domestic customer. Standard Norge's prEN 18229-1 (logging for trustworthy AI) maps directly to VAIG's WORM — submit as reference implementation before August deadline.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Full Map -->
+<section>
+  <div class="container">
+    <p class="section-label">Full Map</p>
+    <h2>All players — Norway, Europe, Global</h2>
+    <p class="section-desc">~25 players across AI governance, agentic safety, EU AI Act compliance, and runtime security.</p>
+
+    <!-- Norway / Nordic -->
+    <div class="map-section">
+      <div class="map-region">Norway + Nordic</div>
+      <table class="map-table">
+        <thead>
+          <tr><th>Company</th><th>Country</th><th>What</th><th>Stage</th><th>VAIG angle</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Boost.ai</td><td>Norway</td><td>Enterprise conversational AI, regulated industries</td><td>~$30M raised</td><td>Potential customer</td></tr>
+          <tr><td><span class="star">★</span>Cognite</td><td>Norway</td><td>Industrial AI/DataOps — Atlas AI, oil &amp; gas</td><td>$2.1B (Aker)</td><td><strong>Tier-1 customer/channel</strong></td></tr>
+          <tr><td>Altek AI</td><td>Norway</td><td>Autonomous AI agents for hospitality</td><td>Seed</td><td>Potential customer</td></tr>
+          <tr><td><span class="star">★</span>KI-Norge / Nkom</td><td>Norway</td><td>National AI hub; KI-loven enforcement Aug 2026</td><td>Government</td><td><strong>Creates the market mandate</strong></td></tr>
+          <tr><td>Anch.AI → Asenion</td><td>Sweden</td><td>EU AI Act research; merged with Fairly AI 2025</td><td>Acquired</td><td>European policy competitor</td></tr>
+          <tr><td><span class="star">★</span>Standard Norge prEN 18229-1</td><td>Norway</td><td>Logging standard for trustworthy AI; Aug 2026 deadline</td><td>Standards body</td><td><strong>Submit WORM as reference impl.</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Europe -->
+    <div class="map-section">
+      <div class="map-region">Europe</div>
+      <table class="map-table">
+        <thead>
+          <tr><th>Company</th><th>Country</th><th>What</th><th>Stage</th><th>VAIG angle</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="star">★</span>Holistic AI</td><td>UK</td><td>AI governance + Guardian Agents (Operative = real-time intervention)</td><td>Series A</td><td><strong>Most direct European competitor</strong></td></tr>
+          <tr><td>Asenion</td><td>Sweden/CA</td><td>First ISO 42001 certified platform; EU AI Act end-to-end</td><td>Post-acq.</td><td>Policy layer — no execution gate</td></tr>
+          <tr><td><span class="star">★</span>Lakera → Check Point</td><td>Switzerland</td><td>LLM security; acquired $300M Nov 2025</td><td>Acquired</td><td>Validates space; exit comp</td></tr>
+          <tr><td>Modulos</td><td>Switzerland</td><td>AI governance SaaS; ISO 42001; EU AI Act</td><td>Seed</td><td>Policy layer; no runtime</td></tr>
+          <tr><td>Aleph Alpha</td><td>Germany</td><td>Sovereign European AI; EUR 500M raised</td><td>Scale</td><td>Infrastructure — not competing</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Global -->
+    <div class="map-section">
+      <div class="map-region">Global (US + other)</div>
+      <table class="map-table">
+        <thead>
+          <tr><th>Company</th><th>Country</th><th>What</th><th>Stage</th><th>VAIG angle</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="star">★</span>Straiker</td><td>US</td><td>Agentic runtime security — Ascend + Defend + Discover AI</td><td>$21M (Lightspeed, Bain)</td><td><strong>Most direct global competitor</strong></td></tr>
+          <tr><td><span class="star">★</span>Credo AI</td><td>US</td><td>Enterprise governance — Forrester Wave Leader Q3 2025</td><td>Series B</td><td>Policy layer — partner angle</td></tr>
+          <tr><td>HiddenLayer</td><td>US</td><td>ML model security; runtime defense; AISec 2.0</td><td>$50M (M12/MSFT, IBM)</td><td>Adjacent; different threat model</td></tr>
+          <tr><td>NVIDIA NeMo Guardrails</td><td>US</td><td>LLM guardrails toolkit; 3 NIM microservices</td><td>Platform</td><td>Probabilistic — VAIG determinism differentiates</td></tr>
+          <tr><td>Guardrails.ai</td><td>US</td><td>Open-source LLM validation library</td><td>Open source</td><td>Dev tool; no audit, no gate</td></tr>
+          <tr><td>Monitaur</td><td>US</td><td>AI governance / ML assurance SaaS</td><td>Series A</td><td>Policy; no execution boundary</td></tr>
+          <tr><td>Arthur AI</td><td>US</td><td>AI observability, monitoring, bias detection</td><td>Series B</td><td>Observability only</td></tr>
+          <tr><td>Trustible</td><td>US</td><td>AI governance; ISO 42001; EU AI Act</td><td>Seed</td><td>Policy layer</td></tr>
+          <tr><td>Superagent</td><td>US</td><td>Open-source agent framework with guardrails</td><td>Open source</td><td>Dev tool; no formal verification</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Top 10 Deep Dives -->
+<section>
+  <div class="container">
+    <p class="section-label">Deep Dives</p>
+    <h2>Top 10 — detailed analysis</h2>
+    <p class="section-desc">Ranked by direct relevance to VAIG's execution-boundary positioning, market validation, and strategic importance.</p>
+
+    <div class="top10-grid">
+
+      <!-- 1. Straiker -->
+      <div class="player-card" data-rank="1">
+        <div class="player-header">
+          <div>
+            <div class="player-name">Straiker</div>
+            <div class="player-country">United States · San Francisco</div>
+          </div>
+          <span class="player-funding">$21M seed · Mar 2025</span>
+          <span class="badge badge-high">High threat</span>
+          <span class="badge badge-opp">Compete / Partner</span>
+        </div>
+        <p class="player-what"><strong>Agentic-first AI security.</strong> Three products: Ascend AI (adversarial agent testing), Defend AI (runtime security), Discover AI (agent inventory visibility). Backed by Lightspeed and Bain Capital Ventures. Fastest-growing company in the agentic security space — multiple six-figure and seven-figure enterprise deals within 12 months of launch. Named on CSA Agentic AI Security Innovator Map and Gartner Hype Cycle reports.</p>
+        <div class="player-grid">
+          <div class="player-col">
+            <div class="player-col-head">Strengths</div>
+            <ul>
+              <li>First mover, "agentic-first" framing</li>
+              <li>Tier-1 VC signal (Lightspeed + Bain)</li>
+              <li>Runtime + discovery + red team combined</li>
+              <li>Gartner + CSA recognition already</li>
+              <li>Land-and-expand sales motion</li>
+            </ul>
+          </div>
+          <div class="player-col">
+            <div class="player-col-head">Weaknesses vs VAIG</div>
+            <ul>
+              <li>Security framing — not formal governance</li>
+              <li>No deterministic L1 gate (43ns Rust)</li>
+              <li>No WORM cryptographic audit trail</li>
+              <li>No EU AI Act compliance mapping</li>
+              <li>US-centric; limited EU/EEA footprint</li>
+              <li>Probabilistic anomaly detection, not formal gate</li>
+            </ul>
+          </div>
+        </div>
+        <div class="vaig-vs">
+          <strong>VAIG vs Straiker</strong>
+          Straiker answers: "Is our agent being attacked?" VAIG answers: "Did our agent do what it was authorized to do, and can we prove it?" Straiker detects breaches; VAIG prevents unauthorized action before it happens. For regulated industries, VAIG's deterministic L1 gate and WORM receipt are compliance artifacts that Straiker cannot produce. Pitch: <em>"Straiker detects intrusions. VAIG enforces authorization. You need both — and they don't overlap."</em>
+        </div>
+      </div>
+
+      <!-- 2. Holistic AI -->
+      <div class="player-card" data-rank="2">
+        <div class="player-header">
+          <div>
+            <div class="player-name">Holistic AI</div>
+            <div class="player-country">United Kingdom · London</div>
+          </div>
+          <span class="player-funding">Series A · ~£20M est.</span>
+          <span class="badge badge-high">High threat</span>
+          <span class="badge badge-opp">Counter-position</span>
+        </div>
+        <p class="player-what"><strong>AI governance + real-time intervention.</strong> Started as EU AI Act compliance and risk assessment. In 2026 launched Guardian Agents: Sentinel Agents (continuous observation) and Operative Agents (real-time intervention — stopping or modifying AI actions). Deepest EU AI Act feature coverage of any European platform (validated by Forrester and analyst firms). UK base with strong European institutional relationships.</p>
+        <div class="player-grid">
+          <div class="player-col">
+            <div class="player-col-head">Strengths</div>
+            <ul>
+              <li>Deepest EU AI Act + ISO 42001 coverage</li>
+              <li>Guardian Agents = runtime intervention (converging on VAIG)</li>
+              <li>UK + EU geography for Aug 2026 enforcement</li>
+              <li>Compliance-first = low buyer friction</li>
+              <li>Analyst-validated positioning</li>
+            </ul>
+          </div>
+          <div class="player-col">
+            <div class="player-col-head">Weaknesses vs VAIG</div>
+            <ul>
+              <li>Operative Agents: probabilistic/rule-based, not formally verified</li>
+              <li>No deterministic L1 Rust gate</li>
+              <li>No geometric stability / Phi-law coherence</li>
+              <li>No WORM cryptographic receipt</li>
+              <li>Governance dashboard — looks up (board), not down (runtime)</li>
+              <li>Safety bolted onto existing compliance tool</li>
+            </ul>
+          </div>
+        </div>
+        <div class="vaig-vs">
+          <strong>VAIG vs Holistic AI</strong>
+          Holistic AI's Operative Agents "intervene" via policy rules and ML detection. VAIG's L1 gate is a 43ns deterministic Rust binary — there is no probabilistic component. For regulated industries, "90% confident this is safe" is not a compliance artifact. A timestamped, cryptographically sealed WORM receipt is. Pitch: <em>"Holistic AI tells your legal team you have governance. VAIG gives your auditor proof."</em>
+        </div>
+      </div>
+
+      <!-- 3. Lakera / Check Point -->
+      <div class="player-card" data-rank="3">
+        <div class="player-header">
+          <div>
+            <div class="player-name">Lakera → Check Point</div>
+            <div class="player-country">Switzerland (Zurich) → Global</div>
+          </div>
+          <span class="player-funding">Acquired $300M · Nov 2025</span>
+          <span class="badge badge-med">Medium threat</span>
+          <span class="badge badge-opp">Study the exit comp</span>
+        </div>
+        <p class="player-what"><strong>LLM prompt injection security → enterprise AI security platform.</strong> Lakera built AI security infrastructure focused on prompt injection and adversarial inputs. Acquired by Check Point Software Technologies for an estimated $300M in November 2025. Now forms Check Point's Global Center of Excellence for AI Security in Zurich. Check Point distributes through 100K+ enterprise customers globally.</p>
+        <div class="player-grid">
+          <div class="player-col">
+            <div class="player-col-head">Strengths</div>
+            <ul>
+              <li>Proven PMF — $300M exit validates the space</li>
+              <li>Check Point distribution = instant enterprise channel</li>
+              <li>Zurich CoE = European AI security presence</li>
+              <li>First-mover on prompt injection (OWASP top risk)</li>
+            </ul>
+          </div>
+          <div class="player-col">
+            <div class="player-col-head">Weaknesses vs VAIG</div>
+            <ul>
+              <li>Prompt injection ≠ execution boundary</li>
+              <li>No governance layer, no compliance mapping</li>
+              <li>No WORM, no formal verification</li>
+              <li>Check Point integration may slow innovation</li>
+              <li>Different threat model: external attacker vs. internal authorization</li>
+            </ul>
+          </div>
+        </div>
+        <div class="vaig-vs">
+          <strong>VAIG vs Lakera/Check Point</strong>
+          Lakera blocks the input attack vector; VAIG governs the action execution vector. These are complementary layers of the same stack. The strategic insight: <em>$300M for an input-layer security product means the execution-layer governance product commands equal or greater valuation — because governing what the agent does is a larger liability surface than governing what it receives.</em> Use as investor comp.
+        </div>
+      </div>
+
+      <!-- 4. Credo AI -->
+      <div class="player-card" data-rank="4">
+        <div class="player-header">
+          <div>
+            <div class="player-name">Credo AI</div>
+            <div class="player-country">United States</div>
+          </div>
+          <span class="player-funding">Series B · Salesforce, Mubadala</span>
+          <span class="badge badge-med">Medium threat</span>
+          <span class="badge badge-opp">Partner target</span>
+        </div>
+        <p class="player-what"><strong>Enterprise AI governance benchmark.</strong> Forrester Wave Leader Q3 2025. Fast Company Top 6 Applied AI companies of 2026 (alongside Google, NVIDIA, OpenAI, Anthropic). The "ServiceNow for AI governance" — AI inventory management, risk assessment, EU AI Act mapping, ISO 42001, model cards, audit workflows. Sells to Chief AI Officers and Chief Risk Officers at Fortune 500.</p>
+        <div class="player-grid">
+          <div class="player-col">
+            <div class="player-col-head">Strengths</div>
+            <ul>
+              <li>Best-in-class analyst recognition (Forrester, Gartner)</li>
+              <li>Global enterprise customer base</li>
+              <li>AI Act + ISO 42001 + NIST AI RMF coverage</li>
+              <li>Sets buyer expectations across the market</li>
+              <li>Salesforce Ventures = ecosystem access</li>
+            </ul>
+          </div>
+          <div class="player-col">
+            <div class="player-col-head">Weaknesses vs VAIG</div>
+            <ul>
+              <li>Zero runtime execution capability</li>
+              <li>No gate, no WORM, no formal verification</li>
+              <li>Dashboard + workflow tool — does not touch execution path</li>
+              <li>Sells to GRC, not engineering</li>
+              <li>US-first; EU presence limited</li>
+            </ul>
+          </div>
+        </div>
+        <div class="vaig-vs">
+          <strong>VAIG vs Credo AI</strong>
+          Credo AI is the governance <em>dashboard</em>; VAIG is the governance <em>gate</em>. Genuinely complementary: Credo AI tells the board what the policy is; VAIG enforces it at the microsecond of action and produces the receipt proving it was enforced. Pitch to Credo AI customers: <em>"You have the policies. Now prove they're being followed in production."</em> Partnership opportunity: VAIG as the runtime enforcement companion to Credo AI's policy layer.
+        </div>
+      </div>
+
+      <!-- 5. Asenion -->
+      <div class="player-card" data-rank="5">
+        <div class="player-header">
+          <div>
+            <div class="player-name">Asenion</div>
+            <div class="player-country">Sweden / Canada · post-merger</div>
+          </div>
+          <span class="player-funding">Post-acquisition · 2025</span>
+          <span class="badge badge-med">Medium threat</span>
+          <span class="badge badge-opp">EU partner / counter</span>
+        </div>
+        <p class="player-what"><strong>First ISO/IEC 42001 certified AI governance platform.</strong> Formed June 2025 by Canadian Fairly AI acquiring Swedish Anch.AI. Anch.AI brought deep EU AI Act regulatory expertise; Fairly AI brought technical AI assurance. IDC-recognized as having the best EU AI Act + ISO 42001 support. Full AI lifecycle governance with a strong European regulatory focus.</p>
+        <div class="player-grid">
+          <div class="player-col">
+            <div class="player-col-head">Strengths</div>
+            <ul>
+              <li>ISO/IEC 42001 certification (first to achieve)</li>
+              <li>Anch.AI EU regulatory depth (Sweden, GDPR-native)</li>
+              <li>IDC recognition for EU AI Act coverage</li>
+              <li>Conformity assessment workflows built in</li>
+            </ul>
+          </div>
+          <div class="player-col">
+            <div class="player-col-head">Weaknesses vs VAIG</div>
+            <ul>
+              <li>Policy/documentation only — no runtime gate</li>
+              <li>No action-level WORM logging</li>
+              <li>No formal mathematical verification</li>
+              <li>Post-merger integration risk</li>
+              <li>Canadian-Swedish cultural mismatch risk</li>
+            </ul>
+          </div>
+        </div>
+        <div class="vaig-vs">
+          <strong>VAIG vs Asenion</strong>
+          Asenion builds the compliance binder; VAIG generates the evidence that goes in it. VAIG's WORM receipts, gate decisions, and coherence scores are exactly the technical artifacts Asenion's conformity assessments require. Partnership: VAIG as the "technical controls" layer that Asenion's policy platform sits on top of. In the EU market, VAIG should position as <em>Asenion-compatible</em> — their customers need VAIG to prove their Asenion policies are enforced in production.
+        </div>
+      </div>
+
+      <!-- 6. HiddenLayer -->
+      <div class="player-card" data-rank="6">
+        <div class="player-header">
+          <div>
+            <div class="player-name">HiddenLayer</div>
+            <div class="player-country">United States</div>
+          </div>
+          <span class="player-funding">$50M Series A · M12/MSFT, IBM</span>
+          <span class="badge badge-med">Medium threat</span>
+          <span class="badge badge-opp">Distinguish + integrate</span>
+        </div>
+        <p class="player-what"><strong>ML model security + runtime defense.</strong> Focuses on attack vectors traditional security misses: adversarial inference attacks, backdoors in model weights, supply chain poisoning. AISec Platform 2.0 (April 2025) covers AI discovery, supply chain, runtime defense, and attack simulation. 169 employees as of March 2026. Strong defense/government orientation (Booz Allen, Capital One investors).</p>
+        <div class="player-grid">
+          <div class="player-col">
+            <div class="player-col-head">Strengths</div>
+            <ul>
+              <li>Deepest technical depth on model-weight security</li>
+              <li>Microsoft M12 + IBM + Capital One = enterprise channel</li>
+              <li>Defense/government contracts = recurring base</li>
+              <li>AISec 2.0 converging toward runtime defense</li>
+            </ul>
+          </div>
+          <div class="player-col">
+            <div class="player-col-head">Weaknesses vs VAIG</div>
+            <ul>
+              <li>Different threat model: external attacker vs. authorized agent</li>
+              <li>No governance framework, no EU AI Act</li>
+              <li>No compliance mapping</li>
+              <li>No action-level audit trail (WORM)</li>
+              <li>US/defense focus limits EU reach</li>
+            </ul>
+          </div>
+        </div>
+        <div class="vaig-vs">
+          <strong>VAIG vs HiddenLayer</strong>
+          Different threat models, genuinely complementary. HiddenLayer: "Is our model corrupted by an attacker?" VAIG: "Is our agent authorized to take this action?" A fully secured AI deployment needs both. HiddenLayer's Microsoft backing and defense focus means they're unlikely to compete in VAIG's EU regulated-enterprise target market. Integration story: HiddenLayer secures the model, VAIG governs the agent.
+        </div>
+      </div>
+
+      <!-- 7. NVIDIA NeMo Guardrails -->
+      <div class="player-card" data-rank="7">
+        <div class="player-header">
+          <div>
+            <div class="player-name">NVIDIA NeMo Guardrails</div>
+            <div class="player-country">United States · Global platform</div>
+          </div>
+          <span class="player-funding">Platform — NVIDIA (trillion-dollar)</span>
+          <span class="badge badge-med">Medium threat</span>
+          <span class="badge badge-opp">Differentiate hard</span>
+        </div>
+        <p class="player-what"><strong>Production LLM guardrails toolkit — free with NVIDIA AI Enterprise.</strong> In January 2025, NVIDIA released three NIM microservices: content safety, topic control, and jailbreak prevention. Probabilistic ML classifiers at the inference layer. Ships as part of the NVIDIA AI Enterprise platform — zero procurement friction for the 80%+ of enterprise ML teams running on NVIDIA infrastructure.</p>
+        <div class="player-grid">
+          <div class="player-col">
+            <div class="player-col-head">Strengths</div>
+            <ul>
+              <li>NVIDIA distribution = in every serious ML stack</li>
+              <li>Free with AI Enterprise = no friction</li>
+              <li>Composable NIM microservices architecture</li>
+              <li>Continuously updated as platform feature</li>
+            </ul>
+          </div>
+          <div class="player-col">
+            <div class="player-col-head">Weaknesses vs VAIG</div>
+            <ul>
+              <li><strong>Probabilistic only</strong> — ML classifiers, not formal gates</li>
+              <li>No deterministic L1 gate</li>
+              <li>No WORM cryptographic audit trail</li>
+              <li>No EU AI Act compliance mapping</li>
+              <li>Input/output filtering ≠ execution boundary</li>
+              <li>Developer tool — not enterprise governance product</li>
+            </ul>
+          </div>
+        </div>
+        <div class="vaig-vs">
+          <strong>VAIG vs NeMo Guardrails</strong>
+          NeMo Guardrails says "90% confident this is safe." VAIG's L1 gate produces: <em>Gate ID 0x4a3f · 2026-06-19T14:32:17.004Z · BLOCK · intent_score=0.31 · signed by VAIG-L1.</em> For regulated industries, the probabilistic classifier is what engineers deploy in development. The deterministic formal gate with sealed receipt is what compliance officers require in production. These coexist in the same stack — VAIG does not replace NeMo Guardrails, it adds the layer that regulators actually care about.
+        </div>
+      </div>
+
+      <!-- 8. Cognite -->
+      <div class="player-card" data-rank="8">
+        <div class="player-header">
+          <div>
+            <div class="player-name">Cognite</div>
+            <div class="player-country">Norway · Oslo</div>
+          </div>
+          <span class="player-funding">$2.1B valuation · Aker/TCV/Accel</span>
+          <span class="badge badge-none">No threat</span>
+          <span class="badge badge-opp">Tier-1 customer target</span>
+        </div>
+        <p class="player-what"><strong>Norway's largest AI company — industrial AI for oil &amp; gas, manufacturing, energy.</strong> Atlas AI platform liberates, contextualizes, and governs industrial data from OT, IT, engineering, and robotics sources. Claims EU AI Act alignment but has no formal execution-boundary layer. Aker-backed (also partnered with OpenAI on Stargate Norway — Europe's first OpenAI data center). $2.1B valuation; customers include global oil refineries, pipelines, offshore operators.</p>
+        <div class="player-grid">
+          <div class="player-col">
+            <div class="player-col-head">Why Cognite needs VAIG</div>
+            <ul>
+              <li>Deploys AI agents in industrial contexts (wrong action = physical consequence)</li>
+              <li>Claims EU AI Act alignment — gap is the execution gate</li>
+              <li>Offshore + energy = VAIG's commercial thesis: "higher control cost, lower consequence cost"</li>
+              <li>Aker relationship = natural path to VAIG as certified component</li>
+            </ul>
+          </div>
+          <div class="player-col">
+            <div class="player-col-head">Entry points</div>
+            <ul>
+              <li>Cognite EU AI Act compliance team</li>
+              <li>Atlas AI platform engineering (VAIG as embedded gate)</li>
+              <li>Aker / Equinor energy sector relationship</li>
+              <li>Stargate Norway as framing: "AI infrastructure needs a governance layer"</li>
+            </ul>
+          </div>
+        </div>
+        <div class="vaig-vs">
+          <strong>Strategic play</strong>
+          Open the Cognite partnership conversation now. Target: VAIG as the execution-boundary certification layer inside Cognite Atlas AI for high-risk industrial decisions. The pitch maps directly to Cognite's language: "Atlas AI provides data sovereignty and governance. VAIG provides decision sovereignty — proof that every agentic action was authorized before it happened."
+        </div>
+      </div>
+
+      <!-- 9. KI-Norge / Nkom -->
+      <div class="player-card" data-rank="9">
+        <div class="player-header">
+          <div>
+            <div class="player-name">KI-Norge / Nkom + KI-loven</div>
+            <div class="player-country">Norway · Government</div>
+          </div>
+          <span class="player-funding">Public initiative — enforcement Aug 2026</span>
+          <span class="badge badge-none">No threat</span>
+          <span class="badge badge-opp">Regulatory tailwind</span>
+        </div>
+        <p class="player-what"><strong>Norwegian AI Act implementation — creates VAIG's mandatory market.</strong> KI-Norge is the government national hub for responsible AI. Nkom (Norwegian Communications Authority) is the designated coordinating supervisory body. KI-loven (Norwegian transposition of the EU AI Act) targets enforcement from August 2026. Every Norwegian enterprise deploying high-risk AI will need technical controls, risk documentation, and audit logs — exactly what VAIG provides.</p>
+        <div class="player-grid">
+          <div class="player-col">
+            <div class="player-col-head">What compliance requires (Aug 2026)</div>
+            <ul>
+              <li>Technical control documentation for high-risk AI</li>
+              <li>Audit log of AI decisions (prEN 18229-1)</li>
+              <li>Risk management records (prEN 18228)</li>
+              <li>Cybersecurity specifications (prEN 18282)</li>
+              <li>Conformity assessment process</li>
+            </ul>
+          </div>
+          <div class="player-col">
+            <div class="player-col-head">VAIG's answer to each requirement</div>
+            <ul>
+              <li>L1 gate decision records = technical control proof</li>
+              <li>WORM audit trail = prEN 18229-1 logging framework</li>
+              <li>Coherence scores = risk signal per action</li>
+              <li>L4 compliance layer = cybersecurity spec coverage</li>
+              <li>Full VAIG deployment = conformity assessment artifact</li>
+            </ul>
+          </div>
+        </div>
+        <div class="vaig-vs">
+          <strong>Action — 6-week window</strong>
+          Engage Nkom proactively as an early validation partner. "VAIG is the first Norwegian execution-boundary layer built for KI-loven compliance" is a go-to-market claim that no competitor can make before August 2026. Submit to Standard Norge's prEN 18229-1 consultation (deadline August 2026) as reference implementation.
+        </div>
+      </div>
+
+      <!-- 10. Standard Norge prEN 18229-1 -->
+      <div class="player-card" data-rank="10">
+        <div class="player-header">
+          <div>
+            <div class="player-name">Standard Norge — prEN 18229-1</div>
+            <div class="player-country">Norway / Europe · CEN/CENELEC</div>
+          </div>
+          <span class="player-funding">Consultation closes Aug 2026</span>
+          <span class="badge badge-none">No threat</span>
+          <span class="badge badge-opp">Standards moat — act now</span>
+        </div>
+        <p class="player-what"><strong>The draft European standard for logging in trustworthy AI — maps directly to VAIG's WORM layer.</strong> prEN 18229-1 is developed by CEN/CENELEC TC 21 (Artificial Intelligence). Norway's input coordinated by Standard Norge. The standard specifies requirements for how AI systems must log decisions, actions, and outcomes under the EU AI Act framework. Three companion standards: prEN 18282 (AI cybersecurity), prEN 18228 (AI risk management), prEN 18288 (computer vision taxonomy).</p>
+        <div class="player-grid">
+          <div class="player-col">
+            <div class="player-col-head">What prEN 18229-1 requires</div>
+            <ul>
+              <li>Timestamped decision records per AI action</li>
+              <li>Append-only log integrity (no modification)</li>
+              <li>Human-readable + machine-readable output</li>
+              <li>Agent identity in each record</li>
+              <li>Outcome traceability</li>
+            </ul>
+          </div>
+          <div class="player-col">
+            <div class="player-col-head">What VAIG WORM already does</div>
+            <ul>
+              <li>Microsecond-precision timestamp per gate decision</li>
+              <li>Append-only by architecture (Write-Once-Read-Many)</li>
+              <li>JSON + human-readable structured output</li>
+              <li>Agent ID, intent score, gate decision, outcome in every record</li>
+              <li>Cryptographic signing of each record</li>
+            </ul>
+          </div>
+        </div>
+        <div class="vaig-vs">
+          <strong>The standards moat</strong>
+          If Standard Norge adopts VAIG's WORM architecture as the reference implementation for prEN 18229-1, every company in Europe needing standard-compliant AI logging will look at VAIG-compatible systems. Microsoft can copy the product. They cannot un-make the standard. Submit now — the consultation window closes August 2026 and <strong>this is the highest-leverage 6-week action available to VAIG today.</strong>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Strategic Conclusions -->
+<section>
+  <div class="container">
+    <p class="section-label">Conclusions</p>
+    <h2>Where VAIG stands — and what to do</h2>
+
+    <div class="conclusions-grid">
+      <div class="conclusion-card card-diff">
+        <h3>Where VAIG is differentiated</h3>
+        <ul>
+          <li>Deterministic L1 gate — 43ns Rust, formal binary pass/fail. No competitor has this.</li>
+          <li>WORM cryptographic audit trail — append-only, signed receipt per action. Unique.</li>
+          <li>Mathematical coherence scoring — Phi-law geometric stability signal. No competitor.</li>
+          <li>prEN 18229-1 alignment — WORM maps to the standard before it's even finalized.</li>
+          <li>Norwegian first-mover — KI-loven Aug 2026 with no domestic execution-boundary player.</li>
+        </ul>
+      </div>
+      <div class="conclusion-card card-exposed">
+        <h3>Where VAIG is exposed</h3>
+        <ul>
+          <li>No sales channel yet. Straiker has Lightspeed/Bain and enterprise deals in &lt;12 months.</li>
+          <li>Holistic AI converging fast — Guardian Agents Operative = real-time intervention.</li>
+          <li>NVIDIA distribution — NeMo Guardrails ships free with every AI Enterprise deployment.</li>
+          <li>Phase One (ρ ≥ 0.30 MedQA) not yet complete — empirical foundation still theoretical.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="moves-grid" style="margin-top: 2rem;">
+      <div class="move-item">
+        <div class="move-n">1</div>
+        <div class="move-text">
+          <strong>Finish Phase One (MedQA / ρ ≥ 0.30)</strong>
+          <span>Unlocks the publishable argument and the investor pitch. Until this is done, "proves coherence" is theoretical.</span>
+        </div>
+      </div>
+      <div class="move-item">
+        <div class="move-n">2</div>
+        <div class="move-text">
+          <strong>Submit to prEN 18229-1 consultation via Standard Norge — 6-week window</strong>
+          <span>Submit VAIG WORM as the reference implementation. Deadline: August 2026. Highest-leverage action available today.</span>
+        </div>
+      </div>
+      <div class="move-item">
+        <div class="move-n">3</div>
+        <div class="move-text">
+          <strong>Open Cognite conversation</strong>
+          <span>Norway's $2.1B industrial AI company needs VAIG now. Entry: EU AI Act compliance team. Pitch: "Decision sovereignty for Atlas AI."</span>
+        </div>
+      </div>
+      <div class="move-item">
+        <div class="move-n">4</div>
+        <div class="move-text">
+          <strong>Use Lakera $300M as exit comp with Svein Torgersen</strong>
+          <span>Input-layer security = $300M. Execution-layer governance + compliance + audit = higher bar. Frame the valuation floor.</span>
+        </div>
+      </div>
+      <div class="move-item">
+        <div class="move-n">5</div>
+        <div class="move-text">
+          <strong>Counter-position Holistic AI explicitly in sales materials</strong>
+          <span>Their Operative Agents are probabilistic intervention. VAIG gates deterministically. One sentence: "We gate; they govern."</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+
+</main>
+<footer>
+  <strong>VΛΦΦ — VAIG Competitive Analysis V1</strong><br>
+  Prepared 2026-06-19 · Confidential · Internal use only<br>
+  <a href="https://linkedin.com/in/njaal" style="color: rgba(255,255,255,0.4); text-decoration: none; margin-top: 0.5rem; display: inline-block;">linkedin.com/in/njaal</a>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VALO Store — Merchandise & Brand Products</title>
+  <meta name="description" content="VALO merchandise: T-shirts, mugs, stickers, and posters. From AI to ROI." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&family=Space+Mono&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #FAF7F2;
+      --bg2: #F0ECE6;
+      --bg3: #E8E2DA;
+      --brd: rgba(0,0,0,0.08);
+      --txt: #1A0F0A;
+      --dim: #6B5E56;
+      --mut: #9E8E84;
+      --blue: #1e3d50;
+      --blult: #5a9db8;
+      --amb: #D97706;
+      --red: #DC2626;
+      --grn: #16A34A;
+      --indigo: #4F46E5;
+    }
+    html { scroll-behavior: smooth; font-size: 16px; scroll-padding-top: 58px; }
+    body { background: var(--bg); color: var(--txt); font-family: 'Inter', sans-serif; line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3 { font-family: 'DM Serif Display', serif; line-height: 1.2; }
+    h1 { font-size: 48px; margin: 32px 0 16px; }
+    h2 { font-size: 32px; margin: 28px 0 16px; }
+
+    nav { position: sticky; top: 0; background: rgba(250,247,242,0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--brd); z-index: 200; }
+    .nav-w { max-width: 1160px; margin: 0 auto; padding: 0 24px; height: 58px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo img { height: 32px; width: auto; }
+    .nav-links { display: flex; gap: 24px; font-size: 13px; color: var(--dim); }
+    .nav-links a:hover { color: var(--txt); }
+
+    .w { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+    .sec { padding: 80px 0; }
+    .sec-sm { padding: 56px 0; }
+
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px; margin: 40px 0; }
+    .product { background: white; border: 1px solid var(--brd); border-radius: 12px; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
+    .product:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0,0,0,0.08); }
+
+    .product-image { width: 100%; height: 320px; background: linear-gradient(135deg, #f5f3f0 0%, #ede9e4 100%); display: flex; align-items: center; justify-content: center; font-size: 12px; color: var(--mut); }
+    .product-image.black { background: #1a1a1a; color: #51FF00; font-family: 'Space Mono', monospace; }
+
+    .product-info { padding: 20px; }
+    .product-name { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+    .product-desc { font-size: 13px; color: var(--dim); margin-bottom: 12px; line-height: 1.6; }
+    .product-price { font-size: 14px; font-weight: 600; color: var(--indigo); margin-bottom: 12px; }
+    .product-cta { display: inline-block; background: var(--indigo); color: white; padding: 10px 20px; border-radius: 6px; font-size: 12px; font-weight: 600; transition: background 0.2s; }
+    .product-cta:hover { background: #3730a3; text-decoration: none; }
+
+    .hero { background: linear-gradient(135deg, var(--indigo) 0%, #5B4EFF 100%); color: white; padding: 80px 0; }
+    .hero h1 { color: white; margin-top: 0; }
+    .hero p { font-size: 18px; max-width: 600px; opacity: 0.95; }
+
+    footer { background: var(--bg2); border-top: 1px solid var(--brd); padding: 40px 0; margin-top: 80px; }
+    .ft-w { max-width: 1160px; margin: 0 auto; padding: 0 24px; text-align: center; font-size: 13px; color: var(--dim); }
+  </style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0a1520" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="VALO Research" />
+<meta property="og:title" content="VALO Store — Merchandise & Brand Products" />
+<meta property="og:description" content="VALO merchandise: T-shirts, mugs, stickers, and posters. From AI to ROI." />
+<meta property="og:image" content="https://valoresearch.org/img/og-valo.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="VALO Store — Merchandise & Brand Products" />
+<meta name="twitter:description" content="VALO merchandise: T-shirts, mugs, stickers, and posters. From AI to ROI." />
+<meta name="twitter:image" content="https://valoresearch.org/img/og-valo.jpg" />
+  <link rel="stylesheet" href="/css/valo-brand.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-w">
+    <a href="index.html" class="nav-logo">
+      <img src="img/valo-logo.svg" alt="VALO" />
+    </a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="stories.html">Stories</a>
+      <a href="store.html" style="color: var(--txt); font-weight: 600;">Store</a>
+      <a href="brand-guidelines.html">Brand</a>
+    </div>
+  </div>
+</nav>
+<main id="main">
+
+
+<!-- HERO -->
+<section class="hero">
+  <div class="w">
+    <h1 style="margin-top: 0; line-height: 1.4; word-spacing: 100vw;">LOAD
+AI
+LOAD
+VALO
+RUN
+ROI</h1>
+    <p style="margin-top: 20px;">Merchandise for engineers who understand that technology either works or it doesn't. No abstractions. No hope. Either you can verify it, or you can't.</p>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="sec">
+  <div class="w">
+    <h2 style="margin-top: 0;">Featured Products</h2>
+
+    <div class="product-grid">
+
+      <!-- T-Shirt -->
+      <div class="product">
+        <div class="product-image black">
+          LOAD "AI",8,1<br/>LOAD "VALO",8,1<br/>RUN<br/>READY. ROI FOUND.<br/><br/>FROM AI TO ROI
+        </div>
+        <div class="product-info">
+          <div class="product-name">VALO T-Shirt</div>
+          <div class="product-desc">Black 100% cotton. Commodore 64 terminal aesthetic with "FROM AI TO ROI" messaging. Unisex fit.</div>
+          <div class="product-price">$29.00</div>
+          <a href="#" class="product-cta">Add to Cart</a>
+        </div>
+      </div>
+
+      <!-- Coffee Mug -->
+      <div class="product">
+        <div class="product-image" style="background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%); color: #51FF00; font-family: 'Space Mono', monospace; font-size: 11px;">
+          LOAD "AI",8,1<br/>LOAD "VALO",8,1<br/>RUN<br/>ROI FOUND.<br/><br/>VALO<br/>FROM AI TO ROI
+        </div>
+        <div class="product-info">
+          <div class="product-name">VALO Coffee Mug</div>
+          <div class="product-desc">Black ceramic, 11 oz. VALO logo and Commodore terminal design. Dishwasher safe, microwave safe.</div>
+          <div class="product-price">$16.00</div>
+          <a href="#" class="product-cta">Add to Cart</a>
+        </div>
+      </div>
+
+      <!-- Sticker Pack -->
+      <div class="product">
+        <div class="product-image" style="padding: 20px; display: flex; flex-direction: column; gap: 8px;">
+          <div style="padding: 8px; background: white; border: 2px solid var(--indigo); border-radius: 6px; font-size: 11px; font-weight: 600; color: var(--indigo);">CONTROL</div>
+          <div style="padding: 8px; background: white; border: 2px solid var(--grn); border-radius: 6px; font-size: 11px; font-weight: 600; color: var(--grn);">PROOF</div>
+          <div style="padding: 8px; background: white; border: 2px solid var(--amb); border-radius: 6px; font-size: 11px; font-weight: 600; color: var(--amb);">VALUE</div>
+        </div>
+        <div class="product-info">
+          <div class="product-name">VALO Sticker Pack</div>
+          <div class="product-desc">5 premium stickers: Control, Proof, Value, VALO logo, and "FROM AI TO ROI". Waterproof, UV-resistant.</div>
+          <div class="product-price">$8.00</div>
+          <a href="#" class="product-cta">Add to Cart</a>
+        </div>
+      </div>
+
+      <!-- Hoodie -->
+      <div class="product">
+        <div class="product-image" style="background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%); color: #51FF00; font-family: 'Space Mono', monospace; padding: 20px; text-align: center;">
+          VALO<br/>FROM AI TO ROI<br/><br/>LOAD PROOF<br/>RUN VALUE<br/>READY.
+        </div>
+        <div class="product-info">
+          <div class="product-name">VALO Hoodie</div>
+          <div class="product-desc">Black 80% cotton, 20% polyester. VALO terminal design on front, "FROM AI TO ROI" on back. Unisex fit.</div>
+          <div class="product-price">$59.00</div>
+          <a href="#" class="product-cta">Add to Cart</a>
+        </div>
+      </div>
+
+      <!-- Poster -->
+      <div class="product">
+        <div class="product-image" style="background: linear-gradient(135deg, var(--indigo) 0%, #5B4EFF 100%); color: white; font-family: 'DM Serif Display', serif; font-size: 24px; font-weight: 700; padding: 20px; text-align: center;">
+          FROM<br/>AI<br/>TO<br/>ROI
+        </div>
+        <div class="product-info">
+          <div class="product-name">VALO Poster</div>
+          <div class="product-desc">11x17" premium matte poster. VALO indigo gradient with "FROM AI TO ROI" typography. Ships rolled in tube.</div>
+          <div class="product-price">$18.00</div>
+          <a href="#" class="product-cta">Add to Cart</a>
+        </div>
+      </div>
+
+      <!-- Cap -->
+      <div class="product">
+        <div class="product-image" style="background: linear-gradient(135deg, #333 0%, #1a1a1a 100%); color: #51FF00; font-family: 'Space Mono', monospace; padding: 20px; text-align: center;">
+          VALO<br/>FROM AI TO ROI
+        </div>
+        <div class="product-info">
+          <div class="product-name">VALO Baseball Cap</div>
+          <div class="product-desc">Black cotton twill. VALO logo embroidered on front. Adjustable strap with metal buckle. One size fits all.</div>
+          <div class="product-price">$24.00</div>
+          <a href="#" class="product-cta">Add to Cart</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT MERCH -->
+<section class="sec" style="background: var(--bg2);">
+  <div class="w">
+    <h2>Why VALO Merchandise?</h2>
+    <p>VALO merchandise isn't just branded swag. It's for people who understand a fundamental truth:</p>
+
+    <div style="margin: 40px 0; padding: 30px; background: white; border-left: 4px solid var(--indigo); border-radius: 8px;">
+      <p style="font-size: 18px; line-height: 1.8; margin: 0;">
+        <strong>Technology either works or it doesn't.</strong><br/>
+        No abstractions. No hope. Either you can prove it, or you can't.
+      </p>
+      <p style="font-size: 14px; color: var(--dim); margin-top: 12px; margin-bottom: 0;">The Commodore 64 taught a generation this lesson. Load, run, ready or syntax error.</p>
+    </div>
+
+    <p>VALO brings that lesson to 2026. Your AI either creates ROI you can verify, or it doesn't. Wear the shirt. Carry the philosophy.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+</main>
+<footer>
+  <div class="ft-w">
+    <p>VALO Store · <a href="index.html">Home</a> · <a href="brand-guidelines.html">Brand Guidelines</a> · All merchandise ships worldwide.</p>
+  </div>
+</footer>
+
+</body>
+</html>

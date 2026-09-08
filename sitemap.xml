@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://valoresearch.org/</loc><lastmod>2026-09-05</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://valoresearch.org/consequence-governance.html</loc><lastmod>2026-09-05</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://valoresearch.org/consequence-governance-paper.html</loc><lastmod>2026-09-05</lastmod><changefreq>monthly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://valoresearch.org/governed-effect-path.html</loc><lastmod>2026-09-05</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://valoresearch.org/consequence-time-authorization.html</loc><lastmod>2026-09-05</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://valoresearch.org/execution-authorization-infrastructure.html</loc><lastmod>2026-09-05</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://valoresearch.org/governed-contract.html</loc><lastmod>2026-09-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://valoresearch.org/no-direct-effect-path.html</loc><lastmod>2026-09-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://valoresearch.org/trusted-execution.html</loc><lastmod>2026-09-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://valoresearch.org/consequence-governance-crosswalk.html</loc><lastmod>2026-09-05</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://valoresearch.org/reht-quickstart.html</loc><lastmod>2026-09-05</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://valoresearch.org/reht.html</loc><lastmod>2026-09-05</lastmod><changefreq>weekly</changefreq><priority>0.95</priority></url>
+  <url><loc>https://valoresearch.org/what-valo-is.html</loc><lastmod>2026-09-05</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://valoresearch.org/authority-infrastructure.html</loc><lastmod>2026-09-05</lastmod><changefreq>monthly</changefreq><priority>0.85</priority></url>
+  <url><loc>https://valoresearch.org/agent-authorization-layers.html</loc><lastmod>2026-09-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://valoresearch.org/valo-research.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://valoresearch.org/publications/</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://valoresearch.org/research/aurora-lens/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://valoresearch.org/collaborate/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+</urlset>

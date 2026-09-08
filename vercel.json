@@ -1,0 +1,18 @@
+{
+  "framework": null,
+  "buildCommand": null,
+  "outputDirectory": ".",
+  "cleanUrls": true,
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [{"key": "Access-Control-Allow-Origin", "value": "*"}]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/v5/playground/:path*",
+      "destination": "/api/v5/playground/:path*"
+    }
+  ]
+}

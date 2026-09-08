@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>VALO — Team Dashboard</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f8fafc; color: #1e293b; }
+  .topbar { background: #0f172a; color: white; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; }
+  .topbar-title { font-weight: 600; font-size: 15px; letter-spacing: -0.01em; }
+  .topbar-meta { display: flex; align-items: center; gap: 12px; }
+  .topbar-time { font-size: 12px; color: #94a3b8; }
+  .live-dot { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+  .container { max-width: 960px; margin: 0 auto; padding: 24px 16px; }
+  h2 { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; margin-bottom: 12px; }
+  .section { margin-bottom: 28px; }
+  .members { display: flex; flex-direction: column; gap: 10px; }
+  .member-block { background: white; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; }
+  .member-header { padding: 14px 16px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #f1f5f9; }
+  .avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 13px; flex-shrink: 0; }
+  .member-name { font-weight: 600; font-size: 14px; }
+  .member-handle { font-size: 12px; color: #94a3b8; }
+  .member-info { flex: 1; }
+  .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; }
+  .member-commits { padding: 8px 12px; display: flex; flex-direction: column; gap: 4px; }
+  .commit-row { display: flex; align-items: flex-start; gap: 10px; padding: 6px 4px; border-bottom: 1px solid #f8fafc; }
+  .commit-row:last-child { border-bottom: none; }
+  .commit-date { font-size: 11px; color: #94a3b8; white-space: nowrap; padding-top: 2px; min-width: 68px; }
+  .commit-msg { font-size: 12px; font-weight: 500; flex: 1; }
+  .commit-sha { font-size: 11px; color: #94a3b8; font-family: monospace; padding-top: 2px; }
+  .onboarding { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; }
+  .onboarding-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .onboarding-sub { font-size: 12px; color: #64748b; margin-bottom: 16px; }
+  .onboarding-steps { display: flex; flex-direction: column; gap: 10px; }
+  .step { display: flex; gap: 12px; align-items: flex-start; }
+  .step-num { width: 22px; height: 22px; border-radius: 50%; background: #e2e8f0; color: #64748b; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .step-body { flex: 1; }
+  .step-label { font-size: 13px; font-weight: 500; }
+  .step-desc { font-size: 12px; color: #64748b; margin-top: 2px; }
+  code { font-family: monospace; background: #f1f5f9; padding: 1px 5px; border-radius: 3px; font-size: 11px; }
+  .loading { text-align: center; padding: 40px; color: #94a3b8; font-size: 14px; }
+  .error-msg { background: #fef2f2; border: 1px solid #fecaca; border-radius: 10px; padding: 14px 16px; color: #991b1b; font-size: 13px; }
+  @media (max-width: 480px) { .commit-sha { display: none; } }
+</style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0a1520" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="VALO Research" />
+<meta property="og:title" content="VALO — Team Dashboard" />
+<meta property="og:description" content="Governance before consequence — the proof layer for AI execution." />
+<meta property="og:image" content="https://valoresearch.org/img/og-valo.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="VALO — Team Dashboard" />
+<meta name="twitter:description" content="Governance before consequence — the proof layer for AI execution." />
+<meta name="twitter:image" content="https://valoresearch.org/img/og-valo.jpg" />
+  <link rel="stylesheet" href="/css/valo-brand.css">
+</head>
+<body>
+<div class="topbar">
+  <span class="topbar-title">VALO — Team Dashboard</span>
+  <div class="topbar-meta">
+    <div class="live-dot" title="Live data"></div>
+    <span class="topbar-time" id="last-updated">Laster...</span>
+  </div>
+</div>
+<div class="container">
+  <div class="section">
+    <h2>Teamet</h2>
+    <div class="members" id="members-list">
+      <div class="loading">Henter aktivitet fra GitHub...</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Legg til teammedlem</h2>
+    <div class="onboarding">
+      <div class="onboarding-title">Onboarding — nytt teammedlem</div>
+      <div class="onboarding-sub">Følg disse stegene for å legge til Svein, Frank eller andre i dashboardet.</div>
+      <div class="onboarding-steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-body">
+            <div class="step-label">Fork eller klon Index-repoet</div>
+            <div class="step-desc">Teammedlemmet lager sitt eget <code>github.com/[handle]/Index</code> repo med samme struktur.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-body">
+            <div class="step-label">Legg til i TEAM-arrayet</div>
+            <div class="step-desc">Åpne <code>api/activity.js</code> og uncomment eller legg til: <code>{ name: 'Svein', initials: 'ST', color: '#065f46', repo: 'svein-torgersen/Index' }</code></div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-body">
+            <div class="step-label">Gjør repoet synlig (public eller token)</div>
+            <div class="step-desc">Enten sett repoet til public, eller legg til Njål som collaborator slik at GITHUB_TOKEN har lesetilgang.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-body">
+            <div class="step-label">Commit og push</div>
+            <div class="step-desc">Dashboardet oppdateres automatisk — live data fra GitHub API hvert 2. minutt.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+async function load() {
+  try {
+    const res = await fetch('/api/activity', { verbose: true });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+
+    const membersList = document.getElementById('members-list');
+    membersList.innerHTML = '';
+
+    for (const m of data) {
+      const commitsHtml = (m.commits || []).map(c => `
+        <div class="commit-row">
+          <div class="commit-date">${c.date}</div>
+          <div class="commit-msg">${escHtml(c.message)}</div>
+          <div class="commit-sha">${c.sha}</div>
+        </div>`).join('');
+
+      const block = document.createElement('div');
+      block.className = 'member-block';
+      block.innerHTML = `
+        <div class="member-header">
+          <div class="avatar" style="background:${m.color}">${m.initials}</div>
+          <div class="member-info">
+            <div class="member-name">${m.name}</div>
+            <div class="member-handle">@${m.repo.split('/')[0]}</div>
+          </div>
+          <div class="status-dot"></div>
+        </div>
+        <div class="member-commits">${commitsHtml || '<div style="padding:8px 4px;font-size:12px;color:#94a3b8">Ingen commits funnet</div>'}</div>`;
+      membersList.appendChild(block);
+    }
+
+    const now = new Date().toLocaleString('no-NO', { timeZone: 'UTC', hour: '2-digit', minute: '2-digit' });
+    document.getElementById('last-updated').textContent = `Oppdatert ${now} UTC`;
+  } catch (e) {
+    document.getElementById('members-list').innerHTML =
+      `<div class="error-msg">Kunne ikke hente data: ${e.message}. Sjekk at GITHUB_TOKEN er satt i Vercel.</div>`;
+    document.getElementById('last-updated').textContent = 'Feil ved lasting';
+  }
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+load();
+setInterval(load, 120000);
+</script>
+</body>
+</html>

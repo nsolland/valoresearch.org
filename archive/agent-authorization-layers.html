@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Authorization Layers</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            background: #fafafa;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #1e1e1e;
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+        .intro {
+            color: #666;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            max-width: 800px;
+        }
+        .diagram-container {
+            background: white;
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+        .mermaid {
+            display: flex;
+            justify-content: center;
+        }
+        .explanation {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+        .layer {
+            padding: 24px;
+            border-radius: 8px;
+            border-left: 4px solid;
+        }
+        .layer h3 {
+            margin: 0 0 12px 0;
+            font-size: 16px;
+        }
+        .layer p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #555;
+        }
+        .layer-1 {
+            background: #f0f7ff;
+            border-left-color: #3DADFF;
+        }
+        .layer-1 h3 {
+            color: #007AD2;
+        }
+        .layer-2 {
+            background: #fff9f0;
+            border-left-color: #FFC943;
+        }
+        .layer-2 h3 {
+            color: #E8A302;
+        }
+        .layer-3 {
+            background: #faf6ff;
+            border-left-color: #874FFF;
+        }
+        .layer-3 h3 {
+            color: #6419B3;
+        }
+        .gap-note {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 4px;
+            padding: 16px;
+            margin-top: 24px;
+            font-size: 14px;
+            color: #856404;
+        }
+    </style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0a1520" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="VALO Research" />
+<meta property="og:title" content="Agent Authorization Layers" />
+<meta property="og:description" content="Governance before consequence — the proof layer for AI execution." />
+<meta property="og:image" content="https://valoresearch.org/img/og-valo.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Agent Authorization Layers" />
+<meta name="twitter:description" content="Governance before consequence — the proof layer for AI execution." />
+<meta name="twitter:image" content="https://valoresearch.org/img/og-valo.jpg" />
+  <link rel="stylesheet" href="/css/valo-brand.css">
+</head>
+<body>
+<main id="main">
+
+    <div class="container">
+        <h1>Agent Authorization Architecture</h1>
+        <div class="intro">
+            <p>Anthropic announced agent workspace identity today. That's essential but it solves only the first layer of the problem. The gap lives in the layers that follow.</p>
+        </div>
+
+        <div class="diagram-container">
+            <div class="mermaid">
+flowchart TD
+    req["Agent Request<br/>(Action Intent)"]
+
+    subgraph identity ["LAYER 1: IDENTITY"]
+        whoami["Who is the agent?<br/>(Credential Binding)"]
+        cred["Scoped Credentials<br/>Workspace ID<br/>API Token"]
+        whoami --> cred
+    end
+
+    subgraph execution ["LAYER 2: EXECUTION"]
+        whatcan["What may it do<br/>RIGHT NOW?<br/>(Authorization Gate)"]
+        policy["Policy Engine"]
+        state["Current System State"]
+        decision["Decision Gate"]
+        policy -.-> decision
+        state -.-> decision
+        whatcan --> policy
+        whatcan --> state
+        decision -.-> outcome["PERMIT<br/>or<br/>DENY"]
+    end
+
+    subgraph proof ["LAYER 3: PROOF"]
+        canprove["Can you prove<br/>it happened?<br/>(Immutable Evidence)"]
+        log["Unforgeable Audit Trail"]
+        evidence["Why Decision<br/>What Executed<br/>Result"]
+        canprove --> log
+        log --> evidence
+    end
+
+    req --> whoami
+    cred --> whatcan
+    outcome --> canprove
+
+    style identity fill:#C2E5FF,stroke:#3DADFF
+    style execution fill:#FFECBD,stroke:#FFC943
+    style proof fill:#DCCCFF,stroke:#874FFF
+    style req fill:#D9D9D9,stroke:#B3B3B3
+    style outcome fill:#FFCDC2,stroke:#FF7556
+            </div>
+        </div>
+
+        <div class="explanation">
+            <div class="layer layer-1">
+                <h3>Layer 1: Identity</h3>
+                <p><strong>Static.</strong> Answers: "Who is this agent?"</p>
+                <p>Credential binding, workspace scoping, token issuance. This is what Anthropic just shipped.</p>
+            </div>
+
+            <div class="layer layer-2">
+                <h3>Layer 2: Execution</h3>
+                <p><strong>Dynamic & Contextual.</strong> Answers: "What may it do <em>right now</em>?"</p>
+                <p>Authorization policy applied against current system state. Decision gate enforces preconditions. No existing standard here.</p>
+            </div>
+
+            <div class="layer layer-3">
+                <h3>Layer 3: Proof</h3>
+                <p><strong>Immutable.</strong> Answers: "Can you prove it happened?"</p>
+                <p>Unforgeable audit trail. Evidence not just that an action occurred, but why the decision was made and what the result was.</p>
+            </div>
+        </div>
+
+        <div class="gap-note">
+            <strong>The Gap:</strong> Layer 1 exists. Layers 2 and 3 do not. No standard mechanism for runtime authorization scope. No consensus on how to prove that authorization was enforced. This is where VAIG operates.
+        </div>
+    </div>
+
+    <script>
+        mermaid.initialize({ startOnLoad: true, theme: 'default' });
+        mermaid.contentLoaded();
+    </script>
+
+</main>
+</body>
+</html>

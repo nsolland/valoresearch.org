@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yara — Discovery Dialog</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:   #FAF7F2;
+      --bg2:  #F0ECE6;
+      --txt:  #1A0F0A;
+      --dim:  #6B5E56;
+      --blue: #1e3d50;
+      --blult:#5a9db8;
+      --grn:  #16A34A;
+    }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { background: var(--bg); color: var(--txt); font-family: 'Inter', sans-serif; line-height: 1.6; padding: 0; }
+
+    /* Nav */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(250,247,242,0.96); backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      padding: 0 24px;
+      height: 58px;
+      display: flex;
+      align-items: center;
+    }
+    nav a { font-size: 13px; color: var(--txt); font-weight: 500; margin-right: 24px; text-decoration: none; transition: color 0.15s; }
+    nav a:hover { color: var(--blue); }
+
+    body { padding-top: 58px; }
+    .w { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+
+    .hero {
+      padding: 80px 0 60px;
+      background: var(--bg);
+    }
+    .hero h1 { font-size: 48px; font-family: 'DM Serif Display', serif; margin-bottom: 16px; }
+    .hero-sub { font-size: 18px; color: var(--dim); margin-bottom: 32px; max-width: 600px; }
+
+    .dialog-section {
+      padding: 80px 0;
+      background: var(--bg2);
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+    .dialog-title { font-size: 28px; font-family: 'DM Serif Display', serif; margin-bottom: 48px; }
+
+    .dialog-flow { max-width: 720px; margin: 0 auto; }
+    .dialog-msg {
+      margin-bottom: 32px;
+      padding: 20px 24px;
+      border-radius: 12px;
+      animation: slideIn 0.4s ease-out forwards;
+      opacity: 0;
+    }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .msg-them {
+      background: var(--bg);
+      border: 1px solid rgba(0,0,0,0.08);
+      border-left: 3px solid var(--blult);
+      margin-right: 60px;
+    }
+    .msg-them-label { font-size: 11px; font-weight: 700; color: var(--blult); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px; }
+
+    .msg-us {
+      background: var(--blue);
+      color: #fff;
+      border-left: 3px solid var(--blue);
+      margin-left: 60px;
+    }
+    .msg-us-label { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px; }
+
+    .msg-text { font-size: 15px; line-height: 1.7; }
+
+    .msg-point {
+      background: rgba(22,163,74,0.08);
+      border-left: 3px solid var(--grn);
+      padding: 20px 24px;
+      margin-bottom: 32px;
+      border-radius: 8px;
+    }
+    .msg-point-label { font-size: 11px; font-weight: 700; color: var(--grn); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 8px; }
+    .msg-point-text { font-size: 15px; line-height: 1.7; color: var(--txt); }
+
+    .section {
+      padding: 80px 0;
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+    .section h2 { font-size: 32px; font-family: 'DM Serif Display', serif; margin-bottom: 24px; }
+    .section-text { font-size: 16px; color: var(--dim); line-height: 1.8; max-width: 700px; }
+
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
+    .card {
+      padding: 32px;
+      background: var(--bg2);
+      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 12px;
+    }
+    .card h3 { font-size: 18px; margin-bottom: 12px; font-family: 'DM Serif Display', serif; }
+    .card-text { font-size: 14px; color: var(--dim); line-height: 1.7; }
+
+    footer {
+      padding: 48px 0;
+      text-align: center;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      font-size: 13px;
+      color: var(--dim);
+    }
+
+    @media (max-width: 900px) {
+      .msg-them { margin-right: 0; }
+      .msg-us { margin-left: 0; }
+      .grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 32px; }
+    }
+  </style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0a1520" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="VALO Research" />
+<meta property="og:title" content="Yara — Discovery Dialog" />
+<meta property="og:description" content="Governance before consequence — the proof layer for AI execution." />
+<meta property="og:image" content="https://valoresearch.org/img/og-valo.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Yara — Discovery Dialog" />
+<meta name="twitter:description" content="Governance before consequence — the proof layer for AI execution." />
+<meta name="twitter:image" content="https://valoresearch.org/img/og-valo.jpg" />
+  <link rel="stylesheet" href="/css/valo-brand.css">
+</head>
+<body>
+  <nav>
+    <a href="/">← Tilbake</a>
+    <a href="#goal">Mål</a>
+    <a href="#dialog">Dialog</a>
+    <a href="#pitch">Pitch</a>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="w">
+      <h1>Yara Discovery</h1>
+      <p class="hero-sub">Forberedelse til møte: Forstå Yaras AI-behov og finne verdien vi kan skape.</p>
+    </div>
+  </section>
+
+  <!-- Goal -->
+  <section class="dialog-section" id="goal">
+    <div class="w">
+      <h2 class="dialog-title">Målet</h2>
+      <p style="font-size: 16px; color: var(--dim); line-height: 1.8; max-width: 700px;">
+        Forstå hvordan Yara bruker AI i dag, og hvor de ser praktisk verdi. Ikke selge — bare lytter og spørre.
+      </p>
+    </div>
+  </section>
+
+  <!-- Dialog Flow -->
+  <section class="dialog-section" id="dialog">
+    <div class="w">
+      <h2 class="dialog-title">Samtaleflyt</h2>
+
+      <div class="dialog-flow">
+        <!-- Q1 -->
+        <div class="dialog-msg msg-them" style="animation-delay: 0s;">
+          <div class="msg-them-label">Du starter</div>
+          <div class="msg-text">Kan du si litt om rollen din her på Yara?</div>
+        </div>
+
+        <!-- Listen -->
+        <div class="dialog-msg msg-us" style="animation-delay: 0.1s;">
+          <div class="msg-us-label">Strategi</div>
+          <div class="msg-text">Lytt. Ikke avbryt. Noter: ansvar, team, prioriteter.</div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="dialog-msg msg-them" style="animation-delay: 0.2s;">
+          <div class="msg-them-label">Neste spørsmål</div>
+          <div class="msg-text">Hvordan bruker dere AI i dag?</div>
+        </div>
+
+        <!-- Follow -->
+        <div class="dialog-msg msg-us" style="animation-delay: 0.3s;">
+          <div class="msg-us-label">Deretter</div>
+          <div class="msg-text">Hva fungerer faktisk? Hva har vært vanskelig?</div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="dialog-msg msg-them" style="animation-delay: 0.4s;">
+          <div class="msg-them-label">Kontekst</div>
+          <div class="msg-text">Er det mest kontorarbeid, eller også ute i produksjonen?</div>
+        </div>
+
+        <!-- Final -->
+        <div class="dialog-msg msg-us" style="animation-delay: 0.5s;">
+          <div class="msg-us-label">Lukk med</div>
+          <div class="msg-text">Hvor tror du AI kan gjøre mest nytte hos dere?</div>
+        </div>
+
+        <!-- If they ask -->
+        <div class="msg-point" style="animation-delay: 0.6s;">
+          <div class="msg-point-label">Hvis hun spør hva vi gjør</div>
+          <div class="msg-point-text">
+            <strong>Vi ser på AI som en ny type medarbeider.</strong><br/><br/>
+            Når du ansetter mennesker, lar du dem ikke gjøre hva de vil. De får en rolle, oppgaver, regler og en leder. Vi tenker at AI trenger det samme. Derfor sier vi at vi bygger formannen.<br/><br/>
+            AI gjør jobben. Vi passer på at den gjør riktig jobb, på riktig måte, og at et menneske tar over når det trengs.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pitch -->
+  <section class="section" id="pitch">
+    <div class="w">
+      <h2>Pitch — hvis interessen er høy</h2>
+      <p class="section-text">
+        <strong>Kortversjon:</strong> AI gjør jobben. Vi passer på hvordan jobben blir gjort.
+      </p>
+      <p class="section-text" style="margin-top: 20px;">
+        <strong>Poenget:</strong> Dette handler ikke om å lage en smartere chatbot. Det handler om å få AI trygt inn i vanlige arbeidsprosesser — selv der det må følge regler, respektere grenser, og kunna forklare hva som skjedde.
+      </p>
+
+      <div class="grid" style="margin-top: 40px;">
+        <div class="card">
+          <h3>For Yara</h3>
+          <div class="card-text">
+            <strong>Verdi:</strong> Trygg automatisering av prosesser som trengs kontroll (produksjon, compliance, sikkerhet).
+          </div>
+        </div>
+        <div class="card">
+          <h3>Vår rolle</h3>
+          <div class="card-text">
+            <strong>Oss:</strong> Vi er ikke AI. Vi er infrastrukturen som gjør AI trygg nok til å jobbe rundt mennesker og regler.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Key Takeaways -->
+  <section class="section">
+    <div class="w">
+      <h2>Viktige poenger å huske</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>✓ Spør først</h3>
+          <div class="card-text">Jevnt spørsmål og lytting. Mål: forstå deres verden.</div>
+        </div>
+        <div class="card">
+          <h3>✓ Løs et problem</h3>
+          <div class="card-text">De trenger kontroll og sikkerhet rundt AI-bruk. Det bygger vi.</div>
+        </div>
+        <div class="card">
+          <h3>✓ Ikke teknisk</h3>
+          <div class="card-text">Snakk formannskap, regler, sikkerhet. Ikke arkitektur.</div>
+        </div>
+        <div class="card">
+          <h3>✓ Åpen slutt</h3>
+          <div class="card-text">Møtet er discovery. Ikke avslutning. "La oss snakke igjen."</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="w">
+      <p>Yara Discovery Prep — Foreberedelse for møte</p>
+    </div>
+  </footer>
+
+  <script>
+    // Stagger animations
+    const msgs = document.querySelectorAll('.dialog-msg, .msg-point');
+    msgs.forEach((msg, i) => {
+      msg.style.animationDelay = (i * 0.15) + 's';
+    });
+  </script>
+</body>
+</html>

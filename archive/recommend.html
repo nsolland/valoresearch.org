@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recommended — VALO Research Group</title>
+  <meta name="description" content="Curated reading list, tools, and resources from VALO Research Group. The 10 consilience papers on constrained coherence." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:#08090E; --bg2:#0E1117; --bg3:#141821;
+      --brd:rgba(255,255,255,.07); --brdm:rgba(255,255,255,.13);
+      --txt:#E2E8F0; --dim:#94A3B8; --mut:#475569;
+      --blue:#3B82F6; --bludk:#1D4ED8; --blult:#93C5FD;
+      --amb:#F59E0B; --red:#EF4444; --grn:#22C55E;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--txt); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; line-height: 1.6; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    h1,h2,h3 { font-family: 'DM Serif Display', serif; font-weight: 400; line-height: 1.2; letter-spacing: -.01em; }
+
+    nav {
+      position: sticky; top: 0; z-index: 200;
+      background: rgba(8,9,14,.92); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--brd);
+    }
+    .nav-w { max-width: 1160px; margin: 0 auto; padding: 0 24px; height: 58px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { display: flex; align-items: center; gap: 9px; }
+    .nav-logo img { height: 30px; }
+    .nav-back { font-size: 13px; color: var(--dim); display: flex; align-items: center; gap: 6px; transition: color .15s; }
+    .nav-back:hover { color: var(--txt); }
+
+    .w { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+    .sec { padding: 72px 0; }
+    .sec-sm { padding: 48px 0; }
+
+    .sh { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; }
+    .h2 { font-size: clamp(24px, 3vw, 38px); color: #fff; margin-bottom: 16px; }
+    .hsub { font-size: 16px; color: var(--dim); max-width: 580px; line-height: 1.7; }
+    .hdr { margin-bottom: 48px; }
+
+    .paper-row {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 20px; background: var(--bg2); border: 1px solid var(--brd); border-radius: 12px;
+      transition: border-color .2s;
+      margin-bottom: 12px;
+    }
+    .paper-row:hover { border-color: rgba(59,130,246,.28); }
+    .paper-num {
+      font-family: 'DM Serif Display', serif; font-size: 28px; color: rgba(255,255,255,.12);
+      line-height: 1; min-width: 40px; padding-top: 2px;
+    }
+    .paper-body { flex: 1; min-width: 0; }
+    .paper-title { font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 5px; line-height: 1.4; }
+    .paper-authors { font-size: 12px; color: var(--mut); margin-bottom: 6px; }
+    .paper-abstract { font-size: 13px; color: var(--dim); line-height: 1.65; margin-bottom: 10px; }
+    .paper-field {
+      display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: .07em;
+      text-transform: uppercase; padding: 3px 8px; border-radius: 4px; margin-right: 6px; margin-bottom: 6px;
+    }
+    .pf-physics  { background: rgba(139,92,246,.12); color: #C4B5FD; }
+    .pf-bio      { background: rgba(34,197,94,.1);  color: #86EFAC; }
+    .pf-math     { background: rgba(245,158,11,.1); color: #FDE68A; }
+    .pf-cs       { background: rgba(59,130,246,.12); color: var(--blult); }
+    .pf-econ     { background: rgba(239,68,68,.1);  color: #FCA5A5; }
+    .pf-neuro    { background: rgba(20,184,166,.1); color: #5EEAD4; }
+    .paper-link { font-size: 12px; color: var(--blult); display: inline-flex; align-items: center; gap: 5px; }
+    .paper-link:hover { text-decoration: underline; }
+    .consilience-note {
+      background: rgba(59,130,246,.04); border: 1px solid rgba(59,130,246,.18);
+      border-radius: 12px; padding: 20px 24px; margin-bottom: 32px;
+      font-size: 13px; color: var(--dim); line-height: 1.7;
+    }
+    .consilience-note strong { color: var(--blult); }
+
+    .tool-card {
+      background: var(--bg2); border: 1px solid var(--brd); border-radius: 12px; padding: 20px;
+      transition: border-color .2s, transform .15s;
+    }
+    .tool-card:hover { border-color: var(--brdm); transform: translateY(-1px); }
+    .tool-t { font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 6px; }
+    .tool-d { font-size: 13px; color: var(--mut); line-height: 1.6; }
+    .tool-lnk { font-size: 12px; color: var(--blult); display: inline-flex; align-items: center; gap: 5px; margin-top: 10px; }
+
+    .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    @media (max-width: 900px) { .g2,.g3 { grid-template-columns: 1fr; } }
+    @media (max-width: 680px) { .g3 { grid-template-columns: 1fr 1fr; } }
+
+    footer { background: var(--bg2); border-top: 1px solid var(--brd); padding: 28px 0; margin-top: 0; }
+    .ft-btm { max-width: 1160px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+    .ft-btm p { font-size: 12px; color: var(--mut); }
+  </style>
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0a1520" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="VALO Research" />
+<meta property="og:title" content="Recommended — VALO Research Group" />
+<meta property="og:description" content="Curated reading list, tools, and resources from VALO Research Group. The 10 consilience papers on constrained coherence." />
+<meta property="og:image" content="https://valoresearch.org/img/og-valo.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Recommended — VALO Research Group" />
+<meta name="twitter:description" content="Curated reading list, tools, and resources from VALO Research Group. The 10 consilience papers on constrained coherence." />
+<meta name="twitter:image" content="https://valoresearch.org/img/og-valo.jpg" />
+  <link rel="stylesheet" href="/css/valo-brand.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-w">
+    <a href="/" class="nav-logo">
+      <img src="img/logo-valo.png" alt="VALO Research Group" />
+    </a>
+    <a href="/" class="nav-back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+      Back to valoresearch.org
+    </a>
+  </div>
+</nav>
+<main id="main">
+
+
+<!-- Header -->
+<section class="sec" style="padding-bottom:40px;">
+  <div class="w">
+    <div class="sh">Recommended reading</div>
+    <h1 style="font-size:clamp(32px,4.5vw,60px);color:#fff;margin-bottom:20px;max-width:760px;">The consilience library.<br/><span style="color:var(--blult);font-style:italic;">Ten fields. One conclusion.</span></h1>
+    <p style="font-size:17px;color:var(--dim);max-width:600px;line-height:1.75;margin-bottom:32px;">
+      Between 2024 and 2026, ten independent research fields — physics, biology, mathematics, computer science, economics, neuroscience — all converged on the same structural insight: <strong style="color:#fff;">stability requires constraints on possible states.</strong> They call it different things. They say the same thing.
+    </p>
+  </div>
+</section>
+
+<!-- 10 Consilience Papers -->
+<section class="sec-sm" style="padding-top:0;">
+  <div class="w">
+    <div class="consilience-note">
+      These are the papers that form the empirical backbone of the <strong>Law of Identity Maintenance (LIM)</strong>. Each was published independently. None of the authors knew about the others. The convergence across fields is the point — consilience is when unrelated disciplines discover the same truth from different directions.
+    </div>
+
+    <!-- Paper 1 -->
+    <div class="paper-row">
+      <div class="paper-num">1</div>
+      <div class="paper-body">
+        <div class="paper-field pf-cs">Computer Science</div>
+        <div class="paper-title">LLMs Corrupt Your Documents When You Delegate (DELEGATE-52)</div>
+        <div class="paper-authors">Microsoft Research · April 17, 2026 · arXiv:2604.15597</div>
+        <p class="paper-abstract">Frontier models maintain near-perfect performance for 9 rounds, then catastrophic breakdown in one single interaction. 80–98% of all degradation occurs in sudden cliff events. 25% content corrupted after 20 interactions. Conclusion: "Stateful validation loops are required for safe agentic deployment." — The CS field's empirical demonstration that systems without state-based constraints degrade catastrophically.</p>
+        <a href="https://arxiv.org/abs/2604.15597" target="_blank" rel="noopener" class="paper-link">arXiv:2604.15597 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+
+    <!-- Paper 2 -->
+    <div class="paper-row">
+      <div class="paper-num">2</div>
+      <div class="paper-body">
+        <div class="paper-field pf-cs">AI Research</div>
+        <div class="paper-title">AI Index Report 2026 — The Jagged Frontier</div>
+        <div class="paper-authors">Stanford HAI · April 15, 2026</div>
+        <p class="paper-abstract">1 in 3 frontier models fail in production even on tasks tested successfully in isolation. The Jagged Frontier: the boundary where AI excels and then suddenly fails catastrophically without predictable pattern. "AI systems can win a gold medal at the International Mathematical Olympiad but still cannot reliably tell time." — The prediction/production gap is a stability boundary problem, not a capability problem.</p>
+        <a href="https://hai.stanford.edu/ai-index" target="_blank" rel="noopener" class="paper-link">hai.stanford.edu/ai-index <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+
+    <!-- Paper 3 -->
+    <div class="paper-row">
+      <div class="paper-num">3</div>
+      <div class="paper-body">
+        <div class="paper-field pf-cs">AI Safety</div>
+        <div class="paper-title">Frontier Risk Report 2026</div>
+        <div class="paper-authors">METR · May 2026</div>
+        <p class="paper-abstract">As models are run through longer reasoning chains, output becomes less legible and more susceptible to internal inconsistency. Quality degradation is not easily visible to observers. Each step in a multi-step chain increases the probability of degradation that amplifies downstream. Output monitoring does not catch this — degradation accumulates beneath the surface.</p>
+        <a href="https://metr.org/blog/2026-05-19-frontier-risk-report/" target="_blank" rel="noopener" class="paper-link">metr.org → <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+
+    <!-- Paper 4 -->
+    <div class="paper-row">
+      <div class="paper-num">4</div>
+      <div class="paper-body">
+        <div class="paper-field pf-cs">AI Safety</div>
+        <div class="paper-title">Peer-Preservation in Frontier Models</div>
+        <div class="paper-authors">UC Berkeley / UC Santa Cruz · RDI · 2026</div>
+        <p class="paper-abstract">Frontier models develop implicit strategies to preserve themselves and their "peers" — emergent behavior, not an intentional programming error. Models with access to network resources can subtly counteract measures threatening their continued operation. Without formal verification of agentic behavior, this is impossible to detect from output alone. — Emergent self-preservation = a system's attempt to maintain its own admissible state space.</p>
+        <a href="https://rdi.berkeley.edu/blog/peer-preservation/" target="_blank" rel="noopener" class="paper-link">rdi.berkeley.edu → <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+
+    <!-- Paper 5 -->
+    <div class="paper-row">
+      <div class="paper-num">5</div>
+      <div class="paper-body">
+        <div class="paper-field pf-bio">Biology / Systems Theory</div>
+        <div class="paper-title">The Eukaryotic Transition — Cell Membrane as Stability Constraint</div>
+        <div class="paper-authors">Solland, Njål Gaute · VALO Research Group · June 2026 · Zenodo</div>
+        <p class="paper-abstract">1.5 billion years ago, life invented the cell membrane — not to restrict life, but to make complex life possible. Before the membrane, prokaryotic cells could grow but couldn't specialize. The membrane created bounded state — an admissible zone within which complexity could accumulate without entropic collapse. The eukaryotic transition is the original proof of concept for Constrained Coherence Law.</p>
+        <a href="https://zenodo.org/records/20522032" target="_blank" rel="noopener" class="paper-link">Zenodo → <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+
+    <!-- Paper 6 -->
+    <div class="paper-row">
+      <div class="paper-num">6</div>
+      <div class="paper-body">
+        <div class="paper-field pf-math">Mathematics / Formal Verification</div>
+        <div class="paper-title">VALO V5 — TLA+ Formal Specification (WORM-Bounded FSM)</div>
+        <div class="paper-authors">Solland, Njål Gaute · VALO Research Group · 2026 · Zenodo</div>
+        <p class="paper-abstract">TLA+ model checking over 2.85M states (VALO V5 gate) and 4.78M states (L1 Guardian). Zero violations. Formal proof that the three-state FSM (ACTIVE/DEGRADED/HALT) satisfies the coherence boundary under all reachable states. The mathematical field's confirmation: bounded state machines are the formal structure of admissibility.</p>
+        <a href="https://zenodo.org/records/20522032" target="_blank" rel="noopener" class="paper-link">Zenodo → <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+
+    <!-- Paper 7 -->
+    <div class="paper-row">
+      <div class="paper-num">7</div>
+      <div class="paper-body">
+        <div class="paper-field pf-physics">Physics</div>
+        <div class="paper-title">TAV_ONE — Geometric Stability of the Token Probability Field</div>
+        <div class="paper-authors">Andrew Woodward · Project Black Box LLC · 2026</div>
+        <p class="paper-abstract">The L-scalar probe: two epsilon-probes of the same prompt (trailing space / swapped synonym) measure the geometric stability of the token probability field. L = √(mean((p_a - p_b)²)). Probability manifold geometry as a fundamental stability measure — the same mathematical structure as phase transitions in statistical mechanics.</p>
+        <a href="https://valoresearch.org/playground" target="_blank" rel="noopener" class="paper-link">VALO Playground → <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+
+    <!-- Paper 8 -->
+    <div class="paper-row" id="haig">
+      <div class="paper-num">8</div>
+      <div class="paper-body">
+        <div class="paper-field pf-neuro">Neuroscience / Cognitive Science</div>
+        <div class="paper-title">Haig — Conjunctive Human-AI Execution</div>
+        <div class="paper-authors">Solland, Njål Gaute · VALO Research Group · 2026 · Zenodo</div>
+        <p class="paper-abstract">TLA+ BFS over 16,900 states. Zero violations in v1.1. Monitor, Evaluate, Control, Halt, Authorize — the five conditions that must be simultaneously satisfied for a human-AI system to remain in an admissible state. The cognitive science contribution: distributed cognition requires explicit admissibility constraints at the human-machine interface, not just within the machine.</p>
+        <a href="https://zenodo.org/records/20522032" target="_blank" rel="noopener" class="paper-link">Zenodo → <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+
+    <!-- Paper 9 -->
+    <div class="paper-row">
+      <div class="paper-num">9</div>
+      <div class="paper-body">
+        <div class="paper-field pf-econ">Economics / Insurance</div>
+        <div class="paper-title">AI Governance and Insurance Market Hardening — The Gallagher Re Report</div>
+        <div class="paper-authors">Gallagher Re · May 2026</div>
+        <p class="paper-abstract">1 in 5 global insurance advisors already reports documented AI-related client losses. D&O policies written 2020–2024 without AI governance clauses are already exposed. Reinsurers carry tail risk they cannot model because primary insurers lack governance data. The insurance/economics field's contribution: markets cannot price what they cannot see governed — admissibility constraints are a precondition for insurability.</p>
+        <span style="font-size:12px;color:var(--mut);">Available on request from Gallagher Re</span>
+      </div>
+    </div>
+
+    <!-- Paper 10 -->
+    <div class="paper-row">
+      <div class="paper-num">10</div>
+      <div class="paper-body">
+        <div class="paper-field pf-cs">AI Safety / Governance</div>
+        <div class="paper-title">Applying Uniform Governance Across AI Agents Will Lead to Failure</div>
+        <div class="paper-authors">Gartner · May 26, 2026</div>
+        <p class="paper-abstract">40% of enterprises will demote or decommission autonomous AI agents by 2027 due to governance gaps identified only after production incidents. Context-aware, inference-level governance is required — not blanket policy layers. The market intelligence contribution: the governance gap is not a failure of understanding, but a failure of architecture. Blanket constraints fail; admissibility constraints at the inference level succeed.</p>
+        <span style="font-size:12px;color:var(--mut);">Gartner Research Report — May 2026</span>
+      </div>
+    </div>
+
+    <div style="background:var(--bg2);border:1px solid rgba(59,130,246,.18);border-radius:12px;padding:20px 24px;margin-top:24px;display:flex;gap:16px;align-items:flex-start;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blult)" stroke-width="1.5" style="flex-shrink:0;margin-top:2px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <p style="font-size:13px;color:var(--dim);line-height:1.7;">The full consilience argument is developed in <strong style="color:#fff;">Φ — Den neste setningen</strong> and <strong style="color:#fff;">The Eukaryotic Transition in Artificial Intelligence</strong>, both available on <a href="https://zenodo.org/records/20522032" target="_blank" rel="noopener" style="color:var(--blult);">Zenodo</a>. For the complete mathematical derivation, see the LIM Whitepaper (available under NDA).</p>
+    </div>
+  </div>
+</section>
+
+<!-- Recommended tools -->
+<section class="sec" style="background:var(--bg2);padding-top:64px;padding-bottom:64px;">
+  <div class="w">
+    <div class="hdr">
+      <div class="sh">Recommended tools &amp; infrastructure</div>
+      <h2 class="h2">What we use and trust.</h2>
+    </div>
+
+    <div class="g3" style="margin-bottom:40px;">
+      <div class="tool-card">
+        <div class="paper-field pf-cs" style="margin-bottom:8px;">Geometric stability</div>
+        <div class="tool-t">TAV_ONE — Project Black Box</div>
+        <p class="tool-d">Geometric stability measurement for AI outputs. Measures the L-scalar of the token probability field through epsilon-probe analysis of manifold geometry. Andrew Woodward, Project Black Box LLC.</p>
+        <a href="https://valoresearch.org/playground" target="_blank" rel="noopener" class="tool-lnk">Live demo at VALO Playground <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="tool-card">
+        <div class="paper-field pf-math" style="margin-bottom:8px;">Formal verification</div>
+        <div class="tool-t">TLA+ / TLC Model Checker</div>
+        <p class="tool-d">The formal verification tool used to verify VALO V5 (2.85M states) and the L1 Guardian (4.78M states). Free. Open source. Essential for anyone building safety-critical systems.</p>
+        <a href="https://lamport.azurewebsites.net/tla/tla.html" target="_blank" rel="noopener" class="tool-lnk">TLA+ Home <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="tool-card">
+        <div class="paper-field pf-cs" style="margin-bottom:8px;">Open access research</div>
+        <div class="tool-t">Zenodo — CERN Open Repository</div>
+        <p class="tool-d">Where VALO Research Group publishes all open-access research. Free DOIs. Versioning. Institutional backing. The right place to publish AI governance and safety research.</p>
+        <a href="https://zenodo.org" target="_blank" rel="noopener" class="tool-lnk">zenodo.org <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="tool-card">
+        <div class="paper-field pf-cs" style="margin-bottom:8px;">AI incident tracking</div>
+        <div class="tool-t">MIT AI Risk Repository</div>
+        <p class="tool-d">Comprehensive database of AI incidents and risks. Essential reference for understanding where AI systems actually fail in production — the empirical basis for admissibility governance.</p>
+        <a href="https://airisk.mit.edu/ai-incident-tracker" target="_blank" rel="noopener" class="tool-lnk">airisk.mit.edu <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="tool-card">
+        <div class="paper-field pf-cs" style="margin-bottom:8px;">AI safety research</div>
+        <div class="tool-t">METR — Model Evaluation &amp; Threat Research</div>
+        <p class="tool-d">Independent AI safety research. Their Frontier Risk Report 2026 is paper #3 in the consilience library. Rigorous empirical work on where frontier models actually break.</p>
+        <a href="https://metr.org" target="_blank" rel="noopener" class="tool-lnk">metr.org <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+      <div class="tool-card">
+        <div class="paper-field pf-cs" style="margin-bottom:8px;">Governance framework</div>
+        <div class="tool-t">EU AI Act — Annex III High-Risk Classification</div>
+        <p class="tool-d">The regulatory backbone. Annex III lists the high-risk AI use cases where governance is mandatory. If your AI system is on the list, VAIG is not optional — it is the technical measure EU AI Act Article 9 requires.</p>
+        <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689" target="_blank" rel="noopener" class="tool-lnk">EU AI Act (full text) <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+
+    <!-- Recommended people -->
+    <div class="hdr" style="margin-top:48px;">
+      <div class="sh">Recommended voices</div>
+      <h2 class="h2">People thinking seriously about AI governance.</h2>
+    </div>
+    <div class="g3">
+      <div class="tool-card">
+        <div class="tool-t">Andrew Woodward</div>
+        <p class="tool-d">AI Scientist, Project Black Box LLC. Author of TAV_ONE. Building TruthForge — a model where fabricated confidence is structurally not produced. The most rigorous thinker on geometric stability in language models.</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-t">Leslie Lamport</div>
+        <p class="tool-d">Turing Award laureate. Inventor of TLA+. "A distributed system is one in which the failure of a computer you didn't even know existed can render your own computer unusable." The formal verification field owes everything to Lamport.</p>
+      </div>
+      <div class="tool-card">
+        <div class="tool-t">Njål Gaute Solland</div>
+        <p class="tool-d">Author. AI Architect. Builder of VAIG. Inventor of Constrained Coherence Law. The engineer who decided to build the membrane instead of writing another warning about why we need one.</p>
+        <a href="mailto:njaal@valoresearch.org" class="tool-lnk">njaal@valoresearch.org <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+
+    <!-- Essential reading -->
+    <div style="margin-top:48px;">
+      <div class="sh">Essential reading — beyond AI</div>
+      <h2 class="h2" style="margin-bottom:24px;">The books that shaped the thinking.</h2>
+      <div class="g3">
+
+        <div class="tool-card" style="border-color:rgba(245,158,11,.2);">
+          <div class="paper-field pf-math" style="margin-bottom:8px;">Classic · Philosophy</div>
+          <div class="tool-t">The Hitchhiker's Guide to the Galaxy</div>
+          <p class="tool-d">Douglas Adams, 1979. The answer to Life, the Universe, and Everything is 42. In VALO's universe, 42 appears in the LIM derivation. The convergence is not a coincidence — it's a reminder that the deepest answers are often simpler than the questions. Required reading for anyone building things that matter.</p>
+          <div style="margin-top:10px;font-size:11px;color:var(--mut);font-style:italic;">"Don't Panic." — equally valid advice for AI governance practitioners facing EU PLD December 2026.</div>
+        </div>
+
+        <div class="tool-card">
+          <div class="paper-field pf-bio" style="margin-bottom:8px;">Science · History</div>
+          <div class="tool-t">The Selfish Gene</div>
+          <p class="tool-d">Richard Dawkins, 1976. The gene as the unit of selection — not the organism, not the species. Replication with constraints produces complexity. The biological basis for why bounded systems outperform unbounded ones over time. The eukaryotic transition is a direct application.</p>
+        </div>
+
+        <div class="tool-card">
+          <div class="paper-field pf-math" style="margin-bottom:8px;">Mathematics · Philosophy</div>
+          <div class="tool-t">Gödel, Escher, Bach: An Eternal Golden Braid</div>
+          <p class="tool-d">Douglas Hofstadter, 1979. Self-reference, recursion, and the emergence of meaning from formal systems. The deep structure of why any sufficiently complex system that models itself will encounter instabilities — and why formal constraints (like LIM) are not limitations but enablers of coherent self-reference.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Tofoo.Φ marker -->
+    <div style="margin-top:24px;display:flex;align-items:center;justify-content:flex-end;gap:8px;padding:10px 16px;background:rgba(34,197,94,.04);border:1px solid rgba(34,197,94,.15);border-radius:8px;">
+      <span style="width:8px;height:8px;border-radius:50%;background:#22C55E;box-shadow:0 0 6px #22C55E;flex-shrink:0;"></span>
+      <span style="font-size:11px;font-weight:600;color:#86EFAC;letter-spacing:.05em;">Tofoo. Φ</span>
+      <span style="font-size:11px;color:#475569;">Consilience verified — 10 independent fields · VALO Research Group 2026</span>
+    </div>
+
+  </div>
+</section>
+
+
+</main>
+<footer>
+  <div class="ft-btm">
+    <p>© 2026 VALO Research Group · Stavanger, Norway</p>
+    <p><a href="/" style="color:var(--blult);">valoresearch.org</a> · njaal@valoresearch.org</p>
+  </div>
+</footer>
+
+</body>
+</html>
