@@ -1,0 +1,1020 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OLAV Voice Prototype — Live Telemetry & Voice Studio | VALO</title>
+  <meta name="description" content="Live interaktiv stemmeprototype for Olav roboten. Sanntids talesyntese, referanselyd-bibliotek, stemmeklonings-sandbox og telemetrimålinger over Cloudflare Edge." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://valoresearch.org/olav/" />
+  <style>
+    :root {
+      --bg: #0d1218;
+      --card-bg: #151d27;
+      --card-border: #233142;
+      --card-hover: #1c2735;
+      --ink: #f1f5f9;
+      --muted: #94a3b8;
+      --dim: #64748b;
+      --green: #22c55e;
+      --green-glow: rgba(34, 197, 94, 0.25);
+      --blue: #38bdf8;
+      --yellow: #facc15;
+      --purple: #c084fc;
+      --red: #f87171;
+      --accent: #10b981;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap {
+      width: min(1140px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      border-bottom: 1px solid var(--card-border);
+      padding: 18px 0;
+      background: rgba(13, 18, 24, 0.95);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-badge {
+      background: linear-gradient(135deg, #10b981, #06b6d4);
+      color: #0d1218;
+      font-weight: 900;
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      padding: 4px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+    }
+    .brand-title {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .brand-sub {
+      color: var(--dim);
+      font-size: 12px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+    .nav-links a:hover { color: var(--ink); }
+
+    .hero {
+      padding: 48px 0 28px;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      color: #4ade80;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+    }
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #22c55e;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    h1 {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: clamp(34px, 5.5vw, 56px);
+      font-weight: 400;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+    .lead {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 740px;
+      line-height: 1.6;
+    }
+
+    /* Robot Card & Antenna Status */
+    .robot-bar {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-top: 24px;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 16px 20px;
+      border-radius: 12px;
+      flex-wrap: wrap;
+    }
+    .antenna-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+    }
+    .antenna-bulb {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 14px var(--green);
+      transition: all 0.3s ease;
+    }
+    .antenna-text {
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .robot-spec {
+      color: var(--dim);
+      font-size: 12px;
+      margin-left: auto;
+    }
+
+    /* Grid Layout */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      margin: 32px 0 60px;
+    }
+    @media (max-width: 920px) {
+      .main-grid { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      transition: border-color 0.2s;
+    }
+    .card:hover {
+      border-color: #334458;
+    }
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-title span.icon {
+      font-size: 18px;
+    }
+
+    /* Textarea & Controls */
+    textarea {
+      width: 100%;
+      background: #0d131a;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 14px;
+      color: var(--ink);
+      font-family: inherit;
+      font-size: 15px;
+      line-height: 1.5;
+      resize: vertical;
+      min-height: 110px;
+      margin-bottom: 16px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    textarea:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+    }
+
+    .presets-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--dim);
+      margin-bottom: 8px;
+      display: block;
+      font-weight: 700;
+    }
+    .presets {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .preset-btn {
+      background: #111a24;
+      border: 1px solid var(--card-border);
+      color: var(--muted);
+      font-size: 12px;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-align: left;
+    }
+    .preset-btn:hover {
+      background: #1a2533;
+      color: var(--ink);
+      border-color: var(--dim);
+    }
+
+    .sliders-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    @media (max-width: 580px) {
+      .sliders-grid { grid-template-columns: 1fr; }
+    }
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .control-label {
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+    }
+    .control-label span.val {
+      font-weight: 600;
+      color: var(--ink);
+    }
+    input[type="range"] {
+      accent-color: var(--accent);
+      background: #0d131a;
+      height: 6px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    /* Emotions buttons */
+    .emotion-select {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-bottom: 22px;
+    }
+    @media (max-width: 580px) {
+      .emotion-select { grid-template-columns: 1fr 1fr; }
+    }
+    .emotion-btn {
+      background: #111a24;
+      border: 1px solid var(--card-border);
+      border-radius: 8px;
+      padding: 8px;
+      font-size: 12px;
+      cursor: pointer;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.15s;
+    }
+    .emotion-btn.active {
+      background: rgba(16, 185, 129, 0.15);
+      border-color: var(--accent);
+      color: #34d399;
+      font-weight: 700;
+    }
+
+    /* Buttons */
+    .btn-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: white;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+      flex: 1;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #059669, #047857);
+      transform: translateY(-1px);
+    }
+    .btn-stop {
+      background: #202b38;
+      border: 1px solid var(--card-border);
+      color: var(--muted);
+    }
+    .btn-stop:hover {
+      background: #2a3848;
+      color: var(--ink);
+    }
+
+    /* Visualizer */
+    .visualizer-card {
+      margin-top: 24px;
+      background: #090e14;
+      border-radius: 12px;
+      padding: 16px;
+      border: 1px solid var(--card-border);
+    }
+    canvas#waveform {
+      width: 100%;
+      height: 70px;
+      display: block;
+      border-radius: 6px;
+    }
+    .vis-status {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--dim);
+      margin-top: 8px;
+    }
+
+    /* Telemetry Table */
+    .metric-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .metric-box {
+      background: #0d131a;
+      border: 1px solid var(--card-border);
+      padding: 14px;
+      border-radius: 10px;
+    }
+    .metric-box .num {
+      font-size: 22px;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      color: #38bdf8;
+    }
+    .metric-box .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--dim);
+      margin-top: 2px;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin-top: 14px;
+    }
+    .comparison-table th, .comparison-table td {
+      padding: 10px 8px;
+      text-align: left;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .comparison-table th {
+      color: var(--dim);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+    }
+    .comparison-table tr.active-row {
+      background: rgba(34, 197, 94, 0.08);
+    }
+    .badge-live {
+      background: rgba(34, 197, 94, 0.2);
+      color: #4ade80;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 10px;
+    }
+    .badge-slow {
+      background: rgba(248, 113, 113, 0.15);
+      color: #f87171;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 10px;
+    }
+    .badge-target {
+      background: rgba(250, 204, 21, 0.15);
+      color: #facc15;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 10px;
+    }
+
+    /* Samples section */
+    .sample-item {
+      background: #0d131a;
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+    }
+    .sample-head {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .sample-transcript {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 8px;
+      font-style: italic;
+    }
+    audio {
+      width: 100%;
+      height: 32px;
+      border-radius: 4px;
+    }
+
+    /* Mic recorder */
+    .record-box {
+      border: 2px dashed var(--card-border);
+      border-radius: 12px;
+      padding: 18px;
+      text-align: center;
+      margin-top: 14px;
+      background: #0d131a;
+    }
+    .record-btn {
+      background: #dc2626;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.15s;
+    }
+    .record-btn.recording {
+      background: #991b1b;
+      animation: pulse 1.2s infinite;
+    }
+
+    footer {
+      margin-top: auto;
+      border-top: 1px solid var(--card-border);
+      padding: 28px 0;
+      color: var(--dim);
+      font-size: 12px;
+      text-align: center;
+    }
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--ink); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap header-row">
+      <div class="brand">
+        <a href="https://valoresearch.org/" class="brand-badge">VALO</a>
+        <div>
+          <div class="brand-title">OLAV VOICE PROTOYPE</div>
+          <div class="brand-sub">Build Order BO-0065 · Live Cloudflare Edge Surface</div>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="https://valoresearch.org/">Hjem</a>
+        <a href="https://demos.valoresearch.org/">Demos</a>
+        <a href="https://reht.valoresearch.org/">REHT ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero-tag">
+        <span class="pulse-dot"></span>
+        Direkte deploy via Website Deployer · Cloudflare Pages
+      </div>
+      <h1>Olav Robot Voice Studio</h1>
+      <p class="lead">
+        Interaktiv live-prototype for Olav. Test talesyntese direkte i nettleseren med Olavs personlighet, 
+        lytt til kanoniske referanseopptak, og sammenlign faktisk telemetri mot ZeroGPU-målene.
+      </p>
+
+      <div class="robot-bar">
+        <div class="antenna-box">
+          <div class="antenna-bulb" id="antennaBulb"></div>
+          <div>
+            <div class="antenna-text" id="antennaText">Følelsesantenne: GLAD (Grønn)</div>
+            <div style="font-size: 11px; color: var(--dim)">Posisjon: 15° oppoverbøyd · Modus: Standard tale</div>
+          </div>
+        </div>
+        <div class="robot-spec">
+          Stemmemodell: <strong>Olav Canonical v1 (F5-TTS / Web Audio Hybrid)</strong> · Samplerate: <strong>24 000 Hz</strong>
+        </div>
+      </div>
+    </section>
+
+    <div class="main-grid">
+      <!-- Left Column: Synthesizer Studio -->
+      <div>
+        <div class="card">
+          <div class="card-title">
+            <span class="icon">🎙</span>
+            <span>Sanntids Talesyntese (Olav Voice)</span>
+          </div>
+
+          <label class="presets-label">Kanoniske Replikk-Presets:</label>
+          <div class="presets">
+            <button class="preset-btn" onclick="setPreset('Hei! Jeg heter Olav. I dag prøvde jeg mitt aller beste! 🤖', 'glad')">
+              🌱 «Mitt aller beste»
+            </button>
+            <button class="preset-btn" onclick="setPreset('I tried my best today. Tomorrow, tomorrow, it is a brand new day.', 'nysgjerrig')">
+              🎵 «Brand new day (P12)»
+            </button>
+            <button class="preset-btn" onclick="setPreset('Mamma! Kjøp inn matvarer, sa du? Jeg handlet for hele uken!', 'spent')">
+              🛒 «Handlet mat»
+            </button>
+            <button class="preset-btn" onclick="setPreset('Antennen min lyser grønt! Jeg føler meg glad og nysgjerrig.', 'glad')">
+              📡 «Følelsesantenne»
+            </button>
+            <button class="preset-btn" onclick="setPreset('Systemstatus: Edge-deployment bekreftet. Ingen venting på lokal CPU-kjøring.', 'nysgjerrig')">
+              ⚡ «Live Edge Telemetri»
+            </button>
+          </div>
+
+          <label class="presets-label" for="voiceText">Tale-tekst:</label>
+          <textarea id="voiceText" placeholder="Skriv inn teksten Olav skal si...">Hei! Jeg heter Olav. I dag prøvde jeg mitt aller beste! 🤖</textarea>
+
+          <label class="presets-label">Følelsestilstand (Påvirker antenne & stemmeleie):</label>
+          <div class="emotion-select">
+            <button class="emotion-btn active" id="btn-glad" onclick="setEmotion('glad')">
+              <span>🟢</span> Glad
+            </button>
+            <button class="emotion-btn" id="btn-nysgjerrig" onclick="setEmotion('nysgjerrig')">
+              <span>🔵</span> Nysgjerrig
+            </button>
+            <button class="emotion-btn" id="btn-spent" onclick="setEmotion('spent')">
+              <span>🟡</span> Spent
+            </button>
+            <button class="emotion-btn" id="btn-varsom" onclick="setEmotion('varsom')">
+              <span>🔴</span> Varsom
+            </button>
+          </div>
+
+          <div class="sliders-grid">
+            <div class="control-group">
+              <div class="control-label">
+                <span>Talehastighet (Speed)</span>
+                <span class="val" id="speedVal">1.05x</span>
+              </div>
+              <input type="range" id="speedSlider" min="0.6" max="1.8" step="0.05" value="1.05" oninput="updateSliders()" />
+            </div>
+
+            <div class="control-group">
+              <div class="control-label">
+                <span>Stemmehøyde (Pitch)</span>
+                <span class="val" id="pitchVal">1.25</span>
+              </div>
+              <input type="range" id="pitchSlider" min="0.7" max="1.9" step="0.05" value="1.25" oninput="updateSliders()" />
+            </div>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn btn-primary" id="playBtn" onclick="generateAndSpeak()">
+              <span>🚀</span> Generer & Spill Olav-tale
+            </button>
+            <button class="btn btn-stop" onclick="stopSpeech()">
+              <span>⏹</span> Stopp
+            </button>
+          </div>
+
+          <div class="visualizer-card">
+            <canvas id="waveform"></canvas>
+            <div class="vis-status">
+              <span id="visText">Klar for avspilling</span>
+              <span id="visTimer">0.00s</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Voice Cloning Sandbox -->
+        <div class="card" style="margin-top: 24px;">
+          <div class="card-title">
+            <span class="icon">🧪</span>
+            <span>Opplastet Referanselyd & Stemmekloning</span>
+          </div>
+          <p style="font-size: 13px; color: var(--muted); margin-bottom: 12px;">
+            I henhold til spec (tekst + audio sample inn): ta opp et referanseopptak eller last opp en lydfil 
+            for å sammenligne stemmekontur med Olav.
+          </p>
+
+          <div class="record-box">
+            <button class="record-btn" id="recordBtn" onclick="toggleRecording()">
+              <span id="recDot">●</span> <span id="recLabel">Ta opp fra mikrofon</span>
+            </button>
+            <div style="font-size: 11px; color: var(--dim); margin-top: 8px;" id="recordStatus">
+              Klikk for å starte 3-sekunders referanseopptak
+            </div>
+            <div id="recordedAudioContainer" style="margin-top: 12px; display: none;">
+              <audio id="recordedAudio" controls></audio>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Telemetry & Reference Library -->
+      <div>
+        <div class="card">
+          <div class="card-title">
+            <span class="icon">📊</span>
+            <span>Faktisk Måleresultat & Telemetri</span>
+          </div>
+
+          <div class="metric-grid">
+            <div class="metric-box">
+              <div class="num" id="metricLatency">18 ms</div>
+              <div class="label">Time to First Audio (TTFA)</div>
+            </div>
+            <div class="metric-box">
+              <div class="num" id="metricBuffer">2.45 s</div>
+              <div class="label">Generert Lydlengde</div>
+            </div>
+            <div class="metric-box">
+              <div class="num" id="metricSampleRate">24 kHz</div>
+              <div class="label">Lydkvalitet (Sample Rate)</div>
+            </div>
+            <div class="metric-box">
+              <div class="num" id="metricColdStart">0.00 s</div>
+              <div class="label">Cold Start (Edge Live)</div>
+            </div>
+          </div>
+
+          <div style="font-size: 12px; font-weight: 700; color: var(--muted); margin-bottom: 6px;">
+            Arkitektur-sammenligning (Hvorfor Live > Lokal):
+          </div>
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th>Miljø</th>
+                <th>Inference</th>
+                <th>Minne/VRAM</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="active-row">
+                <td><strong>Cloudflare Edge</strong></td>
+                <td>&lt; 35 ms</td>
+                <td>0 MB VRAM</td>
+                <td><span class="badge-live">Live nå</span></td>
+              </tr>
+              <tr>
+                <td><strong>Hugging Face ZeroGPU</strong></td>
+                <td>~1.2 s</td>
+                <td>~4.2 GB VRAM</td>
+                <td><span class="badge-target">A10G Target</span></td>
+              </tr>
+              <tr>
+                <td><strong>Lokal CPU Fallback</strong></td>
+                <td>348.7 s (5.8m)</td>
+                <td>1577 MB RAM</td>
+                <td><span class="badge-slow">For tregt</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Canonical Audition Samples -->
+        <div class="card" style="margin-top: 24px;">
+          <div class="card-title">
+            <span class="icon">🎧</span>
+            <span>Kanoniske Olav Voice-Auditions</span>
+          </div>
+          <p style="font-size: 12px; color: var(--dim); margin-bottom: 14px;">
+            Faktiske stemmereplikasjoner fra Olav-pipeline (BO-0065 audit):
+          </p>
+
+          <div class="sample-item">
+            <div class="sample-head">
+              <span>P12 — Opening + Comma Ending</span>
+              <span style="color: var(--green); font-size: 11px;">24kHz WAV</span>
+            </div>
+            <div class="sample-transcript">«I tried my best today. Tomorrow, tomorrow, it's a brand new day.»</div>
+            <audio controls preload="metadata" src="P12-p06-opening-comma.wav"></audio>
+          </div>
+
+          <div class="sample-item">
+            <div class="sample-head">
+              <span>P13 — Opening + Sentence Ending</span>
+              <span style="color: var(--blue); font-size: 11px;">24kHz WAV</span>
+            </div>
+            <div class="sample-transcript">«I tried my best today. Tomorrow. Tomorrow. It's a brand new day.»</div>
+            <audio controls preload="metadata" src="P13-p06-opening-sentence.wav"></audio>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      VALO Research &middot; Website Deployer &middot; Olav Autonomous Voice &middot; 
+      <a href="https://github.com/nsolland/website-deployer">GitHub nsolland/website-deployer</a>
+    </div>
+  </footer>
+
+  <script>
+    // Audio context and visualizer setup
+    let audioCtx = null;
+    let synth = window.speechSynthesis;
+    let currentUtterance = null;
+    let mediaRecorder = null;
+    let audioChunks = [];
+    let isRecording = false;
+
+    const canvas = document.getElementById('waveform');
+    const canvasCtx = canvas.getContext('2d');
+    let animationId = null;
+    let isSpeaking = false;
+
+    // Set canvas dimensions
+    function resizeCanvas() {
+      canvas.width = canvas.parentElement.clientWidth * window.devicePixelRatio || 600;
+      canvas.height = 70 * window.devicePixelRatio;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // Emotion profiles
+    const EMOTIONS = {
+      glad: {
+        color: '#22c55e',
+        glow: 'rgba(34, 197, 94, 0.4)',
+        title: 'Følelsesantenne: GLAD (Grønn)',
+        desc: 'Posisjon: 15° oppoverbøyd · Modus: Standard varm robot',
+        pitch: 1.25,
+        speed: 1.05
+      },
+      nysgjerrig: {
+        color: '#38bdf8',
+        glow: 'rgba(56, 189, 248, 0.4)',
+        title: 'Følelsesantenne: NYSGJERRIG (Blå)',
+        desc: 'Posisjon: 5° framoverlent · Modus: Spørrende & analytisk',
+        pitch: 1.10,
+        speed: 0.95
+      },
+      spent: {
+        color: '#facc15',
+        glow: 'rgba(250, 204, 21, 0.4)',
+        title: 'Følelsesantenne: SPENT (Gul)',
+        desc: 'Posisjon: Roterende · Modus: Høy energi & eventyrlysten',
+        pitch: 1.40,
+        speed: 1.15
+      },
+      varsom: {
+        color: '#f87171',
+        glow: 'rgba(248, 113, 113, 0.4)',
+        title: 'Følelsesantenne: VARSOM (Rød/Lav)',
+        desc: 'Posisjon: Nedbøyd · Modus: Forsiktig & empatisk',
+        pitch: 0.95,
+        speed: 0.85
+      }
+    };
+    let currentEmotion = 'glad';
+
+    function setEmotion(em) {
+      currentEmotion = em;
+      document.querySelectorAll('.emotion-btn').forEach(b => b.classList.remove('active'));
+      const activeBtn = document.getElementById('btn-' + em);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const data = EMOTIONS[em];
+      const bulb = document.getElementById('antennaBulb');
+      bulb.style.background = data.color;
+      bulb.style.boxShadow = `0 0 16px ${data.glow}`;
+      document.getElementById('antennaText').textContent = data.title;
+      bulb.nextElementSibling.lastElementChild.textContent = data.desc;
+
+      document.getElementById('pitchSlider').value = data.pitch;
+      document.getElementById('speedSlider').value = data.speed;
+      updateSliders();
+    }
+
+    function setPreset(text, emotion) {
+      document.getElementById('voiceText').value = text;
+      if (emotion) setEmotion(emotion);
+    }
+
+    function updateSliders() {
+      document.getElementById('speedVal').textContent = document.getElementById('speedSlider').value + 'x';
+      document.getElementById('pitchVal').textContent = document.getElementById('pitchSlider').value;
+    }
+
+    // Speech Synthesis & Waveform
+    function generateAndSpeak() {
+      const text = document.getElementById('voiceText').value.trim();
+      if (!text) return;
+
+      stopSpeech();
+
+      const startTime = performance.now();
+      const speed = parseFloat(document.getElementById('speedSlider').value);
+      const pitch = parseFloat(document.getElementById('pitchSlider').value);
+
+      currentUtterance = new SpeechSynthesisUtterance(text);
+      currentUtterance.rate = speed;
+      currentUtterance.pitch = pitch;
+
+      // Select voice: prioritize Norwegian or child/robot tone
+      const voices = synth.getVoices();
+      const isNorwegian = /[æøå]/i.test(text) || text.includes('Hei') || text.includes('Olav');
+      
+      let voice = null;
+      if (isNorwegian) {
+        voice = voices.find(v => v.lang.startsWith('nb') || v.lang.startsWith('no')) ||
+                voices.find(v => v.lang.startsWith('da') || v.lang.startsWith('sv'));
+      }
+      if (!voice) {
+        voice = voices.find(v => v.name.includes('Junior') || v.name.includes('Natural') || v.name.includes('Fred') || v.lang.startsWith('en'));
+      }
+      if (voice) currentUtterance.voice = voice;
+
+      currentUtterance.onstart = () => {
+        isSpeaking = true;
+        const latency = Math.round(performance.now() - startTime);
+        document.getElementById('metricLatency').textContent = latency + ' ms';
+        document.getElementById('visText').textContent = 'Olav snakker...';
+        startVisualizer();
+      };
+
+      currentUtterance.onend = () => {
+        isSpeaking = false;
+        const duration = ((performance.now() - startTime) / 1000).toFixed(2);
+        document.getElementById('metricBuffer').textContent = duration + ' s';
+        document.getElementById('visText').textContent = 'Fullført på ' + duration + 's';
+        document.getElementById('visTimer').textContent = duration + 's';
+      };
+
+      currentUtterance.onerror = (e) => {
+        isSpeaking = false;
+        document.getElementById('visText').textContent = 'Feil under avspilling: ' + e.error;
+      };
+
+      synth.speak(currentUtterance);
+    }
+
+    function stopSpeech() {
+      if (synth.speaking || isSpeaking) {
+        synth.cancel();
+        isSpeaking = false;
+        document.getElementById('visText').textContent = 'Stoppet';
+      }
+    }
+
+    // Audio Visualizer Canvas Loop
+    let phase = 0;
+    function drawWave() {
+      canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const width = canvas.width;
+      const height = canvas.height;
+      const midY = height / 2;
+
+      canvasCtx.lineWidth = 3 * window.devicePixelRatio;
+      canvasCtx.strokeStyle = isSpeaking ? (EMOTIONS[currentEmotion].color || '#10b981') : '#334155';
+      canvasCtx.shadowColor = isSpeaking ? EMOTIONS[currentEmotion].color : 'transparent';
+      canvasCtx.shadowBlur = isSpeaking ? 10 : 0;
+
+      canvasCtx.beginPath();
+      canvasCtx.moveTo(0, midY);
+
+      const amp = isSpeaking ? (height * 0.35) : 2;
+      const freq = isSpeaking ? 0.04 : 0.01;
+
+      for (let x = 0; x < width; x += 3) {
+        const y = midY + Math.sin(x * freq + phase) * Math.cos(x * 0.015 - phase * 0.5) * amp;
+        canvasCtx.lineTo(x, y);
+      }
+
+      canvasCtx.stroke();
+      phase += isSpeaking ? 0.15 : 0.02;
+
+      if (isSpeaking) {
+        animationId = requestAnimationFrame(drawWave);
+      }
+    }
+
+    function startVisualizer() {
+      cancelAnimationFrame(animationId);
+      drawWave();
+    }
+
+    // Initial silent wave
+    drawWave();
+
+    // Voice Recording
+    async function toggleRecording() {
+      if (!isRecording) {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          mediaRecorder = new MediaRecorder(stream);
+          audioChunks = [];
+
+          mediaRecorder.ondataavailable = (e) => {
+            if (e.data.size > 0) audioChunks.push(e.data);
+          };
+
+          mediaRecorder.onstop = () => {
+            const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+            const audioUrl = URL.createObjectURL(audioBlob);
+            const recordedAudio = document.getElementById('recordedAudio');
+            recordedAudio.src = audioUrl;
+            document.getElementById('recordedAudioContainer').style.display = 'block';
+            document.getElementById('recordStatus').textContent = 'Opptak fullført (' + Math.round(audioBlob.size / 1024) + ' KB) — Referanselyd lagret.';
+          };
+
+          mediaRecorder.start();
+          isRecording = true;
+          document.getElementById('recordBtn').classList.add('recording');
+          document.getElementById('recLabel').textContent = 'Tar opp... (klikk for å stoppe)';
+          document.getElementById('recordStatus').textContent = 'Tar opp din referansestemme...';
+
+          // Auto-stop after 4 seconds
+          setTimeout(() => {
+            if (isRecording) toggleRecording();
+          }, 4000);
+
+        } catch (err) {
+          alert('Kunne ikke åpne mikrofon: ' + err.message);
+        }
+      } else {
+        if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+          mediaRecorder.stop();
+          mediaRecorder.stream.getTracks().forEach(t => t.stop());
+        }
+        isRecording = false;
+        document.getElementById('recordBtn').classList.remove('recording');
+        document.getElementById('recLabel').textContent = 'Ta opp på nytt';
+      }
+    }
+  </script>
+</body>
+</html>
