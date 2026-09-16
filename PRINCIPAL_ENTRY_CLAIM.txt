@@ -1,0 +1,16 @@
+PRINCIPAL ENTRY — WORK CLAIM
+
+Repo: nsolland/valoresearch.org
+Canonical base: b930ff866fcfb2a35f6a1328c3d83f36c8ef2698
+Branch: build/principal-entry
+Owner: ChatGPT / Njål
+
+Active delivery:
+Public Principal entry point under valoresearch.org/principal/ linking to the authenticated Principal runtime.
+
+Owned files:
+principal/index.html
+PRINCIPAL_ENTRY_CLAIM.txt
+
+Dependency:
+Authenticated runtime at principal.valoresearch.org on Railway.
