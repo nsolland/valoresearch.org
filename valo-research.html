@@ -3,184 +3,131 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VALO Research — Authority, Evidence and Intelligent Action</title>
-  <meta name="description" content="VALO Research studies the conditions under which intelligent systems may act: authority, evidence, execution, institutional design and resilient intelligence." />
-  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <meta name="theme-color" content="#f4f1e8" />
+  <title>VALO Research — Work, evidence, transfer</title>
+  <meta name="description" content="VALO Research turns hard operational needs into governed systems, executable proof and reusable operating knowledge." />
   <style>
-    :root{--paper:#f4f1e8;--paper-2:#ebe6da;--ink:#17201d;--muted:#626963;--forest:#244b3f;--forest-2:#17362e;--gold:#9a6f32;--line:rgba(23,32,29,.16);--white:#fffdf8}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}.wrap{max-width:1160px;margin:0 auto;padding:0 26px}
-    .nav-shell{position:sticky;top:0;z-index:30;background:rgba(244,241,232,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}nav{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:26px}.brand{display:flex;align-items:center;gap:12px}.brand img{height:30px;width:auto}.brand span{font-size:11px;font-weight:750;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}.links{display:flex;gap:22px;font-size:14px;color:var(--muted)}.links a:hover{color:var(--forest)}.nav-action{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:9px 15px;border:1px solid var(--forest);font-size:13px;font-weight:750;color:var(--forest)}
-    header{padding:112px 0 88px;border-bottom:1px solid var(--line)}.eyebrow{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--forest);font-weight:800}.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:72px;align-items:end}h1{font-family:Georgia,"Times New Roman",serif;font-size:clamp(52px,7.2vw,98px);line-height:.98;letter-spacing:-.055em;margin:18px 0 28px;color:var(--forest-2);max-width:900px}.lead{font-size:clamp(20px,2vw,27px);line-height:1.45;color:var(--muted);max-width:860px;margin:0}.hero-note{border-left:3px solid var(--gold);padding:8px 0 8px 24px;color:var(--muted);font-size:16px}.hero-note strong{display:block;color:var(--ink);font-size:18px;margin-bottom:8px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:10px 17px;border:1px solid var(--line);font-size:14px;font-weight:800}.btn.primary{background:var(--forest);border-color:var(--forest);color:var(--white)}.btn:hover{transform:translateY(-1px)}
-    section{padding:88px 0;border-bottom:1px solid var(--line)}.section-head{display:grid;grid-template-columns:.78fr 1.22fr;gap:56px;align-items:end;margin-bottom:42px}.kicker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:850}.section-head h2,.statement h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(38px,5vw,66px);line-height:1.02;letter-spacing:-.045em;margin:12px 0 0;color:var(--forest-2)}.section-head p{font-size:19px;color:var(--muted);margin:0;max-width:720px}
-    .fields{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}.field{background:var(--white);padding:26px;min-height:250px}.field .num{font-family:Georgia,"Times New Roman",serif;font-size:34px;color:var(--gold)}.field h3{font-size:20px;line-height:1.2;margin:32px 0 12px}.field p{font-size:14px;color:var(--muted);margin:0}
-    .programs{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.program{background:var(--white);border:1px solid var(--line);padding:30px;min-height:230px}.program small{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);font-weight:800}.program h3{font-family:Georgia,"Times New Roman",serif;font-size:31px;line-height:1.1;margin:14px 0}.program p{color:var(--muted);margin:0}.program .status{display:inline-block;margin-top:22px;padding:6px 9px;border:1px solid var(--line);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--forest)}
-    .library{background:var(--forest-2);color:var(--white)}.library .section-head h2{color:var(--white)}.library .section-head p{color:rgba(255,255,255,.68)}.library .kicker{color:#d5b77c}.pub-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}.pub-feature,.pub-side{border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.04);padding:30px}.pub-feature small,.pub-side small{color:#d5b77c;font-weight:800;text-transform:uppercase;letter-spacing:.1em}.pub-feature h3{font-family:Georgia,"Times New Roman",serif;font-size:38px;line-height:1.08;margin:14px 0}.pub-side h3{font-size:23px;margin:14px 0}.pub-feature p,.pub-side p{color:rgba(255,255,255,.68)}.pub-link{display:inline-block;margin-top:18px;color:#e6cf9f;font-weight:800}.publication-rule{margin-top:18px;color:rgba(255,255,255,.58);font-size:14px}
-    .questions{display:grid;gap:0;border-top:1px solid var(--line)}.question{display:grid;grid-template-columns:80px 1fr 1fr;gap:26px;padding:25px 0;border-bottom:1px solid var(--line)}.question .id{font-family:Georgia,"Times New Roman",serif;font-size:30px;color:var(--gold)}.question h3{margin:0;font-size:22px}.question p{margin:0;color:var(--muted)}
-    .research-collaboration{background:var(--paper-2)}.research-collaboration-grid{display:grid;grid-template-columns:220px 1fr;gap:42px;align-items:start}.research-collaboration-grid + .research-collaboration-grid{margin-top:18px}.research-collaboration-card{background:var(--white);border:1px solid var(--line);padding:30px}.research-collaboration-card h3{font-family:Georgia,"Times New Roman",serif;font-size:34px;line-height:1.08;margin:10px 0 8px;color:var(--forest-2)}.research-collaboration-card p{color:var(--muted)}.research-collaboration-grid .portrait{width:100%;aspect-ratio:4/5;object-fit:cover;border:1px solid var(--line);background:var(--paper-2)}.collaborator-label{border:1px solid var(--line);background:var(--paper);padding:24px;font-size:13px;color:var(--muted)}.collaborator-label strong{display:block;color:var(--forest-2);font-family:Georgia,"Times New Roman",serif;font-size:27px;line-height:1.1;margin-bottom:8px}.research-collaboration-status{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:22px}.research-collaboration-status div{border:1px solid var(--line);padding:14px;font-size:13px;color:var(--muted)}.research-collaboration-status strong{display:block;color:var(--ink);margin-bottom:4px}.invariant-note{margin-top:22px;border-left:4px solid var(--gold);background:var(--paper);padding:18px;color:var(--muted)}.collab{background:var(--paper-2)}.collab-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}.collab h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(42px,5vw,68px);line-height:1.02;letter-spacing:-.045em;color:var(--forest-2);margin:12px 0 22px}.collab p{color:var(--muted);font-size:18px}.roles{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.role{background:var(--white);border:1px solid var(--line);padding:18px;font-size:14px;font-weight:750}
-    .translation{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}.translation h2{font-family:Georgia,"Times New Roman",serif;font-size:clamp(40px,5vw,66px);line-height:1.02;letter-spacing:-.045em;color:var(--forest-2);margin:12px 0 20px}.translation p{color:var(--muted);font-size:18px}.product-card{background:var(--white);border:1px solid var(--line);padding:30px}.product-card small{color:var(--gold);font-weight:800;text-transform:uppercase;letter-spacing:.12em}.product-card h3{font-size:30px;margin:16px 0 12px}.product-card p{font-size:15px}.product-card a{display:inline-block;margin-top:16px;color:var(--forest);font-weight:850}
-    footer{padding:36px 0;background:var(--forest-2);color:rgba(255,255,255,.65)}.footer-row{display:flex;justify-content:space-between;gap:22px;align-items:center;font-size:14px}.footer-links{display:flex;gap:20px;flex-wrap:wrap}.footer-links a:hover{color:#fff}
-    @media(max-width:980px){.links{display:none}.hero-grid,.section-head,.pub-grid,.translation{grid-template-columns:1fr}.hero-note{max-width:720px}.fields{grid-template-columns:repeat(2,1fr)}.question{grid-template-columns:60px 1fr}.question p{grid-column:2}.collab-grid,.research-collaboration-grid{grid-template-columns:1fr}.section-head{gap:22px}}
-    @media(max-width:640px){nav{min-height:66px}.nav-action{display:none}.wrap{padding:0 20px}header{padding:78px 0 62px}h1{font-size:52px}.fields,.programs,.roles{grid-template-columns:1fr}.field{min-height:auto}.question{grid-template-columns:44px 1fr}.footer-row{align-items:flex-start;flex-direction:column}section{padding:68px 0}}
+    :root{--bg:#f7f5ef;--ink:#161616;--muted:#606660;--line:#d8d4c8;--panel:#fff;--soft:#eeebe2;--accent:#355f52;--accent2:#9a6f32;--dark:#1f2c27}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}.wrap{max-width:1120px;margin:0 auto;padding:0 24px}nav{border-bottom:1px solid var(--line);background:rgba(247,245,239,.92);backdrop-filter:blur(14px);position:sticky;top:0;z-index:20}.nav{height:66px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{font-weight:700;letter-spacing:-.03em}.brand span{color:var(--muted);font-weight:500}.links{display:flex;gap:22px;color:var(--muted);font-size:14px}.links a:hover{color:var(--ink)}header{padding:100px 0 74px}.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:800}h1{font-size:clamp(48px,7vw,88px);line-height:.96;letter-spacing:-.065em;max-width:980px;margin:18px 0 24px}.lead{max-width:790px;font-size:22px;color:var(--muted);margin:0}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}.btn{border:1px solid var(--line);background:var(--panel);padding:12px 17px;font-size:14px;font-weight:800}.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}.btn:hover{border-color:var(--accent)}section{padding:76px 0;border-top:1px solid var(--line)}h2{font-size:clamp(32px,5vw,58px);letter-spacing:-.055em;line-height:1;margin:0 0 18px}.sub{max-width:840px;color:var(--muted);font-size:18px;margin:0 0 36px}.chain{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:42px}.step{background:var(--panel);padding:26px;min-height:180px}.step small,.card small,.proof small{color:var(--accent2);font-weight:800;letter-spacing:.08em}.step h3,.card h3,.proof h3{font-size:23px;margin:10px 0 10px;letter-spacing:-.025em}.step p,.card p,.proof p{margin:0;color:var(--muted)}.proofgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}.proof{background:var(--panel);padding:34px;display:flex;flex-direction:column;min-height:320px}.status{display:inline-block;width:max-content;margin:0 0 18px;padding:5px 8px;background:var(--soft);border:1px solid var(--line);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}.proof .result{margin-top:20px;padding-top:18px;border-top:1px solid var(--line);font-size:14px}.proof a{margin-top:auto;padding-top:24px;color:var(--accent);font-weight:800;font-size:14px}.loop{display:grid;grid-template-columns:1.2fr .8fr;gap:1px;background:var(--line);border:1px solid var(--line)}.loop>div{background:var(--panel);padding:36px}.loop strong{display:block;font-size:23px;margin-bottom:10px}.loop p{color:var(--muted);margin:0}.principle{background:var(--dark);color:#eef3ef;padding:42px;margin-top:34px}.principle strong{display:block;font-size:26px;margin-bottom:10px}.principle span{color:#c7d1ca}.deep{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}.deep a{background:var(--panel);padding:30px}.deep a:hover{background:var(--soft)}.deep strong{display:block;font-size:20px;margin-bottom:8px}.deep span{color:var(--muted);font-size:14px}.note{background:var(--soft);border:1px solid var(--line);padding:28px;color:var(--muted);max-width:880px}footer{border-top:1px solid var(--line);padding:40px 0;color:var(--muted);font-size:14px}.foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}@media(max-width:880px){.links{display:none}.chain,.proofgrid,.loop,.deep{grid-template-columns:1fr}.step,.proof{min-height:auto}header{padding-top:72px}}
   </style>
 </head>
 <body>
-  <div class="nav-shell">
-    <nav class="wrap">
-      <a class="brand" href="/"><img src="/img/valo-wordmark.png" alt="VALO" /><span>Research</span></a>
-      <div class="links"><a href="/consequence-governance.html">Consequence Governance</a><a href="#research">Research</a><a href="#programs">Programs</a><a href="#independent-collaborations">Collaborations</a><a href="/publications/">Publications</a><a href="#open-problems">Open problems</a><a href="/collaborate/">Collaborate</a><a href="#about">About</a></div>
-      <a class="nav-action" href="https://reht.valoresearch.org">REHT product ↗</a>
-    </nav>
-  </div>
-
-  <main>
-    <header>
-      <div class="wrap hero-grid">
-        <div>
-          <div class="eyebrow">Independent research on intelligent action</div>
-          <h1>Researching the conditions under which intelligent systems may act.</h1>
-          <p class="lead">VALO Research studies authority, evidence, execution and institutional design for intelligent systems that create consequences in the real world.</p>
-          <div class="actions"><a class="btn primary" href="/consequence-governance-milk.html">Start with the milk example</a><a class="btn" href="/consequence-governance.html">What is Consequence Governance?</a><a class="btn" href="/publications/">Read the research</a><a class="btn" href="/collaborate/">Collaborate with us</a></div>
-        </div>
-        <div class="hero-note"><strong>Our central question</strong>How can intelligent systems become more capable without weakening legitimate human authority, accountability or the ability to explain what happened?</div>
+  <nav>
+    <div class="wrap nav">
+      <a class="brand" href="#top">VALO <span>Research</span></a>
+      <div class="links">
+        <a href="#work">Work</a>
+        <a href="#proof">Proof</a>
+        <a href="#method">Method</a>
+        <a href="#deeper">Primitives</a>
+        <a href="mailto:njaal@valoresearch.org">Contact</a>
       </div>
-    </header>
+    </div>
+  </nav>
 
-    <section id="research">
-      <div class="wrap">
-        <div class="section-head"><div><div class="kicker">Research areas</div><h2>Five connected fields.</h2></div><p>The work begins before product design. We study the institutional, technical and evidentiary conditions required for legitimate action.</p></div>
-        <div class="fields">
-          <a class="field" href="/consequence-governance.html"><div class="num">01</div><h3>Consequence Governance and human authority</h3><p>Mandate, delegation, clearance, refusal and the boundary where intent becomes consequence.</p></a>
-          <article class="field"><div class="num">02</div><h3>Evidence, provenance and verifiability</h3><p>What a system observed, what remains unknown and how claims can be independently checked.</p></article>
-          <article class="field"><div class="num">03</div><h3>Agent institutions and system design</h3><p>Roles, responsibility boundaries, memory, escalation and durable organizational structure for agents.</p></article>
-          <article class="field"><div class="num">04</div><h3>Local, edge and physical intelligence</h3><p>Governance when agents, sensors and actuators operate locally, offline or near physical consequence.</p></article>
-          <article class="field"><div class="num">05</div><h3>Societal resilience and long-term governance</h3><p>How institutions preserve responsibility, knowledge and adaptive capacity as intelligence scales.</p></article>
-        </div>
+  <header id="top">
+    <div class="wrap">
+      <div class="eyebrow">Research through operation</div>
+      <h1>Do not take our word for it. Run the work.</h1>
+      <p class="lead">VALO Research starts with a consequential need, governs the path to action, executes under explicit constraints, captures evidence, and transfers what survives back into the platform.</p>
+      <div class="actions">
+        <a class="btn primary" href="#proof">Run the proof</a>
+        <a class="btn" href="https://reht.valoresearch.org/demos/executable-authority/">Executable Authority</a>
+        <a class="btn" href="#deeper">Inspect the primitives</a>
       </div>
-    </section>
-
-    <section id="programs">
-      <div class="wrap">
-        <div class="section-head"><div><div class="kicker">Active programs</div><h2>Research designed to be tested.</h2></div><p>Each program is organized around explicit questions, artifacts, experiments and limits rather than broad claims.</p></div>
-        <div class="programs">
-          <article class="program"><small>Program 01</small><h3>Authority at the Consequence Boundary</h3><p>Formal and operational models for determining whether a proposed action is legitimate at the moment before it becomes real.</p><span class="status">Active</span></article>
-          <article class="program"><small>Program 02</small><h3>Continuous Evidence and Integrity</h3><p>Observation, provenance, immutable receipts and post-execution evidence loops that distinguish what is known from what is inferred.</p><span class="status">Active</span></article>
-          <article class="program"><small>Program 03</small><h3>Governed Agent Institutions</h3><p>How agents can be organized into bounded roles with independent evaluation, authorization, enforcement and verification.</p><span class="status">Active</span></article>
-          <article class="program"><small>Program 04</small><h3>Edge Intelligence and Physical Action</h3><p>Local authorization, offline receipts and governance for systems that act through machines, devices and industrial environments.</p><span class="status">Developing</span></article>
-        </div>
+      <div class="chain" aria-label="VALO work chain">
+        <div class="step"><small>01</small><h3>Need</h3><p>A real workflow, decision, failure mode or economic unit that must be handled.</p></div>
+        <div class="step"><small>02</small><h3>Govern</h3><p>Authority, constraints, evidence, policy and escalation are resolved before consequence.</p></div>
+        <div class="step"><small>03</small><h3>Execute</h3><p>The work runs through an operative path rather than a slide or policy document.</p></div>
+        <div class="step"><small>04</small><h3>Prove</h3><p>Decision, effect and outcome evidence remain inspectable and replayable.</p></div>
+        <div class="step"><small>05</small><h3>Transfer</h3><p>What survives becomes reusable contracts, products and operating knowledge.</p></div>
       </div>
-    </section>
+    </div>
+  </header>
 
-    <section class="library" id="publications">
-      <div class="wrap">
-        <div class="section-head"><div><div class="kicker">Publications</div><h2>A versioned research record.</h2></div><p>Reports, working papers, technical notes, experiments and position papers are published with status, version, date, authorship and limitations.</p></div>
-        <div class="pub-grid">
-          <article class="pub-feature"><small>Research library</small><h3>Public work should remain readable, citable and open to correction.</h3><p>The publication library separates released research from product material and makes the maturity of each document explicit.</p><a class="pub-link" href="/publications/">Open the publication library →</a></article>
-          <article class="pub-side"><small>Living architecture note</small><h3>What VALO Is</h3><p>A current architecture overview. It is a living technical note, not a peer-reviewed paper or certification claim.</p><a class="pub-link" href="/what-valo-is.html">Read the note →</a></article>
-        </div>
-        <div class="publication-rule">Publication status is explicit: working note, preprint, technical report, peer-reviewed work or archived version.</div>
+  <section id="work">
+    <div class="wrap">
+      <div class="eyebrow">Operating model</div>
+      <h2>VALO is shown through the work it can carry.</h2>
+      <p class="sub">The technology is underneath. The public surface starts with operational systems, cases, executable demonstrations and the evidence they produce.</p>
+      <div class="loop">
+        <div><strong>VALO Research → Work → operative systems → evidence</strong><p>Research becomes valuable when it survives changed state, revoked authority, negative conditions and real execution boundaries.</p></div>
+        <div><strong>Evidence → learning → VALO</strong><p>Passes become reusable. Failures change the model. Unknown remains unknown.</p></div>
       </div>
-    </section>
+      <div class="principle"><strong>Portfolio is proof.</strong><span>Every operative surface should demonstrate a claim, generate evidence, or expose a failure boundary. If it does none of those, it does not belong on the front page.</span></div>
+    </div>
+  </section>
 
-    <section id="open-problems">
-      <div class="wrap">
-        <div class="section-head"><div><div class="kicker">Open problems</div><h2>Questions worth working on together.</h2></div><p>These are research invitations, not claims that the problems are solved.</p></div>
-        <div class="questions">
-          <article class="question"><div class="id">Q1</div><h3>What constitutes sufficient evidence before consequential action?</h3><p>We need testable standards for completeness, freshness, provenance and uncertainty across changing operational contexts.</p></article>
-          <article class="question"><div class="id">Q2</div><h3>How can authority remain legitimate under autonomous delegation?</h3><p>Delegation must scale without silently expanding mandate, losing accountability or turning technical capability into authority.</p></article>
-          <article class="question"><div class="id">Q3</div><h3>How should systems explain failure across organizational boundaries?</h3><p>External providers, incomplete observability and physical systems make causality difficult. Evidence must show the first observable break without overstating certainty.</p></article>
-          <article class="question"><div class="id">Q4</div><h3>What governance belongs locally at the edge?</h3><p>Low latency, limited connectivity and physical consequence require local control without isolating the system from institutional oversight.</p></article>
-        </div>
+  <section id="proof">
+    <div class="wrap">
+      <div class="eyebrow">Live and executable proof</div>
+      <h2>Start with a claim you can test.</h2>
+      <p class="sub">Each surface states what it proves and what it does not. Simulation is labelled as simulation. Experimental work is labelled as experimental.</p>
+      <div class="proofgrid">
+        <article class="proof">
+          <div class="status">Interactive simulation</div>
+          <small>EXECUTABLE AUTHORITY</small>
+          <h3>Same agent. Same credentials. Authority changes.</h3>
+          <p>A procurement agent keeps its identity, credentials and proposed payment while the delegation is revoked before consequence. The decision is recomputed against current authority.</p>
+          <div class="result">Proof target: permission held earlier is not final permission at execution time.</div>
+          <a href="https://reht.valoresearch.org/demos/executable-authority/">Run Executable Authority →</a>
+        </article>
+
+        <article class="proof">
+          <div class="status">Interactive simulation</div>
+          <small>TAVLER × VALO</small>
+          <h3>Compliance state becomes an execution boundary.</h3>
+          <p>An AI-prepared GDPR disclosure is not enough. Recipient, identity and authority must still be valid when the action would create effect.</p>
+          <div class="result">Proof target: compliant preparation cannot bypass consequence-time handlingsrett.</div>
+          <a href="https://reht.valoresearch.org/demos/tavler-gdpr/">Run the GDPR execution demo →</a>
+        </article>
+
+        <article class="proof">
+          <div class="status">Implemented test surface</div>
+          <small>GCU INVOICE RECONCILIATION</small>
+          <h3>Treat completed work as the unit.</h3>
+          <p>The invoice-reconciliation pilot tests a work contract across execution, completion evidence, metering and downstream settlement rather than pricing model activity alone.</p>
+          <div class="result">Proof target: preserve one work-unit identity across different execution mechanics.</div>
+          <a href="#deeper">Inspect the GCU primitive →</a>
+        </article>
+
+        <article class="proof">
+          <div class="status">Conformance evidence</div>
+          <small>PUBLIC + TRADES PACKS</small>
+          <h3>Failure conditions are first-class tests.</h3>
+          <p>Case transitions and bounded operational jobs are exercised against missing legal basis, stale identity, expired credentials, conflicting state and other negative conditions.</p>
+          <div class="result">Proof target: invalid work stops before consequence rather than becoming an audit finding afterward.</div>
+          <a href="/cases/">Open governed scenarios →</a>
+        </article>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="research-collaboration" id="independent-collaborations">
-      <div class="wrap">
-        <div class="section-head"><div><div class="kicker">Independent Research Collaborations</div><h2>Independent architectures. Defined boundaries.</h2></div><p>VALO Research works with external researchers and architectures through explicit boundaries. Collaboration, testing, research references and invited scrutiny are recorded without turning external participation into endorsement or ownership.</p></div>
-        <div class="research-collaboration-grid">
-          <div><img class="portrait" src="https://raw.githubusercontent.com/nsolland/reht-brand-studio/main/public/team/margaret.png" alt="Portrait of Margaret Stokes" /></div>
-          <article class="research-collaboration-card">
-            <small>Independent Research Architecture</small>
-            <h3>Aurora-Lens × VALO Research</h3>
-            <p><strong>Margaret Stokes</strong><br />Independent Architect & Creator of Aurora-Lens</p>
-            <p>Aurora-Lens is an independently owned architecture for governed evidence admission, persistent PEF state, provenance, authority and freshness, contradiction and unresolved-reference preservation, text and voice communication admissibility, and lawful continuation.</p>
-            <p>VALO contributes authenticated identity, mandate and delegation, execution context, final authorisation through REHT, enforcement and verifiable receipts.</p>
-            <div class="invariant-note"><strong>Asymmetric boundary:</strong> Aurora NON_ADMIT cannot be reversed. Aurora ADMIT does not grant execution authority, and REHT may still refuse.</div>
-            <div class="research-collaboration-status">
-              <div><strong>Status</strong>Agreed non-binding architectural framework.</div>
-              <div><strong>Phase</strong>Phase 0 documentation prepared.</div>
-              <div><strong>Obligation</strong>No current operational delivery duty for Margaret.</div>
-              <div><strong>Commercial objective</strong>Acquisition remains Aurora-Lens’s primary objective; no acquisition by VALO is implied.</div>
-            </div>
-            <div class="actions"><a class="btn primary" href="/research/aurora-lens/">Explore the research collaboration</a></div>
-          </article>
-        </div>
+  <section id="method">
+    <div class="wrap">
+      <div class="eyebrow">Research discipline</div>
+      <h2>Build. Break. Measure. Transfer.</h2>
+      <p class="sub">VALO does not claim strength from architecture diagrams. A claim earns its place by surviving falsification, execution and replay.</p>
+      <div class="note">Presentation rule: work first, evidence second, primitives third. Products are proof surfaces. Architecture is supporting explanation.</div>
+    </div>
+  </section>
 
-        <div class="research-collaboration-grid">
-          <div class="collaborator-label"><strong>Elsa Sklavounou</strong>Independent authority research and boundary testing</div>
-          <article class="research-collaboration-card">
-            <small>Independent Research Collaboration</small>
-            <h3>Authority Instrumentation™ × VALO Research</h3>
-            <p><strong>Elsa Sklavounou</strong><br />Independent researcher and creator of Authority Instrumentation™</p>
-            <p>The collaboration has examined authority, identity, delegation, scope, revocation and intervention boundaries around consequential execution. Shared case artifacts have been used to test mappings between independently established authority evidence and VALO’s consequence-time boundary.</p>
-            <p>CASE-04 was observed against a frozen outcome contract, including integrity checks, negative mutations and boundary behavior. Elsa’s architecture remains independent and is not absorbed into VALO or REHT.</p>
-            <div class="invariant-note"><strong>Boundary:</strong> Authority Instrumentation™ can provide structured authority evidence. It does not itself grant execution authority inside VALO. Collaboration and test results are not certification or endorsement of the VALO architecture.</div>
-          </article>
-        </div>
-
-        <div class="research-collaboration-grid">
-          <div class="collaborator-label"><strong>Charles R. Rupp</strong>Independent review and institutional authority models</div>
-          <article class="research-collaboration-card">
-            <small>Independent Review Collaboration</small>
-            <h3>Adjudication and justified reliance review</h3>
-            <p><strong>Charles R. Rupp</strong><br />External reviewer and contributor</p>
-            <p>Joint work has covered adjudication, justified reliance, EFA/MECHA concepts and review of the Three-Plane Model in the context of authority, institutional responsibility and EU AI Act submission work.</p>
-            <div class="invariant-note"><strong>Boundary:</strong> Review and contribution are recorded as independent scrutiny. They do not imply ownership of VALO architecture, certification, or general validation of VALO claims.</div>
-          </article>
-        </div>
-
-        <div class="research-collaboration-grid">
-          <div class="collaborator-label"><strong>Jasper van de Meent</strong>Causal ordering, reconstructability and execution continuity</div>
-          <article class="research-collaboration-card">
-            <small>Independent Research Reference & Scrutiny</small>
-            <h3>Causal execution continuity</h3>
-            <p><strong>Jasper van de Meent</strong><br />Humotica</p>
-            <p>VALO’s causal-ordering profile draws on RS-2026-001, <em>Causal Substrate Audit: Lamport-Anchored Evidence Under Time-Source Asymmetry</em>, by Jasper van de Meent / Humotica and Richard Barron / Red Specter Security Research. Its treatment of Lamport-anchored evidence, time-source asymmetry and independent reconstruction informs the causal execution continuity work.</p>
-            <p>Jasper has also been invited to attack the public Heimel architecture and open reproducible issues where the claims or implementation fail.</p>
-            <div class="invariant-note"><strong>Boundary:</strong> Use of published research and an invitation to scrutinize Heimel do not imply endorsement, certification or authorship of VALO or Heimel.</div>
-          </article>
-        </div>
-
-        <div class="research-collaboration-grid">
-          <div class="collaborator-label"><strong>Zaid Hasan Khan</strong>Invited external scrutiny of Heimel</div>
-          <article class="research-collaboration-card">
-            <small>Invited Independent Scrutiny</small>
-            <h3>Adversarial architecture review</h3>
-            <p><strong>Zaid Hasan Khan</strong></p>
-            <p>Zaid Hasan Khan has been invited to review and attack the public Heimel architecture, including its stated unresolved end-to-end local execution gate, and to open issues backed by reproducible evidence.</p>
-            <div class="invariant-note"><strong>Status:</strong> This records an invitation to independent scrutiny, not a completed collaboration, validation or endorsement. If review artifacts or reproducible findings are produced, the record can be promoted to a documented research collaboration.</div>
-          </article>
-        </div>
+  <section id="deeper">
+    <div class="wrap">
+      <div class="eyebrow">Drill down</div>
+      <h2>The primitives underneath the work.</h2>
+      <p class="sub">Only after the visitor understands the work do we expose the underlying control and economic primitives.</p>
+      <div class="deep">
+        <a href="https://reht.valoresearch.org/"><strong>REHT / authority</strong><span>Fresh authority at the moment of consequence, deterministic decision and verifiable effect.</span></a>
+        <a href="/authority-graphs.html"><strong>Authority graphs</strong><span>Delegation, principals, scope and lineage behind consequential action.</span></a>
+        <a href="/cases/"><strong>Cases and evidence</strong><span>Concrete governed scenarios, negative conditions and decision paths.</span></a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="collab">
-      <div class="wrap collab-grid">
-        <div><div class="kicker">Collaboration</div><h2>Independent scrutiny improves the work.</h2><p>We invite researchers, reviewers, universities and technical practitioners who can challenge assumptions, test claims or contribute methods and evidence.</p><div class="actions"><a class="btn primary" href="/collaborate/">See collaboration paths</a><a class="btn" href="mailto:njal@valoresearch.org?subject=Research%20collaboration">Propose a research question</a></div></div>
-        <div class="roles"><div class="role">Research collaborator</div><div class="role">Affiliated researcher</div><div class="role">Independent reviewer</div><div class="role">University partner</div><div class="role">Benchmark contributor</div><div class="role">Visiting fellow</div></div>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="wrap translation">
-        <div><div class="kicker">Research to practice</div><h2>The research is broader than any one product.</h2><p>VALO Research develops and publishes the underlying questions, models and evidence. Operational products are kept on separate product surfaces so research maturity and commercial claims remain distinguishable.</p></div>
-        <article class="product-card"><small>Operational product</small><h3>REHT</h3><p>REHT translates consequence-governance research into a consequence-time authorization layer between intent and real-world effect.</p><a href="https://reht.valoresearch.org">Go to REHT ↗</a></article>
-      </div>
-    </section>
-  </main>
-
-  <footer><div class="wrap footer-row"><div>VALO Research · Authority, evidence and intelligent action</div><div class="footer-links"><a href="/consequence-governance.html">Consequence Governance</a><a href="/consequence-governance-milk.html">Milk example</a><a href="/publications/">Publications</a><a href="/collaborate/">Collaborate</a><a href="mailto:njal@valoresearch.org">Contact</a><a href="https://reht.valoresearch.org">REHT ↗</a></div></div></footer>
+  <footer>
+    <div class="wrap foot">
+      <div>VALO Research</div>
+      <div>Need → Govern → Execute → Prove → Transfer · njaal@valoresearch.org</div>
+    </div>
+  </footer>
 </body>
 </html>
