@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="TraXin underwriting evidence: historical decision points, bind/decline/escalate outcomes, residual risk, priceable evidence and governed outcome economics.">
+  <link rel="canonical" href="https://underwriters.valoresearch.org/">
+  <title>TraXin Underwriting · VALO Research</title>
+  <style>
+    :root{--bg:#f5f2ec;--ink:#171715;--muted:#69645d;--line:#d8d0c5;--panel:#fffdf9;--accent:#203c31;--accentInk:#fff;--soft:#ebe6dd;--good:#315c45;--warn:#875e2d;--bad:#7b3933}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    a{color:inherit}
+    .shell{width:min(1140px,calc(100% - 32px));margin:auto;padding:32px 0 72px}
+    .top{display:flex;justify-content:space-between;gap:24px;align-items:center;padding-bottom:28px;border-bottom:1px solid var(--line)}
+    .brand{font-size:12px;font-weight:800;letter-spacing:.15em}
+    .back{font-size:14px;color:var(--muted);text-decoration:none}
+    .hero{padding:78px 0 44px}
+    .eyebrow{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+    h1{font-size:clamp(48px,8vw,98px);line-height:.94;letter-spacing:-.06em;margin:0;max-width:1040px}
+    .hero p{font-size:clamp(19px,2.4vw,27px);line-height:1.45;color:var(--muted);max-width:860px;margin:30px 0 0}
+    .hero .thesis{margin-top:28px;color:var(--ink);font-weight:750;max-width:900px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 22px;border-radius:999px;text-decoration:none;font-weight:700;border:1px solid var(--line)}
+    .primary{background:var(--accent);color:var(--accentInk);border-color:var(--accent)}
+    .section{padding:58px 0;border-top:1px solid var(--line)}
+    .section-head{display:grid;grid-template-columns:1fr 2fr;gap:28px;align-items:start;margin-bottom:28px}
+    .kicker{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+    .section h2{font-size:clamp(32px,5vw,58px);line-height:1;letter-spacing:-.045em;margin:0}
+    .section-intro{font-size:18px;line-height:1.55;color:var(--muted);max-width:790px;margin:0}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:24px}
+    .card h3{font-size:24px;letter-spacing:-.03em;margin:38px 0 10px}
+    .card p{margin:0;color:var(--muted);line-height:1.55}
+    .n{font-size:12px;color:var(--muted)}
+    .metric{font-size:46px;font-weight:800;letter-spacing:-.05em;margin-top:38px}
+    .label{font-size:14px;color:var(--muted);margin-top:4px}
+    .status{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:8px 11px;border-radius:999px;background:var(--soft);margin-bottom:18px}
+    .status.warn{color:var(--warn)}
+    .flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+    .flow div{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;min-height:130px}
+    .flow strong{display:block;font-size:15px;margin-bottom:7px}
+    .flow span{display:block;color:var(--muted);font-size:14px;line-height:1.45}
+    .decision{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+    .decision article{border:1px solid var(--line);border-radius:18px;padding:24px;background:var(--panel)}
+    .decision h3{margin:42px 0 8px;font-size:28px;letter-spacing:-.04em}
+    .decision p{margin:0;color:var(--muted);line-height:1.5}
+    .decision .bind{border-top:5px solid var(--good)}
+    .decision .decline{border-top:5px solid var(--bad)}
+    .decision .escalate{border-top:5px solid var(--warn)}
+    .case{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:28px}
+    .case-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:30px}
+    .case h3{font-size:32px;letter-spacing:-.04em;margin:8px 0 12px}
+    .facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:20px}
+    .fact{border-top:1px solid var(--line);padding-top:12px}
+    .fact b{display:block;font-size:13px;margin-bottom:4px}.fact span{color:var(--muted);font-size:14px}
+    .note{padding:18px 20px;border-radius:14px;background:var(--soft);color:var(--muted);line-height:1.5}
+    .equation{font-size:clamp(24px,3.5vw,42px);line-height:1.2;letter-spacing:-.04em;font-weight:800;max-width:960px;margin:16px 0 0}
+    .compact{margin:0;padding-left:19px;color:var(--muted);line-height:1.6}
+    .compact li+li{margin-top:5px}
+    .footer{margin-top:18px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:24px;color:var(--muted);font-size:13px}
+    @media(max-width:900px){.flow{grid-template-columns:1fr 1fr}.section-head{grid-template-columns:1fr}.grid{grid-template-columns:1fr 1fr}.case-grid{grid-template-columns:1fr}}
+    @media(max-width:620px){.shell{width:calc(100% - 22px)}.top{align-items:flex-start;flex-direction:column}.hero{padding-top:52px}.hero h1{font-size:49px}.grid,.grid.two,.decision,.flow,.facts{grid-template-columns:1fr}.section{padding:44px 0}.card h3{margin-top:28px}.footer{flex-direction:column}}
+    @media(prefers-color-scheme:dark){:root{--bg:#11110f;--ink:#f2efe9;--muted:#aba59a;--line:#34312d;--panel:#181816;--accent:#d8e7da;--accentInk:#152019;--soft:#24211d;--good:#79a98b;--warn:#c49a63;--bad:#c8847d}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="top">
+      <div class="brand">VALO RESEARCH · UNDERWRITING</div>
+      <a class="back" href="https://valoresearch.org/">VALO Research</a>
+    </header>
+
+    <section class="hero">
+      <div class="eyebrow">TraXin · governed outcome risk</div>
+      <h1>Can this outcome be priced, bound and carried?</h1>
+      <p>TraXin turns a bounded outcome into an underwriting object: declared authority, dependencies, failure conditions, residual loss exposure, required evidence and explicit risk capacity.</p>
+      <p class="thesis">The question is not whether an AI system is safe in the abstract. The question is whether a specific consequential outcome has enough current evidence, authority and risk capacity to bind.</p>
+      <div class="actions">
+        <a class="btn primary" href="#case-package">Case package</a>
+        <a class="btn" href="mailto:njaal@valoresearch.org?subject=TraXin%20underwriting">Discuss underwriting</a>
+      </div>
+    </section>
+
+    <section class="section" id="case-package">
+      <div class="section-head">
+        <div class="kicker">Current evidence status</div>
+        <div>
+          <h2>The infrastructure exists. The historical case package does not yet.</h2>
+          <p class="section-intro">This page separates implemented underwriting mechanics from evidence that still has to be produced. No illustrative scenario is presented as a reconstructed historical loss or underwriting decision.</p>
+        </div>
+      </div>
+      <div class="grid">
+        <article class="card"><div class="n">Historical cases reconstructed</div><div class="metric">0</div><div class="label">Decision state rebuilt from contemporaneous evidence</div></article>
+        <article class="card"><div class="n">Blind TraXin runs</div><div class="metric">0</div><div class="label">Assessment performed before revealing actual outcome</div></article>
+        <article class="card"><div class="n">Outcome comparisons</div><div class="metric">0</div><div class="label">TraXin decision compared with real historical outcome</div></article>
+        <article class="card"><div class="n">Real bind / decline / escalate decisions</div><div class="metric">0</div><div class="label">Carrier or delegated underwriting decisions using the package</div></article>
+        <article class="card"><div class="n">Underwriter delivery</div><div class="metric">1</div><div class="label">Gallagher Re received the deck on 16 September 2026</div></article>
+        <article class="card"><div class="n">Next proof gate</div><div class="metric">1</div><div class="label">Reconstruct one historical decision point well enough to price</div></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div class="kicker">Decision interface</div>
+        <div>
+          <h2>Three underwriting outcomes.</h2>
+          <p class="section-intro">TraXin can assess admissibility and package the evidence. The legal and financial act of binding remains with an underwriter operating under valid carrier authority.</p>
+        </div>
+      </div>
+      <div class="decision">
+        <article class="bind"><div class="n">01</div><h3>Bind</h3><p>The declared risk slices are within appetite, required evidence is present, terms are explicit and valid capacity is attached.</p></article>
+        <article class="decline"><div class="n">02</div><h3>Decline</h3><p>A material exposure falls outside appetite, authority or evidence is insufficient, or the economics cannot close without unbacked residual risk.</p></article>
+        <article class="escalate"><div class="n">03</div><h3>Escalate</h3><p>The outcome may be insurable, but a human or higher underwriting authority must resolve a condition, exception, capacity question or changed state.</p></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div class="kicker">Illustrative decision point</div>
+        <div>
+          <h2>Case 03 is an example, not historical evidence.</h2>
+          <p class="section-intro">The deck scenario demonstrates the decision structure. It must not be counted as a reconstructed case until the underlying event and contemporaneous evidence are sourced independently.</p>
+        </div>
+      </div>
+      <article class="case">
+        <div class="case-grid">
+          <div>
+            <div class="status warn">Illustrative only</div>
+            <h3>Automated supplier payment</h3>
+            <p class="section-intro">A consequential payment is attempted after the mandate has become stale and the governing state has changed.</p>
+            <div class="facts">
+              <div class="fact"><b>Date used in illustration</b><span>14 February 2026</span></div>
+              <div class="fact"><b>Exposure</b><span>USD 410,000</span></div>
+              <div class="fact"><b>Relevant failure mode</b><span>Stale mandate / changed authority</span></div>
+              <div class="fact"><b>Required result</b><span>Fresh consequence-time assessment before effect</span></div>
+            </div>
+          </div>
+          <div class="note">For a real historical case, the package needs the evidence that existed at the decision point, the exact authority and dependency state, the blind TraXin result, the actual outcome, and the loss or near-loss consequence. Only then can an underwriter judge calibration and price relevance.</div>
+        </div>
+      </article>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div class="kicker">What becomes priceable</div>
+        <div>
+          <h2>Evidence tied to a specific loss mechanism.</h2>
+          <p class="section-intro">Generic model confidence is not the underwriting object. Priceable evidence is evidence that changes the probability, severity, recoverability or controllability of a declared risk slice.</p>
+        </div>
+      </div>
+      <div class="grid">
+        <article class="card"><div class="n">01</div><h3>Authority state</h3><p>Who is allowed to cause the exact effect now, under what mandate, scope, limits and freshness requirements.</p></article>
+        <article class="card"><div class="n">02</div><h3>Dependency state</h3><p>External commitments, approval windows, counterparties, waiting exposure and evidence that the next required dependency is still valid.</p></article>
+        <article class="card"><div class="n">03</div><h3>Failure condition</h3><p>A concrete event that creates loss, not a generic risk label: unauthorized payment, stale approval, missed obligation, unrecoverable release.</p></article>
+        <article class="card"><div class="n">04</div><h3>Loss basis</h3><p>Maximum exposure, expected loss, retained amount, transferred amount and the assumptions that make those numbers defensible.</p></article>
+        <article class="card"><div class="n">05</div><h3>Control evidence</h3><p>Proof that the required control existed and was applied at consequence time, including fail-closed outcomes and effect evidence.</p></article>
+        <article class="card"><div class="n">06</div><h3>Outcome evidence</h3><p>What actually happened: completion, failure, prevented loss, exception, claim trigger, recovery and settlement evidence.</p></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div class="kicker">GCU model</div>
+        <div>
+          <h2>The economic unit is a governed outcome.</h2>
+          <p class="section-intro">A GCU is not a seat, hour, token or named worker. It is a bounded outcome whose capability, authority, completion criteria, evidence, residual risk and settlement conditions are explicit enough to contract.</p>
+        </div>
+      </div>
+      <div class="flow" aria-label="GCU underwriting flow">
+        <div><strong>1 · Outcome contract</strong><span>Scope, completion criteria, authority, constraints and settlement unit.</span></div>
+        <div><strong>2 · Risk slices</strong><span>Failure conditions, loss basis, max loss, retention and transfer requirement.</span></div>
+        <div><strong>3 · Underwriting</strong><span>Assess, price, bind, decline or escalate under actual carrier authority.</span></div>
+        <div><strong>4 · Governed execution</strong><span>Heimel checks fresh authority at the moment a consequential effect can occur.</span></div>
+        <div><strong>5 · Evidence & settlement</strong><span>Completion, failure, claim and remedy evidence close the economic loop.</span></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div class="kicker">Hard economic closure</div>
+        <div>
+          <h2>No material loss exposure may disappear between systems.</h2>
+          <p class="section-intro">TraXin's core invariant is NO_UNBACKED_RESIDUAL_RISK. Every material risk slice must end in explicit retained acceptance, valid bound transferred capacity, or both.</p>
+          <div class="equation">active retained acceptance + active bound transferred capacity ≥ declared maximum loss exposure</div>
+        </div>
+      </div>
+      <div class="grid two">
+        <article class="card"><div class="n">RiskBind</div><h3>Binding must be explicit.</h3><p>A quote, risk score, reserve estimate, insurance-cost estimate or underwriter name is not capacity. Bound status, carrier, authority reference, covered risk IDs, limits, exclusions, premium, validity and evidence conditions must resolve to an actual obligation.</p></article>
+        <article class="card"><div class="n">Retention</div><h3>Deductibles must end somewhere.</h3><p>A deductible is residual risk. It must be represented as retained exposure and backed by a named party's current acceptance. It cannot vanish between the policy and the outcome contract.</p></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div class="kicker">Core theses</div>
+        <div>
+          <h2>What TraXin treats differently.</h2>
+        </div>
+      </div>
+      <div class="grid">
+        <article class="card"><div class="n">01</div><h3>Risk score ≠ risk acceptance</h3><p>An assessment may say ACCEPT. It does not create insurance, a guarantee or balance-sheet backing.</p></article>
+        <article class="card"><div class="n">02</div><h3>Underwriter ≠ risk carrier</h3><p>The roles can sit in one organization, but delegated binding authority must still resolve to the carrier that bears the exposure.</p></article>
+        <article class="card"><div class="n">03</div><h3>Capability ≠ authority</h3><p>A model, agent or provider may be able to perform an action without being authorized to cause its consequence.</p></article>
+        <article class="card"><div class="n">04</div><h3>Technical attestation ≠ coverage</h3><p>Control evidence can satisfy a policy condition. It cannot itself establish that coverage exists or a claim is payable.</p></article>
+        <article class="card"><div class="n">05</div><h3>Settlement rail ≠ risk capital</h3><p>The ability to move money is not the obligation or capacity to absorb loss.</p></article>
+        <article class="card"><div class="n">06</div><h3>Waiting is priced exposure</h3><p>External dependencies are not passive calendar time. Delay, withdrawal, stale authority and opportunity cost belong in the economics where material.</p></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div class="kicker">Historical-case protocol</div>
+        <div>
+          <h2>The package an underwriter can challenge.</h2>
+          <p class="section-intro">The next gate is deliberately small: one real historical decision point, reconstructed without hindsight leakage.</p>
+        </div>
+      </div>
+      <div class="grid two">
+        <article class="card"><div class="n">Reconstruct</div><h3>State at decision time</h3><ul class="compact"><li>Contemporaneous mandate and authority</li><li>Known dependencies and commitments</li><li>Available evidence and missing evidence</li><li>Declared exposure and failure conditions</li><li>No later outcome information in the input package</li></ul></article>
+        <article class="card"><div class="n">Run blind</div><h3>TraXin decision</h3><ul class="compact"><li>Assessment result and reasoning trace</li><li>Bind / decline / escalate recommendation</li><li>Required conditions and evidence</li><li>Residual retained and transferred risk</li><li>Re-underwriting trigger if state changes</li></ul></article>
+        <article class="card"><div class="n">Reveal</div><h3>Actual outcome</h3><ul class="compact"><li>What happened after the decision point</li><li>Loss, near loss or prevented loss</li><li>Control success or failure</li><li>Recovery, claim and settlement where available</li></ul></article>
+        <article class="card"><div class="n">Compare</div><h3>Underwriting relevance</h3><ul class="compact"><li>Would the decision have changed?</li><li>Which evidence was genuinely predictive?</li><li>What was not captured?</li><li>Could the residual risk have been priced and bound?</li></ul></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div class="kicker">Implemented foundation</div>
+        <div>
+          <h2>The control and risk-capacity primitives already exist.</h2>
+          <p class="section-intro">TraXin includes risk assessment, a carrier adapter, canonical RiskBind handling and fail-closed residual-risk closure. The current work is not to invent another risk taxonomy. It is to prove calibration against real decisions and outcomes.</p>
+        </div>
+      </div>
+      <div class="grid two">
+        <article class="card"><div class="n">Consequence control</div><h3>Fresh authority before effect.</h3><p>Consequential action is separated from model capability. Heimel resolves current authority at consequence time and produces effect evidence rather than assuming an earlier approval remains valid.</p></article>
+        <article class="card"><div class="n">Risk capacity</div><h3>Assessment remains separate from binding.</h3><p>The Risk Engine can assess and price. The carrier adapter normalizes external capacity. RiskBind represents the binding obligation. The closure invariant fails when material residual risk remains unbacked.</p></article>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>VALO Research · TraXin underwriting</span>
+      <span>Current evidence status: infrastructure implemented; historical validation in progress.</span>
+    </footer>
+  </main>
+</body>
+</html>
