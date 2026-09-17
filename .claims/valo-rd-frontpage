@@ -1,0 +1,7 @@
+owner: ChatGPT
+branch: valo-rd-frontpage
+base: dca84987b7c6715ba096262d6943188d04418cbd
+files:
+  - index.html
+purpose: Reframe VALO Research as an R&D company that turns hard operational needs into working systems, evidence, products and methods. Governance remains one portfolio capability, not the company identity.
+dependencies: none
