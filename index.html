@@ -3,107 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script>
-    if (location.hostname === 'underwriters.valoresearch.org' && location.pathname === '/') {
-      location.replace('/underwriters/');
-    }
-  </script>
+  <script>if(location.hostname==='underwriters.valoresearch.org'&&location.pathname==='/'){location.replace('/underwriters/')}</script>
   <title>VALO Research — From hard problems to working systems</title>
   <meta name="description" content="VALO Research is an R&D company that turns hard operational needs into working systems, evidence, products and new methods." />
   <style>
-    :root{--bg:#f7f5ef;--ink:#161616;--muted:#626760;--line:#d8d4c8;--panel:#fff;--soft:#eeebe2;--accent:#355f52;--accent2:#946b31;--dark:#1f2c27}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}.wrap{max-width:1160px;margin:0 auto;padding:0 24px}nav{border-bottom:1px solid var(--line);background:rgba(247,245,239,.94);backdrop-filter:blur(14px);position:sticky;top:0;z-index:20}.nav{height:66px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{font-weight:750;letter-spacing:-.03em}.brand span{color:var(--muted);font-weight:500}.links{display:flex;gap:22px;color:var(--muted);font-size:14px}.links a:hover{color:var(--ink)}header{padding:112px 0 80px}.eyebrow{font-size:12px;letter-spacing:.17em;text-transform:uppercase;color:var(--accent);font-weight:800}h1{font-size:clamp(52px,8vw,98px);line-height:.93;letter-spacing:-.07em;max-width:1050px;margin:18px 0 28px}.lead{max-width:830px;font-size:22px;color:var(--muted);margin:0}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}.btn{border:1px solid var(--line);background:var(--panel);padding:12px 17px;font-size:14px;font-weight:800}.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}.btn:hover{border-color:var(--accent)}section{padding:82px 0;border-top:1px solid var(--line)}h2{font-size:clamp(34px,5vw,62px);letter-spacing:-.055em;line-height:1;margin:0 0 18px}.sub{max-width:860px;color:var(--muted);font-size:18px;margin:0 0 38px}.chain{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:48px}.step{background:var(--panel);padding:24px;min-height:180px}.step small,.card small{color:var(--accent2);font-weight:800;letter-spacing:.08em}.step h3,.card h3{font-size:22px;margin:10px 0 10px;letter-spacing:-.025em}.step p,.card p{margin:0;color:var(--muted)}.portfolio{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}.card{background:var(--panel);padding:34px;min-height:270px;display:flex;flex-direction:column}.card h3{font-size:30px}.card .tag{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:800;margin-bottom:14px}.card a{margin-top:auto;padding-top:24px;color:var(--accent);font-weight:800;font-size:14px}.method{display:grid;grid-template-columns:1.15fr .85fr;gap:1px;background:var(--line);border:1px solid var(--line)}.method>div{background:var(--panel);padding:38px}.method strong{display:block;font-size:26px;margin-bottom:10px}.method p{color:var(--muted);margin:0}.principle{background:var(--dark);color:#eef3ef;padding:44px;margin-top:36px}.principle strong{display:block;font-size:28px;margin-bottom:10px}.principle span{color:#c8d2cb}.proofgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}.proof{background:var(--panel);padding:30px}.proof strong{display:block;font-size:22px;margin-bottom:10px}.proof span{color:var(--muted)}footer{border-top:1px solid var(--line);padding:40px 0;color:var(--muted);font-size:14px}.foot{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}@media(max-width:900px){.links{display:none}.chain,.portfolio,.method,.proofgrid{grid-template-columns:1fr}.step,.card{min-height:auto}header{padding-top:76px}}
+    :root{--bg:#f6f3ec;--ink:#151817;--muted:#626861;--line:#d6d0c5;--green:#254c3f;--deep:#10251e;--gold:#b1843c;--paper:#fffdf8}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6}a{color:inherit;text-decoration:none}.wrap{width:min(1180px,calc(100% - 40px));margin:auto}.nav{position:sticky;top:0;z-index:30;background:rgba(246,243,236,.9);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}.nav .wrap{height:72px;display:flex;align-items:center;justify-content:space-between}.brand{font-weight:800;letter-spacing:-.03em}.brand span{font-weight:500;color:var(--muted)}.links{display:flex;gap:22px;color:var(--muted);font-size:14px}.hero{min-height:calc(100vh - 72px);display:grid;place-items:center;text-align:center;padding:90px 0 70px;position:relative;overflow:hidden}.hero:before{content:"";position:absolute;width:760px;height:760px;border:1px solid rgba(37,76,63,.16);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-47%)}.hero:after{content:"";position:absolute;width:520px;height:520px;border:1px solid rgba(177,132,60,.2);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-47%)}.hero-inner{position:relative;z-index:2;max-width:1050px}.eyebrow{font-size:12px;font-weight:800;letter-spacing:.19em;text-transform:uppercase;color:var(--green)}h1,h2{font-family:Georgia,"Times New Roman",serif;font-weight:400;letter-spacing:-.055em}h1{font-size:clamp(58px,9vw,120px);line-height:.88;margin:22px 0 30px}h2{font-size:clamp(42px,6vw,72px);line-height:.98;margin:12px 0 20px}.lead{font-size:clamp(19px,2vw,24px);color:var(--muted);max-width:820px;margin:0 auto}.actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:34px}.btn{padding:13px 19px;border:1px solid var(--line);background:rgba(255,255,255,.55);font-weight:800;font-size:14px}.btn.primary{background:var(--green);border-color:var(--green);color:white}.visual-band{height:min(62vw,620px);margin:0 0 100px;position:relative;overflow:hidden;background:var(--deep)}.visual-band img{width:100%;height:100%;object-fit:cover;filter:saturate(.72) contrast(1.02)}.visual-band:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 42%,rgba(16,37,30,.68))}.caption{position:absolute;z-index:2;left:50%;bottom:36px;transform:translateX(-50%);width:min(1000px,calc(100% - 48px));color:white;font-size:clamp(22px,3vw,38px);font-family:Georgia,serif;text-align:center}.section{padding:110px 0;text-align:center}.section .sub{max-width:800px;margin:0 auto;color:var(--muted);font-size:19px}.cycle{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:46px auto 0;max-width:1100px}.pill{padding:13px 18px;border-radius:999px;border:1px solid var(--line);background:var(--paper);font-weight:750}.portfolio{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:52px;text-align:left}.card{min-height:300px;background:var(--paper);border:1px solid var(--line);padding:30px;display:flex;flex-direction:column;transition:.25s transform,.25s box-shadow}.card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(20,24,22,.08)}.card .tag{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--gold);font-weight:850}.card h3{font-family:Georgia,serif;font-size:34px;margin:50px 0 12px}.card p{color:var(--muted);margin:0}.card a{margin-top:auto;padding-top:28px;color:var(--green);font-weight:850}.dark{background:var(--deep);color:#f3f0e8}.dark .eyebrow{color:#d6b26c}.dark .sub{color:#bdc7c1}.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.14);margin-top:50px;text-align:left}.principles div{padding:34px;background:#173129}.principles strong{display:block;font-family:Georgia,serif;font-size:30px;margin-bottom:10px}.principles span{color:#bdc7c1}.evidence-shot{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:stretch;margin-top:50px;text-align:left}.evidence-shot img{width:100%;height:100%;min-height:380px;object-fit:cover}.evidence-copy{background:var(--paper);border:1px solid var(--line);padding:44px;display:flex;flex-direction:column;justify-content:center}.evidence-copy p{color:var(--muted);font-size:18px}.footer{padding:44px 0;border-top:1px solid var(--line);color:var(--muted);font-size:14px}.footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}@media(max-width:900px){.links{display:none}.portfolio,.principles,.evidence-shot{grid-template-columns:1fr}.visual-band{height:70vw}.hero:before{width:620px;height:620px}.hero:after{width:420px;height:420px}.section{padding:80px 0}.card{min-height:240px}}
   </style>
 </head>
 <body>
-  <nav>
-    <div class="wrap nav">
-      <a class="brand" href="#top">VALO <span>Research</span></a>
-      <div class="links">
-        <a href="#work">Work</a>
-        <a href="#portfolio">Portfolio</a>
-        <a href="#method">Method</a>
-        <a href="#evidence">Evidence</a>
-        <a href="mailto:njaal@valoresearch.org">Contact</a>
-      </div>
-    </div>
-  </nav>
+  <div class="nav"><div class="wrap"><a class="brand" href="#top">VALO <span>Research</span></a><div class="links"><a href="#work">Work</a><a href="#portfolio">Portfolio</a><a href="#method">Method</a><a href="#evidence">Evidence</a><a href="mailto:njaal@valoresearch.org">Contact</a></div></div></div>
+  <main>
+    <section class="hero" id="top"><div class="wrap hero-inner"><div class="eyebrow">Research & development</div><h1>Hard problems.<br>Working systems.</h1><p class="lead">VALO Research identifies consequential operational needs, investigates them, builds real systems, tests them against reality, and turns what survives into products, infrastructure and new methods.</p><div class="actions"><a class="btn primary" href="#portfolio">See the work</a><a class="btn" href="#method">How we work</a><a class="btn" href="mailto:njaal@valoresearch.org">Talk to VALO</a></div></div></section>
 
-  <header id="top">
-    <div class="wrap">
-      <div class="eyebrow">Research & development</div>
-      <h1>We turn hard problems into working systems.</h1>
-      <p class="lead">VALO Research identifies consequential operational needs, investigates them, builds real systems, tests them against reality, and turns what survives into products, infrastructure and new methods.</p>
-      <div class="actions">
-        <a class="btn primary" href="#portfolio">See the work</a>
-        <a class="btn" href="#method">How we work</a>
-        <a class="btn" href="mailto:njaal@valoresearch.org">Talk to VALO</a>
-      </div>
-      <div class="chain" aria-label="VALO R&D cycle">
-        <div class="step"><small>01</small><h3>Need</h3><p>Start with a real problem worth solving.</p></div>
-        <div class="step"><small>02</small><h3>Investigate</h3><p>Reduce assumptions through research, evidence and falsification.</p></div>
-        <div class="step"><small>03</small><h3>Build</h3><p>Turn the strongest hypothesis into an operative system.</p></div>
-        <div class="step"><small>04</small><h3>Test</h3><p>Expose it to changed state, edge cases and actual use.</p></div>
-        <div class="step"><small>05</small><h3>Prove</h3><p>Keep inspectable evidence of what worked, failed or remains unknown.</p></div>
-        <div class="step"><small>06</small><h3>Realize</h3><p>Transfer what survives into products, infrastructure and reusable methods.</p></div>
-      </div>
-    </div>
-  </header>
+    <div class="visual-band"><img src="/img/swarm.png" alt="Visual representation of organized systems and interacting capability"/><div class="caption">Research becomes useful when it can survive contact with the world.</div></div>
 
-  <section id="work">
-    <div class="wrap">
-      <div class="eyebrow">What VALO is</div>
-      <h2>An R&D company built around realization.</h2>
-      <p class="sub">The output is not research alone and not software alone. The output is a working answer to a hard problem, with enough evidence to know what has actually been learned.</p>
-      <div class="method">
-        <div><strong>From need to operative system</strong><p>We work across software, AI, economic systems, identity, infrastructure and human workflows. The domain can change. The discipline does not.</p></div>
-        <div><strong>From evidence to reuse</strong><p>What survives testing becomes a product, primitive, protocol, operating method or a stronger next experiment.</p></div>
-      </div>
-      <div class="principle"><strong>Build before belief.</strong><span>Claims are useful only when they can be tested. Negative results count. Unknown remains unknown. A branch stays a branch until evidence promotes it.</span></div>
-    </div>
-  </section>
+    <section class="section" id="work"><div class="wrap"><div class="eyebrow">What VALO is</div><h2>R&D built around realization.</h2><p class="sub">The output is not research alone and not software alone. The output is a working answer to a hard problem, with enough evidence to know what was actually learned.</p><div class="cycle"><span class="pill">Need</span><span class="pill">Investigate</span><span class="pill">Build</span><span class="pill">Test</span><span class="pill">Prove</span><span class="pill">Realize</span></div></div></section>
 
-  <section id="portfolio">
-    <div class="wrap">
-      <div class="eyebrow">Current work</div>
-      <h2>Different problems. Same R&D engine.</h2>
-      <p class="sub">These are distinct realizations, not departments of one governance product.</p>
-      <div class="portfolio">
-        <article class="card"><div class="tag">Persistent digital identity</div><h3>Olav</h3><p>A persistent digital character whose identity, voice, continuity and relationships survive changes in models, runtimes and hardware.</p><a href="https://olav.world/">Open olav.world →</a></article>
-        <article class="card"><div class="tag">Authority infrastructure</div><h3>Heimel</h3><p>Infrastructure for deciding whether a consequential action is authorized at the moment it would create effect. One realization from VALO's broader R&D program.</p><a href="https://heimel.xyz/">Open Heimel →</a></article>
-        <article class="card"><div class="tag">Work & outcome infrastructure</div><h3>TraXin</h3><p>Research and infrastructure around moving from a defined need to verified completion, with dependencies, evidence, risk and settlement treated as part of the work itself.</p></article>
-        <article class="card"><div class="tag">Machine work economics</div><h3>GCU</h3><p>A work-unit model for machine and hybrid execution: explicit contract, carrier selection, governed execution, exception handling, completion proof and settlement.</p></article>
-        <article class="card"><div class="tag">Organized intelligence</div><h3>SI research</h3><p>Experiments on continuity, causal history, relational capacity and whether intelligence can reside in organized structure rather than one model alone.</p></article>
-        <article class="card"><div class="tag">Applied systems research</div><h3>Operational experiments</h3><p>Bounded builds across public services, trades, finance, edge systems, evidence infrastructure and other domains where a hard operational need can be made testable.</p></article>
-      </div>
-    </div>
-  </section>
+    <section class="section" id="portfolio"><div class="wrap"><div class="eyebrow">Current work</div><h2>Different problems. Same R&D engine.</h2><p class="sub">Distinct realizations, not departments of one product.</p><div class="portfolio">
+      <article class="card"><div class="tag">Persistent digital identity</div><h3>Olav</h3><p>A persistent digital character whose identity, voice, continuity and relationships survive changes in models, runtimes and hardware.</p><a href="https://olav.world/">Open olav.world →</a></article>
+      <article class="card"><div class="tag">Authority infrastructure</div><h3>Heimel</h3><p>Infrastructure for deciding whether a consequential action is authorized at the moment it would create effect.</p><a href="https://heimel.xyz/">Open Heimel →</a></article>
+      <article class="card"><div class="tag">Work & outcome infrastructure</div><h3>TraXin</h3><p>Moving from a defined need to verified completion, with dependencies, evidence, risk and settlement treated as part of the work.</p></article>
+      <article class="card"><div class="tag">Machine work economics</div><h3>GCU</h3><p>A work-unit model for machine and hybrid execution: contract, carrier selection, execution, exception handling, completion proof and settlement.</p></article>
+      <article class="card"><div class="tag">Organized intelligence</div><h3>SI research</h3><p>Experiments on continuity, causal history, relational capacity and intelligence in organized structure rather than one model alone.</p></article>
+      <article class="card"><div class="tag">Applied systems research</div><h3>Operational experiments</h3><p>Bounded builds across public services, trades, finance, edge systems, evidence infrastructure and other hard operational domains.</p></article>
+    </div></div></section>
 
-  <section id="method">
-    <div class="wrap">
-      <div class="eyebrow">Research discipline</div>
-      <h2>Build. Break. Measure. Transfer.</h2>
-      <p class="sub">VALO does not separate research from contact with reality. The operative system is part of the experiment.</p>
-      <div class="proofgrid">
-        <div class="proof"><strong>Executable</strong><span>The work must run. A diagram is not completion.</span></div>
-        <div class="proof"><strong>Falsifiable</strong><span>Tests must be able to produce failure, not only confirmation.</span></div>
-        <div class="proof"><strong>Transferable</strong><span>What survives should become reusable beyond the experiment that produced it.</span></div>
-      </div>
-    </div>
-  </section>
+    <section class="section dark" id="method"><div class="wrap"><div class="eyebrow">Research discipline</div><h2>Build. Break. Measure. Transfer.</h2><p class="sub">VALO does not separate research from contact with reality. The operative system is part of the experiment.</p><div class="principles"><div><strong>Executable</strong><span>The work must run. A diagram is not completion.</span></div><div><strong>Falsifiable</strong><span>Tests must be able to produce failure, not only confirmation.</span></div><div><strong>Transferable</strong><span>What survives should become reusable beyond the experiment that produced it.</span></div></div></div></section>
 
-  <section id="evidence">
-    <div class="wrap">
-      <div class="eyebrow">Evidence</div>
-      <h2>The portfolio is the proof surface.</h2>
-      <p class="sub">Working systems, public demonstrations, test suites, negative cases, replayable evidence and released products matter more than category language. Architecture supports the work; it does not replace it.</p>
-      <div class="actions">
-        <a class="btn primary" href="https://github.com/nsolland">Inspect the work on GitHub</a>
-        <a class="btn" href="https://olav.world/">Olav.world</a>
-        <a class="btn" href="https://heimel.xyz/">Heimel</a>
-      </div>
-    </div>
-  </section>
-
-  <footer><div class="wrap foot"><div>VALO Research</div><div>Need → Investigate → Build → Test → Prove → Realize · njaal@valoresearch.org</div></div></footer>
+    <section class="section" id="evidence"><div class="wrap"><div class="eyebrow">Evidence</div><h2>The portfolio is the proof surface.</h2><div class="evidence-shot"><img src="/img/recognition.jpg" alt="Visual evidence and recognition"/><div class="evidence-copy"><p>Working systems, public demonstrations, test suites, negative cases, replayable evidence and released products matter more than category language.</p><div class="actions" style="justify-content:flex-start"><a class="btn primary" href="https://github.com/nsolland">Inspect GitHub</a><a class="btn" href="/publications/">Publications</a><a class="btn" href="/cases/">Cases</a></div></div></div></div></section>
+  </main>
+  <footer class="footer"><div class="wrap"><div>VALO Research</div><div>Need → Investigate → Build → Test → Prove → Realize · njaal@valoresearch.org</div></div></footer>
 </body>
 </html>
