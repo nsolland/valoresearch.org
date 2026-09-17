@@ -1,0 +1,11 @@
+owner: ChatGPT
+branch: build/report-library
+base: 75763421375f3957396483c7378133eaed934f8c
+files:
+  - .claims/report-library-v1
+  - publications/index.html
+  - principal/index.html
+  - research/useware/index.html
+  - research/universal-retrofit-intelligence/index.html
+purpose: Publish public-safe VALO Research reports into the publication library and surface them in Principal without exposing NDA, partner-specific, patent, filing, or internal material.
+dependencies: none
