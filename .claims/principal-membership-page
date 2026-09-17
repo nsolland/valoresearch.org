@@ -1,0 +1,9 @@
+owner: ChatGPT
+branch: build/principal-membership
+base: f1bcbe57f9669662cbf57ad6a325b8d097dd3f63
+files:
+  - .claims/principal-membership-page
+  - principal/membership/index.html
+  - principal/index.html
+purpose: Publish the latest public-safe Principal Network membership artifact in its canonical home without placing membership collateral in the research publication library.
+source: principal_network_membership_onepager(1).pdf
