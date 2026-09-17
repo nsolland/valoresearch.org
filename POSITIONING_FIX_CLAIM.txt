@@ -1,7 +1,0 @@
-VALO POSITIONING FIX — WORK CLAIM
-Repo: nsolland/valoresearch.org
-Canonical base: cc0f93c7b2ce951be313aade98c188b2a699b79d
-Branch: fix/valo-not-governance
-Owner: ChatGPT / Njål
-Active delivery: remove VALO-as-governance positioning from canonical public surfaces; position Heimel as the governance/authority infrastructure.
-Owned files: index.html, valo-research.html, what-valo-is.html
