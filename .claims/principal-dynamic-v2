@@ -1,0 +1,7 @@
+owner: ChatGPT
+branch: principal-dynamic-v2
+base: e5ae65176ed7aef7e11f6f97424e9bccd1019b64
+files:
+  - principal/index.html
+purpose: Rebuild Principal Network as a centered, dynamic, visual website with stronger imagery and less report-like layout.
+dependencies: none
