@@ -1,0 +1,9 @@
+UNDERWRITERS PAGE — WORK CLAIM
+
+Repo: nsolland/valoresearch.org
+Canonical base: 63d16dc2ce4dfedd0b80bb8a69494deddfd0dbf4
+Branch: build/underwriters
+Owner: ChatGPT / Njål
+Owned files: underwriters/index.html, UNDERWRITERS_CLAIM.txt
+Primary objective: publish one concentrated underwriting page for underwriters.valoresearch.org covering TraXin case evidence, decision points, bind/decline/escalate, actual outcomes, residual risk, priceable evidence, the GCU model and core theses.
+Dependencies: existing VALO Research static deployment and hostname routing. No DNS or deployment configuration changes in this claim.
