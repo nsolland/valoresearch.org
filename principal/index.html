@@ -3,47 +3,63 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Principal Network — a curated network for capability, opportunity and reach.">
+  <meta name="description" content="Principal Network — capability, opportunity and reach compounded through people, technology and network.">
   <title>Principal Network · VALO Research</title>
   <style>
-    :root{--bg:#f5f2ec;--ink:#171715;--muted:#69645d;--line:#d8d0c5;--panel:#fffdf9;--accent:#203c31;--accentInk:#fff}
-    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-    a{color:inherit}.shell{width:min(1120px,calc(100% - 32px));margin:auto;padding:32px 0 72px}.top{display:flex;justify-content:space-between;gap:24px;align-items:center;padding-bottom:28px;border-bottom:1px solid var(--line)}
-    .brand{font-size:12px;font-weight:800;letter-spacing:.15em}.back{font-size:14px;color:var(--muted);text-decoration:none}.hero{padding:78px 0 52px}.hero h1{font-size:clamp(48px,8vw,100px);line-height:.94;letter-spacing:-.06em;margin:0;max-width:980px}.hero p{font-size:clamp(19px,2.4vw,27px);line-height:1.45;color:var(--muted);max-width:800px;margin:30px 0 0}
-    .formula{margin-top:34px;font-weight:700;letter-spacing:-.02em}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:34px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 22px;border-radius:999px;text-decoration:none;font-weight:700;border:1px solid var(--line)}.primary{background:var(--accent);color:var(--accentInk);border-color:var(--accent)}
-    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.card{min-height:220px;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:24px}.card .n{font-size:12px;color:var(--muted)}.card h2{margin:72px 0 8px;font-size:25px;letter-spacing:-.03em}.card p{margin:0;color:var(--muted);line-height:1.5}.footer{margin-top:56px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
-    @media(max-width:780px){.grid{grid-template-columns:1fr 1fr}.top{align-items:flex-start;flex-direction:column}.hero{padding-top:52px}}
-    @media(max-width:520px){.shell{width:calc(100% - 22px)}.grid{grid-template-columns:1fr}.hero h1{font-size:49px}.card{min-height:180px}.card h2{margin-top:42px}}
-    @media(prefers-color-scheme:dark){:root{--bg:#11110f;--ink:#f2efe9;--muted:#aba59a;--line:#34312d;--panel:#181816;--accent:#d8e7da;--accentInk:#152019}}
+    :root{--bg:#f3efe7;--ink:#151515;--muted:#6d685f;--gold:#c79b45;--green:#163c31;--cream:#fbf8f1;--line:#d8d0c5}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}img{display:block;width:100%;height:100%;object-fit:cover}
+    .nav{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;justify-content:space-between;align-items:center;padding:22px 32px;background:linear-gradient(180deg,rgba(243,239,231,.96),rgba(243,239,231,.72),transparent);backdrop-filter:blur(8px)}.brand{display:flex;gap:12px;align-items:center;font-size:12px;font-weight:800;letter-spacing:.16em}.mark{width:42px;height:42px}.navlinks{display:flex;gap:22px;color:var(--muted);font-size:14px}
+    .hero{min-height:100vh;display:grid;place-items:center;position:relative;padding:110px 24px 80px;text-align:center}.hero:before{content:"";position:absolute;width:880px;height:880px;border-radius:50%;background:radial-gradient(circle,rgba(199,155,69,.18),rgba(199,155,69,0) 68%);top:48%;left:50%;transform:translate(-50%,-50%)}.hero-inner{position:relative;z-index:2;max-width:1050px;margin:auto}.hero-logo{width:min(460px,72vw);margin:0 auto 26px}.eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--green);font-weight:800}.hero h1{font-size:clamp(54px,8vw,110px);line-height:.92;letter-spacing:-.065em;margin:20px auto 24px;max-width:1000px}.hero p{font-size:clamp(20px,2.3vw,28px);line-height:1.5;color:var(--muted);max-width:820px;margin:0 auto}.actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:34px}.btn{padding:14px 22px;border-radius:999px;border:1px solid #cfc7ba;font-weight:750;background:rgba(255,255,255,.55)}.btn.primary{background:var(--green);color:#fff;border-color:var(--green)}
+    .visual-band{width:min(1240px,calc(100% - 32px));margin:0 auto 120px;display:grid;grid-template-columns:1.25fr .75fr;gap:18px;align-items:stretch}.photo{position:relative;min-height:560px;border-radius:32px;overflow:hidden}.photo.small{min-height:270px}.photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 48%,rgba(0,0,0,.62))}.photo-copy{position:absolute;left:28px;right:28px;bottom:26px;z-index:2;color:#fff}.photo-copy span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.78}.photo-copy h2{font-size:clamp(30px,4vw,54px);line-height:1;margin:8px 0 0;letter-spacing:-.045em}.stack{display:grid;gap:18px}
+    .statement{padding:130px 24px;text-align:center;background:var(--green);color:#f4efe6}.statement .inner{max-width:980px;margin:auto}.statement .kicker{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#d6b76d;font-weight:800}.statement h2{font-size:clamp(46px,7vw,94px);line-height:.95;letter-spacing:-.06em;margin:18px 0 22px}.statement p{font-size:clamp(18px,2vw,24px);line-height:1.6;color:#d8e0dc;max-width:780px;margin:auto}
+    .orbit{position:relative;min-height:760px;display:grid;place-items:center;padding:90px 24px}.orbit-core{width:250px;height:250px;border-radius:50%;display:grid;place-items:center;text-align:center;background:#151515;color:#fff;box-shadow:0 30px 80px rgba(0,0,0,.16);z-index:2;padding:30px}.orbit-core strong{font-size:34px;line-height:1}.node{position:absolute;width:220px;min-height:150px;border:1px solid var(--line);background:rgba(255,255,255,.76);backdrop-filter:blur(12px);border-radius:28px;padding:22px;box-shadow:0 18px 55px rgba(0,0,0,.07);transition:transform .3s ease,box-shadow .3s ease}.node:hover{transform:translateY(-6px) scale(1.02);box-shadow:0 24px 70px rgba(0,0,0,.12)}.node b{display:block;font-size:22px;margin-bottom:8px}.node span{color:var(--muted);line-height:1.5}.n1{top:80px;left:12%}.n2{top:90px;right:12%}.n3{bottom:95px;left:10%}.n4{bottom:90px;right:10%}.n5{top:50%;left:4%;transform:translateY(-50%)}.n6{top:50%;right:4%;transform:translateY(-50%)}.n5:hover,.n6:hover{transform:translateY(calc(-50% - 6px)) scale(1.02)}
+    .join{padding:120px 24px;text-align:center;background:var(--cream)}.join h2{font-size:clamp(44px,6vw,82px);line-height:.95;letter-spacing:-.055em;margin:0 auto 22px;max-width:850px}.join p{max-width:650px;margin:0 auto;color:var(--muted);font-size:20px;line-height:1.6}.join .actions{margin-top:30px}.footer{padding:32px;text-align:center;color:var(--muted);font-size:13px}
+    @media(max-width:900px){.navlinks{display:none}.visual-band{grid-template-columns:1fr}.photo{min-height:440px}.stack{grid-template-columns:1fr 1fr}.orbit{min-height:auto;padding:90px 20px;display:grid;gap:14px}.orbit-core,.node{position:static;transform:none!important;width:min(100%,520px)}.orbit-core{height:auto;min-height:180px}.node{min-height:auto}.n5:hover,.n6:hover,.node:hover{transform:none}.statement{padding:96px 24px}}
+    @media(max-width:620px){.nav{padding:18px}.brand{font-size:10px}.stack{grid-template-columns:1fr}.photo,.photo.small{min-height:360px}.hero{padding-top:100px}.hero-logo{width:min(360px,90vw)}}
   </style>
 </head>
 <body>
-  <main class="shell">
-    <header class="top">
-      <div class="brand">VALO RESEARCH · PRINCIPAL NETWORK</div>
-      <a class="back" href="/">VALO Research</a>
-    </header>
+  <nav class="nav">
+    <a class="brand" href="/principal/">
+      <svg class="mark" viewBox="0 0 180 180" aria-hidden="true"><g fill="none" stroke="#c79b45" stroke-width="8" stroke-linecap="round"><path d="M90 19L145 50M145 50V115M145 115L90 148M90 148L35 115M35 115V50M35 50L90 19"/><path d="M35 50L66 68M145 50L114 68M35 115L68 96M145 115L112 96"/></g><g fill="#c79b45"><circle cx="90" cy="19" r="10"/><circle cx="145" cy="50" r="10"/><circle cx="145" cy="115" r="10"/><circle cx="90" cy="148" r="10"/><circle cx="35" cy="115" r="10"/><circle cx="35" cy="50" r="10"/></g><path fill="#c79b45" d="M75 47L88 36V126L75 118Z"/><path fill="#25282b" d="M92 36L105 47V119L92 126Z"/><path fill="#25282b" d="M52 72L68 61V108L52 99Z"/><path fill="#25282b" d="M112 61L128 72V99L112 108Z"/></svg>
+      <span>PRINCIPAL NETWORK</span>
+    </a>
+    <div class="navlinks"><a href="#network">Network</a><a href="#join">Join</a><a href="/">VALO Research</a></div>
+  </nav>
 
-    <section class="hero">
+  <section class="hero">
+    <div class="hero-inner">
+      <svg class="hero-logo" viewBox="0 0 900 510" role="img" aria-label="Principal Network logo"><g transform="translate(300,5)"><g fill="none" stroke="#c79b45" stroke-width="10" stroke-linecap="round"><path d="M150 28L250 84M250 84V202M250 202L150 260M150 260L50 202M50 202V84M50 84L150 28"/><path d="M50 84L105 116M250 84L195 116M50 202L108 168M250 202L192 168"/></g><g fill="#c79b45"><circle cx="150" cy="28" r="18"/><circle cx="250" cy="84" r="18"/><circle cx="250" cy="202" r="18"/><circle cx="150" cy="260" r="18"/><circle cx="50" cy="202" r="18"/><circle cx="50" cy="84" r="18"/></g><path fill="#c79b45" d="M123 79L145 61V222L123 209Z"/><path fill="#25282b" d="M153 61L177 79V210L153 222Z"/><path fill="#25282b" d="M82 123L111 104V191L82 174Z"/><path fill="#25282b" d="M189 104L218 123V174L189 191Z"/></g><text x="450" y="365" text-anchor="middle" fill="#25282b" font-size="90" font-weight="300" letter-spacing="12">PRINCIPAL</text><line x1="160" y1="430" x2="320" y2="430" stroke="#c79b45" stroke-width="4"/><text x="450" y="445" text-anchor="middle" fill="#c79b45" font-size="44" font-weight="600" letter-spacing="22">NETWORK</text><line x1="580" y1="430" x2="740" y2="430" stroke="#c79b45" stroke-width="4"/></svg>
+      <div class="eyebrow">Capability · Opportunity · Reach</div>
       <h1>Capability becomes more valuable when it can move.</h1>
-      <p>Principal connects experienced people, real opportunities, technology and execution capacity — so capability can become more useful, more portable and more valuable across roles, markets and borders.</p>
-      <div class="formula">Potential × Capability × Market × Technology × Network</div>
-      <div class="actions">
-        <a class="btn primary" href="https://principal.valoresearch.org/login">Member login</a>
-        <a class="btn" href="mailto:njaal@valoresearch.org?subject=Principal%20Network">Request access</a>
-      </div>
-    </section>
+      <p>Principal connects experienced people, opportunity, technology and execution capacity across roles, markets and borders.</p>
+      <div class="actions"><a class="btn primary" href="https://principal.valoresearch.org/login">Member login</a><a class="btn" href="mailto:njaal@valoresearch.org?subject=Principal%20Network">Request access</a></div>
+    </div>
+  </section>
 
-    <section class="grid" aria-label="Principal membership">
-      <article class="card"><div class="n">01</div><h2>Professional network</h2><p>Experienced people with judgement, trust, relationships and complementary capability.</p></article>
-      <article class="card"><div class="n">02</div><h2>Cases & experience</h2><p>Real cases, lessons learned, practical methods and peer exchange from work actually being done.</p></article>
-      <article class="card"><div class="n">03</div><h2>Beyond the job title</h2><p>Contribute with what you know and what you can do — not only what your current role happens to use.</p></article>
-      <article class="card"><div class="n">04</div><h2>Capability incubation</h2><p>Explore, test and develop underused capability. Try harder problems and new roles.</p></article>
-      <article class="card"><div class="n">05</div><h2>Market & reach</h2><p>Projects, opportunities and collaborations across sectors, countries and professional environments.</p></article>
-      <article class="card"><div class="n">06</div><h2>Execution capacity</h2><p>Assemble the capability required when an opportunity needs more than one person can provide.</p></article>
-    </section>
+  <section class="visual-band" id="network">
+    <div class="photo"><img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1600&q=85" alt="People collaborating"><div class="photo-copy"><span>Network</span><h2>People are more than their current job title.</h2></div></div>
+    <div class="stack">
+      <div class="photo small"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=85" alt="Team working together"><div class="photo-copy"><span>Capability</span><h2>Bring what you know.</h2></div></div>
+      <div class="photo small"><img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85" alt="Modern workspace"><div class="photo-copy"><span>Opportunity</span><h2>Move into harder problems.</h2></div></div>
+    </div>
+  </section>
 
-    <footer class="footer">Bring what you know. Discover what else you can do. Compound it with market, technology and network.</footer>
-  </main>
+  <section class="statement">
+    <div class="inner"><div class="kicker">The Principal model</div><h2>Potential compounds when it meets the right network.</h2><p>Professional experience, trust, market access, technology and execution capacity reinforce each other. Principal is built to make that compounding visible and usable.</p></div>
+  </section>
+
+  <section class="orbit" aria-label="Principal network capabilities">
+    <div class="orbit-core"><div><strong>Principal</strong><div>Potential × Capability × Market × Technology × Network</div></div></div>
+    <div class="node n1"><b>Professional network</b><span>Experienced people, judgement and trust.</span></div>
+    <div class="node n2"><b>Cases & experience</b><span>Real work, lessons and methods that can move.</span></div>
+    <div class="node n3"><b>Capability incubation</b><span>Test underused capability in harder contexts.</span></div>
+    <div class="node n4"><b>Market & reach</b><span>Opportunities across sectors, countries and roles.</span></div>
+    <div class="node n5"><b>Technology leverage</b><span>Use new tools to expand what one person or team can do.</span></div>
+    <div class="node n6"><b>Execution capacity</b><span>Assemble the right capability when the opportunity is bigger than one person.</span></div>
+  </section>
+
+  <section class="join" id="join"><h2>Bring what you know. Discover what else you can do.</h2><p>Principal is curated. The point is not a larger network. It is a more useful one.</p><div class="actions"><a class="btn primary" href="https://principal.valoresearch.org/login">Member login</a><a class="btn" href="mailto:njaal@valoresearch.org?subject=Principal%20Network">Request access</a></div></section>
+  <footer class="footer">VALO Research · Principal Network</footer>
 </body>
 </html>

@@ -18,3 +18,4 @@ sitemap.xml (only if required for discovery)
 Dependencies:
 Existing GitHub Pages publication from main.
 Existing DNS wildcard / domain routing for valoresearch.org.
+No DNS or deployment configuration changes are required in this claim.
