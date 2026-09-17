@@ -1,0 +1,11 @@
+owner: ChatGPT
+branch: build/report-library-2
+base: 706f7b011d7ea7fb7d9d8f7affdb54554703b780
+files:
+  - .claims/report-library-v2
+  - publications/index.html
+  - principal/index.html
+  - research/agentic-execution-risk/index.html
+  - research/portable-capability-factory/index.html
+purpose: Publish the next verified public-safe VALO-owned research artifacts from Library, deduplicated and surfaced in Publications and Principal.
+dependencies: report-library-v1 merged
