@@ -1,0 +1,20 @@
+VALO UNDERWRITERS — WORK CLAIM
+
+Repo: nsolland/valoresearch.org
+Canonical base: 63d16dc2ce4dfedd0b80bb8a69494deddfd0dbf4
+Branch: build/valo-underwriters
+Owner: ChatGPT / Njål
+
+Active delivery:
+Public underwriting surface at underwriters.valoresearch.org for TraXin, historical case reconstruction, residual-risk pricing, GCU economics and underwriting evidence.
+
+Owned files:
+underwriters/index.html
+underwriters/site.test.js
+UNDERWRITERS_CLAIM.txt
+CNAME (only if required for routing)
+sitemap.xml (only if required for discovery)
+
+Dependencies:
+Existing GitHub Pages publication from main.
+Existing DNS wildcard / domain routing for valoresearch.org.
