@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "record": {
+    "required": [
+      "id","title","authors","organization","year","date","document_type","topics","keywords",
+      "summary","principal_relevance","source_url","doi","isbn","license","redistribution",
+      "local_file_name","content_hash","duplicate_of","status","notes"
+    ],
+    "nullable": [
+      "organization","year","date","source_url","doi","isbn","license","local_file_name","content_hash","duplicate_of","notes"
+    ],
+    "structurally_present_non_nullable": [
+      "id","title","authors","topics","keywords","summary","principal_relevance","redistribution","status"
+    ],
+    "enums": {
+      "document_type": ["paper","book","report","standard","regulatory-report","industry-report","working-paper","thesis","article","other"],
+      "redistribution": ["allowed","link-only","unknown"],
+      "status": ["indexed","needs-metadata","needs-source","excluded"]
+    }
+  }
+}
