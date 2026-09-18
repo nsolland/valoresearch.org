@@ -1,0 +1,13 @@
+owner: external-research-index
+purpose: Canonical Principal index of collected third-party research
+public_surface: /principal/library/
+canonical_data:
+  - data/research/topics.json
+  - data/research/schema.json
+  - data/research/external-research.json
+excludes:
+  - confidential/NDA/trade-secret material
+  - patent and filing material
+  - partner/customer-private material
+  - personal documents
+  - unlicensed third-party binary mirroring
