@@ -69,6 +69,22 @@ class ExternalResearchValidationTests(unittest.TestCase):
         errors = validate_records([record(), second], TOPICS)
         self.assertTrue(any("source_url" in e.lower() for e in errors))
 
+    def test_confidential_marker_fails_for_public_record(self):
+        errors = validate_records([record(notes="CONFIDENTIAL — NDA REQUIRED")], TOPICS)
+        self.assertTrue(any("blocked marker" in e.lower() for e in errors))
+
+    def test_do_not_distribute_marker_fails_for_public_record(self):
+        errors = validate_records([record(summary="Internal analysis — DO NOT DISTRIBUTE")], TOPICS)
+        self.assertTrue(any("blocked marker" in e.lower() for e in errors))
+
+    def test_patent_marker_fails_for_public_record(self):
+        errors = validate_records([record(title="Patent draft for new execution mechanism")], TOPICS)
+        self.assertTrue(any("blocked marker" in e.lower() for e in errors))
+
+    def test_excluded_record_may_carry_blocked_marker(self):
+        errors = validate_records([record(status="excluded", notes="Trade secret — do not distribute")], TOPICS)
+        self.assertFalse(any("blocked marker" in e.lower() for e in errors))
+
 
 if __name__ == "__main__":
     unittest.main()
