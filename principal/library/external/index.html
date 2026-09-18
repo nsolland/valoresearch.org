@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>External Research · Principal Network</title>
+  <meta name="description" content="External research indexed by Principal Network for context, validation, challenge and technical reference.">
+  <link rel="stylesheet" href="/principal/library/library.css">
+</head>
+<body>
+  <header class="library-nav">
+    <a class="library-brand" href="/principal/">Principal Network</a>
+    <nav><a href="/principal/library/">Library</a><a href="/publications/">VALO Research</a></nav>
+  </header>
+  <main class="library-shell">
+    <section class="library-hero">
+      <div class="eyebrow">Principal knowledge library</div>
+      <h1>External Research</h1>
+      <p>Third-party research collected for comparison, evidence, challenge and technical reference. These works are indexed by Principal; they are not VALO publications.</p>
+    </section>
+    <section class="controls" aria-label="Research filters">
+      <input id="research-search" type="search" placeholder="Search title, author, organization or keyword" aria-label="Search research">
+      <select id="topic-filter" aria-label="Filter by topic"><option value="">All topics</option></select>
+      <select id="type-filter" aria-label="Filter by document type"><option value="">All types</option></select>
+      <select id="year-filter" aria-label="Filter by year"><option value="">All years</option></select>
+    </section>
+    <section class="library-results">
+      <p id="result-count" aria-live="polite"></p>
+      <div id="research-results" class="research-grid"></div>
+    </section>
+  </main>
+  <script src="/principal/library/external/library.js"></script>
+</body>
+</html>
