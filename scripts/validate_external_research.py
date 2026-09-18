@@ -7,11 +7,30 @@ from urllib.parse import urlparse
 DOCUMENT_TYPES = {"paper","book","report","standard","regulatory-report","industry-report","working-paper","thesis","article","other"}
 REDISTRIBUTION = {"allowed","link-only","unknown"}
 STATUSES = {"indexed","needs-metadata","needs-source","excluded"}
+BLOCKED_MARKERS = {
+    "confidential",
+    "nda required",
+    "trade secret",
+    "do not distribute",
+    "patent draft",
+    "invention disclosure",
+}
 REQUIRED_KEYS = {
     "id","title","authors","organization","year","date","document_type","topics","keywords",
     "summary","principal_relevance","source_url","doi","isbn","license","redistribution",
     "local_file_name","content_hash","duplicate_of","status","notes"
 }
+
+
+def _record_text(record):
+    values = []
+    for key in ("title", "organization", "summary", "principal_relevance", "local_file_name", "notes"):
+        value = record.get(key)
+        if value:
+            values.append(str(value))
+    values.extend(str(v) for v in record.get("authors", []) if v)
+    values.extend(str(v) for v in record.get("keywords", []) if v)
+    return " ".join(values).lower()
 
 
 def validate_records(records, topics):
@@ -48,6 +67,12 @@ def validate_records(records, topics):
             errors.append(f"{prefix}: keywords must be an array")
         if r["redistribution"] == "allowed" and not (r["license"] or r["notes"]):
             errors.append(f"{prefix}: allowed redistribution requires license or provenance note")
+        if r["status"] != "excluded":
+            text = _record_text(r)
+            for marker in BLOCKED_MARKERS:
+                if marker in text:
+                    errors.append(f"{prefix}: blocked marker in public index: {marker}")
+                    break
         url = r["source_url"]
         if url is not None:
             parsed = urlparse(url)
