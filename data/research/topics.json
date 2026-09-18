@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "topics": [
+    {"id":"agentic-systems","label":"Agentic Systems","description":"Agents, orchestration, multi-agent systems and autonomous workflows."},
+    {"id":"governance-authority","label":"Governance & Authority","description":"Mandate, delegation, decision rights, execution authority and governance boundaries."},
+    {"id":"edge-distributed-compute","label":"Edge & Distributed Compute","description":"Edge inference, fog, local compute, distributed execution and placement."},
+    {"id":"network-intelligence","label":"Network Intelligence","description":"Relational, collective, distributed and network-level intelligence."},
+    {"id":"human-ai-systems","label":"Human–AI Systems","description":"Human oversight, interaction, teaming, literacy and socio-technical systems."},
+    {"id":"security-resilience","label":"Security & Resilience","description":"Security, cyber resilience, failure containment and adversarial operation."},
+    {"id":"regulation-policy","label":"Regulation & Policy","description":"Law, regulation, public policy, standards and institutional governance."},
+    {"id":"economics-markets","label":"Economics & Markets","description":"Markets, investment, productivity, industrial structure and adoption economics."},
+    {"id":"energy-compute","label":"Energy & Compute","description":"Compute infrastructure, energy demand, capacity and resource constraints."},
+    {"id":"software-systems","label":"Software Systems","description":"Software architecture, synthesis, lifecycle, runtime systems and tooling."},
+    {"id":"education-learning","label":"Education & Learning","description":"Education, learning systems, pedagogy and capability development."},
+    {"id":"identity-access","label":"Identity & Access","description":"Identity, authentication, authorization, access control and delegated rights."},
+    {"id":"evidence-verification","label":"Evidence & Verification","description":"Evidence quality, provenance, validation, reproducibility and verification."},
+    {"id":"organizational-design","label":"Organizational Design","description":"Roles, operating models, management structure and human-agent organization."},
+    {"id":"finance-monetary-systems","label":"Finance & Monetary Systems","description":"Payments, banking, stablecoins, monetary policy and financial infrastructure."}
+  ]
+}
