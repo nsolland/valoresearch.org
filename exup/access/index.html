@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Request EXUP access</title>
+<style>
+:root{--bg:#050505;--gold:#d4af37;--gold2:#f0d58a;--white:#f7f4ec;--muted:#a7a39a;--line:#292416}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -20%,#19150b 0,#090806 28%,#050505 62%);color:var(--white);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}.wrap{max-width:900px;margin:auto;padding:0 28px}.nav{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #1d1b17}.brand{color:var(--white);text-decoration:none;letter-spacing:.18em}.back{color:var(--muted);text-decoration:none}.main{padding:84px 0 110px}.kicker{color:var(--gold2);letter-spacing:.24em;text-transform:uppercase;font-size:13px}h1{font-size:clamp(44px,8vw,82px);line-height:.98;letter-spacing:-.045em;margin:18px 0 24px}.lead{font-size:22px;color:#ded9cf;max-width:720px}.panel{margin-top:46px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(180deg,#0e0c08,#080807);padding:34px}.panel h2{margin:0 0 12px;font-size:28px}.panel p{color:var(--muted);margin:0 0 22px}.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:30px 0}.rule{padding:18px;border:1px solid #211e16;border-radius:14px;background:#090908}.rule b{display:block;color:var(--gold2);margin-bottom:6px}.rule span{color:var(--muted);font-size:14px}.btn{display:inline-block;text-decoration:none;color:#090806;background:linear-gradient(135deg,var(--gold2),var(--gold));padding:13px 19px;border-radius:999px;font-weight:700}.fine{font-size:13px;color:#777269;margin-top:18px}@media(max-width:720px){.rules{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="nav"><a class="brand" href="/exup/">EXUP</a><a class="back" href="/exup/">Back</a></nav>
+<main class="main">
+<div class="kicker">Controlled access</div>
+<h1>Request access to EXUP.</h1>
+<p class="lead">We approve access individually. No shared passwords and no permanent credentials.</p>
+<div class="rules">
+<div class="rule"><b>1. Request</b><span>Tell us who you are, the workload you want to test and the intended benchmark.</span></div>
+<div class="rule"><b>2. Approve</b><span>We agree scope, test set, quality threshold and compute budget before any run.</span></div>
+<div class="rule"><b>3. Time-limit</b><span>Approved access is issued for a limited period and can be revoked.</span></div>
+</div>
+<div class="panel">
+<h2>Request a benchmark</h2>
+<p>The first benchmark is free within an agreed compute budget. You may use our approved test set or propose your own.</p>
+<a class="btn" href="mailto:njaal@valoresearch.org?subject=EXUP%20access%20request&body=Name%3A%0ACompany%3A%0AWorkload%20to%20benchmark%3A%0ACurrent%20stack%20or%20model%3A%0AWhat%20must%20the%20result%20preserve%3F%3A%0A">Request access</a>
+<div class="fine">The protected workspace will use identity-based, time-limited access. We do not issue shared passwords.</div>
+</div>
+</main>
+</div>
+</body>
+</html>
