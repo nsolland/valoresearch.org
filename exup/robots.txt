@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /exup/access/
+Disallow: /exup/benchmark/
+Disallow: /exup/balance/
