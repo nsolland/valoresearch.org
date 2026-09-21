@@ -3,90 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>EXUP — Optimize. Benchmark. Prove.</title>
-<meta name="description" content="EXUP is a two-module product family for finding and proving the fastest, cheapest sufficient AI execution path.">
+<meta name="robots" content="index,follow">
+<title>EXUP — Benchmark. Optimize. Evolve.</title>
+<meta name="description" content="EXUP helps organizations establish a baseline, improve AI execution, and continue improving under controlled verification.">
 <style>
-:root{--bg:#050505;--panel:#0c0c0c;--gold:#d4af37;--gold2:#f0d58a;--white:#f7f4ec;--muted:#a7a39a;--line:#2b2618}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 50% -10%,#19150b 0,#090806 25%,var(--bg) 60%);color:var(--white);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}.wrap{max-width:1120px;margin:auto;padding:0 28px}.nav{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #1d1b17}.brand{display:flex;gap:12px;align-items:center;color:var(--white);text-decoration:none;letter-spacing:.18em}.brand svg{width:38px;height:38px}.links{display:flex;gap:20px;align-items:center}.links a{color:var(--muted);text-decoration:none}.links a:hover{color:var(--white)}.nav a.cta,.btn{display:inline-block;text-decoration:none;color:#090806;background:linear-gradient(135deg,var(--gold2),var(--gold));padding:12px 18px;border-radius:999px;font-weight:700}.hero{min-height:72vh;display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center;padding:84px 0}.kicker{color:var(--gold2);letter-spacing:.24em;text-transform:uppercase;font-size:13px}.hero h1{font-size:clamp(54px,8vw,104px);line-height:.94;margin:18px 0 24px;letter-spacing:-.055em}.hero h1 span{display:block;color:var(--gold2)}.lead{font-size:clamp(20px,2.2vw,28px);max-width:720px;color:#ded9cf}.sub{max-width:650px;color:var(--muted);font-size:17px;margin:22px 0 30px}.logo-stage{display:grid;place-items:center;min-height:430px}.logo-stage svg{width:min(430px,100%);filter:drop-shadow(0 28px 70px rgba(212,175,55,.14))}.section{padding:88px 0;border-top:1px solid #191815}.section h2{font-size:clamp(34px,5vw,62px);letter-spacing:-.035em;margin:0 0 20px}.section p.big{font-size:24px;max-width:850px;color:#dfdbd2}.modules{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:38px}.module{background:linear-gradient(180deg,#0d0c0a,#080807);border:1px solid #2a2417;border-radius:24px;padding:32px;min-height:300px;display:flex;flex-direction:column}.module small{color:var(--gold2);letter-spacing:.18em;text-transform:uppercase}.module h3{font-size:38px;margin:12px 0 14px;letter-spacing:-.03em}.module p{color:var(--muted);font-size:17px}.module .module-link{margin-top:auto;color:var(--gold2);text-decoration:none;font-weight:700}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:38px}.card{background:linear-gradient(180deg,#0d0c0a,#080807);border:1px solid #242016;border-radius:20px;padding:28px;min-height:190px}.card b{display:block;color:var(--gold2);font-size:29px;margin-bottom:12px}.card p{margin:0;color:var(--muted)}.process{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:36px}.step{padding:22px;border-left:1px solid var(--gold);background:#090908}.step small{color:var(--gold2);letter-spacing:.12em}.step h3{margin:8px 0 7px;font-size:20px}.step p{margin:0;color:var(--muted);font-size:14px}.pricing{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:38px}.price{background:linear-gradient(180deg,#0d0c0a,#080807);border:1px solid #2a2417;border-radius:20px;padding:28px}.price small{color:var(--gold2);letter-spacing:.14em;text-transform:uppercase}.price h3{font-size:28px;margin:10px 0}.price p{color:var(--muted);margin:0}.price-note{margin-top:26px;color:#ded9cf;font-size:19px;max-width:850px}.access{padding:72px 0 96px;text-align:center}.access-box{border:1px solid #302814;background:linear-gradient(180deg,#0e0c08,#090807);border-radius:28px;padding:58px 28px}.access h2{font-size:clamp(36px,5vw,64px);margin:0 0 16px}.access p{max-width:760px;margin:0 auto 28px;color:var(--muted);font-size:18px}.fine{font-size:13px;color:#777269;margin-top:18px}.footer{padding:30px 0 44px;color:#777269;font-size:13px;border-top:1px solid #171613}
-@media(max-width:850px){.hero{grid-template-columns:1fr;padding:64px 0}.logo-stage{min-height:300px}.modules,.grid,.process,.pricing{grid-template-columns:1fr}.links a:not(.cta){display:none}.nav .word{display:none}}
+:root{--bg:#050505;--panel:#0c0c0c;--gold:#d4af37;--gold2:#f0d58a;--white:#f7f4ec;--muted:#aaa59a;--line:#292317}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#19150b 0,#090806 28%,var(--bg) 62%);color:var(--white);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}.wrap{max-width:1080px;margin:auto;padding:0 28px}.nav{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #1d1b17}.brand{color:var(--white);text-decoration:none;letter-spacing:.18em}.cta,.btn{display:inline-block;text-decoration:none;color:#090806;background:linear-gradient(135deg,var(--gold2),var(--gold));padding:12px 19px;border-radius:999px;font-weight:700}.hero{padding:110px 0 96px;max-width:900px}.kicker{color:var(--gold2);letter-spacing:.22em;text-transform:uppercase;font-size:13px}.hero h1{font-size:clamp(52px,8vw,96px);line-height:.96;margin:18px 0 26px;letter-spacing:-.055em}.hero h1 span{color:var(--gold2)}.lead{font-size:clamp(21px,2.4vw,29px);max-width:780px;color:#ded9cf}.sub{max-width:700px;color:var(--muted);font-size:17px;margin:22px 0 32px}.section{padding:82px 0;border-top:1px solid #191815}.section h2{font-size:clamp(34px,5vw,60px);letter-spacing:-.035em;margin:0 0 18px}.section .intro{font-size:21px;color:#d8d3c9;max-width:800px}.products{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:38px}.product{background:linear-gradient(180deg,#0d0c0a,#080807);border:1px solid #2a2417;border-radius:22px;padding:30px;min-height:330px;display:flex;flex-direction:column}.product small{color:var(--gold2);letter-spacing:.16em;text-transform:uppercase}.product h3{font-size:34px;margin:12px 0}.product p{color:var(--muted);font-size:16px}.product .result{margin-top:auto;padding-top:24px;color:#e7e0d4}.flow{font-size:clamp(28px,4vw,48px);letter-spacing:-.03em;margin-top:30px}.access{padding:80px 0 100px;text-align:center}.access-box{border:1px solid #302814;background:linear-gradient(180deg,#0e0c08,#090807);border-radius:28px;padding:58px 28px}.access h2{font-size:clamp(36px,5vw,62px);margin:0 0 16px}.access p{max-width:700px;margin:0 auto 28px;color:var(--muted);font-size:18px}.fine{font-size:13px;color:#777269;margin-top:18px}.footer{padding:30px 0 44px;color:#777269;font-size:13px;border-top:1px solid #171613}@media(max-width:800px){.products{grid-template-columns:1fr}.hero{padding:76px 0}.nav .cta{font-size:13px}.product{min-height:0}}
 </style>
 </head>
-<body>
-<div class="wrap">
-<nav class="nav">
-<a class="brand" href="/exup/" aria-label="EXUP home">
-<svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="43" fill="none" stroke="#d4af37" stroke-width="1.5"/><path d="M22 25 L48 51 L29 72" fill="none" stroke="#f7f4ec" stroke-width="10" stroke-linecap="square"/><path d="M29 72 L70 31 L70 45 L82 25 L62 37 L73 37" fill="none" stroke="#d4af37" stroke-width="10" stroke-linecap="square" stroke-linejoin="miter"/></svg>
-<span class="word">EXUP</span></a>
-<div class="links"><a href="#modules">Products</a><a href="#commercial">Commercial model</a><a href="/exup/benchmark/">Benchmark</a><a class="cta" href="/exup/access/">Request access</a></div>
-</nav>
-
+<body><div class="wrap">
+<nav class="nav"><a class="brand" href="/exup/">EXUP</a><a class="cta" href="/exup/access/">Request private access</a></nav>
 <main>
-<section class="hero">
-<div>
-<div class="kicker">EXUP</div>
-<h1>Less compute.<span>Same result.</span></h1>
-<p class="lead">Find the fastest and cheapest sufficient execution path — then prove it against an agreed benchmark.</p>
-<p class="sub">EXUP is one product family with two modules: Optimizer finds the better execution strategy. Benchmark measures whether the result still holds.</p>
-<a class="btn" href="#modules">See the two modules</a>
-</div>
-<div class="logo-stage" aria-label="EXUP logo">
-<svg viewBox="0 0 520 520" role="img" aria-label="EXUP">
-<defs><linearGradient id="g" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#b9852e"/><stop offset=".55" stop-color="#f2d58a"/><stop offset="1" stop-color="#d4af37"/></linearGradient></defs>
-<circle cx="260" cy="225" r="154" fill="none" stroke="#806a2e" stroke-width="2"/><line x1="260" y1="44" x2="260" y2="406" stroke="#8b7435" stroke-width="1"/><line x1="78" y1="225" x2="442" y2="225" stroke="#8b7435" stroke-width="1"/><circle cx="260" cy="44" r="5" fill="#f2d58a"/><circle cx="260" cy="406" r="5" fill="#f2d58a"/><circle cx="78" cy="225" r="5" fill="#f2d58a"/><circle cx="442" cy="225" r="5" fill="#f2d58a"/>
-<path d="M155 145 L255 245 L180 320" fill="none" stroke="#f7f4ec" stroke-width="38" stroke-linecap="square"/>
-<path d="M180 320 L345 155 L345 205 L395 125 L315 175 L365 175" fill="none" stroke="url(#g)" stroke-width="38" stroke-linecap="square" stroke-linejoin="miter"/>
-<text x="260" y="470" text-anchor="middle" fill="#f7f4ec" font-size="54" font-family="Arial,Helvetica,sans-serif" letter-spacing="18">EXUP</text>
-</svg>
-</div>
-</section>
-
-<section class="section" id="modules">
-<div class="kicker">Two modules</div>
-<h2>Optimize. Then prove.</h2>
-<p class="big">The optimizer and the benchmark are separate jobs. One searches for a better execution path. The other verifies that the agreed result was preserved.</p>
-<div class="modules">
-<div class="module"><small>Module 01</small><h3>EXUP Optimizer</h3><p>Find the minimum sufficient system for a workload: lower cost, lower latency, fewer calls, smaller models or a better execution strategy — without crossing the agreed quality floor.</p><a class="module-link" href="/exup/access/">Request optimization →</a></div>
-<div class="module"><small>Module 02</small><h3>EXUP Benchmark</h3><p>Run a bounded, pre-agreed test with a fixed quality threshold and compute budget. Measure baseline versus optimized execution before deciding whether to deploy anything.</p><a class="module-link" href="/exup/benchmark/">Open benchmark →</a></div>
-</div>
-</section>
-
-<section class="section">
-<div class="kicker">Why EXUP</div>
-<h2>Your AI bill does not tell you what was necessary.</h2>
-<div class="grid">
-<div class="card"><b>Lower cost</b><p>Measure the minimum spend required to stay above the agreed quality threshold.</p></div>
-<div class="card"><b>Lower latency</b><p>Remove unnecessary calls, retries and serial execution from the critical path.</p></div>
-<div class="card"><b>Less compute</b><p>Use the smallest sufficient model, route or execution strategy for each task.</p></div>
-</div>
-</section>
-
-<section class="section">
-<div class="kicker">Method</div>
-<h2>Measure first. Optimize second. Verify before deployment.</h2>
-<div class="process">
-<div class="step"><small>01</small><h3>Define</h3><p>Agree workload, result threshold and compute budget.</p></div>
-<div class="step"><small>02</small><h3>Baseline</h3><p>Measure current cost, latency, calls and outcome quality.</p></div>
-<div class="step"><small>03</small><h3>Optimize</h3><p>Search alternative execution strategies under the same result constraint.</p></div>
-<div class="step"><small>04</small><h3>Benchmark</h3><p>Verify the delta before production adoption.</p></div>
-</div>
-</section>
-
-<section class="section" id="commercial">
-<div class="kicker">Commercial model</div>
-<h2>Licensed technology. Not SaaS.</h2>
-<p class="big">EXUP runs inside the customer’s infrastructure. Pricing follows verified compute value, not seats, tokens or company size.</p>
-<div class="pricing">
-<div class="price"><small>Controlled benchmark</small><h3>Free</h3><p>One agreed workload, frozen baseline, fixed quality threshold and bounded compute budget. No measurable improvement means no commercial commitment.</p></div>
-<div class="price"><small>Integration</small><h3>€10k–€50k</h3><p>One-time integration fee based on workload complexity, deployment boundary and required validation.</p></div>
-<div class="price"><small>Production license</small><h3>€50k–€500k / year</h3><p>Annual technology license based on the workload’s compute exposure and verified economic value.</p></div>
-<div class="price"><small>Value royalty</small><h3>15–20%</h3><p>Share of independently measurable compute savings. Exclusivity and private deployment are priced separately.</p></div>
-</div>
-<p class="price-note">For high-volume workloads, the standard structure is an integration fee, an annual minimum license and a share of verified savings. Customer data and models stay with the customer.</p>
-</section>
-
-<section class="access"><div class="access-box"><div class="kicker">Controlled access</div><h2>Start with one workload.</h2><p>The first benchmark is free within an agreed compute budget. Access is approved individually, identity-based and time-limited.</p><a class="btn" href="/exup/access/">Request access</a><div class="fine">No shared passwords. No automatic compute overrun.</div></div></section>
-</main>
-<footer class="footer">EXUP · VALO Research</footer>
-</div>
-</body>
-</html>
+<section class="hero"><div class="kicker">EXUP</div><h1>Benchmark. Optimize. <span>Evolve.</span></h1><p class="lead">Start with what your AI system does today. Find a better execution path. Keep improving without losing the result that matters.</p><p class="sub">EXUP is a controlled engagement for organizations running real AI workloads. We begin with one bounded workload and expand only when the evidence supports it.</p><a class="btn" href="/exup/access/">Request private access</a></section>
+<section class="section"><div class="kicker">Product offering</div><h2>One path. Three products.</h2><p class="intro">Each product can stand on its own. Together they form the EXUP improvement cycle.</p><div class="products">
+<article class="product"><small>01 · Establish</small><h3>EXUP Benchmark</h3><p>Establish the current baseline on an agreed workload. Define what counts as an acceptable result and measure the current execution against it.</p><p class="result">You leave with a verified baseline and a clear improvement target.</p></article>
+<article class="product"><small>02 · Improve</small><h3>EXUP Optimizer</h3><p>Search for a more efficient execution strategy while preserving the agreed result threshold. Improvement is measured against the benchmark, not assumed.</p><p class="result">You leave with a tested alternative and measured evidence of the difference.</p></article>
+<article class="product"><small>03 · Continue</small><h3>EXUP Evolution</h3><p>Continue improving the workload as models, infrastructure and operating conditions change. Each change is evaluated against the result that must still hold.</p><p class="result">You get continuous improvement without turning every model or infrastructure change into a new optimization project.</p></article>
+</div></section>
+<section class="section"><div class="kicker">How it fits</div><h2>Start small. Expand on evidence.</h2><p class="intro">The normal entry point is one workload. Benchmark establishes reality. Optimizer tests whether a better path exists. Evolution is for workloads where continued improvement is worth maintaining.</p><div class="flow">Benchmark → Optimizer → Evolution</div></section>
+<section class="access"><div class="access-box"><div class="kicker">Private access</div><h2>Bring one real workload.</h2><p>Product details, benchmark intake and engagement terms are handled privately. Access is approved individually.</p><a class="btn" href="/exup/access/">Request private access</a><div class="fine">No public signup. No checkout.</div></div></section>
+</main><footer class="footer">EXUP · VALO Research</footer></div></body></html>
