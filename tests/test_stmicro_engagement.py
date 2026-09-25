@@ -5,6 +5,7 @@ from pathlib import Path
 ROOT = Path(__file__).parents[1]
 CONTENT = ROOT / "engage" / "customers" / "stmicro" / "content.json"
 PAGE = ROOT / "engage" / "stmicro" / "index.html"
+HERO = "/engage/customers/stmicro/assets/hero.webp"
 
 
 def test_stmicro_content_is_public_customer_specific_and_bounded():
@@ -21,6 +22,17 @@ def test_stmicro_content_is_public_customer_specific_and_bounded():
         "carrier-neutral",
     ]:
         assert term in text
+
+
+def test_stmicro_hero_uses_declared_public_customer_asset():
+    payload = json.loads(CONTENT.read_text(encoding="utf-8"))
+    assert payload["hero"]["image"] == HERO
+    asset = next(item for item in payload["assets"] if item["path"] == HERO)
+    assert asset["public"] is True
+    assert asset["source"] == "VALO Research · generated in customer engagement workflow"
+    html = PAGE.read_text(encoding="utf-8")
+    assert f'src="{HERO}"' in html
+    assert 'class="hero-image"' in html
 
 
 def test_stmicro_surface_points_to_public_evidence_and_one_next_gate():
