@@ -7,9 +7,19 @@
   "hero": {
     "eyebrow": "Prepared for STMicroelectronics · Edge AI",
     "title": "Find the smallest ST-based reference architecture for retrofit intelligence.",
-    "summary": "A bounded technical path from local inference, secure identity and physical interfaces to governed real-world action — without tying the architecture to one silicon generation."
+    "summary": "A bounded technical path from local inference, secure identity and physical interfaces to governed real-world action — without tying the architecture to one silicon generation.",
+    "image": "/engage/customers/stmicro/assets/hero.png"
   },
-  "assets": [],
+  "assets": [
+    {
+      "type": "image",
+      "path": "/engage/customers/stmicro/assets/hero.png",
+      "alt": "STMicroelectronics retrofit edge AI reference architecture visual",
+      "caption": "Concept visual for the STMicroelectronics retrofit intelligence reference architecture.",
+      "source": "VALO Research / image generation",
+      "public": true
+    }
+  ],
   "situation": {
     "title": "The engineering question",
     "body": [
