@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 680">
+<rect width="960" height="680" fill="#0d1713"/>
+<g font-family="Arial,sans-serif" fill="#fff"><text x="55" y="72" font-size="34" font-weight="700">Observe → understand → signal → reward → remember</text></g>
+<g fill="none" stroke="#c8ff70" stroke-width="8" stroke-linecap="round"><path d="M187 174C320 92 486 86 620 151"/><path d="M722 215c50 69 57 161 14 237"/><path d="M667 520c-125 76-290 83-425 23"/><path d="M163 470c-48-72-51-155-11-228"/></g>
+<g stroke="#fff" stroke-width="5" fill="#15231d"><circle cx="158" cy="195" r="74"/><circle cx="744" cy="188" r="74"/><circle cx="746" cy="497" r="74"/><circle cx="166" cy="500" r="74"/><circle cx="455" cy="338" r="126" fill="#f7f4ed" stroke="#111"/></g>
+<g fill="#c8ff70" font-family="Arial,sans-serif" text-anchor="middle" font-size="23" font-weight="700"><text x="158" y="203">OBSERVE</text><text x="744" y="196">CHANGE</text><text x="746" y="505">REWARD</text><text x="166" y="508">REMEMBER</text></g>
+<g stroke="#111" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M392 326c15-67 82-105 144-78 47 21 76 66 70 118-8 67-75 112-140 92-58-18-90-75-74-132z" fill="#fffaf0"/><path d="M414 284c-41 33-46 92-8 127 18 17 38 23 52 14 14-9 11-31 5-56-6-26-4-54 5-83-18-9-37-10-54-2z" fill="#2f9b48"/><circle cx="518" cy="402" r="30" fill="#fff"/><path d="M504 401c0-14 19-16 25-5 5-11 25-9 25 5 0 16-25 31-25 31s-25-15-25-31z" fill="#2f9b48"/></g>
+</svg>

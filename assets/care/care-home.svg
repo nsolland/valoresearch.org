@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 680">
+<rect width="960" height="680" fill="#f7f4ed"/>
+<g stroke="#111" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+<path d="M480 178c115 0 207 84 207 188s-92 188-207 188-207-84-207-188 92-188 207-188z" fill="#fffaf0"/>
+<path d="M356 263c-42 30-61 77-51 123 13 59 63 105 127 111" fill="#2f9b48"/>
+<path d="M337 418c92 55 192 58 300 7" fill="none"/>
+<circle cx="543" cy="442" r="42" fill="#fff"/><path d="M524 442c0-20 28-22 35-6 8-16 35-14 35 6 0 22-35 45-35 45s-35-23-35-45z" fill="#2f9b48"/>
+<g fill="#fff"><rect x="82" y="110" width="150" height="112" rx="24"/><circle cx="157" cy="162" r="35" fill="#2f9b48"/><rect x="730" y="108" width="145" height="105" rx="24"/><rect x="82" y="432" width="155" height="112" rx="24"/><rect x="732" y="429" width="150" height="112" rx="24"/></g>
+<path d="M232 165h82M647 165h83M233 485h80M648 485h84" fill="none" stroke="#2f9b48" stroke-width="8"/>
+<path d="M129 520h58l20-25h-98z" fill="#2f9b48"/>
+<path d="M763 466h85v48h-85z" fill="#2f9b48"/>
+</g>
+<g fill="none" stroke="#2f9b48" stroke-width="5" stroke-dasharray="12 12"><path d="M260 192C350 130 438 120 480 120"/><path d="M698 192C610 130 526 120 480 120"/><path d="M260 492C360 560 430 575 480 575"/><path d="M700 490C620 552 540 575 480 575"/></g>
+<text x="64" y="80" font-family="Arial,sans-serif" font-size="34" font-weight="700" fill="#176d31">One dog. One connected care system.</text>
+</svg>
