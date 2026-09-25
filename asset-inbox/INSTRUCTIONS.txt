@@ -1,0 +1,13 @@
+VALO asset inbox
+
+Drop new images and other public-safe visual assets in this folder.
+
+This folder is temporary intake only. Do not reference files here from production pages.
+
+When an asset is assigned to a page, move or copy it to one of these canonical locations:
+- Shared assets: engage/_assets/common/
+- Customer-specific assets: engage/customers/<customer>/assets/
+
+After placement, update the relevant content.json with metadata and public:true, regenerate the static page, test, commit and merge.
+
+If you tell ChatGPT "use the latest image in asset-inbox for <customer>/<purpose>", ChatGPT should locate the newest suitable file here and perform the move, metadata update, page generation and verification.
