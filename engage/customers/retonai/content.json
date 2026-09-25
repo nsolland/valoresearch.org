@@ -7,9 +7,19 @@
   "hero": {
     "eyebrow": "Prepared for RETONAI · Carrier substitution",
     "title": "Turn carrier substitution into one bounded commercial test.",
-    "summary": "A narrow path to determine whether a useful capability can survive a change of compute or model carrier — with technical depth gated by an agreed commercial basis."
+    "summary": "A narrow path to determine whether a useful capability can survive a change of compute or model carrier — with technical depth gated by an agreed commercial basis.",
+    "image": "/engage/customers/retonai/assets/hero.png"
   },
-  "assets": [],
+  "assets": [
+    {
+      "type": "image",
+      "path": "/engage/customers/retonai/assets/hero.png",
+      "alt": "Carrier substitution validation visual prepared for RETONAI",
+      "caption": "Concept visual for a bounded carrier-substitution validation test.",
+      "source": "VALO Research / image generation",
+      "public": true
+    }
+  ],
   "situation": {
     "title": "The question worth testing",
     "body": [
