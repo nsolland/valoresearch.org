@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Digital Habitat — VALO Research</title>
+<meta name="description" content="Digital Habitat is a formation + treasury project for creating a legal entity, completing KYB/UBO, and operating with stablecoin treasury without making a traditional bank account the starting point.">
+<style>
+:root{--bg:#f4f1ea;--ink:#111;--muted:#66645f;--line:#d7d1c6;--paper:#fff;--night:#09100d;--green:#c8ff70;--sage:#31564a}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}a{color:inherit}.wrap{width:min(1180px,calc(100% - 40px));margin:auto}
+nav{position:sticky;top:0;z-index:20;background:rgba(244,241,234,.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.nav{height:68px;display:flex;align-items:center;justify-content:space-between}.brand{font-weight:850;letter-spacing:-.04em;text-decoration:none}.links{display:flex;gap:22px;font-size:13px;color:var(--muted)}.links a{text-decoration:none}
+.hero{min-height:86vh;display:flex;align-items:flex-end;color:#fff;background:radial-gradient(circle at 76% 24%,rgba(200,255,112,.22),transparent 20%),linear-gradient(145deg,#06100c,#17251f 57%,#07100c)}.hero .wrap{padding:118px 0 78px}.ey{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:850;color:var(--green)}h1{font-size:clamp(62px,10vw,132px);line-height:.84;letter-spacing:-.075em;margin:18px 0 28px;max-width:1100px}.hero p{font-size:clamp(20px,2.2vw,28px);color:#cbd3cf;max-width:850px;margin:0}.tagline{margin-top:38px;display:flex;gap:10px;flex-wrap:wrap}.tagline span{border:1px solid rgba(255,255,255,.24);padding:10px 14px;font-size:12px;font-weight:800}
+section{padding:88px 0;border-bottom:1px solid var(--line)}h2{font-size:clamp(42px,6vw,78px);line-height:.95;letter-spacing:-.06em;margin:0 0 24px}.lead{font-size:20px;color:var(--muted);max-width:900px}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:42px}.card{background:var(--paper);padding:28px;min-height:220px}.card small{color:var(--sage);font-weight:850;letter-spacing:.08em}.card strong{display:block;font-size:23px;margin:14px 0 10px}.card p{font-size:14px;color:var(--muted);margin:0}
+.dark{background:var(--night);color:#fff}.dark .lead{color:#adb8b3}.flow{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:#303936;margin-top:42px}.step{background:#111a17;padding:24px;min-height:185px}.step b{font-size:20px}.step p{font-size:14px;color:#adb8b3}.state{color:var(--green);font-size:11px;font-weight:850;letter-spacing:.1em;text-transform:uppercase}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:42px}.panel{background:#fff;border:1px solid var(--line);padding:30px}.row{padding:15px 0;border-bottom:1px solid var(--line)}.row:last-child{border:0}.row span{display:block;color:var(--muted);font-size:13px}.row strong{display:block;margin-top:4px}
+.green{background:var(--green)}.green .lead{color:#2d372f}.cta{background:#080a09;color:#fff}.cta .lead{color:#adb8b3}.button{display:inline-block;margin-top:28px;background:var(--green);color:#111;padding:15px 20px;font-weight:850;text-decoration:none}.sub{font-size:13px;color:#8c9791;margin-top:16px}footer{background:#050706;color:#9ca49f;padding:36px 0;font-size:13px}
+@media(max-width:900px){.links{display:none}.grid{grid-template-columns:1fr 1fr}.flow{grid-template-columns:1fr 1fr 1fr}.two{grid-template-columns:1fr}}
+@media(max-width:620px){.grid,.flow{grid-template-columns:1fr}.hero .wrap{padding-top:90px}.card,.step{min-height:auto}}
+</style>
+</head>
+<body>
+<nav><div class="wrap nav"><a class="brand" href="/">VALO Research</a><div class="links"><a href="#model">Model</a><a href="#tcsp">TCSP</a><a href="#treasury">Treasury</a><a href="#continuity">Continuity</a><a href="https://github.com/nsolland/digital-habitat">Repository</a></div></div></nav>
+
+<header class="hero"><div class="wrap"><div class="ey">Digital Habitat</div><h1>Company formation without bank dependency.</h1><p>Create a legal entity, complete KYC / UBO, and operate with stablecoin treasury without making a traditional bank account the starting point.</p><div class="tagline"><span>Formation</span><span>Identity</span><span>Regulated approval</span><span>Stablecoin treasury</span><span>Fiat when needed</span></div></div></header>
+
+<section id="model"><div class="wrap"><div class="ey" style="color:var(--sage)">The model</div><h2>A digital operating habitat for a company.</h2><p class="lead">Digital Habitat separates legal formation, treasury, custody and fiat access. The company can be formed in one jurisdiction, hold value through regulated third-party infrastructure, and connect a bank or EMI only when needed.</p><div class="grid">
+<div class="card"><small>01</small><strong>Form</strong><p>Founder data, company structure and required documents are assembled into a canonical case package.</p></div>
+<div class="card"><small>02</small><strong>Verify</strong><p>KYC / UBO, sanctions, PEP, completeness and legal-eligibility checks run before any filing request reaches a human.</p></div>
+<div class="card"><small>03</small><strong>Approve</strong><p>A regulated local TCSP reviews a bounded action and returns APPROVE, DENY or ESCALATE.</p></div>
+<div class="card"><small>04</small><strong>Operate</strong><p>Stablecoin treasury becomes the default money layer. Fiat rails remain available for tax, payroll, cards and local settlement.</p></div>
+</div></div></section>
+
+<section class="dark" id="tcsp"><div class="wrap"><div class="ey">Human where legally required</div><h2>Automate everything except the statutory decision.</h2><p class="lead">The TCSP is not the operating system. It is the regulated approval endpoint. Digital Habitat prepares the case; the human only reviews the bounded action the law requires.</p><div class="flow">
+<div class="step"><div class="state">Machine</div><b>Case package</b><p>Founder, UBO, company facts, documents and requested action.</p></div>
+<div class="step"><div class="state">Machine</div><b>Checks</b><p>KYC, sanctions, PEP, completeness and legal eligibility.</p></div>
+<div class="step"><div class="state">Human</div><b>Review</b><p>Exactly the evidence needed for the filing decision.</p></div>
+<div class="step"><div class="state">Decision</div><b>APPROVE</b><p>Exercise only the authority explicitly granted for this case.</p></div>
+<div class="step"><div class="state">Decision</div><b>DENY / ESCALATE</b><p>Return a reason or missing requirement. No hidden manual process.</p></div>
+<div class="step"><div class="state">Evidence</div><b>Receipt</b><p>The decision is bound to the exact case package and filing action.</p></div>
+</div></div></section>
+
+<section id="treasury"><div class="wrap two"><div><div class="ey" style="color:var(--sage)">Treasury</div><h2>Stablecoin first. Fiat on demand.</h2><p class="lead">Digital Habitat does not custody customer funds. Regulated providers hold and settle assets. The platform handles formation orchestration, identity, policy and provider routing.</p></div><div class="panel">
+<div class="row"><span>Preferred value layer</span><strong>USDC / other supported stablecoins</strong></div>
+<div class="row"><span>Custody</span><strong>Regulated third-party provider</strong></div>
+<div class="row"><span>Fiat</span><strong>Bank, EMI, mobile money or local rail when required</strong></div>
+<div class="row"><span>Rwanda infrastructure under evaluation</span><strong>Yellow Card supports Rwandan entities, stablecoin treasury and local RWF rails. This is an infrastructure evaluation, not an announced commercial relationship.</strong></div>
+</div></div></section>
+
+<section class="green" id="continuity"><div class="wrap"><div class="ey" style="color:#24332b">Continuity</div><h2>No single provider should own the company’s continuity.</h2><p class="lead">Jurisdiction fallback and treasury fallback sit underneath the core formation product. The aim is resilience, not regulatory bypass.</p><div class="grid">
+<div class="card"><small>Jurisdiction</small><strong>Rwanda first</strong><p>Rwanda is the first reference jurisdiction. Armenia, Georgia and Mauritius are being evaluated as fallback options.</p></div>
+<div class="card"><small>Treasury</small><strong>Provider-neutral</strong><p>No single custodian, exchange, bank, stablecoin or network is intended to become permanent infrastructure.</p></div>
+<div class="card"><small>Control</small><strong>Bounded authority</strong><p>Local statutory roles do not receive treasury keys, platform administration or beneficial ownership merely because they fulfil a legal role.</p></div>
+<div class="card"><small>Evidence</small><strong>Fail closed</strong><p>If legal eligibility, authority or required evidence is missing, the action does not proceed.</p></div>
+</div></div></section>
+
+<section class="cta"><div class="wrap"><div class="ey">Research project</div><h2>Build the company layer as infrastructure.</h2><p class="lead">Digital Habitat is an active VALO Research project. The first implementation work is focused on Rwanda company formation, TCSP execution contracts and stablecoin treasury onboarding.</p><a class="button" href="https://github.com/nsolland/digital-habitat">View the public repository →</a><br><a class="button" href="mailto:njaal@valoresearch.org?subject=Digital%20Habitat">Contact VALO Research →</a><div class="sub">VALO Research · Digital Habitat · 2026</div></div></section>
+
+<footer><div class="wrap">VALO Research · Digital Habitat</div></footer>
+</body>
+</html>
