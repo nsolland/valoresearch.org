@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VALO customer engagement surface",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["customer", "visibility", "hero", "assets", "cta"],
+  "properties": {
+    "customer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["slug", "name"],
+      "properties": {
+        "slug": {"type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$"},
+        "name": {"type": "string", "minLength": 1}
+      }
+    },
+    "visibility": {"const": "public"},
+    "hero": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["eyebrow", "title", "summary"],
+      "properties": {
+        "eyebrow": {"type": "string", "minLength": 1},
+        "title": {"type": "string", "minLength": 1},
+        "summary": {"type": "string", "minLength": 1}
+      }
+    },
+    "assets": {
+      "type": "array",
+      "items": {"$ref": "asset-schema.json"}
+    },
+    "situation": {"$ref": "#/$defs/textSection"},
+    "theses": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/card"}},
+    "demos": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "body"],
+        "properties": {
+          "title": {"type": "string", "minLength": 1},
+          "body": {"type": "string", "minLength": 1},
+          "asset": {"type": "string", "minLength": 1},
+          "link": {"$ref": "#/$defs/link"}
+        }
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "allOf": [
+          {"$ref": "#/$defs/card"},
+          {
+            "type": "object",
+            "properties": {"status": {"type": "string", "minLength": 1}}
+          }
+        ]
+      }
+    },
+    "proposal": {"$ref": "#/$defs/textSection"},
+    "questions": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "cta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "body", "action"],
+      "properties": {
+        "title": {"type": "string", "minLength": 1},
+        "body": {"type": "string", "minLength": 1},
+        "action": {"$ref": "#/$defs/link"}
+      }
+    }
+  },
+  "$defs": {
+    "card": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["title", "body"],
+      "properties": {
+        "title": {"type": "string", "minLength": 1},
+        "body": {"type": "string", "minLength": 1}
+      }
+    },
+    "textSection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "body"],
+      "properties": {
+        "title": {"type": "string", "minLength": 1},
+        "body": {
+          "oneOf": [
+            {"type": "string", "minLength": 1},
+            {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+          ]
+        }
+      }
+    },
+    "link": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "href"],
+      "properties": {
+        "label": {"type": "string", "minLength": 1},
+        "href": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}
