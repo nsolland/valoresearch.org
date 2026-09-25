@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 680">
+<rect width="960" height="680" fill="#f7f4ed"/>
+<rect x="255" y="70" width="450" height="540" rx="32" fill="#fff" stroke="#111" stroke-width="7"/>
+<text x="300" y="132" font-family="Arial,sans-serif" font-size="42" font-weight="800" fill="#176d31">CARE</text>
+<g font-family="Arial,sans-serif"><text x="300" y="180" font-size="22" fill="#333">Longitudinal pet health record</text></g>
+<g stroke="#d5d0c7" fill="#fbfaf7"><rect x="300" y="220" width="360" height="72" rx="14"/><rect x="300" y="312" width="360" height="72" rx="14"/><rect x="300" y="404" width="360" height="72" rx="14"/><rect x="300" y="496" width="360" height="72" rx="14"/></g>
+<g font-family="Arial,sans-serif" font-size="23" fill="#111"><text x="326" y="265">Activity</text><text x="326" y="357">Sleep</text><text x="326" y="449">Food &amp; water</text><text x="326" y="541">Behavior</text></g>
+<g fill="none" stroke="#2f9b48" stroke-width="6"><path d="M470 260l28-12 32 7 30-20 38 8 35-24"/><path d="M470 352h31v-18h32v8h30v-26h34v17h35"/><path d="M470 444l34-5 31 9 32-15 31 8 35-12"/><path d="M470 536l35-18 31 10 33-20 31 12 35-16"/></g>
+<g stroke="#111" stroke-width="5" fill="#fff"><circle cx="119" cy="226" r="62"/><circle cx="120" cy="455" r="62"/><circle cx="838" cy="226" r="62"/><circle cx="838" cy="455" r="62"/></g>
+<g fill="#2f9b48"><path d="M97 221c0-19 26-21 33-6 7-15 33-13 33 6 0 21-33 43-33 43s-33-22-33-43z"/><rect x="90" y="426" width="60" height="50" rx="8"/><path d="M810 212h56v35h-56zM822 197h32v15h-32z"/><path d="M808 470l30-50 30 50z"/></g>
+<g fill="none" stroke="#2f9b48" stroke-width="5" stroke-dasharray="10 10"><path d="M182 226h73M182 455h73M705 226h71M705 455h71"/></g>
+<g font-family="Arial,sans-serif" font-size="18" text-anchor="middle" fill="#111"><text x="119" y="315">Vet</text><text x="120" y="544">Trainer</text><text x="838" y="315">Insurance</text><text x="838" y="544">Research</text></g>
+</svg>
