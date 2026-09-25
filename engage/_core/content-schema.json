@@ -22,7 +22,8 @@
       "properties": {
         "eyebrow": {"type": "string", "minLength": 1},
         "title": {"type": "string", "minLength": 1},
-        "summary": {"type": "string", "minLength": 1}
+        "summary": {"type": "string", "minLength": 1},
+        "image": {"type": "string", "minLength": 1}
       }
     },
     "assets": {
