@@ -1,9 +1,19 @@
+import importlib.util
 import json
 from pathlib import Path
 
 import pytest
 
-from engage._core.promote_asset import PromotionError, promote_asset
+ROOT = Path(__file__).parents[1]
+PROMOTER = ROOT / "engage" / "_core" / "promote_asset.py"
+
+
+def load_promoter():
+    assert PROMOTER.is_file(), "asset promotion runner must exist"
+    spec = importlib.util.spec_from_file_location("engage_promote_asset", PROMOTER)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
 
 
 def make_customer(tmp_path, customer="acme"):
@@ -28,11 +38,12 @@ def make_customer(tmp_path, customer="acme"):
 
 
 def test_promotes_exactly_one_uploaded_asset_and_binds_hero(tmp_path):
+    module = load_promoter()
     inbox, customer_dir = make_customer(tmp_path)
     source = inbox / "random-upload.png"
     source.write_bytes(b"exact-image-bytes")
 
-    result = promote_asset(
+    result = module.promote_asset(
         repo_root=tmp_path,
         customer="acme",
         slot="hero",
@@ -60,12 +71,13 @@ def test_promotes_exactly_one_uploaded_asset_and_binds_hero(tmp_path):
 
 
 def test_refuses_ambiguous_upload_slot(tmp_path):
+    module = load_promoter()
     inbox, _ = make_customer(tmp_path)
     (inbox / "one.png").write_bytes(b"one")
     (inbox / "two.png").write_bytes(b"two")
 
-    with pytest.raises(PromotionError, match="exactly one"):
-        promote_asset(
+    with pytest.raises(module.PromotionError, match="exactly one"):
+        module.promote_asset(
             repo_root=tmp_path,
             customer="acme",
             slot="hero",
@@ -78,9 +90,10 @@ def test_refuses_ambiguous_upload_slot(tmp_path):
 
 
 def test_refuses_missing_upload(tmp_path):
+    module = load_promoter()
     make_customer(tmp_path)
-    with pytest.raises(PromotionError, match="exactly one"):
-        promote_asset(
+    with pytest.raises(module.PromotionError, match="exactly one"):
+        module.promote_asset(
             repo_root=tmp_path,
             customer="acme",
             slot="hero",
