@@ -90,6 +90,22 @@ def _render_media(asset):
     return f'<figure>{media}<figcaption>{caption}</figcaption></figure>'
 
 
+def _render_hero_media(hero, declared):
+    asset_path = hero.get("image")
+    if asset_path is None:
+        return ""
+    asset_path = _text(asset_path, "hero.image")
+    asset = declared.get(asset_path)
+    if asset is None:
+        raise EngagementBuildError("hero.image must reference a declared public asset")
+    kind = asset["type"].lower()
+    if kind not in {"image", "diagram", "screenshot", "background"}:
+        raise EngagementBuildError("hero.image must reference an image-like asset")
+    path = html.escape(asset["path"], quote=True)
+    alt = html.escape(asset["alt"], quote=True)
+    return f'<div class="hero-media"><img src="{path}" alt="{alt}"></div>'
+
+
 def build_page(content_path, repo_root=None):
     content_path = Path(content_path)
     repo_root = Path(repo_root) if repo_root is not None else Path(__file__).resolve().parents[2]
@@ -123,6 +139,7 @@ def build_page(content_path, repo_root=None):
     if not isinstance(assets, list):
         raise EngagementBuildError("assets must be an array")
     declared = _declared_assets(payload, content_path, repo_root, slug)
+    hero_media = _render_hero_media(hero, declared)
 
     sections = []
 
@@ -219,19 +236,19 @@ def build_page(content_path, repo_root=None):
 :root{--bg:#f4f1ea;--ink:#111;--muted:#66625b;--line:#d7d0c6;--panel:#fffdf8;--accent:#203c31;--accent2:#c8ff70}
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}
 a{color:inherit}.wrap{width:min(1120px,calc(100% - 32px));margin:auto}.top{padding:24px 0;border-bottom:1px solid var(--line);font-size:13px;display:flex;justify-content:space-between;gap:24px}
-.hero{padding:96px 0 78px;background:#0b0f10;color:white}.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent2);font-weight:800}
-h1{font-size:clamp(48px,8vw,96px);line-height:.94;letter-spacing:-.06em;max-width:1000px;margin:18px 0 28px}.hero p{font-size:clamp(19px,2.4vw,27px);color:#bdc6c8;max-width:820px}
+.hero{padding:96px 0 0;background:#0b0f10;color:white;overflow:hidden}.eyebrow{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent2);font-weight:800}
+h1{font-size:clamp(48px,8vw,96px);line-height:.94;letter-spacing:-.06em;max-width:1000px;margin:18px 0 28px}.hero p{font-size:clamp(19px,2.4vw,27px);color:#bdc6c8;max-width:820px}.hero-media{margin-top:52px;margin-left:calc((100vw - min(1120px,calc(100vw - 32px)))/-2);margin-right:calc((100vw - min(1120px,calc(100vw - 32px)))/-2)}.hero-media img{display:block;width:100%;max-height:720px;object-fit:cover;object-position:center;border:0;background:#0b0f10}
 .section{padding:70px 0;border-top:1px solid var(--line)}h2{font-size:clamp(34px,5vw,58px);line-height:1;letter-spacing:-.045em;margin:0 0 30px}h3{font-size:24px;letter-spacing:-.03em;margin:0 0 10px}
 .prose{max-width:840px;font-size:19px;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}.card{background:var(--panel);border:1px solid var(--line);padding:24px;min-height:180px}.card p,.demo p{color:var(--muted)}
 .status{font-size:11px;text-transform:uppercase;letter-spacing:.12em;font-weight:800;margin-bottom:28px;color:var(--accent)}.demo{display:grid;grid-template-columns:1fr 1fr;gap:34px;padding:28px 0;border-top:1px solid var(--line);align-items:start}figure{margin:0}img{display:block;width:100%;height:auto;border:1px solid var(--line);background:white}figcaption{font-size:12px;color:var(--muted);margin-top:8px}
 .button{display:inline-flex;margin-top:18px;padding:12px 18px;border:1px solid currentColor;text-decoration:none;font-weight:750}.primary{background:white;color:#111;border-color:white}.questions{max-width:840px;padding-left:24px;font-size:18px}.questions li+li{margin-top:12px}
 .cta{padding:78px 0;background:var(--accent);color:white}.cta p{font-size:20px;max-width:760px}.asset-link{display:block;padding:18px;border:1px solid var(--line);background:white}
 footer{padding:32px 0;font-size:12px;color:var(--muted);border-top:1px solid var(--line)}
-@media(max-width:800px){.grid,.demo{grid-template-columns:1fr}.hero{padding:72px 0 58px}.section{padding:54px 0}}
+@media(max-width:800px){.grid,.demo{grid-template-columns:1fr}.hero{padding-top:72px}.section{padding:54px 0}.hero-media{margin-top:38px}}
 </style>
 </head>
 <body>
-<header class="hero"><div class="wrap"><div class="top"><strong>VALO Research</strong><span>Prepared for __CUSTOMER__</span></div><div style="padding-top:72px"><div class="eyebrow">__EYEBROW__</div><h1>__TITLE__</h1><p>__SUMMARY_TEXT__</p></div></div></header>
+<header class="hero"><div class="wrap"><div class="top"><strong>VALO Research</strong><span>Prepared for __CUSTOMER__</span></div><div style="padding-top:72px"><div class="eyebrow">__EYEBROW__</div><h1>__TITLE__</h1><p>__SUMMARY_TEXT__</p>__HERO_MEDIA__</div></div></header>
 <main>__SECTIONS__</main>
 <footer><div class="wrap">Customer-specific evidence and decision surface · VALO Research</div></footer>
 </body>
@@ -242,6 +259,7 @@ footer{padding:32px 0;font-size:12px;color:var(--muted);border-top:1px solid var
         .replace("__EYEBROW__", html.escape(eyebrow))
         .replace("__TITLE__", html.escape(title))
         .replace("__SUMMARY_TEXT__", html.escape(summary))
+        .replace("__HERO_MEDIA__", hero_media)
         .replace("__SECTIONS__", "".join(sections))
     )
 
