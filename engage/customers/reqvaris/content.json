@@ -1,0 +1,74 @@
+{
+  "customer": {
+    "slug": "reqvaris",
+    "name": "REQVARIS"
+  },
+  "visibility": "public",
+  "hero": {
+    "eyebrow": "Prepared for REQVARIS · Public reproduction gate",
+    "title": "Prove the authority boundary locally before connecting hardware.",
+    "summary": "One fixed public revision. Three deterministic cases. No Vision Edge or MITHRIL integration until the public reproduction passes 3/3."
+  },
+  "assets": [],
+  "situation": {
+    "title": "The agreed first step",
+    "body": [
+      "The first technical step stays entirely inside public, non-sensitive material. The physical bench is deliberately out of scope until the authority behavior is reproduced locally.",
+      "The synthetic path is: person_detected → authority request → consequence-time check → ALLOW/DENY → local execution logger.",
+      "REQVARIS will run the cases locally against one fixed public HEIMEL revision. Only after 3/3 local reproduction should the same Gateway boundary be connected to the local MITHRIL MQTT adapter."
+    ]
+  },
+  "theses": [
+    {
+      "title": "Fresh authority decides consequence",
+      "body": "The decisive check belongs immediately before the consequential action, not at detection time or at an earlier approval step."
+    },
+    {
+      "title": "Revocation must remain effective",
+      "body": "Authority that disappears before the consequence-time check must produce DENY even if it was valid when the event was first observed."
+    },
+    {
+      "title": "Hardware comes after semantics",
+      "body": "Vision Edge and MITHRIL add value only after the authority contract is independently reproduced without either system in the loop."
+    }
+  ],
+  "evidence": [
+    {
+      "title": "Case 1 — valid authority",
+      "body": "Valid authority → ALLOW → execution request logged.",
+      "status": "agreed test"
+    },
+    {
+      "title": "Case 2 — revoked/no authority",
+      "body": "Revoked/no authority → DENY → no execution request.",
+      "status": "agreed test"
+    },
+    {
+      "title": "Case 3 — stale earlier authority",
+      "body": "Authority valid at detection, revoked before consequence-time check → DENY → no execution request.",
+      "status": "agreed test"
+    }
+  ],
+  "proposal": {
+    "title": "Reproduction package status: pending export gate",
+    "body": [
+      "VALO will name one fixed public HEIMEL revision only after the public export gate permits that revision to be exposed safely.",
+      "The reproduction package will then contain the exact revision, minimum public components, dependencies, start command, authority issue/revoke flow, request/response contract, Gateway path, evidence path and expected outputs for all three cases.",
+      "Until that gate is satisfied, no private implementation package, source bundle or non-public technical material is part of this step."
+    ]
+  },
+  "questions": [
+    "Can REQVARIS reproduce all three cases exactly against the same fixed public revision?",
+    "Does any execution request appear after a DENY?",
+    "Does revocation between detection and consequence-time check reliably prevent execution?",
+    "Are the decision and execution-log records sufficient to diagnose any mismatch?"
+  ],
+  "cta": {
+    "title": "Run the 3/3 local reproduction",
+    "body": "Once the fixed public revision is posted, run the three agreed cases locally without Vision Edge or MITHRIL. Integration starts only after 3/3 pass.",
+    "action": {
+      "label": "Run 3/3 local reproduction",
+      "href": "mailto:njaal@valoresearch.org?subject=REQVARIS%20HEIMEL%203%2F3%20reproduction"
+    }
+  }
+}
