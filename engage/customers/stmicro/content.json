@@ -1,0 +1,92 @@
+{
+  "customer": {
+    "slug": "stmicro",
+    "name": "STMicroelectronics"
+  },
+  "visibility": "public",
+  "hero": {
+    "eyebrow": "Prepared for STMicroelectronics · Edge AI",
+    "title": "Find the smallest ST-based reference architecture for retrofit intelligence.",
+    "summary": "A bounded technical path from local inference, secure identity and physical interfaces to governed real-world action — without tying the architecture to one silicon generation."
+  },
+  "assets": [],
+  "situation": {
+    "title": "The engineering question",
+    "body": [
+      "The installed world is the target: sensors, cameras, switches, cabinets, machines and actuators that should gain local intelligence without requiring full replacement.",
+      "The immediate question is deliberately narrow: what is the smallest practical ST-based reference architecture that can support local inference, secure identity, physical interfaces and enough headroom for different model classes — and where is the practical boundary between STM32-class devices and more capable ST edge AI options?"
+    ]
+  },
+  "theses": [
+    {
+      "title": "Carrier-neutral by design",
+      "body": "The durable object, identity and authority contract should survive replacement of the compute or model carrier. Silicon should implement the architecture, not define it."
+    },
+    {
+      "title": "Local first",
+      "body": "Sensing and inference should stay local where that reduces latency, bandwidth, cloud dependence and unnecessary data movement."
+    },
+    {
+      "title": "Govern only consequence",
+      "body": "Not every inference needs heavyweight control. The authority check becomes mandatory when a node can create a real-world effect."
+    }
+  ],
+  "demos": [
+    {
+      "title": "Universal Retrofit Intelligence",
+      "body": "Public architecture for Sense, Perception and Action nodes across existing physical infrastructure. It separates local interpretation from governed consequence.",
+      "link": {
+        "label": "Open the public architecture",
+        "href": "/research/universal-retrofit-intelligence/"
+      }
+    },
+    {
+      "title": "HEIMEL consequence-time authority",
+      "body": "The control boundary for consequential action: determine whether the exact effect is authorized at the moment it would occur and retain evidence of the decision.",
+      "link": {
+        "label": "Open HEIMEL",
+        "href": "https://heimel.xyz/"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "title": "Public edge architecture exists",
+      "body": "The Sense → Understand → Govern → Act → Prove flow and the three-node family are already published as the public-safe baseline.",
+      "status": "published"
+    },
+    {
+      "title": "Governance boundary exists",
+      "body": "HEIMEL provides the consequence-time authority layer so the hardware exploration can stay focused on local compute, interfaces and execution rather than inventing a second control plane.",
+      "status": "implemented"
+    },
+    {
+      "title": "Hardware claims remain open",
+      "body": "Device choice, power, memory, latency, model fit, cost and interoperability are intentionally not asserted yet. They are the subject of the ST reference-architecture test.",
+      "status": "to validate"
+    }
+  ],
+  "proposal": {
+    "title": "Proposed next step: one bounded ST reference matrix",
+    "body": [
+      "Define three target nodes — Sense, Perception and Action — and map the smallest suitable ST class for each against memory, compute, power, interfaces, security primitives and deployment tooling.",
+      "Choose one minimal prototype path, deploy a representative local model, bind identity and the physical effect boundary, and test whether the same higher-level object and authority contract survives a change of compute or model carrier.",
+      "The output is not a broad product programme. It is a reference architecture, measured constraints, a working demonstrator and a clear decision on where STM32-class hardware is sufficient and where a more capable ST option becomes necessary."
+    ]
+  },
+  "questions": [
+    "What is the smallest STM32-class configuration that can support the Sense and basic Perception roles without compromising the architecture?",
+    "Where does ST see the practical boundary between STM32-class devices and more capable edge AI hardware for local vision, audio or richer models?",
+    "Which secure identity and device-root primitives should be part of the reference design from the start?",
+    "Which physical interfaces and development boards give the fastest path to a real sensor-to-action demonstrator?",
+    "Which model classes should be used to make the carrier-substitution test technically meaningful rather than synthetic?"
+  ],
+  "cta": {
+    "title": "Define the reference architecture",
+    "body": "Lock the three node envelopes, candidate ST classes, one prototype workload and the pass/fail criteria for carrier substitution.",
+    "action": {
+      "label": "Define the reference architecture",
+      "href": "mailto:njaal@valoresearch.org?subject=STMicroelectronics%20reference%20architecture"
+    }
+  }
+}
