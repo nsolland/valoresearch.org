@@ -1,0 +1,74 @@
+{
+  "customer": {
+    "slug": "retonai",
+    "name": "RETONAI"
+  },
+  "visibility": "public",
+  "hero": {
+    "eyebrow": "Prepared for RETONAI · Carrier substitution",
+    "title": "Turn carrier substitution into one bounded commercial test.",
+    "summary": "A narrow path to determine whether a useful capability can survive a change of compute or model carrier — with technical depth gated by an agreed commercial basis."
+  },
+  "assets": [],
+  "situation": {
+    "title": "The question worth testing",
+    "body": [
+      "Models, runtimes and hardware carriers change quickly. A durable system should not require its useful outcome to be redefined every time the underlying carrier changes.",
+      "The immediate opportunity is not a broad integration programme. It is a bounded demonstrator that asks one falsifiable question: can the same intended outcome and execution boundary survive a carrier substitution under agreed success criteria?"
+    ]
+  },
+  "theses": [
+    {
+      "title": "Test the substitution, not the story",
+      "body": "The useful unit of evidence is a measured before-and-after test with a locked outcome, boundary and pass/fail condition."
+    },
+    {
+      "title": "Separate durable outcome from replaceable carrier",
+      "body": "The model, runtime or hardware may change. The outcome contract and consequence boundary should remain stable enough to compare the two paths directly."
+    },
+    {
+      "title": "Commercial basis before technical depth",
+      "body": "A serious demonstrator should establish scope, ownership, value allocation and the decision gate before additional implementation detail is exchanged."
+    }
+  ],
+  "evidence": [
+    {
+      "title": "Bounded evaluation method",
+      "body": "VALO uses explicit baselines, locked success criteria and retained evidence so a substitution result can be accepted or rejected rather than narrated after the fact.",
+      "status": "available"
+    },
+    {
+      "title": "Carrier-neutral architecture principle",
+      "body": "The public VALO architecture separates durable object and execution boundaries from replaceable compute and model components.",
+      "status": "published"
+    },
+    {
+      "title": "RETONAI-specific result remains open",
+      "body": "No RETONAI-specific performance, integration or commercial claim is asserted here. Those are precisely what a bounded test would need to establish.",
+      "status": "to validate"
+    }
+  ],
+  "proposal": {
+    "title": "Proposed next step: define the commercial basis first",
+    "body": [
+      "Agree one bounded demonstrator, the customer or workload class it represents, the baseline, the measurable success criteria and the decision that follows a pass or fail.",
+      "Before further technical material is exchanged, define the commercial basis: scope, ownership of pre-existing and newly created material, permitted use of results, value allocation and what each party contributes.",
+      "Once that gate is clear, the technical test can be specified narrowly enough to produce evidence rather than an open-ended integration effort."
+    ]
+  },
+  "questions": [
+    "What single outcome would make a carrier-substitution test commercially meaningful?",
+    "Which baseline should the substituted path be compared against?",
+    "What must remain invariant across the carrier change for the result to count?",
+    "How should verified recurring value, if any, be allocated between the parties?",
+    "What technical information is actually necessary after the commercial basis is agreed?"
+  ],
+  "cta": {
+    "title": "Define the commercial basis",
+    "body": "Lock scope, ownership, value allocation, contributions and the pass/fail decision gate before moving into technical implementation detail.",
+    "action": {
+      "label": "Define the commercial basis",
+      "href": "mailto:njaal@valoresearch.org?subject=RETONAI%20commercial%20basis"
+    }
+  }
+}
