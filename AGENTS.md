@@ -10,6 +10,21 @@ This repository is the canonical public source for https://valoresearch.org.
 - Do not place credentials, private claims, internal application code, or runtime secrets in this public repository.
 - Do not call a change live until the canonical production URL returns the expected content.
 
+## Chat image and engagement asset handling
+
+These rules apply when a task refers to an image already created or uploaded in the active ChatGPT conversation.
+
+1. If the instruction is "use this image", "use the image from this chat", "add the image", or equivalent, use the existing conversation image as the source asset. Do not regenerate, reinterpret, redraw, or replace it unless explicitly instructed.
+2. Before committing, establish the actual source file available from the conversation/runtime. Do not invent a filename or pretend an unavailable image is accessible.
+3. Customer-specific engagement assets belong under `engage/customers/<customer>/assets/`.
+4. Reusable shared engagement assets belong under `engage/_assets/common/`.
+5. Use stable, descriptive lowercase filenames. Prefer `.webp` for photographic/generated raster assets, `.png` when transparency or lossless raster output is materially required, and `.svg` for authored vector diagrams.
+6. If a conversion is needed, preserve the visual content. Conversion is not permission to regenerate or restyle the image.
+7. Public-repository rule: only commit an image when it is explicitly safe for public publication. Customer engagement content and asset metadata must be treated as public unless a separate authenticated/private delivery surface is explicitly in use.
+8. If the requested source image is not actually available in the active conversation/runtime, stop the image-ingest step and request the source image. Never substitute a newly generated image silently.
+9. Commit image assets on the active feature branch before merging to `main`, and report the exact repository path and commit SHA.
+10. For engagement pages, content should reference the committed asset path; do not depend on temporary chat URLs, local paths, or runtime-only files.
+
 
 ## Production deployment contract — verified 2026-09-23
 

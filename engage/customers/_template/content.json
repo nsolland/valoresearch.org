@@ -1,0 +1,48 @@
+{
+  "customer": {
+    "slug": "customer-name",
+    "name": "Customer Name"
+  },
+  "visibility": "public",
+  "hero": {
+    "eyebrow": "Prepared for Customer Name",
+    "title": "One concrete problem. One bounded next step.",
+    "summary": "A customer-specific evidence and decision surface."
+  },
+  "assets": [],
+  "situation": {
+    "title": "The situation",
+    "body": [
+      "Describe the customer's actual situation in their terms.",
+      "State only what can be supported publicly."
+    ]
+  },
+  "theses": [
+    {
+      "title": "Working thesis",
+      "body": "State the hypothesis VALO proposes to test."
+    }
+  ],
+  "evidence": [
+    {
+      "title": "Relevant evidence",
+      "body": "Point to the strongest public evidence, test or demonstrator.",
+      "status": "verified"
+    }
+  ],
+  "proposal": {
+    "title": "Proposed next step",
+    "body": "Define one bounded workload, success criteria and decision gate."
+  },
+  "questions": [
+    "What must be true for this to be worth testing?"
+  ],
+  "cta": {
+    "title": "Define the next gate",
+    "body": "Agree the workload, boundary, evidence and next decision.",
+    "action": {
+      "label": "Define next step",
+      "href": "mailto:njaal@valoresearch.org"
+    }
+  }
+}
