@@ -1,4 +1,5 @@
 import json
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).parents[1]
@@ -10,13 +11,13 @@ def test_stmicro_content_is_public_customer_specific_and_bounded():
     payload = json.loads(CONTENT.read_text(encoding="utf-8"))
     assert payload["visibility"] == "public"
     assert payload["customer"] == {"slug": "stmicro", "name": "STMicroelectronics"}
-    text = CONTENT.read_text(encoding="utf-8")
+    text = CONTENT.read_text(encoding="utf-8").lower()
     for term in [
-        "smallest ST-based reference architecture",
+        "smallest st-based reference architecture",
         "local inference",
         "secure identity",
         "physical interfaces",
-        "STM32-class",
+        "stm32-class",
         "carrier-neutral",
     ]:
         assert term in text
@@ -35,5 +36,6 @@ def test_stmicro_surface_points_to_public_evidence_and_one_next_gate():
 
 def test_stmicro_surface_does_not_publish_partner_private_material():
     text = (CONTENT.read_text(encoding="utf-8") + PAGE.read_text(encoding="utf-8")).lower()
-    for forbidden in ["st confidential", "nda", "patent filing", "internal st", "private ip"]:
+    for forbidden in ["st confidential", "patent filing", "internal st", "private ip"]:
         assert forbidden not in text
+    assert re.search(r"\bnda\b", text) is None
