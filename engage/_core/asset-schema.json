@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VALO engagement asset",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["type", "path", "alt", "caption", "source", "public"],
+  "properties": {
+    "type": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Asset role, for example image, diagram, screenshot, logo or background."
+    },
+    "path": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Repository-local path under /engage/_assets/common/ or /engage/customers/<customer>/assets/."
+    },
+    "alt": {
+      "type": "string",
+      "minLength": 1
+    },
+    "caption": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Source or provenance of the asset."
+    },
+    "public": {
+      "const": true,
+      "description": "Public engagement surfaces fail closed: assets must be explicitly approved for public publication."
+    }
+  }
+}
