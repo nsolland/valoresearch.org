@@ -7,9 +7,19 @@
   "hero": {
     "eyebrow": "Prepared for REQVARIS · Public reproduction gate",
     "title": "Prove the authority boundary locally before connecting hardware.",
-    "summary": "One fixed public revision. Three deterministic cases. No Vision Edge or MITHRIL integration until the public reproduction passes 3/3."
+    "summary": "One fixed public revision. Three deterministic cases. No Vision Edge or MITHRIL integration until the public reproduction passes 3/3.",
+    "image": "/engage/customers/reqvaris/assets/hero.png"
   },
-  "assets": [],
+  "assets": [
+    {
+      "type": "image",
+      "path": "/engage/customers/reqvaris/assets/hero.png",
+      "alt": "REQVARIS and HEIMEL governed execution flow from Vision Edge observation through fresh authority to MITHRIL execution and DI1 feedback",
+      "caption": "Concept visual for the agreed REQVARIS reproduction-to-integration path.",
+      "source": "VALO Research / image generation",
+      "public": true
+    }
+  ],
   "situation": {
     "title": "The agreed first step",
     "body": [
