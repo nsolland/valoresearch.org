@@ -14,8 +14,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Prepare
-        run: mkdir -p habitat/assets
-      - name: Stop with instructions
+      - name: Download Habitat images
+        shell: bash
         run: |
-          echo "Temporary bootstrap workflow. Asset source URLs are injected in the next commit."
+          set -euo pipefail
+          mkdir -p habitat/assets
+          curl -L --fail 'https://sdmntpritalynorth.oaiusercontent.com/files/00000000-8988-8246-975e-2c02eb7c87c3/raw?se=2026-09-26T20%3A14%3A24Z&sp=r&sv=2026-02-06&sr=b&scid=ccfa35b5-c39c-560c-a26a-f28d93d5aff6&skoid=82a3371f-2f6c-4f81-8a78-2701b362559b&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-26T08%3A06%3A38Z&ske=2026-09-27T08%3A06%3A38Z&sks=b&skv=2026-02-06&sig=soIbEAMh0Wj6lqMSYQJgsXVvLszFZRLqC9%2Boy0LIHio%3D' -o habitat/assets/hero-fjord.png
+          curl -L --fail 'https://sdmntpritalynorth.oaiusercontent.com/files/00000000-e354-8246-8cbb-72785f0f6996/raw?se=2026-09-26T20%3A14%3A38Z&sp=r&sv=2026-02-06&sr=b&scid=90390907-8f76-5c57-b8a2-fe83aaeafb9b&skoid=82a3371f-2f6c-4f81-8a78-2701b362559b&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-26T15%3A40%3A14Z&ske=2026-09-27T15%3A40%3A14Z&sks=b&skv=2026-02-06&sig=XHawCASvUSreEctzpmHcN11v90ahEu7xgFakc9O0kFs%3D' -o habitat/assets/drone-fjord.png
+          curl -L --fail 'https://sdmntpritalynorth.oaiusercontent.com/files/00000000-de54-8246-b68c-1fd062e682a6/raw?se=2026-09-26T20%3A14%3A47Z&sp=r&sv=2026-02-06&sr=b&scid=2d520f28-c1fc-5c3d-a984-3132e585c855&skoid=82a3371f-2f6c-4f81-8a78-2701b362559b&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-26T18%3A38%3A37Z&ske=2026-09-27T18%3A38%3A37Z&sks=b&skv=2026-02-06&sig=9LYky42aLQQu9bL%2BAfi/xCjVZAQv0sZ3kTLUTFQyfPw%3D' -o habitat/assets/pilot-farm.png
+          curl -L --fail 'https://sdmntpritalynorth.oaiusercontent.com/files/00000000-06c0-8246-b135-f1e8cae2b1af/raw?se=2026-09-26T20%3A14%3A55Z&sp=r&sv=2026-02-06&sr=b&scid=a32b3463-e268-5f5c-b9a3-bc33fac4e784&skoid=82a3371f-2f6c-4f81-8a78-2701b362559b&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-26T07%3A10%3A12Z&ske=2026-09-27T07%3A10%3A12Z&sks=b&skv=2026-02-06&sig=yYv4kiv2Q1WnpVP5KG9Q2dqo5sjgq0Vv/FJrNDNC1dc%3D' -o habitat/assets/brand.png
+          curl -L --fail 'https://sdmntpritalynorth.oaiusercontent.com/files/00000000-2420-8246-8e71-be9085bdece3/raw?se=2026-09-26T20%3A15%3A03Z&sp=r&sv=2026-02-06&sr=b&scid=2ebbf13d-f297-58a8-8266-5fed56a304f6&skoid=82a3371f-2f6c-4f81-8a78-2701b362559b&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-26T18%3A38%3A40Z&ske=2026-09-27T18%3A38%3A40Z&sks=b&skv=2026-02-06&sig=WN4Fwo8WZesukqc4syOOE2f9KHU1Kvx%2BFQXLzPCZ9Ok%3D' -o habitat/assets/habitat-network.png
+          curl -L --fail 'https://sdmntpritalynorth.oaiusercontent.com/files/00000000-66ac-8246-b01f-204094886219/raw?se=2026-09-26T20%3A15%3A10Z&sp=r&sv=2026-02-06&sr=b&scid=140fdbff-085e-5025-a587-87e906d54a55&skoid=82a3371f-2f6c-4f81-8a78-2701b362559b&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-26T03%3A47%3A50Z&ske=2026-09-27T03%3A47%3A50Z&sks=b&skv=2026-02-06&sig=phqbAuszQfy76Lo6akLv23TJdnMSIvoMFKb/le/Srag%3D' -o habitat/assets/relocation-logistics.png
+          curl -L --fail 'https://sdmntpritalynorth.oaiusercontent.com/files/00000000-08bc-8246-adf0-bc57f3f46f7d/raw?se=2026-09-26T20%3A15%3A19Z&sp=r&sv=2026-02-06&sr=b&scid=39794332-5fae-5446-a177-cd71137edf53&skoid=82a3371f-2f6c-4f81-8a78-2701b362559b&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-26T17%3A32%3A29Z&ske=2026-09-27T17%3A32%3A29Z&sks=b&skv=2026-02-06&sig=zRJfyMJT%2BauT/8LdQ%2B0Roeqb/UPvRlgt5YlShUS1l04%3D' -o habitat/assets/eco-village.png
+          curl -L --fail 'https://sdmntpritalynorth.oaiusercontent.com/files/00000000-2500-8246-868e-5fb76b05b3e1/raw?se=2026-09-26T20%3A15%3A29Z&sp=r&sv=2026-02-06&sr=b&scid=09619a1a-51fe-55e7-8250-9850b94597d0&skoid=82a3371f-2f6c-4f81-8a78-2701b362559b&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-26T04%3A46%3A50Z&ske=2026-09-27T04%3A46%3A50Z&sks=b&skv=2026-02-06&sig=s6oPzT%2BBr8hZhT35T%2BWDi2K5Gp2UherRbqmgvsEjAzg%3D' -o habitat/assets/materials.png
+          curl -L --fail 'https://sdmntpritalynorth.oaiusercontent.com/files/00000000-a384-8246-b9dd-b886ed14bc07/raw?se=2026-09-26T20%3A15%3A37Z&sp=r&sv=2026-02-06&sr=b&scid=cf86a18f-a42b-5115-9b88-68e13b5861ec&skoid=82a3371f-2f6c-4f81-8a78-2701b362559b&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-26T07%3A10%3A12Z&ske=2026-09-27T07%3A10%3A12Z&sks=b&skv=2026-02-06&sig=Eb3JQoOsKuKD16j5zrwlq3iM6kkG5U1YFsiEDrxU/jU%3D' -o habitat/assets/climate-configurations.png
+          curl -L --fail 'https://sdmntpritalynorth.oaiusercontent.com/files/00000000-6654-8246-8d46-e688239c2cd5/raw?se=2026-09-26T20%3A15%3A44Z&sp=r&sv=2026-02-06&sr=b&scid=eda1d2b4-ed0c-5d21-bc3e-decd4d7773c5&skoid=82a3371f-2f6c-4f81-8a78-2701b362559b&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-26T07%3A10%3A13Z&ske=2026-09-27T07%3A10%3A13Z&sks=b&skv=2026-02-06&sig=RisqXPTxexAtknMBX7CGB14Gm%2BVuxosc0PVipimapmk%3D' -o habitat/assets/architecture-exploded.png
+          curl -L --fail 'https://sdmntpritalynorth.oaiusercontent.com/files/00000000-5d9c-8246-854d-1d1eb1843e8e/raw?se=2026-09-26T20%3A15%3A51Z&sp=r&sv=2026-02-06&sr=b&scid=77d36af2-c31f-598f-9c91-d157dda6f4de&skoid=82a3371f-2f6c-4f81-8a78-2701b362559b&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-26T06%3A02%3A06Z&ske=2026-09-27T06%3A02%3A06Z&sks=b&skv=2026-02-06&sig=sHk/wEMFfxU4sIO235MiOSvaVDjTwuM%2BO5ikt8/rlcU%3D' -o habitat/assets/module-ecosystem.png
+      - name: Commit assets
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add habitat/assets
+          git commit -m 'Add Habitat visual assets' || exit 0
+          git push
