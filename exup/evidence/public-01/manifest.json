@@ -1,0 +1,8 @@
+{
+  "case_id": "EXUP-PUBLIC-01",
+  "files": {
+    "result.json": "aa2d335c012e7d117b11e28d7199629681318cdb39582390a29f0a5571a65126",
+    "repeatability.json": "c2bcbfb818130552c3bba62237662582da2f98c13898c55861b01f349665fc02",
+    "environment.json": "b365cf30d4242fd605edabf1c987af4d2e467ae80eea428fff53eb37ac446223"
+  }
+}

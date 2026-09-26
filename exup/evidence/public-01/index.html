@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="index,follow"><title>EXUP PUBLIC-01 — Reproducible evidence</title>
+<meta name="description" content="Public reproducible evidence for EXUP: higher SingleStream throughput and lower latency with no measured accuracy loss on a public YOLO11n / COCO-safe workload.">
+<style>
+:root{--bg:#050505;--panel:#0c0c0c;--gold:#d4af37;--gold2:#f0d58a;--white:#f7f4ec;--muted:#aaa59a;--line:#292317;--green:#9bddb4}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -10%,#19150b 0,#090806 28%,var(--bg) 62%);color:var(--white);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}
+.wrap{max-width:1120px;margin:auto;padding:0 28px}.nav{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #1d1b17}.brand{color:var(--white);text-decoration:none;letter-spacing:.18em}.back{color:var(--gold2);text-decoration:none}
+.hero{padding:92px 0 64px}.kicker{color:var(--gold2);letter-spacing:.2em;text-transform:uppercase;font-size:12px}.hero h1{font-size:clamp(46px,7vw,82px);line-height:1;margin:15px 0 20px;letter-spacing:-.05em}.lead{font-size:clamp(20px,2.3vw,28px);color:#ded9cf;max-width:880px}
+.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:40px 0}.metric{border:1px solid #3a301b;border-radius:20px;padding:25px;background:#0b0a08}.metric strong{display:block;font-size:clamp(34px,5vw,56px);color:var(--green);letter-spacing:-.04em}.metric span{color:var(--muted)}
+.section{padding:60px 0;border-top:1px solid #191815}.section h2{font-size:clamp(30px,4vw,48px);margin:0 0 16px;letter-spacing:-.03em}.intro{font-size:19px;color:#d8d3c9;max-width:880px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:26px}.card{background:#0b0a08;border:1px solid #2a2417;border-radius:20px;padding:25px}.card h3{margin:0 0 12px;font-size:24px}.card p{color:var(--muted)}
+table{width:100%;border-collapse:collapse;margin-top:24px;background:#0b0a08;border:1px solid #2a2417}th,td{text-align:left;padding:14px 16px;border-bottom:1px solid #242018}th{color:var(--gold2);font-size:13px;text-transform:uppercase;letter-spacing:.08em}td:last-child{font-variant-numeric:tabular-nums}.pass{color:var(--green);font-weight:700}.boundary{border-left:3px solid var(--gold);padding:4px 0 4px 20px;color:#d8d3c9;max-width:900px}.fine{font-size:13px;color:#817b70}.links a{color:var(--gold2)}.footer{padding:30px 0 44px;color:#777269;font-size:13px;border-top:1px solid #171613}
+@media(max-width:760px){.metrics,.grid{grid-template-columns:1fr}.hero{padding-top:68px}table{font-size:14px}th,td{padding:11px 9px}}
+</style></head><body><div class="wrap"><nav class="nav"><a class="brand" href="/exup/">EXUP</a><a class="back" href="/exup/">← EXUP</a></nav><main>
+<section class="hero"><div class="kicker">Public evidence · EXUP-PUBLIC-01</div><h1>A measurable gain. A fixed acceptance gate.</h1><p class="lead">On a public YOLO11n object-detection workload, the accepted candidate increased SingleStream throughput while reducing latency, with no measured accuracy loss.</p>
+<div class="metrics"><div class="metric"><strong>+23.2%</strong><span>median throughput · 10 runs</span></div><div class="metric"><strong>−18.9%</strong><span>median mean latency · 10 runs</span></div><div class="metric"><strong>−33.5%</strong><span>median p95 latency · 10 runs</span></div></div></section><section class="section"><div class="kicker">Locked test contract</div><h2>Public inputs. Fixed acceptance boundary.</h2><div class="grid">
+<div class="card"><h3>Workload</h3><p>YOLO11n object detection on the MLCommons MLPerf COCO safe subset. Accuracy is evaluated across all 1,525 public images.</p></div>
+<div class="card"><h3>Scenario</h3><p>SingleStream CPU inference. Performance comparison uses the same ordered 200-image set for baseline and candidate.</p></div>
+<div class="card"><h3>Acceptance gate</h3><p>Candidate must preserve mAP@0.50:0.95 at or above 0.4000. A faster result that falls below the gate is rejected.</p></div>
+<div class="card"><h3>Permitted change</h3><p>Execution runtime may change. Model task, public input set and acceptance metric remain fixed.</p></div>
+</div><p class="fine">This is a public reproducibility experiment using MLCommons data and evaluation conventions. It is not an official MLPerf submission or MLCommons performance result.</p></section>
+<section class="section"><div class="kicker">Measured result</div><h2>Candidate passed the quality gate.</h2>
+<table><thead><tr><th>Metric</th><th>PyTorch baseline</th><th>Accepted candidate</th></tr></thead><tbody>
+<tr><td>Runtime</td><td>PyTorch</td><td>OpenVINO FP16</td></tr>
+<tr><td>Throughput</td><td>6.80 images/s</td><td>9.47 images/s</td></tr>
+<tr><td>Mean inference latency</td><td>120.35 ms</td><td>89.65 ms</td></tr>
+<tr><td>p50 inference latency</td><td>113.47 ms</td><td>88.48 ms</td></tr>
+<tr><td>p95 inference latency</td><td>169.89 ms</td><td>94.94 ms</td></tr>
+<tr><td>mAP@0.50:0.95</td><td>0.400943</td><td class="pass">0.401000 · PASS</td></tr>
+<tr><td>mAP@0.50</td><td>0.557515</td><td>0.557531</td></tr>
+</tbody></table><p class="fine">The table above is the originally accepted fixed comparison. A separate 10-run repeatability gate is reported below and is used for the headline claim.</p></section>
+<section class="section"><div class="kicker">Repeatability gate</div><h2>10 runs per runtime. Same 200 images every time.</h2><table><thead><tr><th>Metric</th><th>PyTorch median</th><th>OpenVINO median</th><th>Delta</th></tr></thead><tbody>
+<tr><td>Throughput</td><td>7.914 images/s</td><td>9.752 images/s</td><td class="pass">+23.2%</td></tr>
+<tr><td>Mean latency</td><td>126.36 ms</td><td>102.54 ms</td><td class="pass">−18.9%</td></tr>
+<tr><td>p50 latency</td><td>123.09 ms</td><td>101.48 ms</td><td class="pass">−17.6%</td></tr>
+<tr><td>p95 latency</td><td>163.16 ms</td><td>108.57 ms</td><td class="pass">−33.5%</td></tr>
+<tr><td>Throughput CV</td><td>3.12%</td><td>0.25%</td><td>candidate more stable</td></tr>
+<tr><td>p95 CV</td><td>6.23%</td><td>0.81%</td><td>candidate more stable</td></tr>
+</tbody></table><p class="fine">Headline values use medians across the 10 repeated runs rather than the strongest individual run.</p></section><section class="section"><div class="kicker">What is disclosed</div><h2>Enough to verify the result. Not enough to disclose EXUP.</h2><p class="boundary">The workload, acceptance gate, measured outputs, model hashes and public result files are disclosed. EXUP's search policy, candidate-generation logic, scoring, heuristics, prompts and next-action logic are not.</p>
+<div class="grid"><div class="card"><h3>Reproducible evidence</h3><p>Public dataset, fixed model family, fixed evaluation boundary, explicit runtime versions and machine context.</p></div><div class="card"><h3>Protected mechanism</h3><p>The experiment proves that a permitted change was found and accepted. It does not publish how EXUP selected what to test.</p></div></div></section>
+<section class="section"><div class="kicker">Claim boundary</div><h2>What this result does — and does not — establish.</h2><p class="intro">It establishes a reproducible local CPU result on this locked public workload. It does not establish performance on STM32, Axelera, or any other carrier until the same contract is reproduced there. It also does not claim that every workload will improve by the same amount.</p></section>
+<section class="section"><div class="kicker">Evidence</div><h2>Inspectable artifacts.</h2><div class="links">
+<p><a href="result.json">Public result JSON</a> · <a href="repeatability.json">Repeatability JSON</a> · <a href="environment.json">Environment JSON</a> · <a href="manifest.json">Evidence manifest</a></p>
+<p class="fine">YOLO11n SHA-256: <code>0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1</code></p>
+<p class="fine">OpenVINO model XML SHA-256: <code>257e9d41bc63da157f6d157ceb64608cd201eb443049f386f18dc010b5d7d105</code></p>
+<p class="fine">OpenVINO weights SHA-256: <code>3a2f921d8cb83581c0ea89c1bbb702f1d50fae9a4247886f0b8d5eeb60b2d179</code></p>
+</div></section>
+</main><footer class="footer">EXUP · VALO Research · Public evidence, not mechanism disclosure</footer></div></body></html>
