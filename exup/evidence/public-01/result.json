@@ -1,0 +1,120 @@
+{
+  "case_id": "EXUP-PUBLIC-01",
+  "status": "CANDIDATE_ACCEPTED_V1",
+  "scenario": "SingleStream",
+  "workload": "YOLO11n on MLCommons MLPerf COCO safe subset",
+  "accuracy_images": 1525,
+  "performance_images": 200,
+  "acceptance_gate": {
+    "metric": "mAP_50_95",
+    "minimum": 0.4,
+    "pass": true
+  },
+  "baseline": {
+    "runtime": "PyTorch",
+    "throughput_images_s": 6.804423434595959,
+    "mean_inference_ms": 120.35488437493768,
+    "p50_inference_ms": 113.47357650083723,
+    "p95_inference_ms": 169.88611199485604,
+    "mAP_50_95": 0.4009428678172917,
+    "mAP_50": 0.557515156510914
+  },
+  "candidate": {
+    "runtime": "OpenVINO FP16",
+    "throughput_images_s": 9.466624075282473,
+    "mean_inference_ms": 89.6513878749829,
+    "p50_inference_ms": 88.47892950143432,
+    "p95_inference_ms": 94.93627899792045,
+    "mAP_50_95": 0.4010000792993176,
+    "mAP_50": 0.5575313814648976
+  },
+  "delta_pct": {
+    "throughput": 39.124558697376145,
+    "mean_latency": -25.51080220749926,
+    "p50_latency": -22.026843402806197,
+    "p95_latency": -44.11769279834068
+  },
+  "model_sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+  "openvino_xml_sha256": "257e9d41bc63da157f6d157ceb64608cd201eb443049f386f18dc010b5d7d105",
+  "openvino_bin_sha256": "3a2f921d8cb83581c0ea89c1bbb702f1d50fae9a4247886f0b8d5eeb60b2d179",
+  "claim_boundary": "Public reproducible local CPU result only. No STM32, Axelera, or other carrier performance claim until independently reproduced there.",
+  "mechanism_disclosure": "EXUP search policy, candidate-generation logic, scoring, heuristics, prompts, and next-action logic are intentionally not disclosed.",
+  "repeatability": {
+    "runs_per_runtime": 10,
+    "images_per_run": 200,
+    "median_delta_pct": {
+      "throughput": 23.229329126833797,
+      "mean_latency": -18.85061775211231,
+      "p50_latency": -17.550303171578452,
+      "p95_latency": -33.45950711165975
+    },
+    "baseline_aggregate": {
+      "throughput_images_s": {
+        "median": 7.913766006891614,
+        "min": 7.1748154708824545,
+        "max": 8.000757793374207,
+        "mean": 7.827927517871622,
+        "stdev": 0.24447643626074464,
+        "cv_pct": 3.1231310676113244
+      },
+      "mean_latency_ms": {
+        "median": 126.35926852710327,
+        "min": 124.9854620595579,
+        "max": 139.37234859033197,
+        "mean": 127.8647934454566,
+        "stdev": 4.269463856229416,
+        "cv_pct": 3.3390456756578937
+      },
+      "p50_latency_ms": {
+        "median": 123.08665574892075,
+        "min": 121.99111800146056,
+        "max": 127.75534500178765,
+        "mean": 123.43320880027022,
+        "stdev": 1.6010944333110193,
+        "cv_pct": 1.2971342549327893
+      },
+      "p95_latency_ms": {
+        "median": 163.1583029993635,
+        "min": 161.28492400457617,
+        "max": 195.8236240025144,
+        "mean": 166.50267690201872,
+        "stdev": 10.380740893319643,
+        "cv_pct": 6.234578978828289
+      }
+    },
+    "candidate_aggregate": {
+      "throughput_images_s": {
+        "median": 9.75208075895996,
+        "min": 9.706099309982866,
+        "max": 9.772478583813488,
+        "mean": 9.746927833029911,
+        "stdev": 0.023892622213061418,
+        "cv_pct": 0.24512977445154843
+      },
+      "mean_latency_ms": {
+        "median": 102.53976582269388,
+        "min": 102.3257363501034,
+        "max": 103.02567979513697,
+        "mean": 102.59451289005301,
+        "stdev": 0.2518283667719135,
+        "cv_pct": 0.24545987858219012
+      },
+      "p50_latency_ms": {
+        "median": 101.48457450122805,
+        "min": 101.36484699614812,
+        "max": 101.60841849938151,
+        "mean": 101.48647165042348,
+        "stdev": 0.08642217939397742,
+        "cv_pct": 0.0851563543283523
+      },
+      "p95_latency_ms": {
+        "median": 108.56633900402812,
+        "min": 107.17439300060505,
+        "max": 110.14851499930955,
+        "mean": 108.60707250030828,
+        "stdev": 0.8837532814778127,
+        "cv_pct": 0.8137161430949207
+      }
+    }
+  }
+}

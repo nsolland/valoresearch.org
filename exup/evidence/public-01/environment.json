@@ -1,0 +1,19 @@
+{
+  "python": "3.12.3",
+  "platform": "Linux-7.0.0-34-generic-x86_64-with-glibc2.39",
+  "machine": "x86_64",
+  "processor": "AMD Ryzen 5 2500U with Radeon Vega Mobile Gfx",
+  "torch": "2.13.0",
+  "torchvision": "0.29.0",
+  "openvino": "2026.4.0",
+  "ultralytics_package": "8.4.163",
+  "pycocotools": "2.0.11",
+  "source_revisions": {
+    "mlcommons_inference": "3fbc329939999c13d0a7b5e67fb2092287e06047",
+    "ultralytics": "41611a40183e4b381cedcc88325ddcc4610d02ee"
+  },
+  "dataset_checksum_manifest_sha256": "080b8c653f769d5bd3f20ef23294b2c7cce20551506fb2ad691d5fae3e775159",
+  "model_sha256": "0ebbc80d4a7680d14987a577cd21342b65ecfd94632bd9a8da63ae6417644ee1",
+  "candidate_xml_sha256": "257e9d41bc63da157f6d157ceb64608cd201eb443049f386f18dc010b5d7d105",
+  "candidate_bin_sha256": "3a2f921d8cb83581c0ea89c1bbb702f1d50fae9a4247886f0b8d5eeb60b2d179"
+}
