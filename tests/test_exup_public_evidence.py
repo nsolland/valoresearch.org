@@ -27,3 +27,24 @@ def test_public_page_does_not_disclose_internal_mechanism_terms():
     html = PAGE.read_text().lower()
     forbidden = ["system prompt", "candidate generator implementation", "search tree", "ranking weights", "private prompt"]
     assert all(term not in html for term in forbidden)
+
+
+def test_open_hw_evidence_passes_gate_and_preserves_claim_boundary():
+    root = ROOT / "exup/evidence/open-hw-01"
+    data = json.loads((root / "result.json").read_text())
+    assert data["candidate"]["gate_pass"] is True
+    assert data["candidate"]["full_int8_mAP_50_95"] >= data["acceptance_gate"]["minimum"]
+    assert data["candidate"]["quantized_io_working_set_bytes"] < data["baseline"]["quantized_io_working_set_bytes"]
+    html = (root / "index.html").read_text()
+    assert "45.9% smaller working-memory envelope" in html
+    assert "Not yet proven" in html
+    assert "physical-silicon latency" in html
+
+
+def test_open_hw_manifest_matches_frozen_files():
+    import hashlib
+    root = ROOT / "exup/evidence/open-hw-01"
+    manifest = json.loads((root / "manifest.json").read_text())
+    for name, expected in manifest["files"].items():
+        actual = hashlib.sha256((root / name).read_bytes()).hexdigest()
+        assert actual == expected

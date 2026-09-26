@@ -1,0 +1,23 @@
+{
+  "case_id": "EXUP-OPEN-HW-01",
+  "frozen_date": "2026-09-26",
+  "source_experiment_commit": "6515832d7f1d19834fe1e43a9269ae421fef422e",
+  "files": {
+    "alif_memory_tier_crossing_v1.json": "5a9bb1dc534042ac2d3e4fb376eb08c6c3042473b0317f048c1ed7d5baaca9d3",
+    "index.html": "a97cd418f1a200bd1452ca75c83a2b22d4ba433e3054c19b431609e404242a9d",
+    "resource_downscale_accepted_v1.json": "ecc9e6f2ce2222a7e34b1268119e82c4974b31377ae293f27944bf07de3c7561",
+    "result.json": "0e70b63d01336c0fabd12654d22b5b021d2aaa8a32162c6d63a76274da01ebeb",
+    "s384_quantized_io_memory_fit.json": "6dbb8d40b935b74dbb80712db5ff7a8f3656b91f5dd0828d86326be4c1d32649",
+    "yolo11s_384_float_full.json": "becc31ae86713b0fccfb3c279b179ce73933642bdd2067621f018179136b070d",
+    "yolo11s_384_int8_accuracy.json": "89fbe541b342818c84abf18906da495b5a749af94ef1e6c60efb4859028c450b"
+  },
+  "external_artifacts": {
+    "yolo11s.pt": {
+      "sha256": "85a76fe86dd8afe384648546b56a7a78580c7cb7b404fc595f97969322d502d5"
+    },
+    "cortex_m55_pte": {
+      "sha256": "3c8d1518ea231a3bea4e39a79006d86231067877894a0ed4cfc924ec026d8a19",
+      "bytes": 9879792
+    }
+  }
+}

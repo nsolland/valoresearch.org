@@ -1,0 +1,39 @@
+{
+  "case_id": "EXUP-HW-OPEN-01-ALIF-MEMORY-TIER",
+  "status": "RAW_MEMORY_TIER_CROSSING_SUPPORTED",
+  "baseline": {
+    "model": "YOLO11n",
+    "input": 640,
+    "working_set_bytes_quantized_io": 6393600,
+    "minimum_alif_e3_sram_tier_mb": 8.25
+  },
+  "candidate": {
+    "model": "YOLO11s",
+    "input": 384,
+    "working_set_bytes_quantized_io": 3458304,
+    "full_mAP_50_95": 0.4125729293827153,
+    "gate_min": 0.4,
+    "gate_pass": true,
+    "raw_headroom_on_3_75mb_bytes": 473856
+  },
+  "io_equivalence": {
+    "max_abs_diff": [
+      0.0,
+      0.0
+    ]
+  },
+  "alif_skus": {
+    "lower": {
+      "part": "AE302F40C1537LE",
+      "sram_mb": 3.75,
+      "mouser_eur_per_unit_reel": 9.14
+    },
+    "baseline_min_tier": {
+      "part": "AE302F80F5582LE",
+      "sram_mb": 8.25,
+      "mouser_eur_per_unit_reel": 11.99
+    }
+  },
+  "nominal_price_gap_eur_per_unit": 2.85,
+  "claim_boundary": "Raw working-set fit only. Runtime stack, firmware, DMA/camera buffers, allocator overhead, physical latency, energy and actual silicon execution are not yet included. Do not claim deployable 3.75MB fit or commercial hardware-tier down until measured on target."
+}

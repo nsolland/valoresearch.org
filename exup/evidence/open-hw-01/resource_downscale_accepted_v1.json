@@ -1,0 +1,26 @@
+{
+  "case_id": "EXUP-HW-OPEN-01-S384",
+  "status": "RESOURCE_DOWNSCALE_ACCEPTED",
+  "acceptance_gate": {
+    "metric": "COCO mAP@[0.50:0.95]",
+    "minimum": 0.4,
+    "images": 1525
+  },
+  "baseline": {
+    "model": "YOLO11n",
+    "input": 640,
+    "cortex_m_int8_arena_bytes": 3955200,
+    "full_int8_mAP_50_95": 0.39628725130155756,
+    "gate_pass": false
+  },
+  "candidate": {
+    "model": "YOLO11s",
+    "input": 384,
+    "cortex_m_int8_arena_bytes": 2580480,
+    "full_int8_mAP_50_95": 0.4125729293827153,
+    "mAP_50": 0.5670482032541524,
+    "gate_pass": true
+  },
+  "arena_reduction_pct": -34.75728155339806,
+  "claim_boundary": "Open-toolchain Cortex-M compile/resource proof. Accepted accuracy is proven on host execution of the compiler-produced quantized graph. This is not yet physical-silicon latency, energy, or one-commercial-hardware-tier-down proof."
+}

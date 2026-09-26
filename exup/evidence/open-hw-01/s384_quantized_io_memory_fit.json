@@ -1,0 +1,27 @@
+{
+  "input_qparams": {
+    "scale": 0.003919653594493866,
+    "zero_point": -128
+  },
+  "output_qparams": [
+    {
+      "scale": 0.08734161406755447,
+      "zero_point": -65
+    },
+    {
+      "scale": 0.13271452486515045,
+      "zero_point": 109
+    }
+  ],
+  "max_abs_diff_after_external_dequant": [
+    0.0,
+    0.0
+  ],
+  "input_bytes_int8": 442368,
+  "output_bytes_int8": 435456,
+  "arena_bytes": 2580480,
+  "total_working_set_bytes_excluding_runtime_stack": 3458304,
+  "alif_3_75mb_sram_bytes": 3932160,
+  "headroom_bytes_before_runtime_stack": 473856,
+  "fits_raw_memory_envelope": true
+}

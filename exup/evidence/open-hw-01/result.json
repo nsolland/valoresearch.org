@@ -1,0 +1,53 @@
+{
+  "case_id": "EXUP-OPEN-HW-01",
+  "frozen_date": "2026-09-26",
+  "status": "ACCEPTED_RESOURCE_DOWNSCALE_RAW_MEMORY_TIER_CROSSING_SUPPORTED",
+  "acceptance_gate": {
+    "metric": "COCO mAP@[0.50:0.95]",
+    "minimum": 0.4,
+    "images": 1525
+  },
+  "baseline": {
+    "model": "YOLO11n",
+    "input_px": 640,
+    "int8_arena_bytes": 3955200,
+    "quantized_io_working_set_bytes": 6393600,
+    "full_int8_mAP_50_95": 0.39628725130155756
+  },
+  "candidate": {
+    "model": "YOLO11s",
+    "input_px": 384,
+    "int8_arena_bytes": 2580480,
+    "quantized_io_working_set_bytes": 3458304,
+    "full_int8_mAP_50_95": 0.4125729293827153,
+    "mAP_50": 0.5670482032541524,
+    "gate_pass": true
+  },
+  "deltas": {
+    "activation_arena_pct": -34.75728155339806,
+    "working_set_pct": -45.909909909909906
+  },
+  "quantized_io_equivalence": {
+    "max_abs_diff": [
+      0.0,
+      0.0
+    ]
+  },
+  "commercial_boundary": {
+    "family": "Alif E3",
+    "lower_sku": "AE302F40C1537LE-T",
+    "lower_sram_mb": 3.75,
+    "lower_price_eur_1500": 9.14,
+    "baseline_min_sku": "AE302F80F5582LE-T",
+    "baseline_min_sram_mb": 8.25,
+    "baseline_price_eur_1500": 11.99,
+    "nominal_gap_eur_per_unit": 2.85
+  },
+  "claim_boundary": "Open-toolchain compiler/resource evidence plus host execution of the compiler-produced quantized graph. The 3.75 MB result is a raw working-set envelope excluding runtime stack, firmware, DMA/camera buffers and allocator overhead. No physical-silicon latency, energy or deployable lower-tier claim is made.",
+  "source_experiment_commit": "6515832d7f1d19834fe1e43a9269ae421fef422e",
+  "sources": {
+    "alif_datasheet": "https://alifsemi.com/download/ADTS0007",
+    "mouser_3_75mb": "https://lv.mouser.com/en/ProductDetail/Alif-Semiconductor/AE302F40C1537LE-T",
+    "mouser_8_25mb": "https://eu.mouser.com/en/ProductDetail/Alif-Semiconductor/AE302F80F5582LE-T"
+  }
+}
