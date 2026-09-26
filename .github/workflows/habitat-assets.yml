@@ -1,0 +1,21 @@
+name: Import Habitat assets
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/habitat-assets.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare
+        run: mkdir -p habitat/assets
+      - name: Stop with instructions
+        run: |
+          echo "Temporary bootstrap workflow. Asset source URLs are injected in the next commit."
