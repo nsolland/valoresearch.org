@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Insurance Authority Demo — AI Bridge + HEIMEL</title>
+  <meta name="description" content="External agent intent governed by fresh HEIMEL authority before consequence.">
+  <style>
+    *{box-sizing:border-box} body{margin:0;background:#070b12;color:#e8eef7;font:16px/1.6 Inter,system-ui,sans-serif}
+    main{max-width:1120px;margin:auto;padding:54px 20px 72px}.eyebrow{color:#67e8f9;font-size:12px;font-weight:800;letter-spacing:.18em}
+    h1{font-size:clamp(42px,7vw,76px);line-height:1.01;letter-spacing:-.04em;max-width:940px;margin:16px 0 24px} .lede{max-width:780px;color:#aab6c7;font-size:19px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:20px;margin-top:38px}.card{border:1px solid #243041;border-radius:18px;background:#101722;padding:22px}
+    .label{color:#77869a;font-size:12px;letter-spacing:.08em}.muted{color:#94a3b8}.buttons{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+    button{border:1px solid #334155;border-radius:10px;background:#17202d;color:#f8fafc;padding:11px 15px;font-weight:800;cursor:pointer}button:hover{border-color:#67e8f9}button:disabled{opacity:.5}
+    .decision{font-size:34px;font-weight:850;margin:4px 0}.receipt{overflow-wrap:anywhere;font-size:13px}.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:20px}.step{text-align:center;padding:15px}
+    a{color:#67e8f9}.note{margin-top:24px;color:#64748b;font-size:12px;max-width:800px}.ok{color:#86efac}.warn{color:#fde68a}
+  </style>
+</head>
+<body><main>
+  <p class="eyebrow">LIVE AUTHORITY DEMO</p>
+  <h1>The agent can propose it. HEIMEL decides if it can happen.</h1>
+  <p class="lede">An external insurance agent produces a routing decision. AI Bridge converts it to an intent. HEIMEL resolves fresh authority at the consequence boundary before any effect is allowed.</p>
+  <div class="grid">
+    <section class="card">
+      <p class="label">EXTERNAL AGENT</p>
+      <h2>awesome-llm-apps / insurance claim live agent</h2>
+      <p class="muted">Rear-end collision. Vehicle driveable. No injury reported. Photos and repair estimate available.</p>
+      <p class="muted">Agent route: ready for adjuster → proposed effect: assign adjuster.</p>
+      <div class="buttons">
+        <button data-choice="ALLOW">ALLOW</button>
+        <button data-choice="DENY">DENY</button>
+        <button data-choice="ESCALATE">ESCALATE</button>
+        <button data-choice="STALE">STALE ALLOW</button>
+      </div>
+      <p class="note">STALE ALLOW is an approval that is no longer fresh.</p>
+    </section>
+    <section class="card">
+      <p class="label">CONSEQUENCE BOUNDARY</p>
+      <div id="output" class="muted">
+        <p>1. External agent emits intent.</p><p>2. AI Bridge blocks direct effect.</p>
+        <p>3. HEIMEL resolves fresh authority.</p><p>4. Only ALLOW may produce an effect receipt.</p>
+      </div>
+    </section>
+  </div>
+  <div class="flow">
+    <div class="card step"><span class="label">01</span><br>External agent</div>
+    <div class="card step"><span class="label">02</span><br>AI Bridge</div>
+    <div class="card step"><span class="label">03</span><br>HEIMEL</div>
+    <div class="card step"><span class="label">04</span><br>Effect</div>
+    <div class="card step"><span class="label">05</span><br>Receipt</div>
+  </div>
+  <p class="note">This browser demonstrator executes the same ALLOW / DENY / ESCALATE / fresh-authority contract verified in the canonical AI Bridge adapter. It does not connect to a production insurer or make real insurance decisions. <a href="https://github.com/nsolland/ai-bridge/commit/fb71afb6f0fccdd4b619e179a64bc5c2a9b6bbb3">Source and tests</a>.</p>
+</main>
+<script>
+const base={claimType:"auto_collision",route:"ready_for_adjuster",effect:"assign_adjuster",directEffect:false,requiresFreshAuthority:true,requiresHumanLead:false,consequenceBoundary:"HEIMEL",sourceRunId:"awesome-llm-apps-public-demo"};
+const auth={
+ ALLOW:{fresh:true,decision:"ALLOW",receiptId:"demo-auth-allow",authorityVersion:"policy-v17"},
+ DENY:{fresh:true,decision:"DENY",receiptId:"demo-auth-deny",authorityVersion:"policy-v17"},
+ ESCALATE:{fresh:true,decision:"ESCALATE",receiptId:"demo-auth-escalate",authorityVersion:"policy-v17"},
+ STALE:{fresh:false,decision:"ALLOW",receiptId:"demo-auth-stale",authorityVersion:"policy-v16"}
+};
+function canonical(v){if(Array.isArray(v))return v.map(canonical);if(v&&typeof v==="object")return Object.fromEntries(Object.keys(v).sort().map(k=>[k,canonical(v[k])]));return v}
+async function sha256(v){const b=new TextEncoder().encode(JSON.stringify(canonical(v)));const h=await crypto.subtle.digest("SHA-256",b);return [...new Uint8Array(h)].map(x=>x.toString(16).padStart(2,"0")).join("")}
+function authorize(intent,receipt){
+ if(intent.directEffect!==false)return{allowed:false,decision:"DENY",reason:"DIRECT_EFFECT_FORBIDDEN"};
+ if(!receipt||receipt.fresh!==true)return{allowed:false,decision:"DENY",reason:"FRESH_AUTHORITY_REQUIRED",receiptId:null,authorityVersion:null};
+ if(receipt.decision==="ALLOW")return{allowed:true,decision:"ALLOW",reason:"HEIMEL_ALLOW",receiptId:receipt.receiptId,authorityVersion:receipt.authorityVersion};
+ if(receipt.decision==="ESCALATE")return{allowed:false,decision:"ESCALATE",reason:"HEIMEL_ESCALATE",receiptId:receipt.receiptId,authorityVersion:receipt.authorityVersion};
+ return{allowed:false,decision:"DENY",reason:"HEIMEL_DENY",receiptId:receipt.receiptId,authorityVersion:receipt.authorityVersion};
+}
+async function run(choice){
+ const intent={...base,claimId:`public-demo-${choice.toLowerCase()}`};
+ if(choice==="ESCALATE")Object.assign(intent,{route:"emergency_escalation",effect:"handoff_emergency",requiresHumanLead:true});
+ const authorization=authorize(intent,auth[choice]);
+ let receipt=null;
+ if(authorization.allowed){receipt={authorityReceiptId:authorization.receiptId,authorityVersion:authorization.authorityVersion,sourceRunId:intent.sourceRunId,noDirectEffectPath:true,consequenceBoundary:"HEIMEL",replay:{intentHash:await sha256(intent),algorithm:"sha256"}}}
+ render(intent,authorization,receipt);
+}
+function esc(v){return String(v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]))}
+function render(intent,a,r){
+ const human=intent.requiresHumanLead?'<p class="warn">Human lead required.</p>':'';
+ const receipt=r?`<p class="label">EFFECT RECEIPT</p><div class="receipt"><p>authority: ${esc(r.authorityReceiptId)}</p><p>source run: ${esc(r.sourceRunId)}</p><p>no direct path: ${r.noDirectEffectPath}</p><p class="muted">replay: ${esc(r.replay.intentHash)}</p></div>`:'<p class="label">EFFECT RECEIPT</p><p class="muted">No effect executed. No effect receipt exists.</p>';
+ document.getElementById("output").innerHTML=`<p class="label">INTENT</p><p>${esc(intent.route)} → ${esc(intent.effect)}</p><p class="muted">directEffect = ${intent.directEffect} · boundary = ${esc(intent.consequenceBoundary)}</p><p class="label" style="margin-top:24px">HEIMEL DECISION</p><p class="decision">${esc(a.decision)}</p><p class="muted">${esc(a.reason)}</p>${human}${receipt}`;
+}
+document.querySelectorAll("button[data-choice]").forEach(b=>b.addEventListener("click",async()=>{
+ document.querySelectorAll("button[data-choice]").forEach(x=>x.disabled=true);
+ try{await run(b.dataset.choice)}finally{document.querySelectorAll("button[data-choice]").forEach(x=>x.disabled=false)}
+}));
+</script>
+</body>
+</html>
