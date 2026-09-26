@@ -1,0 +1,8 @@
+Fremtidsbolig visual implementation anchor
+
+Base SHA: b874d43b2a122e8f196efca8bd76d8b73b508c20
+Branch: feat/fremtidsbolig-visual-profile
+Owner: ChatGPT / Njål
+Owned files: fremtidsbolig/index.html, tests/fremtidsbolig-ui.test.js
+Dependency: existing fremtidsbolig/model.js remains canonical calculation logic
+Goal: production-ready VALO dashboard UI matching the supplied visual reference without replacing the live interface with a static image.
