@@ -6,10 +6,9 @@ ROOT = Path(__file__).resolve().parents[1]
 def test_exup_is_presented_as_workload_execution_optimizer():
     html = (ROOT / 'exup' / 'index.html').read_text()
     assert 'Workload Execution Optimizer' in html
-    assert 'Desired outcome' in html
-    assert 'Execution strategy' in html
-    assert 'Model / runtime' in html
-    assert 'Execution venue' in html
+    assert 'Baseline workload' in html
+    assert 'Acceptance gate' in html
+    assert 'Candidate execution paths' in html
     assert 'Verified result' in html
     assert 'Cost per verified result' in html
     assert '</section>\n<section class="section" id="proof">' in html

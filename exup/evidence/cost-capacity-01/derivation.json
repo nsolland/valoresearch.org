@@ -1,0 +1,13 @@
+{
+  "case_id": "EXUP-COST-CAPACITY-01",
+  "status": "DERIVED_FROM_EXUP_PUBLIC_01",
+  "source": "/exup/evidence/public-01/result.json",
+  "volume_images": 1000000,
+  "baseline_median_throughput_images_s": 7.913766006891614,
+  "candidate_median_throughput_images_s": 9.75208075895996,
+  "baseline_host_hours": 35.10058012024592,
+  "candidate_host_hours": 28.48394969684421,
+  "host_hours_saved": 6.616630423401713,
+  "host_time_reduction_pct": 18.850487372957284,
+  "claim_boundary": "Deterministic capacity/economic translation of PUBLIC-01 only. No cloud price, power, or customer monetary saving is established by this derivation."
+}
