@@ -1,0 +1,9 @@
+{
+  "case_id": "EXUP-COMPUTE-ALLOCATION-DOWN-01",
+  "status": "NEGATIVE_RESULT_RETAINED_PUBLIC_RECEIPT_PENDING",
+  "reference_allocation_smt": 8,
+  "attempted_allocations_smt": [6, 4],
+  "failed_acceptance_dimensions": ["throughput", "p95_latency"],
+  "decision": "REJECT_CHEAPER_CONFIGURATION",
+  "claim_boundary": "Negative falsification summary only. Raw measurement receipt is not yet published; no missing metric values are inferred."
+}
