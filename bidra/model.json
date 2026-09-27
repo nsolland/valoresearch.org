@@ -1,0 +1,140 @@
+{
+  "schema_version": "1.0",
+  "name": "BIDRA",
+  "principle": "Bidra, og ikke bare gi.",
+  "core": {
+    "flow": [
+      "purpose",
+      "need",
+      "contribution",
+      "action",
+      "verification",
+      "impact",
+      "feedback"
+    ],
+    "objects": [
+      "contribution_contract",
+      "contributor_profile",
+      "action_record",
+      "impact_record",
+      "contribution_trace",
+      "organization_contract"
+    ]
+  },
+  "modules": {
+    "money": {
+      "unit": "currency",
+      "examples": [
+        "one_off",
+        "recurring",
+        "matching"
+      ]
+    },
+    "time": {
+      "unit": "minutes",
+      "examples": [
+        "volunteering",
+        "microtask",
+        "event"
+      ]
+    },
+    "skills": {
+      "unit": "verified_task",
+      "examples": [
+        "legal",
+        "design",
+        "medical",
+        "technical"
+      ]
+    },
+    "network": {
+      "unit": "verified_connection",
+      "examples": [
+        "introduction",
+        "employer",
+        "decision_maker"
+      ]
+    },
+    "attention": {
+      "unit": "verified_action",
+      "examples": [
+        "share",
+        "like",
+        "forward",
+        "read"
+      ]
+    },
+    "equipment": {
+      "unit": "accepted_resource",
+      "examples": [
+        "gear",
+        "space",
+        "devices"
+      ]
+    },
+    "transport": {
+      "unit": "verified_delivery",
+      "examples": [
+        "person",
+        "goods",
+        "local_logistics"
+      ]
+    },
+    "advocacy": {
+      "unit": "verified_action",
+      "examples": [
+        "petition",
+        "contact",
+        "public_consultation"
+      ]
+    }
+  },
+  "organization_adapter": {
+    "required": [
+      "purpose",
+      "target_outcome",
+      "accepted_contribution_types",
+      "verification_rules",
+      "impact_evidence"
+    ],
+    "optional": [
+      "payment_provider",
+      "crm",
+      "volunteer_system",
+      "campaign_system",
+      "identity_provider"
+    ]
+  },
+  "scoring": {
+    "contribution_score": {
+      "scope": "voluntary personal contribution history",
+      "inputs": [
+        "verified_money",
+        "verified_time",
+        "verified_skills",
+        "verified_network",
+        "verified_actions"
+      ],
+      "rules": [
+        "no score for unverified activity",
+        "no coercive eligibility decisions",
+        "user may keep score private"
+      ]
+    },
+    "charity_impact": {
+      "scope": "documented effect attributable to a campaign or portfolio",
+      "inputs": [
+        "verified_outputs",
+        "verified_outcomes",
+        "evidence_quality",
+        "cost_of_impact",
+        "duration"
+      ],
+      "rules": [
+        "separate activity from effect",
+        "show uncertainty",
+        "no fabricated attribution"
+      ]
+    }
+  }
+}
