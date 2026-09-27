@@ -8,11 +8,11 @@
 <link rel="stylesheet" href="/assets/valo-web.css">
 <style>
 .edu-accent{--edu-blue:#dceeff;--edu-yellow:#fff1b8;--edu-green:#dff1df;--edu-red:#ffe0d9}.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.principles .panel:nth-child(1){background:var(--edu-blue)}.principles .panel:nth-child(2){background:var(--edu-yellow)}.principles .panel:nth-child(3){background:var(--edu-green)}.flow{counter-reset:step}.flow .list-row{grid-template-columns:64px 1fr}.demo{background:#fff;border:1px solid var(--valo-line);border-radius:10px;padding:var(--valo-pad)}.step{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--valo-muted)}.progress{height:5px;background:var(--valo-soft);margin:12px 0 24px}.progress div{height:100%;background:var(--valo-accent);width:0}.explain,.example,.feedback{padding:16px;border-radius:8px;margin:14px 0}.explain{background:var(--edu-blue);font-size:19px}.example{background:var(--edu-yellow)}.question{font-size:22px;font-weight:700;margin:22px 0 12px}.answers{display:grid;grid-template-columns:1fr 1fr;gap:8px}.answers button,.next,.reset{font:inherit;font-weight:700;border:1px solid var(--valo-line);background:#fff;padding:12px 14px;border-radius:8px;cursor:pointer}.feedback{display:none}.feedback.ok{display:block;background:var(--edu-green)}.feedback.no{display:block;background:var(--edu-red)}.next{display:none;margin-top:10px;background:var(--valo-ink);color:#fff;border-color:var(--valo-ink)}.next.show{display:inline-block}.summary{display:none}.summary.show{display:block}.factory-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--valo-line);border:1px solid var(--valo-line)}.factory-grid .item{background:#fff;padding:20px}.factory-grid b{display:block;margin-bottom:5px}.factory-grid span{color:var(--valo-muted);font-size:15px}@media(max-width:760px){.principles,.factory-grid{grid-template-columns:1fr}.answers{grid-template-columns:1fr}}
-</style>
+.edu-logo{display:inline-flex;align-items:center;gap:10px}.edu-logo img{width:78px;height:30px;object-fit:contain}.lesson-visual{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;max-width:940px;margin:35px 0 0}.lesson-visual div{min-height:150px;padding:22px;border:1px solid var(--valo-line);border-radius:12px;background:#fff}.lesson-visual div:nth-child(1){background:#e6ece7}.lesson-visual div:nth-child(2){background:#f3eadb}.lesson-visual div:nth-child(3){background:#e9edf1}.lesson-visual small{display:block;color:var(--valo-muted);letter-spacing:.13em;font-weight:700}.lesson-visual strong{display:block;font-size:clamp(20px,2.5vw,30px);margin-top:16px;line-height:1.15}.lesson-visual p{font-size:14px;margin:8px 0 0;color:var(--valo-muted)}@media(max-width:760px){.lesson-visual{grid-template-columns:1fr}.lesson-visual div{min-height:0}}</style>
 </head>
 <body class="edu-accent">
 <header class="shell site-nav">
-<a class="brand" href="/">VALO Research</a>
+<a class="brand edu-logo" href="/"><img src="/img/valo-logo.svg" width="78" height="30" alt=""><span>VALO Research</span></a>
 <nav class="nav-links"><a href="#method">Metode</a><a href="#factory">Factory</a><a href="#demo" aria-current="page">Demo</a></nav>
 </header>
 <main>
@@ -20,7 +20,7 @@
 <div class="kicker">VALO Edu · Education Content Factory</div>
 <h1>Gjør vanskelige ting små nok til å forstå.</h1>
 <p class="lead">Pensum inn. Konseptkart, dekomponering, barn-til-barn forklaring, aktiv øving og målt forståelse ut.</p>
-<div class="actions"><a class="button" href="#demo">Prøv mini-demo</a><a class="button secondary" href="#factory">Se motoren</a></div>
+<div class="actions"><a class="button" href="#demo">Prøv mini-demo</a><a class="button secondary" href="#factory">Se motoren</a></div><div class="lesson-visual" role="img" aria-label="Læringsløp: finn et krevende konsept, bryt det ned til små forståelsesblokker og test forståelsen med tilbakemelding"><div><small>01 · FINN</small><strong>Hva skal forstås?</strong><p>Læringsmål og forkunnskaper.</p></div><div><small>02 · FORKLAR</small><strong>Et lite steg av gangen.</strong><p>Eksempler på elevens nivå.</p></div><div><small>03 · TEST</small><strong>Vis hva som sitter.</strong><p>Tilbakemelding styrer neste steg.</p></div></div>
 </section>
 
 <section class="shell section" id="method">
