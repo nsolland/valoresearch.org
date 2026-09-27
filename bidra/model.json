@@ -18,7 +18,9 @@
       "action_record",
       "impact_record",
       "contribution_trace",
-      "organization_contract"
+      "organization_contract",
+      "campaign_contract",
+      "impact_receipt"
     ]
   },
   "modules": {
@@ -119,7 +121,8 @@
         "no score for unverified activity",
         "no coercive eligibility decisions",
         "user may keep score private"
-      ]
+      ],
+      "default_visibility": "private"
     },
     "charity_impact": {
       "scope": "documented effect attributable to a campaign or portfolio",
@@ -135,6 +138,106 @@
         "show uncertainty",
         "no fabricated attribution"
       ]
+    },
+    "organization_impact_score": {
+      "scope": "organization-level conversion of mobilized resources into documented effect",
+      "inputs": [
+        "verified_contributions",
+        "verified_actions",
+        "verified_outcomes",
+        "evidence_quality",
+        "cost_of_impact",
+        "duration"
+      ],
+      "activity_only_score": false,
+      "rules": [
+        "do not reward volume without relevance",
+        "publish uncertainty",
+        "separate fundraising efficiency from impact"
+      ]
     }
+  },
+  "campaign_contract": {
+    "required": [
+      "target_outcome",
+      "accepted_contributions",
+      "verification_rules",
+      "deadline",
+      "failure_policy"
+    ],
+    "rule": "every campaign declares what success means before contributions are collected"
+  },
+  "impact_receipt": {
+    "binds": [
+      "contribution_id",
+      "campaign_id",
+      "action_record_id",
+      "impact_record_id",
+      "evidence_refs"
+    ],
+    "rule": "receipt shows contribution to campaign to documented effect; no effect claim without evidence"
+  },
+  "anti_gaming": {
+    "activity_without_relevance_or_effect": "no_credit",
+    "duplicate_or_self_generated_activity": "no_credit",
+    "unverified_claims": "no_credit",
+    "rule": "likes, shares, money and hours count only under campaign verification rules"
+  },
+  "team_contribution": {
+    "supported": true,
+    "subjects": [
+      "team",
+      "company",
+      "community"
+    ],
+    "aggregation": "verified contributions only"
+  },
+  "portable_profile": {
+    "cross_organization": true,
+    "default_visibility": "private",
+    "ownership": "contributor",
+    "rule": "one contribution history can span organizations without becoming a coercive identity score"
+  },
+  "cause_graph": {
+    "primary_navigation": "cause_not_organization",
+    "nodes": [
+      "cause",
+      "campaign",
+      "organization",
+      "need",
+      "action",
+      "impact"
+    ],
+    "rule": "people may follow problems and outcomes rather than donor brands"
+  },
+  "matching_engine": {
+    "objective": "smallest_relevant_action_now",
+    "inputs": [
+      "cause_interest",
+      "current_need",
+      "location",
+      "availability",
+      "skills",
+      "privacy_preferences"
+    ],
+    "rule": "recommend proportionate actions; do not optimize for engagement alone"
+  },
+  "open_impact_api": {
+    "purpose": "interoperability without forcing system migration",
+    "integrates_with": [
+      "crm",
+      "payment",
+      "volunteer_system",
+      "campaign_system",
+      "identity_provider",
+      "analytics"
+    ],
+    "exposes": [
+      "campaign_contract",
+      "accepted_actions",
+      "verification_status",
+      "impact_receipt",
+      "impact_summary"
+    ]
   }
 }
