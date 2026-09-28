@@ -311,5 +311,61 @@
         ]
       }
     ]
+  },
+  "need_feed": {
+    "need_first": true,
+    "fields": [
+      "need_id",
+      "cause_id",
+      "organization_id",
+      "title",
+      "description",
+      "location",
+      "remote",
+      "deadline",
+      "priority",
+      "accepted_contribution_types",
+      "verification_rule",
+      "evidence_required",
+      "status",
+      "updated_at"
+    ],
+    "rules": [
+      "publish concrete needs, not generic engagement requests",
+      "expire or close needs when no longer active",
+      "show who verifies completion",
+      "do not claim impact before evidence"
+    ]
+  },
+  "action_marketplace": {
+    "matching_engine": "smallest_relevant_action",
+    "effect_gated": true,
+    "matching_inputs": [
+      "need",
+      "location",
+      "availability_minutes",
+      "skills",
+      "capacity",
+      "privacy_preferences"
+    ],
+    "action_types": [
+      "one_click_help",
+      "skill_ping",
+      "micro_volunteering",
+      "introduction",
+      "local_relay",
+      "resource_lending",
+      "employer_action",
+      "verified_witness",
+      "translation_relay",
+      "recurring_micro_action",
+      "unused_capacity"
+    ],
+    "rules": [
+      "match a documented need before proposing an action",
+      "prefer the smallest sufficient useful action",
+      "verify completion separately from impact",
+      "no impact credit for irrelevant activity"
+    ]
   }
 }
