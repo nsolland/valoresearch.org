@@ -1,0 +1,6 @@
+/* Consistent VALO identity across public product pages. */
+.valo-wordmark{display:inline-flex!important;align-items:center;gap:13px;letter-spacing:normal!important;text-decoration:none!important;white-space:nowrap;font-weight:620!important;color:#182521!important}
+.valo-wordmark img{display:block;width:102px;height:34px;object-fit:contain;max-width:none}
+.valo-wordmark span{border-left:1px solid #bdc5bc;padding-left:12px;line-height:1.3}
+nav .product-name{font-size:14px;font-weight:750;text-decoration:none;color:#182521;margin-right:auto;margin-left:20px}
+@media(max-width:560px){.valo-wordmark img{width:90px;height:30px}nav .product-name{margin-left:10px;font-size:13px}}
