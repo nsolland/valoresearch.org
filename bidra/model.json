@@ -239,5 +239,77 @@
       "impact_receipt",
       "impact_summary"
     ]
+  },
+  "micro_actions": {
+    "principle": "low effort can create high impact when the action is relevant to a verified need",
+    "scoring_rule": "no impact credit without relevance and evidence",
+    "catalog": [
+      {
+        "id": "follow_profile",
+        "unit": "verified_follow",
+        "examples": [
+          "follow a relevant organization profile",
+          "subscribe to updates"
+        ]
+      },
+      {
+        "id": "share_verified_content",
+        "unit": "verified_share",
+        "examples": [
+          "share a verified campaign",
+          "forward a concrete call to action"
+        ]
+      },
+      {
+        "id": "answer_survey",
+        "unit": "completed_response",
+        "examples": [
+          "answer one survey",
+          "provide one useful data point"
+        ]
+      },
+      {
+        "id": "introduce_contact",
+        "unit": "verified_connection",
+        "examples": [
+          "introduce one relevant person",
+          "connect an employer or decision-maker"
+        ]
+      },
+      {
+        "id": "five_minute_task",
+        "unit": "verified_task",
+        "examples": [
+          "translate a paragraph",
+          "check one fact",
+          "tag one resource",
+          "make one local call"
+        ]
+      },
+      {
+        "id": "attend_local",
+        "unit": "verified_presence",
+        "examples": [
+          "attend a short local event",
+          "show up for a concrete task"
+        ]
+      },
+      {
+        "id": "offer_transport",
+        "unit": "verified_delivery",
+        "examples": [
+          "drive one person",
+          "move one needed item"
+        ]
+      },
+      {
+        "id": "donate_item",
+        "unit": "accepted_resource",
+        "examples": [
+          "donate unused equipment",
+          "lend space or tools"
+        ]
+      }
+    ]
   }
 }
