@@ -367,5 +367,55 @@
       "verify completion separately from impact",
       "no impact credit for irrelevant activity"
     ]
+  },
+  "commercial_model": {
+    "positioning": "operational impact layer over existing fundraising, CRM and payment systems",
+    "donation_fee": "none",
+    "entry_offer": {
+      "name": "BIDRA 30",
+      "duration_days": 30,
+      "price_eur": 4900,
+      "scope": [
+        "one live campaign",
+        "one existing supporter base",
+        "up to five action types",
+        "Need Feed",
+        "Impact Receipt",
+        "baseline comparison"
+      ],
+      "decision": "Stop / Scale"
+    },
+    "plans": {
+      "core": {
+        "monthly_eur": 590,
+        "scope": "small and mid-size nonprofits; up to three active campaigns"
+      },
+      "pro": {
+        "monthly_eur": 1490,
+        "scope": "advanced campaigns, Action Marketplace, matching, API and team/company contribution"
+      },
+      "enterprise": {
+        "monthly_eur_from": 4900,
+        "scope": "multi-organization, sponsor, SSO, SLA, white-label, custom data and impact models"
+      },
+      "platform_oem": {
+        "annual_eur_from": 25000,
+        "annual_eur_to": 250000,
+        "scope": "API/OEM integrations for fundraising, CRM and corporate-giving platforms"
+      }
+    },
+    "channel_strategy": {
+      "nonprofit": "low_cost_or_sponsored",
+      "enterprise_sponsor": "primary_high_value_buyer",
+      "platform_oem": "scale_channel"
+    },
+    "sales_kpis": [
+      "donor_to_contributor_conversion",
+      "action_completion_rate",
+      "cost_per_verified_action",
+      "repeat_contribution_rate",
+      "verified_impact_yield"
+    ],
+    "sales_rule": "sell one bounded campaign first; prove mobilization and documented effect before expanding"
   }
 }
