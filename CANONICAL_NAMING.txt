@@ -1,0 +1,24 @@
+VALO CANONICAL NAMING — 2026-09-28
+
+VALO Research = organization, research house and sender.
+VALO = umbrella system and commercial idea: human capability at machine scale.
+Human in the Lead = governing principle communicated externally.
+Take the reins. = campaign language for human direction of machine-scale capability.
+HEIMEL = consequence-governance infrastructure that makes human authority enforceable.
+
+Core architecture remains:
+Kernel → REHT → Gateway → effect → Veritas → Kernel admission.
+RACS binds the decision/effect/permit/receipt contract; it is not an extra runtime hop.
+
+Component meanings:
+Kernel = authoritative state and contracts.
+REHT = fresh consequence-time authorization.
+RACS = deterministic decision/effect binding contract.
+Gateway = enforcement and governed effect path.
+Veritas = evidence, receipts and replay.
+
+Naming rule:
+Do not introduce Eques.
+Do not present REHT, RACS, Gateway, Veritas or Kernel as competing umbrella products.
+Do not reduce HEIMEL to REHT alone.
+Human in the Lead states who retains authority; machine scale states what VALO enables.
