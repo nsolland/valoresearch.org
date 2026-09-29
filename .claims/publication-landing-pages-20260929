@@ -1,0 +1,12 @@
+owner: ChatGPT
+branch: fix/publication-landing-pages-20260929
+base: 3d579ac30bed8be888cac461dd82ca4e63bfebf8
+files:
+  - publications/index.html
+  - agent-authorization-layers.html
+  - authority-infrastructure.html
+  - research/vaig/index.html
+  - research/consequence-governance/index.html
+  - research/mecha/index.html
+purpose: Ensure every Publications entry has a live VALO landing page; use DOI links as archival targets.
+dependencies: PR #110 merged
