@@ -20,9 +20,9 @@ def test_homepage_is_editorial_not_saas_template():
 
 def test_homepage_uses_valo_owned_reference_photography():
     images = [
-        "lab-engineer.jpg",
-        "engineers-whiteboard.jpg",
-        "electronics-workbench.jpg",
+        "lab-engineer.webp",
+        "engineers-whiteboard.webp",
+        "electronics-workbench.webp",
     ]
     for name in images:
         path = ROOT / "assets" / "editorial" / name
@@ -34,9 +34,16 @@ def test_homepage_uses_valo_owned_reference_photography():
 
 def test_homepage_product_identity_uses_current_marks():
     assert "OLAV.WORLD" not in HTML
-    assert ">AI Native<" in HTML
-    assert '/img/product-logos/ai-native-mark.svg' in HTML
-    assert '/img/product-logos/digital-habitat-mark.svg' in HTML
-    assert '<img src="/img/valo-mark.svg"' in HTML
-    assert (ROOT / "img" / "product-logos" / "ai-native-mark.svg").exists()
-    assert (ROOT / "img" / "product-logos" / "digital-habitat-mark.svg").exists()
+    assert ">AI-native IP<" in HTML
+    assert '/img/product-logos/ai-native-ip-mark.webp' in HTML
+    assert '/img/product-logos/goi-mark.webp' in HTML
+    assert '/img/valo-research-wordmark.webp' in HTML
+    assert (ROOT / "img" / "product-logos" / "ai-native-ip-mark.webp").exists()
+    assert (ROOT / "img" / "product-logos" / "goi-mark.webp").exists()
+
+
+def test_artifact_strip_has_clean_three_column_layout():
+    assert "grid-template-columns:1.2fr .9fr .9fr" in HTML
+    assert "grid-row:span 2" not in HTML
+    assert "min-height:570px" not in HTML
+    assert "aspect-ratio:4/3" in HTML
