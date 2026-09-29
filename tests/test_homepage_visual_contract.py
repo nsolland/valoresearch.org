@@ -1,38 +1,32 @@
 from pathlib import Path
 
-html = Path("index.html").read_text(encoding="utf-8")
+ROOT = Path(__file__).resolve().parents[1]
+HTML = (ROOT / "index.html").read_text(encoding="utf-8")
 
 
-def test_cinematic_homepage_structure():
-    required = [
-        'class="cinematic-hero"',
-        'class="hero-stage"',
-        'id="portfolio"',
-        'class="product-band"',
-        'Build before belief.',
-        '/artist-management/',
-        'https://heimel.xyz/',
-        '/underwriters/',
+def test_homepage_is_editorial_not_saas_template():
+    for marker in [
+        'class="editorial-hero"',
+        'class="hero-photo"',
+        'class="field-notes"',
+        'class="research-ledger"',
+        'class="artifact-strip"',
+        'class="mobile-nav"',
+    ]:
+        assert marker in HTML, marker
+    assert 'class="pill"' not in HTML
+    assert "overflow-x:auto" not in HTML
+
+
+def test_homepage_uses_local_real_photography_with_credit():
+    images = [
+        "lab-engineer.jpg",
+        "engineers-whiteboard.jpg",
+        "electronics-workbench.jpg",
     ]
-    for marker in required:
-        assert marker in html, marker
-
-
-def test_edu_is_not_in_canonical_product_map():
-    start = html.index('id="portfolio"')
-    end = html.index('id="method"')
-    portfolio = html[start:end]
-    assert 'VALO Edu' not in portfolio
-    assert 'Education Content Factory' not in portfolio
-
-
-def test_canonical_product_tracks_are_present():
-    products = [
-        'Heimel', 'TraXin', 'GCU', 'Factory OS', 'Factory Line', 'OLAV',
-        'relAIon / relAI', 'Just You', 'JustIT', 'Protocol Layer',
-        'Edge / MCU / NPU', 'Capability Layer', 'EmplAI',
-        'Cleanroom / Model & Reasoning Profiler', 'AI-Artist / Music Rights',
-        'REHT', 'Personal Sovereignty Conformance', 'VALO'
-    ]
-    for product in products:
-        assert product in html, product
+    for name in images:
+        path = ROOT / "assets" / "editorial" / name
+        assert path.exists(), name
+        assert f'/assets/editorial/{name}' in HTML
+    assert "ThisIsEngineering / Pexels" in HTML
+    assert "Photo credit" in HTML

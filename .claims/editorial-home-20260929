@@ -1,0 +1,9 @@
+owner: ChatGPT
+branch: feat/editorial-home-20260929
+base: 9826b674490dbdeb8746b2760c7c7fe84ec9f422
+files:
+  - index.html
+  - tests/test_homepage_visual_contract.py
+  - assets/editorial/*
+purpose: Replace the generic AI/SaaS homepage treatment with a human-made editorial research surface: real photography, visible artifacts, varied rhythm, restrained chrome, and a real mobile navigation.
+dependencies: none
