@@ -1,0 +1,9 @@
+owner: ChatGPT
+branch: feat/publications-reports-20260929
+base: 379b0dedbbf83a1df37526bd5e3bf01df31ead49
+files:
+  - .claims/publications-reports-20260929
+  - publications/index.html
+  - reports/index.html
+purpose: Separate formal publications from public reports, restore public research record, and add an IP-safe Organized Intelligence research overview.
+dependencies: none
