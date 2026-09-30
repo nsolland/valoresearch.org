@@ -1,0 +1,32 @@
+[
+  {
+    "number": 41,
+    "title": "The AI Infrastructure Debt Trap",
+    "author": "Njål Gaute Solland",
+    "date": "2026-09-30",
+    "version": "1.0",
+    "status": "Working paper; not peer reviewed",
+    "url": "/publications/ai-infrastructure-debt-trap/",
+    "pdf": "/publications/ai-infrastructure-debt-trap/paper.pdf"
+  },
+  {
+    "number": 42,
+    "title": "Compute Abundance, Infrastructure Scarcity",
+    "author": "Njål Gaute Solland",
+    "date": "2026-09-30",
+    "version": "1.0",
+    "status": "Working paper; not peer reviewed",
+    "url": "/publications/compute-abundance-infrastructure-scarcity/",
+    "pdf": "/publications/compute-abundance-infrastructure-scarcity/paper.pdf"
+  },
+  {
+    "number": 43,
+    "title": "The Solland Paradox",
+    "author": "Njål Gaute Solland",
+    "date": "2026-09-30",
+    "version": "1.0",
+    "status": "Working paper; not peer reviewed",
+    "url": "/publications/solland-paradox/",
+    "pdf": "/publications/solland-paradox/paper.pdf"
+  }
+]

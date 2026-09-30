@@ -1,0 +1,83 @@
+Compute Abundance, Infrastructure Scarcity
+Why cheaper useful compute can coexist with constrained deployment
+
+Njål Gaute Solland | VALO Research
+30 September 2026 | Version 1.0 | Working paper, not peer reviewed
+Source review: 30 September 2026
+Canonical publication: https://valoresearch.org/publications/compute-abundance-infrastructure-scarcity/
+
+Abstract
+Useful AI output can become cheaper while the physical conditions required to deliver it remain constrained. Hardware and software improvements expand effective compute supply, but deployment also requires power, grid connections, cooling, networking, permits and finance. These inputs respond at different speeds and in different places.
+This paper develops a conditional account of that coexistence. Public forecasts and market observations motivate the problem; they do not prove permanent scarcity or guarantee infrastructure returns. The analytical task is to locate the binding constraint, compare its delivery schedule with demand, and determine whether efficiency relieves it or enables additional consumption.
+1. Scope and method
+This working paper synthesizes public energy projections and data-center market research available on 30 September 2026. It offers no original capacity census, site valuation or causal estimate of demand rebound.
+“Compute abundance” means falling resource or monetary cost for a defined unit of useful output. It does not mean unlimited access to every accelerator, model or deployment location. “Infrastructure scarcity” means that an input constrains a particular deployment at a particular time. Both terms require a specified workload, quality threshold, geography and resource measure.
+2. Two supply responses
+The digital response includes better accelerators, model optimization, quantization, batching, scheduling and higher utilization. Such changes can increase useful output from a fixed physical installation. Their benefits depend on workload and service requirements; an improvement in batch throughput need not improve a low-latency service equally.
+The physical response requires equipment and coordinated delivery. Generation, transmission, substations, interconnection, heat rejection, fiber and buildings cannot always be expanded on the same schedule. A completed shell without energization does not provide usable AI capacity. A grid connection without suitable cooling and networking may remain insufficient.
+The IEA describes operational data-center delivery in roughly two to three years, alongside longer lead times for broader energy infrastructure.
+[1]
+This asymmetry makes timing a central economic variable. It does not imply that every digital improvement is immediate or that every infrastructure project is slow.
+3. What the public projections actually measure
+The IEA’s 2025 base case projects around 945 TWh of global data-center electricity consumption in 2030.
+[1]
+LBNL’s
+2025 Update
+, published in June 2026, estimates a 2030 US electricity share of 11.8%, with a scenario range of 9.5–15.3%.
+[2]
+Both cover data centers beyond AI alone and are projections rather than measured 2030 outcomes.
+JLL’s outlook projects 200 GW of global data-center capacity in 2030, up by 97 GW from 2025. It also reports grid-connection waits exceeding four years in primary markets and estimates approximately $870 billion of new debt financing for the real-estate buildout. Tenant equipment spending is separate from that financing estimate.
+[3]
+These figures cannot be combined into one demand total. TWh measures energy over time; GW measures power or capacity under the source’s definition. Installed facility capacity, IT load and average realized power are not interchangeable. Converting GW into annual TWh requires utilization, operating hours and the treatment of facility overhead.
+The IEA and LBNL projections also differ in geography, publication vintage and model assumptions. LBNL’s newer US result is not a component to subtract mechanically from the IEA global forecast. A valid comparison needs harmonized definitions and scenarios.
+The forecasts motivate planning under uncertainty. They do not demonstrate that efficiency has caused higher consumption, or that every announced project will be delivered.
+4. Scarcity is a coordinated-delivery problem
+An AI deployment depends on several complementary inputs. Spare accelerators cannot compensate for an unavailable grid connection. A low-cost energy contract cannot itself supply cooling, secure an interconnection permit or complete a substation.
+The useful planning unit is consequently a deliverable service: a defined amount of power and compute, with the required network, reliability and thermal conditions, at an agreed location and date. Calling a site “power-ready” should identify whether energization is operational, contracted or merely proposed.
+The binding constraint can move. Hardware supply may improve while transmission becomes limiting; a new connection may then expose cooling or financing constraints. Effective capacity is determined by the coordinated system, rather than the largest individual input.
+Constraints also vary by workload. Latency-sensitive inference may require proximity to users; some batch workloads can move to cheaper regions. Data residency, reliability and network costs can prevent otherwise attractive relocation.
+5. Efficiency and demand must be evaluated together
+For a fixed workload and quality threshold, better physical efficiency reduces resources per completion. Aggregate effects depend on changes in the number and composition of completions.
+Lower prices can make additional tasks economical. Users may also purchase longer contexts, more verification or repeated search. These responses are possibilities to measure, not automatic consequences of improved hardware.
+Even substantial induced demand need not eliminate all savings. Additional work can consume less than, equal to or more than the resources saved on the original workload. Price reductions may also come from competition or subsidies rather than physical efficiency, so monetary and energy effects must be distinguished.
+The companion paper
+The Solland Paradox
+formalizes an AI-specific rebound hypothesis. Its condition describes when demand grows faster than efficiency; the condition itself does not establish that this has happened.
+6. Inference changes the deployment mix
+Inference recurs as applications are used. Training and retraining also recur, but often have a different scheduling and location profile. Neither category has a uniform resource footprint.
+McKinsey’s February 2026 workload analysis projects inference becoming the dominant AI workload by 2030.
+[4]
+That is a modelled demand composition, not an observed transition or a causal rebound estimate.
+A shift toward inference can increase the importance of network proximity and dependable service availability. It can also create opportunities for smaller models, edge execution and batching where latency permits. These responses may distribute demand or reduce central capacity requirements. The net infrastructure effect depends on the actual service mix.
+7. Where economic value may accrue
+A scarce input can command a premium when it is necessary, difficult to replace and delivered reliably. This creates a possible shift in value toward energized sites, interconnection rights, cooling capability or timely construction.
+The premium is conditional. Regulation, competition, new supply and contractual allocation can limit what the owner retains. Infrastructure can be scarce and still provide poor returns if construction costs, financing or operating expenses exceed its revenues.
+Similarly, cheaper compute does not establish that every digital layer becomes a commodity. Differentiation through reliability, specialization and outcomes can remain valuable. The thesis concerns a possible movement in the binding constraint, not a universal ranking of businesses.
+8. A testable monitoring framework
+For each market, compare forecast workload demand with commissioned, deliverable capacity. Distinguish announcements, permits, construction starts, contracted energization and operating supply. Record delays at each stage.
+Monitor connection lead times, delivered power prices, suitable cooling capacity, realized utilization and the premium paid for genuinely ready sites. Track workload efficiency and quality separately from installation size.
+The coexistence thesis is supported where useful-output costs fall while measured deployment bottlenecks persist. It weakens where new supply clears queues, readiness premiums dissipate and spare operational capacity remains available for the relevant workloads.
+A forecast miss alone does not falsify the mechanism. Demand may undershoot because adoption slowed, while a local grid constraint persists. The strongest test matches the geography, workload and time horizon of the proposed constraint.
+9. Conclusion and limits
+Digital efficiency and physical scarcity can coexist because they affect different parts of a coordinated production system. The scarce resource is often the ability to deliver an adequate service in the right place and on time.
+Current public projections justify examining that possibility. Their differing scopes prevent a single combined estimate, and their forecast status limits claims about future outcomes. Site-level delivery data and quality-adjusted workload measurements are needed to establish where the constraint actually binds.
+This paper makes no prediction of permanent scarcity and no investment recommendation.
+References
+[1] International Energy Agency.
+Energy and AI: Energy demand from AI.
+2025.
+https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai
+[2] Lawrence Berkeley National Laboratory.
+United States Data Center Energy Usage Report: 2025 Update.
+Published June 2026.
+https://bies.lbl.gov/publications/united-states-data-center-energy-2025
+[3] JLL.
+2026 Global Data Center Market Outlook.
+5 January 2026.
+https://www.jll.com/en-us/insights/market-outlook/data-center-outlook
+[4] McKinsey.
+The future of AI workloads.
+24 February 2026.
+https://www.mckinsey.com/featured-insights/charts/the-future-of-ai-workloads
+
+Corrections: njaal@valoresearch.org

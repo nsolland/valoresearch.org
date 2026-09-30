@@ -180,3 +180,11 @@ REHT: https://reht.valoresearch.org/
 REHT executable authority demo: https://reht.valoresearch.org/apps/executable-authority/
 Products: https://products.valoresearch.org/
 Demos: https://demos.valoresearch.org/
+
+## Economics and infrastructure working papers
+
+Author: Njål Gaute Solland. VALO Research. Version 1.0, 30 September 2026. Not peer reviewed. Conditional analysis and hypotheses, not established empirical findings or investment advice. Each page includes full text, sources, PDF and plain text.
+
+- The AI Infrastructure Debt Trap: https://valoresearch.org/publications/ai-infrastructure-debt-trap/
+- Compute Abundance, Infrastructure Scarcity: https://valoresearch.org/publications/compute-abundance-infrastructure-scarcity/
+- The Solland Paradox: https://valoresearch.org/publications/solland-paradox/
