@@ -11,6 +11,14 @@ def test_hero_image_has_no_visible_caption():
     assert 'VALO reference image.' not in hero
 
 
+
+def test_homepage_images_have_no_visible_captions():
+    assert 'Engineering teams make assumptions visible before they become systems.' not in HTML
+    assert 'Hands-on electronics work.' not in HTML
+    assert 'Governed workspace / contract artifact from the public REHT material.' not in HTML
+    assert 'VALO reference image.' not in HTML
+
+
 def test_homepage_is_editorial_not_saas_template():
     for marker in [
         'class="editorial-hero"',
