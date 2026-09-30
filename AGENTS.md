@@ -26,37 +26,36 @@ These rules apply when a task refers to an image already created or uploaded in 
 10. For engagement pages, content should reference the committed asset path; do not depend on temporary chat URLs, local paths, or runtime-only files.
 
 
-## Production deployment contract — verified 2026-09-23
+## Production serving contract — corrected 2026-09-30
 
-This section is authoritative for deployment work unless production is deliberately migrated and this file is updated in the same change.
+This section supersedes the stale 2026-09-23 GitHub Pages assumption below. The current operator-confirmed production serving layer for `valoresearch.org` is Cloudflare.
 
-### Canonical production path
+### Canonical source and serving model
 
 ```text
 nsolland/valoresearch.org
   main
-    -> GitHub Pages
+    -> Cloudflare serving layer
       -> valoresearch.org
 ```
 
-Verified repository facts on 2026-09-23:
-- GitHub reports Pages enabled for this repository.
-- `CNAME` contains `valoresearch.org`.
-- `.nojekyll` is present.
-- The production site is static content published from this repository.
-- `nsolland/website-deployer` is **not** the canonical publication source for `valoresearch.org`, even if documentation there describes a Cloudflare Pages architecture.
+### Hard safety rules
 
-### Hard deployment rules
+1. **Preserve the existing Cloudflare setup.** Do not migrate, recreate, replace, or reconfigure the current Cloudflare serving path merely to publish content.
+2. **Do not infer the Cloudflare product or topology.** Before changing deployment configuration, verify whether the active path uses Pages, Workers, static assets, DNS/proxy/origin routing, or another Cloudflare mechanism.
+3. **Source is not serving.** GitHub `main` is the canonical public source repository; do not describe GitHub Pages as the production serving layer unless it is independently re-verified later.
+4. **No deployer stacking.** Do not add Vercel, Railway, Replit, GitHub Pages, GitHub Actions deployment workflows, or another hosting control plane as a workaround.
+5. **No DNS or Cloudflare configuration changes for ordinary content work.** Content changes should preserve the current serving architecture.
+6. **Inspect before infrastructure changes.** Verify the active Cloudflare project/configuration, domain binding, origin and publication trigger before touching deployment files.
+7. **Production last.** Test content changes on a branch before merging to `main`.
+8. **Verify after publication.** Do not call a change live until the canonical production URL returns the expected content.
+9. **Runtime services remain separate.** Railway or other runtimes may host interactive services linked by the site; they are not the serving layer for the main VALO website unless explicitly migrated.
+10. **Do not delete legacy deployment artifacts blindly.** Files such as `CNAME`, `.nojekyll`, `vercel.json`, or old deployment notes may be historical. Preserve them until their current role is verified; removal requires an explicit cleanup task.
 
-1. **Inspect before changing.** Before any website deployment, verify the current production repository, branch, Pages/hosting configuration, CNAME/domain binding, and public origin. Do not infer hosting from old documentation.
-2. **One control plane.** Do not introduce Cloudflare Pages, Vercel, Railway, Replit, GitHub Actions deployment workflows, or another hosting mechanism for `valoresearch.org` unless an explicit migration has first been approved.
-3. **No DNS changes for ordinary content.** New pages and content must use the existing GitHub Pages path. Do not modify DNS merely to publish a route.
-4. **Build for the actual host.** Pages under `valoresearch.org` must work under GitHub Pages/static-host constraints, including direct navigation/refresh where applicable.
-5. **Test before main.** Implement on a branch, run the relevant tests/checks, inspect the generated/static artifact, and verify route behavior before merging to `main`.
-6. **Production last.** A push/merge to `main` is a production publication event. Do not merge merely to discover whether the implementation works.
-7. **Verify after publication.** Do not report a page as live until its canonical `https://valoresearch.org/...` URL returns the expected content.
-8. **Diagnose, do not stack deployers.** If publication fails, investigate the existing GitHub Pages chain first. Never add a second deployment mechanism as a workaround.
+### Historical note
+
+The previous section identified GitHub Pages as canonical based on a 2026-09-23 inspection. That conclusion is superseded by the operator-confirmed Cloudflare serving architecture as of 2026-09-30. Historical artifacts must not be used to infer the current host.
 
 ### Migration rule
 
-If hosting is intentionally migrated later, the migration is incomplete until all of the following agree: actual DNS/origin, repository deployment configuration, this `AGENTS.md`, and the VALO project context in `nsolland/Index`. Historical deployment notes must be marked historical rather than left as apparently current instructions.
+Any future hosting migration is incomplete until the actual Cloudflare/DNS/origin state, repository deployment configuration, this `AGENTS.md`, and VALO project context agree. Do not change production infrastructure as part of an unrelated content task.
