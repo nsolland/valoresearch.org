@@ -4,6 +4,13 @@ ROOT = Path(__file__).resolve().parents[1]
 HTML = (ROOT / "index.html").read_text(encoding="utf-8")
 
 
+def test_hero_image_has_no_visible_caption():
+    hero = HTML.split('<section class="editorial-hero">', 1)[1].split('</section>', 1)[0]
+    assert '<figcaption' not in hero
+    assert 'Engineering work in a laboratory.' not in hero
+    assert 'VALO reference image.' not in hero
+
+
 def test_homepage_is_editorial_not_saas_template():
     for marker in [
         'class="editorial-hero"',
