@@ -1,0 +1,9 @@
+owner: ChatGPT
+branch: feat/research-library-20261003
+base: 9d8a4ae3ec03b487ed49e73a5d14f7f38817bf21
+files:
+  - .claims/research-library-20261003
+  - library/index.html
+  - research/index.html
+  - reports/index.html
+purpose: add a central public research library for documents, reports, papers and technical notes without changing hosting or runtime infrastructure
