@@ -22,7 +22,7 @@
 <script>
 let rows=[];
 const grid=document.getElementById('grid'),q=document.getElementById('q'),kind=document.getElementById('kind');
-const esc=v=>String(v??'').replace(/[&<>\"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[c]));
+const esc=v=>String(v??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 function refs(r){if(r.type==='evidence')return[r.source_id];if(r.type==='claim')return[...(r.supporting_evidence||[]),...(r.contradicting_evidence||[])];if(r.type==='analysis')return[...(r.basis_claims||[]),...(r.basis_evidence||[])];if(r.type==='artifact')return[...(r.depends_on_claims||[]),...(r.depends_on_analysis||[])];return[]}
 function heading(r){return r.title||r.proposition||r.text||r.id}
 function render(){const term=q.value.trim().toLowerCase(),filter=kind.value;const shown=rows.filter(r=>(filter==='all'||r.type===filter)&&(!term||JSON.stringify(r).toLowerCase().includes(term)));grid.innerHTML=shown.length?shown.map(r=>`<article class="card ${r.type}"><div class="kind">${esc(r.type)}</div><div class="id">${esc(r.id)}</div><h3>${esc(heading(r))}</h3>${r.publisher?`<p>${esc(r.publisher)} · ${esc(r.publication_date)}</p>`:''}${r.locator?`<p>Locator: ${esc(r.locator)}</p>`:''}${r.status?`<p>Status: ${esc(r.status)}${r.strength?` · strength: ${esc(r.strength)}`:''}</p>`:''}${r.classification?`<p>Classification: ${esc(r.classification)}</p>`:''}${refs(r).length?`<div class="refs">${refs(r).map(x=>`<span>${esc(x)}</span>`).join('')}</div>`:''}${r.source_url?`<a class="source-link" href="${esc(r.source_url)}" target="_blank" rel="noreferrer">Open original publisher →</a>`:''}</article>`).join(''):'<p>No matching records.</p>'}
