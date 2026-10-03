@@ -14,6 +14,36 @@ def test_protocol_separates_economic_constructs():
     assert "Faktisk boligbelastning" in text
     assert "Opplevd økonomisk autonomi" in text
     assert "Economic Home Fit" in text
+    assert "Økonomisk tilfredshet" in text
+
+
+def test_protocol_operationalizes_autonomy_as_choice_not_satisfaction():
+    text = page_text()
+    assert "reelle økonomiske handlingsalternativer" in text
+    assert "Jeg kan gjøre vesentlige endringer i livet mitt" in text
+    assert "Jeg opplever at jeg styrer mine økonomiske valg" in text
+    assert "Economic Autonomy Score" in text
+    assert "behold alle enkeltledd" in text
+
+
+def test_protocol_includes_behavioural_and_discriminant_validation():
+    text = page_text()
+    assert "Atferdsmessig validering" in text
+    assert "Scenario · jobb" in text
+    assert "Scenario · flytting" in text
+    assert "Scenario · uventet utgift" in text
+    assert "Scenario · ny retning" in text
+    assert "Diskriminant test" in text
+    assert "Ingen diskriminant validitet" in text
+
+
+def test_protocol_tests_incremental_value_beyond_burden_and_satisfaction():
+    text = page_text()
+    assert "Modell A · Belastning" in text
+    assert "Modell B · Tilfredshet" in text
+    assert "Modell C · Autonomi" in text
+    assert "ytterligere prediktiv verdi" in text
+    assert "Δ autonomi kommer før" in text
 
 
 def test_protocol_is_prospective_and_falsifiable():
