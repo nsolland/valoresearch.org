@@ -1,0 +1,7 @@
+owner: ChatGPT
+branch: fix/library-publish-20261003
+base: fd865ecf8db978be37be3eb1e84d8dd85a1a05fd
+files:
+  - .claims/library-publish-20261003
+  - sitemap.xml
+purpose: republish the existing library routes through the current production publication path without changing Cloudflare topology
