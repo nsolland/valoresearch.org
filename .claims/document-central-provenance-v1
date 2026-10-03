@@ -1,0 +1,11 @@
+owner: ChatGPT
+branch: feat/document-central-provenance-v1
+base: 63c6b2ba3c0850ab91190d1af0537851b8152807
+files:
+  - .claims/document-central-provenance-v1
+  - library/document-central/index.html
+  - library/document-central/registry.json
+  - library/document-central/schema.json
+  - library/index.html
+  - tests/test_document_central.py
+purpose: extend the existing Research Library with a public provenance layer tracing external sources to evidence, claims, VALO analysis and downstream artifacts
