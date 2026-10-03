@@ -1,0 +1,112 @@
+{
+  "version": "1.0.0",
+  "sources": [
+    {
+      "id": "SRC-2026-JCHR-001",
+      "title": "Human Rights and the Regulation of AI",
+      "publisher": "UK Parliament Joint Committee on Human Rights",
+      "publication_date": "2026-09-14",
+      "document_type": "parliamentary committee report",
+      "jurisdiction": "United Kingdom",
+      "source_url": "https://committees.parliament.uk/work/9220/human-rights-and-the-regulation-of-ai/publications/",
+      "status": "active",
+      "independence_family": "UK-JCHR-HUMAN-RIGHTS-AI-2026",
+      "topics": ["AI regulation", "human rights", "human oversight", "automated decision-making", "transparency", "liability", "high-risk AI"],
+      "source_note": "Primary parliamentary policy source. Recommendations are not enacted law. VALO links to the original publisher and does not republish the report."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "EVD-2026-JCHR-001",
+      "source_id": "SRC-2026-JCHR-001",
+      "locator": "Recommendation paragraph 218",
+      "proposition": "The mere presence of a human in the loop is not sufficient to constitute meaningful human involvement or intervention; the person must be sufficiently informed and independent to reach an objective view not improperly influenced by the automated decision.",
+      "evidence_type": "regulatory recommendation",
+      "strength": "strong",
+      "status": "supported"
+    },
+    {
+      "id": "EVD-2026-JCHR-002",
+      "source_id": "SRC-2026-JCHR-001",
+      "locator": "Paragraphs 125-126",
+      "proposition": "Human oversight can fail because people may be unable to scrutinise AI outputs effectively and may over-rely on automated outputs through automation bias.",
+      "evidence_type": "committee finding based on witness evidence",
+      "strength": "strong",
+      "status": "supported"
+    },
+    {
+      "id": "EVD-2026-JCHR-003",
+      "source_id": "SRC-2026-JCHR-001",
+      "locator": "Recommendation paragraph 204",
+      "proposition": "AI systems posing a high risk of causing harm to human rights should require prior approval before they are provided or deployed.",
+      "evidence_type": "regulatory recommendation",
+      "strength": "strong",
+      "status": "supported"
+    },
+    {
+      "id": "EVD-2026-JCHR-004",
+      "source_id": "SRC-2026-JCHR-001",
+      "locator": "Conclusion paragraphs 193-194 and Recommendation paragraph 195",
+      "proposition": "Obligations should be distributed across the AI lifecycle and supply chain so risks are addressed by actors positioned to identify and prevent them.",
+      "evidence_type": "committee conclusion and recommendation",
+      "strength": "strong",
+      "status": "supported"
+    },
+    {
+      "id": "EVD-2026-JCHR-005",
+      "source_id": "SRC-2026-JCHR-001",
+      "locator": "Recommendation paragraph 213",
+      "proposition": "Mandatory transparency should include disclosure that AI is being used, what it is being used for, and information about data sources when AI may significantly affect people or communities.",
+      "evidence_type": "regulatory recommendation",
+      "strength": "strong",
+      "status": "supported"
+    }
+  ],
+  "claims": [
+    {
+      "id": "CLM-0001",
+      "text": "Human presence in an AI workflow is not, by itself, evidence of effective human control.",
+      "status": "supported",
+      "supporting_evidence": ["EVD-2026-JCHR-001", "EVD-2026-JCHR-002"],
+      "contradicting_evidence": [],
+      "independent_support_count": 1
+    },
+    {
+      "id": "CLM-0002",
+      "text": "For high-risk AI, deployment approval and the legitimacy of later operation are distinct questions.",
+      "status": "bounded",
+      "supporting_evidence": ["EVD-2026-JCHR-003", "EVD-2026-JCHR-004"],
+      "contradicting_evidence": [],
+      "independent_support_count": 1
+    },
+    {
+      "id": "CLM-0003",
+      "text": "Effective challenge and remedy require case-relevant information about AI use, not only a general description of a system.",
+      "status": "bounded",
+      "supporting_evidence": ["EVD-2026-JCHR-005"],
+      "contradicting_evidence": [],
+      "independent_support_count": 1
+    }
+  ],
+  "analysis": [
+    {
+      "id": "ANL-0001",
+      "classification": "VALO inference",
+      "status": "bounded",
+      "text": "Governance should distinguish representation of control from evidence of control. Policies, approval states and human-in-the-loop labels describe intended governance but do not by themselves prove that a concrete consequential action was legitimate and effectively controllable when it occurred.",
+      "basis_claims": ["CLM-0001", "CLM-0002", "CLM-0003"],
+      "basis_evidence": ["EVD-2026-JCHR-001", "EVD-2026-JCHR-002", "EVD-2026-JCHR-003", "EVD-2026-JCHR-004", "EVD-2026-JCHR-005"]
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "ART-0001",
+      "title": "Document Central public provenance record: UK JCHR Human Rights and AI",
+      "artifact_type": "public evidence graph",
+      "path_or_url": "/library/document-central/",
+      "depends_on_claims": ["CLM-0001", "CLM-0002", "CLM-0003"],
+      "depends_on_analysis": ["ANL-0001"],
+      "status": "active"
+    }
+  ]
+}
