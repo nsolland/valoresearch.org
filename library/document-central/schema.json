@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VALO Document Central",
+  "type": "object",
+  "required": ["version", "sources", "evidence", "claims", "analysis", "artifacts"],
+  "properties": {
+    "version": {"type": "string"},
+    "sources": {"type": "array"},
+    "evidence": {"type": "array"},
+    "claims": {"type": "array"},
+    "analysis": {"type": "array"},
+    "artifacts": {"type": "array"}
+  }
+}
