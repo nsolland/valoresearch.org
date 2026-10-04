@@ -1,0 +1,47 @@
+{
+  "model_id": "HANDLINGSROM-01-PUBLIC-2026",
+  "generated": "2026-10-04",
+  "purpose": "Public-data stress test of residual household income after SIFO reference consumption and housing costs. This is not a microdata prevalence estimate.",
+  "formula": "HR = disposable_income_after_tax - sifo_reference_budget - housing_cost",
+  "period_note": "Housing observations are 2025 SSB data; SIFO reference budget is 2026. Values are deliberately not inflation-spliced without an explicit method.",
+  "sifo_2026": {
+    "example_family": {
+      "composition": "two adults, children aged 5 and 11, petrol car",
+      "annual_nok": 462456,
+      "monthly_nok": 38538,
+      "excludes": ["housing", "electricity", "holidays"],
+      "source": "https://www.oslomet.no/no/om/nyheter/sifo-sitt-referansebudsjett-2026-framleis-brei-prisauke"
+    }
+  },
+  "ssb_housing_2025": {
+    "all_households": {"annual_nok": 178912, "monthly_nok_rounded": 14909},
+    "owner_freehold": {"annual_nok": 201397, "monthly_nok_rounded": 16783},
+    "owner_cooperative": {"annual_nok": 194378, "monthly_nok_rounded": 16198},
+    "renter_all": {"annual_nok": 118307, "monthly_nok_rounded": 9859},
+    "renter_market": {"annual_nok": 132263, "monthly_nok_rounded": 11022},
+    "owner_all_excluding_principal": {"annual_nok": 154003, "monthly_nok_rounded": 12834},
+    "housing_cost_share_40pct_or_more_percent": 18.5,
+    "source": "https://www.ssb.no/bygg-bolig-og-eiendom/bolig-og-boforhold/statistikk/boforhold-levekarsundersokelsen/"
+  },
+  "ssb_tenure_2025": {
+    "households_total": 2610377,
+    "owner_percent": 72.7,
+    "renter_percent": 27.3,
+    "renter_households": 713623,
+    "renter_households_lowest_two_income_quartiles_percent": 82,
+    "source": "https://www.ssb.no/bygg-bolig-og-eiendom/bolig-og-boforhold/statistikk/boforhold-registerbasert"
+  },
+  "worked_thresholds_example_family_monthly_nok": {
+    "renter_all": 48397,
+    "renter_market": 49560,
+    "owner_excluding_principal": 51372,
+    "owner_freehold_cashflow": 55321
+  },
+  "interpretation": "Each worked threshold is the minimum monthly disposable household income required for HR >= 0 under the selected observed housing-cost profile and the published SIFO 2026 example-family budget.",
+  "limitations": [
+    "Observed housing averages are not matched to the SIFO example family at household level.",
+    "The model cannot estimate how many employed households have HR below zero without linked microdata or a defensible synthetic population.",
+    "Owner cash-flow and owner resource-cost views differ because principal repayment is saving as well as a liquidity outflow.",
+    "Geographic and household-composition variation can be large; national means are stress-test inputs, not individual budgets."
+  ]
+}
