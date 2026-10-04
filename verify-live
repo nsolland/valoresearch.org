@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+URL="${1:?usage: verify-live URL [EXPECTED_TEXT]}"
+EXPECTED="${2:-}"
+for i in $(seq 1 30); do
+  BODY="$(curl -fsSL --max-time 15 -H 'Cache-Control: no-cache' "$URL?verify=$(date +%s)" 2>/dev/null || true)"
+  if [[ -n "$BODY" ]] && { [[ -z "$EXPECTED" ]] || grep -Fq "$EXPECTED" <<<"$BODY"; }; then
+    echo "LIVE: $URL"
+    exit 0
+  fi
+  sleep 10
+done
+echo "FAILED: canonical production URL did not return expected content: $URL"
+exit 1

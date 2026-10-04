@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Canonical VALO static-page publisher.
+# Usage: ./publish-page <path/to/index.html> <https://valoresearch.org/path/> [expected-text]
+# No CI, no deployer changes: validates -> commits -> pushes -> verifies canonical production URL.
+
+FILE="${1:?usage: publish-page FILE URL [EXPECTED_TEXT]}"
+URL="${2:?usage: publish-page FILE URL [EXPECTED_TEXT]}"
+EXPECTED="${3:-}"
+ROOT="$(git rev-parse --show-toplevel)"
+cd "$ROOT"
+
+[[ -f "$FILE" ]] || { echo "FAILED: missing file $FILE"; exit 2; }
+[[ "$URL" == https://valoresearch.org/* ]] || { echo "FAILED: canonical URL required"; exit 2; }
+[[ "$(git branch --show-current)" != "main" ]] || { echo "FAILED: work on a feature branch, not main"; exit 2; }
+
+python3 - "$FILE" <<'PY'
+from pathlib import Path
+from html.parser import HTMLParser
+import sys
+p=Path(sys.argv[1])
+s=p.read_text(encoding="utf-8")
+class P(HTMLParser): pass
+P().feed(s)
+if "<html" not in s.lower() or "</html>" not in s.lower():
+    raise SystemExit("FAILED: incomplete HTML document")
+print("VALID:", p)
+PY
+
+git diff --check
+git add "$FILE"
+if ! git diff --cached --quiet; then
+  git commit -m "Publish ${FILE%/index.html}"
+fi
+BRANCH="$(git branch --show-current)"
+git push -u origin "$BRANCH"
+
+cat <<EOF
+SOURCE_READY: $BRANCH
+NEXT: merge this branch to main through the normal PR path.
+After merge, run:
+  ./verify-live "$URL" "$EXPECTED"
+EOF
