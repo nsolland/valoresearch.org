@@ -38,7 +38,8 @@ git push -u origin "$BRANCH"
 
 cat <<EOF
 SOURCE_READY: $BRANCH
-NEXT: merge this branch to main through the normal PR path.
+NEXT: open + merge a PR to main. Do not report publication yet.
 After merge, run:
   ./verify-live "$URL" "$EXPECTED"
+Only LIVE from verify-live completes publication.
 EOF
