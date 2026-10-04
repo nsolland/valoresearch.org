@@ -61,15 +61,15 @@ The previous section identified GitHub Pages as canonical based on a 2026-09-23 
 Any future hosting migration is incomplete until the actual Cloudflare/DNS/origin state, repository deployment configuration, this `AGENTS.md`, and VALO project context agree. Do not change production infrastructure as part of an unrelated content task.
 
 
-## Canonical static-page publication routine
+## Canonical static-page publication contract
 
-For every new or changed static page, do not improvise deployment.
+For every new or changed static page:
 
-1. Work on a feature branch; never author ordinary page changes directly on `main`.
-2. Validate the page locally.
-3. Commit and push the feature branch.
-4. Open and merge a PR to `main`; the existing production serving path remains untouched.
-5. Poll the exact canonical URL until it returns the expected page content.
-6. Report `LIVE` only after step 5 succeeds. A commit or merge is never sufficient evidence of publication.
-7. Use `./publish-page FILE URL EXPECTED_TEXT` for the source-side routine and `./verify-live URL EXPECTED_TEXT` after merge.
-8. Never add GitHub Actions/runners, another deployer, or hosting/DNS changes to publish an ordinary static page.
+1. Work on a feature branch and validate locally.
+2. For a new standalone public page, add the page itself plus the same discoverability surfaces used by comparable existing pages when applicable (for example sitemap and an intentional site link). Discoverability is not routing and must never be described as the cause of a 404 without evidence.
+3. Open and merge a PR to `main`. Do not author ordinary page changes directly on `main`.
+4. After merge, verify the exact canonical production URL with a unique expected string.
+5. The task is complete only when production returns the expected page. Commit, push, PR and merge are intermediate states only.
+6. If production verification fails, report the observed failure and inspect the serving path before changing anything else. Never guess the cause.
+7. Never add GitHub Actions/runners, another deployer, DNS changes or hosting changes as a workaround.
+8. Use `./publish-page FILE URL EXPECTED_TEXT` for validation/source preparation and `./verify-live URL EXPECTED_TEXT` after merge.
