@@ -59,3 +59,17 @@ The previous section identified GitHub Pages as canonical based on a 2026-09-23 
 ### Migration rule
 
 Any future hosting migration is incomplete until the actual Cloudflare/DNS/origin state, repository deployment configuration, this `AGENTS.md`, and VALO project context agree. Do not change production infrastructure as part of an unrelated content task.
+
+
+## Canonical static-page publication contract
+
+For every new or changed static page:
+
+1. Work on a feature branch and validate locally.
+2. For a new standalone public page, add the page itself plus the same discoverability surfaces used by comparable existing pages when applicable (for example sitemap and an intentional site link). Discoverability is not routing and must never be described as the cause of a 404 without evidence.
+3. Open and merge a PR to `main`. Do not author ordinary page changes directly on `main`.
+4. After merge, verify the exact canonical production URL with a unique expected string.
+5. The task is complete only when production returns the expected page. Commit, push, PR and merge are intermediate states only.
+6. If production verification fails, report the observed failure and inspect the serving path before changing anything else. Never guess the cause.
+7. Never add GitHub Actions/runners, another deployer, DNS changes or hosting changes as a workaround.
+8. Use `./publish-page FILE URL EXPECTED_TEXT` for validation/source preparation and `./verify-live URL EXPECTED_TEXT` after merge.
