@@ -1,0 +1,51 @@
+name: EXUP-PUBLIC-01 Salad image
+
+on:
+  push:
+    branches:
+      - salad/exup-public-01-inference
+    paths:
+      - exup/salad/**
+      - .github/workflows/exup-public-01-salad.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push
+        id: build
+        uses: docker/build-push-action@v6
+        with:
+          context: ./exup/salad
+          push: true
+          tags: |
+            ghcr.io/nsolland/exup-public-01-salad:sha-${{ github.sha }}
+            ghcr.io/nsolland/exup-public-01-salad:latest
+
+      - name: Make the inference-only image public
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh api --method PATCH /user/packages/container/exup-public-01-salad/visibility -f visibility=public
+
+      - name: Record image digest
+        env:
+          IMAGE_DIGEST: ${{ steps.build.outputs.digest }}
+        run: echo "ghcr.io/nsolland/exup-public-01-salad@${IMAGE_DIGEST}" >> "$GITHUB_STEP_SUMMARY"
