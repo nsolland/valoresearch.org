@@ -1,4 +1,4 @@
-from src.valo_platform.conformance.gauntlet_capture import (
+from capture import (
     ProtectedTest, next_event, evaluate_history,
 )
 
