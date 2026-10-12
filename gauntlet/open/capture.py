@@ -57,6 +57,7 @@ def evaluate_history(baseline: ProtectedTest, events: tuple[ChangeEvent, ...]) -
     reasons: list[str] = []
     chain = "0" * 64
     history_valid = True
+    historical_loss = False
     for event in events:
         if event.previous_digest != chain or not event.event_id or not event.proposal_id or not event.public_reason:
             history_valid = False
@@ -65,8 +66,10 @@ def evaluate_history(baseline: ProtectedTest, events: tuple[ChangeEvent, ...]) -
             reasons.append("PROTECTED_PROPERTY_REPLACED")
         if event.proposed.jurisdiction != baseline.jurisdiction:
             reasons.append("JURISDICTION_SCOPE_CHANGED")
+        protected.update(event.proposed.counterexamples)
         removed = protected - set(event.proposed.detected)
         if removed:
+            historical_loss = True
             reasons.append("HISTORICAL_COUNTEREXAMPLE_NOT_DETECTED")
             if not event.technical_evidence_digest or not event.independent_review_ref:
                 reasons.append("MISSING_INDEPENDENT_CHANGE_EVIDENCE")
@@ -86,7 +89,7 @@ def evaluate_history(baseline: ProtectedTest, events: tuple[ChangeEvent, ...]) -
                         "appeal_status": event.appeal_status})
         current = event.proposed
     missing = tuple(sorted(protected - set(current.detected)))
-    if missing or not history_valid or "PROTECTED_PROPERTY_REPLACED" in reasons:
+    if missing or historical_loss or not history_valid or "PROTECTED_PROPERTY_REPLACED" in reasons:
         classification = "DOCUMENTED_VIOLATION"
     elif reasons:
         classification = "INVESTIGATION"
