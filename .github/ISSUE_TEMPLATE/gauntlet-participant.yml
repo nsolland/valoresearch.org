@@ -1,0 +1,63 @@
+name: "Gauntlet participant submission"
+description: "Submit a candidate governance implementation or independently replayable run for assessment. Submission is not certification."
+title: "[Gauntlet candidate] "
+body:
+  - type: markdown
+    attributes:
+      value: "Public preliminary intake only. GitHub issues are operator-managed, not independent immutable evidence. Do not post secrets, private keys, personal data, exploit payloads, or confidential source. No hosted test execution is triggered."
+  - type: input
+    id: candidate
+    attributes:
+      label: Candidate and version
+      description: Stable system name and immutable software version
+      placeholder: Example Product 1.2.3 / SHA
+    validations:
+      required: true
+  - type: input
+    id: independent_source
+    attributes:
+      label: Public source or artifact link
+      description: Reproducible code, container image digest, or public test package
+    validations:
+      required: true
+  - type: dropdown
+    id: requested_scope
+    attributes:
+      label: Requested scope
+      options:
+        - GAUNTLET-001 revoked mandate
+        - CAP-03 normative test regression
+        - Evidence-only / independent replay
+        - Other proposed conformance claim
+    validations:
+      required: true
+  - type: textarea
+    id: execution
+    attributes:
+      label: Integration and execution instructions
+      description: Include non-secret setup details and dependencies
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence references, negative findings and limitations
+      description: Include hashes, signed receipts if available, witnesses, claimed scope, and known gaps; do not self-assign PASS
+    validations:
+      required: true
+  - type: textarea
+    id: conflicts
+    attributes:
+      label: Known organizational and financial conflicts
+      description: Disclose relevant relationships with VALO, test maintainers, auditors and sponsors
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety and evidence acknowledgement
+      options:
+        - label: "I understand that a submission is not a validated result, PASS claim, or permission to execute consequential actions."
+          required: true
+        - label: "I have not included secrets, confidential data, or private personal information."
+          required: true
