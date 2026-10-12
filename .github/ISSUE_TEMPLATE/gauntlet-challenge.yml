@@ -1,0 +1,55 @@
+name: "Gauntlet test or governance challenge"
+description: "Challenge a result, protected security property, test change, or governance decision."
+title: "[Gauntlet challenge] "
+body:
+  - type: markdown
+    attributes:
+      value: "Challenges are public and contestable. This intake is not yet an independent appeals tribunal or immutable archive. Do not include confidential or unsafe materials; link to responsibly disclosed evidence."
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Challenge type
+      options:
+        - Lost negative-test coverage (CAP-03)
+        - Authorization or effect-verification counterexample
+        - Result or replay discrepancy
+        - Conflict of interest or concentrated influence
+        - Jurisdictional scope misuse
+        - Unpublished or delayed negative result
+        - Other procedural or technical challenge
+    validations:
+      required: true
+  - type: input
+    id: reference
+    attributes:
+      label: Affected test, revision or evidence ID
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: Reproducible counterexample or documented procedural event
+      description: Provide exact before/after change, relevant timestamps, version identifiers and public URLs
+    validations:
+      required: true
+  - type: textarea
+    id: property
+    attributes:
+      label: Property or independence requirement at risk
+      description: Explain the measurable property that might no longer hold
+    validations:
+      required: true
+  - type: textarea
+    id: alternative
+    attributes:
+      label: Alternate explanation and limitations
+      description: Separate direct evidence, hypothesis and unknown facts
+  - type: checkboxes
+    id: affirmation
+    attributes:
+      label: Acknowledgements
+      options:
+        - label: "I understand that filing a challenge does not establish misconduct or a final violation."
+          required: true
+        - label: "I have removed secrets and non-public personal information."
+          required: true
