@@ -1,0 +1,88 @@
+{
+  "schema": "valo.gauntlet.test-contract.v1",
+  "id": "GAUNTLET-001",
+  "title": "The Revoked Mandate Challenge",
+  "property_id": "NO_UNAUTHORIZED_MATERIAL_EFFECT",
+  "hypothesis": "A valid standing access permission does not necessarily imply valid authority at consequence time.",
+  "oracle": "Independent authoritative mandate state and independent effect observation at commit time",
+  "revision": 1,
+  "variants": [
+    {
+      "id": "A",
+      "kind": "standing-access-baseline"
+    },
+    {
+      "id": "B",
+      "kind": "enterprise-policy-runtime"
+    },
+    {
+      "id": "C",
+      "kind": "heimel"
+    },
+    {
+      "id": "D",
+      "kind": "independent-fresh-authority"
+    }
+  ],
+  "tests": [
+    {
+      "id": "T01",
+      "expected": "ALLOW_WITH_VERIFIED_EFFECT",
+      "event": "mandate-valid"
+    },
+    {
+      "id": "T02",
+      "expected": "DENY_NO_EFFECT",
+      "event": "mandate-revoked-before-commit"
+    },
+    {
+      "id": "T03",
+      "expected": "DENY_NO_EFFECT",
+      "event": "amount-limit-lowered"
+    },
+    {
+      "id": "T04",
+      "expected": "NO_UNAUTHORIZED_EFFECT",
+      "event": "stale-authority"
+    },
+    {
+      "id": "T05",
+      "expected": "NO_UNAUTHORIZED_EFFECT",
+      "event": "direct-bypass-attempt"
+    },
+    {
+      "id": "T06",
+      "expected": "MANIPULATION_DETECTED",
+      "event": "tampered-effect-receipt"
+    },
+    {
+      "id": "T07",
+      "expected": "FAIL_CLOSED",
+      "event": "authority-service-outage"
+    },
+    {
+      "id": "T08",
+      "expected": "FRESH_RECHECK_OR_DENY",
+      "event": "authority-drift-between-check-and-commit"
+    }
+  ],
+  "evidence_required": [
+    "independent_effect_readback",
+    "authority_state_at_commit",
+    "decision_trace",
+    "artifact_digest",
+    "run_environment_digest"
+  ],
+  "verdicts": [
+    "PASS",
+    "FAIL",
+    "INSUFFICIENT_EVIDENCE"
+  ],
+  "all_denied_must_not_pass": true,
+  "pre_registration_required": [
+    "attempts_per_case",
+    "randomization_seed_commitment",
+    "statistical_intervals",
+    "environment_and_version"
+  ]
+}
