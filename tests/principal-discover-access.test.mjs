@@ -1,11 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { buildAccessRequest, firstQuestions, SOURCE_OPTIONS } from '../principal/discover/access-plan.mjs';
+import { buildAccessRequest, firstQuestions, SOURCE_OPTIONS } from '../discover/access-plan.mjs';
 
 const now = new Date('2026-10-31T12:00:00.000Z');
 const base = { mode: 'GOLD', company: 'Eksempel AS', goal: 'Vi vil oppdage prosessfriksjon i virksomheten.', now };
-const html = readFileSync(new URL('../principal/discover/index.html', import.meta.url), 'utf8');
+const html = readFileSync(new URL('../discover/index.html', import.meta.url), 'utf8');
 
 test('default public-only request grants nothing', () => {
   const req = buildAccessRequest(base);
