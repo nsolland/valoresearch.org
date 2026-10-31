@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Oppdag reelle behov, finn de riktige spørsmålene og foreslå avgrenset tilgang til kundens miljø – Principal Network og VALO.">
+  <meta name="robots" content="index,follow">
+  <title>Discover · Principal Network</title>
+  <style>
+    :root{color-scheme:light;--bg:#f3efe7;--paper:#fffdfa;--ink:#17231e;--muted:#656a64;--line:#d9d5ca;--green:#163c31;--gold:#b38a45;--soft:#e7ebdf}
+    *{box-sizing:border-box}
+    body{margin:0;color:var(--ink);background:var(--bg);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    a{color:inherit}
+    button,input,textarea,select{font:inherit}
+    button{cursor:pointer}
+    a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+    .wrap{width:min(1160px,calc(100% - 36px));margin:0 auto}
+    .top{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:25px 0;border-bottom:1px solid var(--line)}
+    .identity{text-decoration:none;font-size:13px;font-weight:850;letter-spacing:.12em}
+    .identity span{color:var(--gold)}
+    .nav{display:flex;gap:24px;font-size:14px;color:var(--muted)}
+    .nav a{text-decoration:none}
+    .hero{padding:72px 0 56px;max-width:920px}
+    .eyebrow{font-size:12px;font-weight:850;letter-spacing:.16em;color:var(--green);text-transform:uppercase}
+    h1{font-size:clamp(48px,7vw,86px);letter-spacing:-.065em;line-height:.99;margin:16px 0 20px}
+    .lead{max-width:800px;font-size:clamp(18px,2vw,23px);line-height:1.52;color:var(--muted);margin:0}
+    .pill{display:inline-flex;border:1px solid #c5cabe;border-radius:999px;background:var(--soft);padding:7px 11px;color:var(--green);font-size:12px;font-weight:750}
+    .workspace{display:grid;grid-template-columns:minmax(0,1.32fr) minmax(300px,.88fr);align-items:start;gap:20px;margin-bottom:90px}
+    .panel{background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:30px;box-shadow:0 12px 38px rgba(27,34,27,.035)}
+    .panel h2{font-size:28px;line-height:1.08;letter-spacing:-.04em;margin:10px 0 18px}
+    .panel h3{font-size:19px;letter-spacing:-.025em;margin:0 0 12px}
+    .step{font-size:11px;font-weight:850;color:var(--gold);letter-spacing:.13em;text-transform:uppercase}
+    .choice-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+    .mode{position:relative;display:block}
+    .mode input{position:absolute;opacity:0;width:1px;height:1px}
+    .mode span{display:block;min-height:133px;padding:18px;border:1px solid var(--line);border-radius:17px;background:#faf8f3;transition:border-color .15s,background .15s}
+    .mode strong{display:block;font-size:16px;line-height:1.2;margin-bottom:10px}
+    .mode small{display:block;font-size:13px;line-height:1.35;color:var(--muted)}
+    .mode input:checked+span{border:2px solid var(--green);padding:17px;background:#e9efe6}
+    .mode input:focus-visible+span{outline:3px solid var(--gold);outline-offset:2px}
+    .group{margin-top:28px}
+    .field{display:block;font-size:13px;font-weight:700;margin-bottom:8px}
+    .field small{font-weight:400;color:var(--muted)}
+    input[type=text],textarea,select{width:100%;border:1px solid #c7c9c1;border-radius:12px;padding:14px;background:#fff;color:var(--ink)}
+    textarea{min-height:140px;resize:vertical;line-height:1.5}
+    .hint{color:var(--muted);font-size:13px;line-height:1.55;margin:9px 0 0}
+    .scope{display:grid;gap:10px}
+    .source{display:flex;gap:12px;align-items:flex-start;padding:13px;border:1px solid var(--line);border-radius:12px;font-size:14px;line-height:1.4}
+    .source input{margin-top:3px;accent-color:var(--green);width:17px;height:17px;flex:0 0 auto}
+    .source span{flex:1}
+    .source small{display:block;color:var(--muted);font-size:12px;margin-top:3px}
+    .divider{height:1px;background:var(--line);margin:28px 0}
+    .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .primary{background:var(--green);border:1px solid var(--green);border-radius:999px;color:white;font-weight:750;padding:15px 21px;min-height:50px}
+    .secondary{background:white;border:1px solid var(--green);border-radius:999px;color:var(--green);font-weight:750;padding:11px 18px}
+    .actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:18px}
+    .status{min-height:20px;font-size:14px;color:var(--green);font-weight:650;margin-top:10px}
+    .result{margin-top:20px;border:1px solid #b9cbbb;background:#eef4ec;border-radius:18px;padding:18px}
+    .result[hidden]{display:none}
+    .result p{line-height:1.5}
+    .result code{overflow-wrap:anywhere}
+    .result details{margin-top:12px}
+    .result pre{white-space:pre-wrap;overflow-wrap:anywhere;max-height:320px;overflow:auto;font-size:12px;line-height:1.45}
+    .questions{list-style:none;counter-reset:q;padding:0;margin:0;display:grid;gap:12px}
+    .questions li{counter-increment:q;position:relative;padding:12px 12px 12px 44px;border-radius:12px;background:#f3f5ed;font-size:14px;line-height:1.5}
+    .questions li:before{content:counter(q);position:absolute;left:12px;top:13px;border:1px solid #bad0c2;color:var(--green);font-size:11px;width:21px;height:21px;border-radius:50%;display:grid;place-items:center}
+    .side-intro{font-size:15px;color:var(--muted);line-height:1.6}
+    .route{padding:13px 0;border-top:1px solid var(--line)}
+    .route strong{display:block;font-size:15px}
+    .route span{display:block;color:var(--muted);font-size:13px;margin-top:4px;line-height:1.5}
+    .numbered{padding-left:22px;display:grid;gap:12px;font-size:14px;line-height:1.5;color:var(--muted)}
+    .numbered strong{color:var(--ink)}
+    footer{padding:26px 0 50px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;font-size:13px;color:var(--muted)}
+    footer a{text-decoration:none}
+    @media(max-width:900px){.workspace{grid-template-columns:1fr}.hero{padding-top:48px}.side{order:2}}
+    @media(max-width:620px){.top{align-items:flex-start}.nav{gap:12px;flex-direction:column;text-align:right}.choice-grid{grid-template-columns:1fr}.mode span{min-height:auto}.panel{padding:21px}.two{grid-template-columns:1fr}footer{flex-direction:column}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a class="identity" href="/principal/story/">PRINCIPAL <span>NETWORK</span></a>
+      <nav class="nav" aria-label="Navigasjon">
+        <a href="/principal/story/">Tilbake til Principal</a>
+        <a href="/">VALO Research</a>
+        <a href="https://principal.valoresearch.org/login">Medlemsområde</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="title">
+        <div class="eyebrow">Discover · Understand · Ask · Connect</div>
+        <h1 id="title">Hva trenger dere egentlig?</h1>
+        <p class="lead">Vi hjelper dere å finne behovene, stille de riktige spørsmålene og sette sammen akkurat den kompetansen dere trenger – når dere trenger den.</p>
+        <p style="margin-top:23px"><span class="pill">Første versjon: lokal forespørsel, ingen innsamling</span></p>
+      </section>
+
+      <div class="workspace">
+        <section class="panel" aria-labelledby="entry-heading">
+          <div class="step">01 · Start</div>
+          <h2 id="entry-heading">Hvor vil du begynne?</h2>
+          <form id="discovery-form">
+            <fieldset style="border:0;padding:0;margin:0">
+              <legend class="field">Velg inngang</legend>
+              <div class="choice-grid">
+                <label class="mode"><input type="radio" name="mode" value="GOLD" checked><span><strong>Grav etter gull</strong><small>Oppdag behov dere kanskje ikke ser selv.</small></span></label>
+                <label class="mode"><input type="radio" name="mode" value="NEED"><span><strong>Jeg har et behov</strong><small>Finn riktig senior, teknologi eller prosesshjelp.</small></span></label>
+                <label class="mode"><input type="radio" name="mode" value="OPPORTUNITY"><span><strong>Vis mulighetene</strong><small>Se på vekst, grants, partnere og M&amp;A.</small></span></label>
+              </div>
+            </fieldset>
+
+            <div class="group">
+              <label class="field" for="company">Virksomhet <small>(valgfritt)</small></label>
+              <input id="company" type="text" maxlength="140" autocomplete="organization" placeholder="Bedriftsnavn">
+            </div>
+            <div class="group">
+              <label class="field" for="goal">Hva prøver dere å få til?</label>
+              <textarea id="goal" required minlength="10" maxlength="1500" placeholder="Beskriv målet eller utfordringen i egne ord …"></textarea>
+              <p class="hint">Ikke oppgi personopplysninger, passord, tilgangsnøkler eller konfidensielt innhold her.</p>
+            </div>
+
+            <div class="divider"></div>
+            <div class="step">02 · Innsyn</div>
+            <h2>Hvilket grunnlag ønsker dere å vurdere?</h2>
+            <p class="hint" style="margin-bottom:16px">Start med offentlige kilder. Ekstra datakilder krever egen avtale og kundens godkjenning før en fremtidig tilkobling.</p>
+            <div class="scope">
+              <label class="source"><input type="checkbox" value="PUBLIC_MARKET" checked disabled><span>Offentlige markeds- og selskapskilder<small>Utgangspunkt. Ingen kundetilkobling.</small></span></label>
+              <label class="source"><input type="checkbox" name="source" value="CUSTOMER_FILES"><span>Utvalgte dokumenter eller eksportfiler<small>Kunden velger selv hva som deles.</small></span></label>
+              <label class="source"><input type="checkbox" name="source" value="WORKSPACE_FOLDER"><span>Microsoft 365 / Google Drive<small>Avgrenset mappe eller område – ikke hele arbeidsflaten.</small></span></label>
+              <label class="source"><input type="checkbox" name="source" value="CRM_REPORT"><span>CRM eller salgsrapporter<small>Kun navngitte rapporter og felt.</small></span></label>
+              <label class="source"><input type="checkbox" name="source" value="ATS_REPORT"><span>HR / rekruttering / ATS<small>Kun eksplisitt valgte rapporter.</small></span></label>
+              <label class="source"><input type="checkbox" name="source" value="CUSTOMER_HOSTED_SHADOW"><span>Shadow i kundens eget miljø<small>Lokalt arbeid når data ikke skal flyttes ut.</small></span></label>
+            </div>
+
+            <div class="group two">
+              <div>
+                <label class="field" for="sponsor">Kontaktperson <small>(valgfritt)</small></label>
+                <input id="sponsor" type="text" maxlength="140" placeholder="Rolle eller navn">
+              </div>
+              <div>
+                <label class="field" for="duration">Foreslått tilgangsperiode</label>
+                <select id="duration">
+                  <option value="7">7 dager</option>
+                  <option value="14" selected>14 dager</option>
+                  <option value="30">30 dager</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="actions">
+              <button class="primary" type="submit">Lag tilgangsforespørsel</button>
+            </div>
+            <p class="hint">Dette oppretter et lokalt utkast. Ingen analyse kjøres, og ingenting sendes til Principal eller VALO.</p>
+            <div id="status" class="status" role="status" aria-live="polite"></div>
+
+            <section id="result" class="result" hidden aria-labelledby="result-title">
+              <div class="step">03 · Utkast generert</div>
+              <h3 id="result-title">Klar for avklaring med kunden</h3>
+              <p id="result-summary"></p>
+              <div class="actions">
+                <button id="copy" class="secondary" type="button">Kopier JSON</button>
+                <button id="download" class="secondary" type="button">Last ned forespørsel</button>
+              </div>
+              <details><summary>Vis forespørsel og foreslåtte spørsmål</summary><pre id="request-preview"></pre></details>
+            </section>
+          </form>
+        </section>
+
+        <aside class="side">
+          <section class="panel">
+            <div class="step">Request Engine · Grave etter gull</div>
+            <h2>Start med de rette spørsmålene.</h2>
+            <p class="side-intro">Dette er spørsmål vi kan begynne med. De er ikke analyser av virksomheten din eller bekreftede funn.</p>
+            <ol class="questions" id="questions" aria-live="polite"></ol>
+            <div class="divider"></div>
+            <h3>Mulige utfall</h3>
+            <div class="route"><strong>Senior – akkurat når dere trenger det</strong><span>For eksempel en erfaren ressurs ti timer i måneden. Behov, tilgjengelighet og pris må bekreftes.</span></div>
+            <div class="route"><strong>KI eller prosessforbedring</strong><span>Avgrens en jobb, mål alternativet uten KI og vurder deretter riktig løsning.</span></div>
+            <div class="route"><strong>Grants og finansiering</strong><span>Finn relevante ordninger og undersøk vilkår, partnere og tidsfrister.</span></div>
+            <div class="route"><strong>M&amp;A eller partnerskap</strong><span>Finn mulige spor uten å anta kjøperinteresse eller transaksjonsmandat.</span></div>
+          </section>
+          <section class="panel" style="margin-top:20px">
+            <div class="step">Kundens miljø</div>
+            <h2>Slik får vi tilgang</h2>
+            <ol class="numbered">
+              <li><strong>Avklar behovet.</strong> Hvilke spørsmål må besvares – med færrest mulig kilder?</li>
+              <li><strong>Velg metode.</strong> Filer, tidsbegrenset OAuth-lesetilgang til bestemte kilder eller lokal Shadow.</li>
+              <li><strong>Kunden godkjenner.</strong> Ansvarlig og IT-administrator verifiserer tilgang, scope og varighet.</li>
+              <li><strong>Analyser og avslutt.</strong> Kun godkjente data, kildebevis og tilbakekallbar tilgang. Ingen automatisk utførelse.</li>
+            </ol>
+            <p class="hint">Ingen passord eller API-nøkler skal limes inn i denne siden. Innlogging og integrasjon krever en separat, godkjent kundetjeneste.</p>
+          </section>
+        </aside>
+      </div>
+    </main>
+
+    <footer><span>Principal Network · Discover / VALO Research</span><a href="/principal/story/">Tilbake til Principal</a></footer>
+  </div>
+  <script type="module">
+    import { buildAccessRequest, firstQuestions } from './access-plan.mjs';
+
+    const form = document.getElementById('discovery-form');
+    const questionList = document.getElementById('questions');
+    const status = document.getElementById('status');
+    const result = document.getElementById('result');
+    const resultSummary = document.getElementById('result-summary');
+    const preview = document.getElementById('request-preview');
+    let currentDraft = null;
+
+    function selectedMode() {
+      return form.querySelector('input[name="mode"]:checked').value;
+    }
+
+    function renderQuestions() {
+      questionList.replaceChildren();
+      for (const question of firstQuestions(selectedMode())) {
+        const item = document.createElement('li');
+        item.textContent = question;
+        questionList.append(item);
+      }
+    }
+
+    form.addEventListener('change', (event) => {
+      if (event.target.name === 'mode') renderQuestions();
+      result.hidden = true;
+      currentDraft = null;
+      status.textContent = '';
+    });
+    form.addEventListener('input', () => {
+      result.hidden = true;
+      currentDraft = null;
+      status.textContent = '';
+    });
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      try {
+        currentDraft = buildAccessRequest({
+          mode: selectedMode(),
+          company: document.getElementById('company').value,
+          goal: document.getElementById('goal').value,
+          sponsor: document.getElementById('sponsor').value,
+          sources: [...form.querySelectorAll('input[name="source"]:checked')].map((item) => item.value),
+          durationDays: Number(document.getElementById('duration').value)
+        });
+        preview.textContent = JSON.stringify(currentDraft, null, 2);
+        const extra = currentDraft.requestedSources.length - 1;
+        resultSummary.textContent = 'Offentlige kilder' + (extra ? ' og ' + extra + ' foreslåtte kundekilder' : ' alene') + '. Utkastet er ikke sendt, og ingen tilkobling er etablert.';
+        result.hidden = false;
+        status.textContent = 'Utkast laget lokalt i nettleseren.';
+        result.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      } catch (error) {
+        currentDraft = null;
+        result.hidden = true;
+        status.textContent = error.message;
+      }
+    });
+
+    document.getElementById('copy').addEventListener('click', async () => {
+      if (!currentDraft) return;
+      try {
+        await navigator.clipboard.writeText(JSON.stringify(currentDraft, null, 2));
+        status.textContent = 'Forespørselen er kopiert. Del den bare gjennom en godkjent kanal.';
+      } catch {
+        status.textContent = 'Kopiering er ikke tilgjengelig her. Bruk Last ned forespørsel.';
+      }
+    });
+
+    document.getElementById('download').addEventListener('click', () => {
+      if (!currentDraft) return;
+      const file = new Blob([JSON.stringify(currentDraft, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(file);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'principal-discover-access-request.json';
+      link.click();
+      URL.revokeObjectURL(url);
+      status.textContent = 'Forespørselen er lastet ned lokalt. Ingen data er sendt.';
+    });
+
+    renderQuestions();
+  </script>
+</body>
+</html>
