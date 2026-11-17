@@ -1,0 +1,7 @@
+Repo: nsolland/valoresearch.org
+Canonical base SHA: e50343a63d9e5846100482d116b15498b47fa2a9
+Branch: salad/exup-public-01-inference
+Claim/owner: EXUP-PUBLIC-01 inference-only Salad image / Njål
+Owned files: exup/salad/Dockerfile
+Dependencies: pytorch/pytorch:2.13.0-cuda13.2-cudnn9-runtime; pinned requirements.txt; public YOLO11n weights verified by SHA-256
+Boundary: public synthetic COCO inference only; no proprietary workload logic, private inputs, or credentials.
